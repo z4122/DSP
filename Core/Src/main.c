@@ -68,8 +68,15 @@ static void MPU_Config(void);
 static void CPU_CACHE_Enable(void);
 extern void MainTask(char*,int,int);
 void display(int i,float num);
+void getaddata();
 long ulResult;
 long double ldVolutage;
+uint8_t data[15];//传输给上位机的数据
+/*
+0x00 0x00  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX    0xXX 
+| 数据头 |  通道一  |  通道二   |  通道三  |  通道四  |  通道五  |保留两个字节|校验和|
+
+*/
 /* Private functions ---------------------------------------------------------*/
 
 UART_HandleTypeDef UartHandle;
@@ -82,16 +89,7 @@ UART_HandleTypeDef UartHandle;
 int main(void)
 {
   /* Configure the MPU attributes as Write Through */
-	int i = 0,j = 0,k = 0;
-	uint8_t temp = 0x00;
-	uint8_t aTxBuffer[] = "** UART__ComPolling ** \r\n";
-  //uint8_t aRxBuffer[32];
-	uint8_t aTxStartMessage[] = "\n\r ****UART-Hyperterminal communication based on IT****\n\r Enter 10 characters using keyboard :\n\r";
-	uint8_t aTxEndMessage[] = "\n\r Example Finished\n\r";
-	uint8_t aRxBuffer[RXBUFFERSIZE];
-	
-	
-	
+
   MPU_Config();
 
   /* Enable the CPU Cache */
@@ -113,108 +111,24 @@ int main(void)
   /* Init the STemWin GUI Library */  
   __HAL_RCC_CRC_CLK_ENABLE(); /* Enable the CRC Module */
   
-  
   GUI_Init();
 	MainTask("this is test",100,20);  
 	
-
 
 	/*Init usart*/
 	BSP_Init();
 
 		
-
 	HAL_Delay(500);
-	
-
-//  if(HAL_UART_Transmit_IT(&huart1, (uint8_t*)aTxStartMessage, TXSTARTMESSAGESIZE)!= HAL_OK)
-//  {
-//    /* Transfer error in transmission process */
-//    Error_Handler();
-//  }
-
-  /*##-3- Put UART peripheral in reception process ###########################*/
-  /* Any data received will be stored "aRxBuffer" buffer : the number max of
-     data received is 10 */
-  
-  /* Infinite loop */
-	
-	
-  while(1)
-{
-//		HAL_GPIO_WritePin(USART1_RESET_PORT,USART1_RESET_PIN,GPIO_PIN_RESET);
-//		HAL_Delay(1000);
-//		HAL_GPIO_WritePin(USART1_RESET_PORT,USART1_RESET_PIN,GPIO_PIN_SET);
-//		HAL_Delay(100);
-//		stimulate(&huart1);
-//		stimulate(&huart3);
-//		stimulate(&huart4);
 		
-//		stimulate(&huart7);
-//		stimulate(&huart8);
-//		
-//					fputc(0x01,0);
-//		//	for(i=0;i<1000;i++)
-//			for(j=0;j<800;j++);
-//			fputc(0x02,0);  
-//		//	for(i=0;i<1000;i++)
-//			for(j=0;j<800;j++);
-//			fputc(0x03,0);
-//	//		for(i=0;i<1000;i++)
-//			for(j=0;j<800;j++);				 
-//			 
-//			fputc(ADS1256_Read_one_Reg(0x00),0);	 //STATUS=34h
-//			for(int i=0;i<800;i++)
-//			for(j=0;j<1000;j++);
-
-//			temp = ADS1256_Read_one_Reg(0x01);
-//			fputc(temp,0);	 //MAX=08H
-//			
-//			for(int i=0;i<800;i++)
-//			for(j=0;j<1000;j++);
-
-//			temp = ADS1256_Read_one_Reg(0x02);
-//			fputc(temp,0);	 //ADCON=00h
-//			
-//			for(int i=0;i<800;i++)
-//			for(j=0;j<1000;j++);
-
-//			temp = ADS1256_Read_one_Reg(0x03);
-//			fputc(temp,0);	   //DRATE=E0h
-//			for(int i=0;i<800;i++)
-//			for(j=0;j<1000;j++);
-
-
-//			temp = ADS1256_Read_one_Reg(0x04);
-//			fputc(ADS1256_Read_one_Reg(0x04),0);		//IO=00
-//			for(int i=0;i<800;i++)
-//			for(j=0;j<1000;j++);
-		
-		for(int i = 0;i < 8;i++)
-		{
-			 ulResult = ADS_sum( (i << 4) | 0x08);	
-			//ulResult = ADS_sum( ADS1256_MUXP_AIN0 | ADS1256_MUXN_AINCOM);	
-			if( ulResult & 0x800000 )
-			{
-			 	ulResult = ~(unsigned long)ulResult;
-				ulResult &= 0x7fffff;
-				ulResult += 1;
-				ulResult = -ulResult;
-			}
-		
-			ldVolutage = (long double)ulResult*0.59604644775390625;
-
-			display(i,ldVolutage);
-
-			//printf("%x",(unsigned long)ulResult);//16
-			HAL_Delay(10);
+	
+	while(1)
+	{	
 			
-
-	
-		}
-
-		//VisualScope(&huart1,1,2,3,4);
-		//fputc(1,0);
+			//getaddata();
+			//VisualScope(&huart1,1,2,3,4);
+			//fputc(1,0);
+		
 	}
 }
 
@@ -417,7 +331,12 @@ void assert_failed(uint8_t* file, uint32_t line)
 }
 #endif
 
-
+/**
+  * @brief  display in LCD
+	* @param  i	 : index of channel,
+	* @param 	num: the number that will be displayed
+  * @retval None
+  */
 void display(int i,float num)
 {
 	switch(i)
@@ -430,19 +349,19 @@ void display(int i,float num)
 			GUI_DispFloat(3.486*pow(2.71828,1.589*num*3.3/5000000),4);
 			stimulate(&huart5,3.486*pow(2.71828,1.589*num*3.3/5000000));
 			break;
-		case 2://8
+		case 2://3
 			GUI_DispStringAt("channel 2  ", 100, 50); 
 			GUI_DispFloat(num/1000000,4);
 			GUI_DispStringAt("transfered data  ", 300, 50); 
-			GUI_DispFloat(1.817*pow(2.71828,1.897*num*3.3/5000000),4);
-			//stimulate(&huart3,1.817*pow(2.71828,1.897*num*3.3/5000000));
+			GUI_DispFloat(2.705*pow(2.71828,1.607*num*3.3/5000000),4);
+			stimulate(&huart3,2.705*pow(2.71828,1.607*num*3.3/5000000));
 			break;
-		case 3://7
+		case 3://2
 			GUI_DispStringAt("channel 3  ", 100, 80); 
 			GUI_DispFloat(num*3.3/5000000,4);
 			GUI_DispStringAt("transfered data  ", 300, 80); 
-			GUI_DispFloat(1.96*pow(2.71828,1.778*num*3.3/5000000),4);
-			stimulate(&huart1,1.96*pow(2.71828,1.778*num*3.3/5000000));
+			GUI_DispFloat(1.767*pow(2.71828,1.801*num*3.3/5000000),4);
+			stimulate(&huart1,1.767*pow(2.71828,1.801*num*3.3/5000000));
 			break;
 		case 4://15
 			GUI_DispStringAt("channel 4  ", 100, 110); 
@@ -451,27 +370,77 @@ void display(int i,float num)
 			GUI_DispFloat(6.366*pow(2.71828,1.296*num*3.3/5000000),4);
 			stimulate(&huart4,6.366*pow(2.71828,1.296*num*3.3/5000000));
 			break;
-		case 5:
+		case 5://1
 			GUI_DispStringAt("channel 5  ", 100, 140); 
 			GUI_DispFloat(num/1000000,4);
 			GUI_DispStringAt("transfered data  ", 300, 140); 
-			GUI_DispFloat(2.705*pow(2.71828,1.607*num/1000000),4);
+			GUI_DispFloat(1.828*pow(2.71828,1.904*num/1000000),4);
+			stimulate(&huart7,1.828*pow(2.71828,1.904*num*3.3/5000000));
 			break;
-		case 6:
-			GUI_DispStringAt("channel 6  ", 100, 170); 
-			GUI_DispFloat(num/1000000,4);
-			GUI_DispStringAt("transfered data  ", 300, 170); 
-			GUI_DispFloat(2.705*pow(2.71828,1.607*num/1000000),4);
-			break;
+//		case 6:
+//			GUI_DispStringAt("channel 6  ", 100, 170); 
+//			GUI_DispFloat(num/1000000,4);
+//			GUI_DispStringAt("transfered data  ", 300, 170); 
+//			GUI_DispFloat(2.705*pow(2.71828,1.607*num/1000000),4);
+//			break;
 	}	
 }
 
-/**
-  * @}
-  */
+void getaddata()
+{
+	
+		for(int i = 0;i < 5;i++)
+		{
+			 ulResult = ADS_sum( (i << 4) | 0x08);	
 
-/**
-  * @}
-  */
+			//ulResult = ADS_sum( ADS1256_MUXP_AIN0 | ADS1256_MUXN_AINCOM);	
+			if( ulResult & 0x800000 )
+			{
+			 	ulResult = ~(unsigned long)ulResult;
+				ulResult &= 0x7fffff;
+				ulResult += 1;
+				ulResult = -ulResult;
+			}
+		
+			data[i*2+2] = ulResult>>8;
+			data[i*2+3] = ulResult&0xFF;
+			
+			ldVolutage = (long double)ulResult*0.59604644775390625;
+			
 
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+			display(i,ldVolutage);
+			HAL_Delay(10);	
+		}
+		
+		HAL_UART_Transmit(&huart8,data,15,0xfff);
+		
+		for(int i = 5;i < 8;i++)
+		{
+			 ulResult = ADS_sum( (i << 4) | 0x08);	
+			//ulResult = ADS_sum( ADS1256_MUXP_AIN0 | ADS1256_MUXN_AINCOM);	
+			if( ulResult & 0x800000 )
+			{
+			 	ulResult = ~(unsigned long)ulResult;
+				ulResult &= 0x7fffff;
+				ulResult += 1;
+				ulResult = -ulResult;
+			}
+		
+			data[i*2-3] = ulResult>>8;
+			data[i*2-2] = ulResult&0xFF;
+			
+			ldVolutage = (long double)ulResult*0.59604644775390625;
+
+			display(i,ldVolutage);
+			HAL_Delay(10);	
+		}
+		
+//		data[8] = ;
+//		data[9] = ;
+//		data[10] = ;
+//		data[11] = ;
+		
+		HAL_UART_Transmit(&huart8,data,15,0xfff);
+		
+}
+

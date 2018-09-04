@@ -554,6 +554,26 @@
               <FileType>5</FileType>
               <FilePath>..\Core\User\Inc\ad.h</FilePath>
             </File>
+            <File>
+              <FileName>pc_interface.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\User\Src\pc_interface.c</FilePath>
+            </File>
+            <File>
+              <FileName>pc_interface.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Core\User\Inc\pc_interface.h</FilePath>
+            </File>
+            <File>
+              <FileName>adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\User\Src\adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>adc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Core\User\Inc\adc.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -41,6 +41,8 @@ extern uint8_t volatile UART8RxBuff;
 
 
 extern uint8_t tempRxBuffer;
+extern uint8_t upperRxBuffer[7];
+extern int channelchange;
 
 void USART1_Init(void);
 void USART2_Init(void);

@@ -166,6 +166,7 @@
 
 void Readad(void);
 void AD_Init(void);
+
 void ADS1256_Init(void);
 void AD_GPIO_Init(void);
 unsigned int ADS1256ReadData(void);

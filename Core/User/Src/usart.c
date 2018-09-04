@@ -26,7 +26,10 @@ uint8_t volatile UART5RxBuff;
 uint8_t volatile UART7RxBuff; 
 uint8_t volatile UART8RxBuff; 
 
+int channelchange = 0;
 uint8_t tempRxBuffer;
+uint8_t upperRxBuffer[7];
+int cnt = 0;
 
 static void Error_Handler(void)
 {
@@ -318,15 +321,15 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
     __HAL_RCC_UART8_CLK_ENABLE();
   
     /**UART8 GPIO Configuration    
-    PE1     ------> UART8_TX
-    PE0     ------> UART8_RX 
+    PJ8     ------> UART8_TX
+    PJ9     ------> UART8_RX 
     */
-    GPIO_InitStruct.Pin = GPIO_PIN_1|GPIO_PIN_0;
+    GPIO_InitStruct.Pin = GPIO_PIN_8|GPIO_PIN_9;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.Alternate = GPIO_AF8_UART8;
-    HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+    HAL_GPIO_Init(GPIOJ, &GPIO_InitStruct);
 
     /* UART8 interrupt Init */
     HAL_NVIC_SetPriority(UART8_IRQn, 0, 0);
@@ -404,15 +407,15 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
     __HAL_RCC_USART3_CLK_ENABLE();
   
     /**USART3 GPIO Configuration    
-    PD8     ------> USART3_TX
-    PD9     ------> USART3_RX 
+    PB10     ------> USART3_TX
+    PB11     ------> USART3_RX 
     */
-    GPIO_InitStruct.Pin = GPIO_PIN_8|GPIO_PIN_9;
+    GPIO_InitStruct.Pin = GPIO_PIN_10|GPIO_PIN_11;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
     GPIO_InitStruct.Alternate = GPIO_AF7_USART3;
-    HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
     /* USART3 interrupt Init */
     HAL_NVIC_SetPriority(USART3_IRQn, 0, 0);
@@ -661,8 +664,25 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 	{
 		HAL_UART_Receive_IT(&huart8,(uint8_t *)UART8RxBuff,1);
 		
+		if(cnt==0&&UART8RxBuff==0x00)
+			cnt++;
+		else if(cnt==1&&UART8RxBuff==0x00)
+			cnt++;
+		else if(cnt<9&&cnt>2){
+			upperRxBuffer[cnt-2] = UART8RxBuff;
+			cnt++;
+		}
+		else if(cnt==10){
+			u8 sum;
+			for(int i=0; i<7; i++)
+        sum+=upperRxBuffer[i];
+			if(sum==UART8RxBuff)
+				channelchange = 1;
+		}
 	}
 }
+
+
 
 
 

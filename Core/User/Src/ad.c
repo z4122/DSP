@@ -1,5 +1,7 @@
 #include "ad.h"
 
+
+
  void ADS1256_Write_Byte(unsigned char d)
 {
 	unsigned char i=8;	
@@ -158,7 +160,10 @@ void AD_Init(void)
 	HAL_Delay(100);
 	HAL_GPIO_WritePin(RESET_GPIO_Port, RESET_Pin, GPIO_PIN_RESET);//Reset???1
 	ADS1256_Init();
+	
 }
+
+
 
 void AD_GPIO_Init(void)
 {

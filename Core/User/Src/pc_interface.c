@@ -1,0 +1,20 @@
+#include "pc_interface.h"
+
+
+/*
+data数据格式
+0x00 0x00  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX    0xXX 
+| 数据头 |  通道一  |  通道二   |  通道三  |  通道四  |  通道五  |保留两个字节|校验和|
+
+*/
+
+void tranmitData(UART_HandleTypeDef *huart,uint8_t *data )
+{
+	
+	
+	 
+     
+		
+	
+	
+}

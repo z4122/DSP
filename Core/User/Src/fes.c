@@ -7,10 +7,6 @@ uint8_t stimulate_parameter[20]="";
 float value[17][2];
 
 
-
-
-
-
 configtx txconfig = {
 					0x80,			//communication header
 					0x02,			//transmit data stream
@@ -62,9 +58,6 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,char amplitude)
 void stim_search(UART_HandleTypeDef *huart)
 {
 	char temp[3] = {0x80,0x01,0x03};
-
-
-	
 	
 	if(huart->Instance==USART1)
 	{
@@ -72,8 +65,7 @@ void stim_search(UART_HandleTypeDef *huart)
 		{
 			HAL_UART_Receive_IT(huart,&UART1RxBuff,1);
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
-			HAL_Delay(10);
-		
+			HAL_Delay(10);		
 		}
 		UART1RxBuff = 0x00;
 
