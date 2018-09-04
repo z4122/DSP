@@ -661,24 +661,32 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 	}
 	
 		if(UartHandle->Instance==UART8)
-	{
-		HAL_UART_Receive_IT(&huart8,(uint8_t *)UART8RxBuff,1);
-		
-		if(cnt==0&&UART8RxBuff==0x00)
+	{		
+		HAL_UART_Receive_IT(&huart8,&UART8RxBuff,1);
+		if(cnt==0&&UART8RxBuff==0x00){
 			cnt++;
-		else if(cnt==1&&UART8RxBuff==0x00)
+			return;
+		}
+		else if(cnt==1&&UART8RxBuff==0x00){
 			cnt++;
+			return;
+		}
 		else if(cnt<9&&cnt>2){
 			upperRxBuffer[cnt-2] = UART8RxBuff;
 			cnt++;
+			return;
 		}
 		else if(cnt==10){
 			u8 sum;
+			cnt=0;
 			for(int i=0; i<7; i++)
         sum+=upperRxBuffer[i];
 			if(sum==UART8RxBuff)
 				channelchange = 1;
+			return;
 		}
+		cnt++;
+		
 	}
 }
 

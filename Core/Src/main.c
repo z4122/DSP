@@ -121,10 +121,10 @@ int main(void)
 		
 	HAL_Delay(500);
 		
-	
+	uint8_t test[8] = "hhhhhhh";
 	while(1)
 	{	
-			
+			HAL_UART_Transmit(&huart8,test,8,0xfff);
 			//getaddata();
 			//VisualScope(&huart1,1,2,3,4);
 			//fputc(1,0);
