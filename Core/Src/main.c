@@ -72,6 +72,7 @@ void getaddata();
 long ulResult;
 long double ldVolutage;
 uint8_t data[15];//传输给上位机的数据
+float ADC_convertedvalue[2];
 /*
 0x00 0x00  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX    0xXX 
 | 数据头 |  通道一  |  通道二   |  通道三  |  通道四  |  通道五  |保留两个字节|校验和|
@@ -88,6 +89,8 @@ UART_HandleTypeDef UartHandle;
   */
 int main(void)
 {
+	
+	
   /* Configure the MPU attributes as Write Through */
 
   MPU_Config();
@@ -124,7 +127,11 @@ int main(void)
 	uint8_t test[8] = "hhhhhhh";
 	while(1)
 	{	
-			HAL_UART_Transmit(&huart8,test,8,0xfff);
+		
+			ADC_convertedvalue[0] = (float)(ADC_detectedvalue[0]&0xffff)*3.3/65536 ;
+			ADC_convertedvalue[1] = (float)(ADC_detectedvalue[1]&0xffff)*3.3/65536  ;
+			HAL_UART_Transmit(&huart8,(uint8_t *)&ADC_detectedvalue[0],1,0xfff);
+			HAL_UART_Transmit(&huart8,test,9,0xfff);
 			//getaddata();
 			//VisualScope(&huart1,1,2,3,4);
 			//fputc(1,0);

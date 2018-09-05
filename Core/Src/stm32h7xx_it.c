@@ -246,6 +246,13 @@ void UART8_IRQHandler(void)
 }
 
 
+void DMA2_Stream0_IRQHandler(void)
+{
+  HAL_DMA_IRQHandler(AdcHandle.DMA_Handle);
+}
+
+
+
 /******************************************************************************/
 /*                 STM32H7xx Peripherals Interrupt Handlers                   */
 /*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */

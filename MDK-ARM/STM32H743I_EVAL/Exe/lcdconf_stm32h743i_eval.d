@@ -52,6 +52,7 @@ stm32h743i_eval\exe\lcdconf_stm32h743i_eval.o: ..\Core\User\Inc\visualscope.h
 stm32h743i_eval\exe\lcdconf_stm32h743i_eval.o: ..\Core\User\Inc\fes.h
 stm32h743i_eval\exe\lcdconf_stm32h743i_eval.o: ..\Core\User\Inc\usart.h
 stm32h743i_eval\exe\lcdconf_stm32h743i_eval.o: ..\Core\User\Inc\ad.h
+stm32h743i_eval\exe\lcdconf_stm32h743i_eval.o: ..\Core\User\Inc\adc.h
 stm32h743i_eval\exe\lcdconf_stm32h743i_eval.o: ..\Core\Inc\STM32H743I_EVAL\stm32h743i_eval_sdram.h
 stm32h743i_eval\exe\lcdconf_stm32h743i_eval.o: ..\Core\Inc\inc\GUIDRV_Lin.h
 stm32h743i_eval\exe\lcdconf_stm32h743i_eval.o: ..\Core\Inc\inc\GUI_Private.h

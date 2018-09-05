@@ -1,6 +1,6 @@
 #include "adc.h"
 
-#define ADC_CONVERTED_DATA_BUFFER_SIZE   ((uint32_t)  32)   /* Size of array aADCxConvertedData[], Aligned on cache line size */
+#define ADC_CONVERTED_DATA_BUFFER_SIZE   ((uint32_t)  2)   /* Size of array aADCxConvertedData[], Aligned on cache line size */
 
 ADC_HandleTypeDef             AdcHandle;
 
@@ -19,11 +19,11 @@ void ADC_Init(void)
 
   AdcHandle.Init.ClockPrescaler           = ADC_CLOCK_SYNC_PCLK_DIV4;        /* Synchronous clock mode, input ADC clock divided by 4*/
   AdcHandle.Init.Resolution               = ADC_RESOLUTION_16B;              /* 16-bit resolution for converted data */
-  AdcHandle.Init.ScanConvMode             = DISABLE;                         /* Sequencer disabled (ADC conversion on only 1 channel: channel set on rank 1) */
+  AdcHandle.Init.ScanConvMode             = ENABLE;                         /* Sequencer disabled (ADC conversion on only 1 channel: channel set on rank 1) */
   AdcHandle.Init.EOCSelection             = ADC_EOC_SINGLE_CONV;             /* EOC flag picked-up to indicate conversion end */
   AdcHandle.Init.LowPowerAutoWait         = DISABLE;                         /* Auto-delayed conversion feature disabled */
   AdcHandle.Init.ContinuousConvMode       = ENABLE;                          /* Continuous mode enabled (automatic conversion restart after each conversion) */
-  AdcHandle.Init.NbrOfConversion          = 1;                               /* Parameter discarded because sequencer is disabled */
+  AdcHandle.Init.NbrOfConversion          = 2;                               /* 2 Channel*/
   AdcHandle.Init.DiscontinuousConvMode    = DISABLE;                         /* Parameter discarded because sequencer is disabled */
   AdcHandle.Init.NbrOfDiscConversion      = 1;                               /* Parameter discarded because sequencer is disabled */
   AdcHandle.Init.ExternalTrigConv         = ADC_SOFTWARE_START;              /* Software start to trig the 1st conversion manually, without external event */
@@ -57,6 +57,17 @@ void ADC_Init(void)
    
   }
   
+	sConfig.Channel      = ADC_CHANNEL_11;                /* Sampled channel number */
+  sConfig.Rank         = ADC_REGULAR_RANK_2;          /* Rank of sampled channel number ADCx_CHANNEL */
+  sConfig.SamplingTime = ADC_SAMPLETIME_810CYCLES_5;   /* Sampling time (number of clock cycles unit) */
+  sConfig.SingleDiff   = ADC_SINGLE_ENDED;            /* Single-ended input channel */
+  sConfig.OffsetNumber = ADC_OFFSET_NONE;             /* No offset subtraction */ 
+  sConfig.Offset = 0;                                 /* Parameter discarded because offset correction is disabled */
+  if (HAL_ADC_ConfigChannel(&AdcHandle, &sConfig) != HAL_OK)
+  {
+   
+  }
+	
   /* ### - 4 - Start conversion in DMA mode ################################# */
   if (HAL_ADC_Start_DMA(&AdcHandle,
                         (uint32_t *)ADC_detectedvalue,
@@ -97,8 +108,8 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef *hadc)
   DmaHandle.Init.Direction           = DMA_PERIPH_TO_MEMORY;
   DmaHandle.Init.PeriphInc           = DMA_PINC_DISABLE;
   DmaHandle.Init.MemInc              = DMA_MINC_ENABLE;
-  DmaHandle.Init.PeriphDataAlignment = DMA_PDATAALIGN_HALFWORD;
-  DmaHandle.Init.MemDataAlignment    = DMA_MDATAALIGN_HALFWORD;
+  DmaHandle.Init.PeriphDataAlignment = DMA_PDATAALIGN_WORD;
+  DmaHandle.Init.MemDataAlignment    = DMA_MDATAALIGN_WORD;
   DmaHandle.Init.Mode                = DMA_CIRCULAR;
   DmaHandle.Init.Priority            = DMA_PRIORITY_MEDIUM;
   /* Deinitialize  & Initialize the DMA for new transfer */
@@ -137,4 +148,25 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef *hadc)
   HAL_GPIO_DeInit(GPIOC, GPIO_PIN_0|GPIO_PIN_1);
 }
 
+/**
+  * @brief  Conversion complete callback in non-blocking mode
+  * @param  hadc: ADC handle
+  * @retval None
+  */
+void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc)
+{
+  /* Invalidate Data Cache to get the updated content of the SRAM on the first half of the ADC converted data buffer: 32 bytes */ 
+  SCB_InvalidateDCache_by_Addr((uint32_t *) &ADC_detectedvalue[0], ADC_CONVERTED_DATA_BUFFER_SIZE);
+}
+
+/**
+  * @brief  Conversion DMA half-transfer callback in non-blocking mode
+  * @param  hadc: ADC handle
+  * @retval None
+  */
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
+{
+   /* Invalidate Data Cache to get the updated content of the SRAM on the second half of the ADC converted data buffer: 32 bytes */ 
+  SCB_InvalidateDCache_by_Addr((uint32_t *) &ADC_detectedvalue[ADC_CONVERTED_DATA_BUFFER_SIZE/2], ADC_CONVERTED_DATA_BUFFER_SIZE);
+}
 

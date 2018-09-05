@@ -50,3 +50,4 @@ stm32h743i_eval\exe\bsp.o: ..\Core\Inc\inc\GUI_Version.h
 stm32h743i_eval\exe\bsp.o: ..\Core\User\Inc\fes.h
 stm32h743i_eval\exe\bsp.o: ..\Core\User\Inc\usart.h
 stm32h743i_eval\exe\bsp.o: ..\Core\User\Inc\ad.h
+stm32h743i_eval\exe\bsp.o: ..\Core\User\Inc\adc.h

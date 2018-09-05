@@ -7,7 +7,7 @@
 #include "usart.h"
 #include "fes.h"
 #include "ad.h"
-
+#include "adc.h"
 
 
 

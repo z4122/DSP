@@ -150,18 +150,34 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>665</LineNumber>
+          <LineNumber>13</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134276362</Address>
+          <Address>134265062</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\Core\User\Src\usart.c</Filename>
+          <Filename>..\Core\User\Src\adc.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\\../Core/User/Src/usart.c\665</Expression>
+          <Expression>\\Project\../Core/User/Src/adc.c\13</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>125</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134286740</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>../Core/Src/main.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\Project\../Core/Src/main.c\125</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>

@@ -663,11 +663,11 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 		if(UartHandle->Instance==UART8)
 	{		
 		HAL_UART_Receive_IT(&huart8,&UART8RxBuff,1);
-		if(cnt==0&&UART8RxBuff==0x00){
+		if(cnt==0&&UART8RxBuff==0xFF){
 			cnt++;
 			return;
 		}
-		else if(cnt==1&&UART8RxBuff==0x00){
+		else if(cnt==1&&UART8RxBuff==0xFF){
 			cnt++;
 			return;
 		}
