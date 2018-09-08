@@ -26,10 +26,15 @@ uint8_t volatile UART5RxBuff;
 uint8_t volatile UART7RxBuff; 
 uint8_t volatile UART8RxBuff; 
 
+
+char parameter[10][5];
+
+
 int channelchange = 0;
 uint8_t tempRxBuffer;
 uint8_t upperRxBuffer[7];
 int cnt = 0;
+int testmode_flag = 0;
 
 static void Error_Handler(void)
 {
@@ -681,8 +686,32 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 			cnt=0;
 			for(int i=0; i<7; i++)
         sum+=upperRxBuffer[i];
-			if(sum==UART8RxBuff)
-				channelchange = 1;
+			if(sum==UART8RxBuff){
+				testmode_flag = upperRxBuffer[0];
+				switch(upperRxBuffer[1]){
+					case 1: 
+							parameter[1][0] = upperRxBuffer[2];
+							break;
+					case 2:
+							parameter[1][0] = upperRxBuffer[2];
+							break;
+					case 3:
+							parameter[1][0] = upperRxBuffer[2];
+							break;
+					case 4:
+							parameter[1][0] = upperRxBuffer[2];
+							break;
+					case 5:
+							parameter[1][0] = upperRxBuffer[2];
+							break;
+					case 6:
+							parameter[1][0] = upperRxBuffer[2];
+							break;
+				}
+					
+			
+			
+			}
 			return;
 		}
 		cnt++;

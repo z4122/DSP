@@ -127,11 +127,7 @@ int main(void)
 	uint8_t test[8] = "hhhhhhh";
 	while(1)
 	{	
-		
-			ADC_convertedvalue[0] = (float)(ADC_detectedvalue[0]&0xffff)*3.3/65536 ;
-			ADC_convertedvalue[1] = (float)(ADC_detectedvalue[1]&0xffff)*3.3/65536  ;
-			HAL_UART_Transmit(&huart8,(uint8_t *)&ADC_detectedvalue[0],1,0xfff);
-			HAL_UART_Transmit(&huart8,test,9,0xfff);
+	
 			//getaddata();
 			//VisualScope(&huart1,1,2,3,4);
 			//fputc(1,0);
@@ -395,7 +391,9 @@ void display(int i,float num)
 
 void getaddata()
 {
-	
+		
+		data[0] = 0xff;
+		data[1] = 0xff;
 		for(int i = 0;i < 5;i++)
 		{
 			 ulResult = ADS_sum( (i << 4) | 0x08);	
@@ -409,11 +407,12 @@ void getaddata()
 				ulResult = -ulResult;
 			}
 		
-			data[i*2+2] = ulResult>>8;
-			data[i*2+3] = ulResult&0xFF;
+			
 			
 			ldVolutage = (long double)ulResult*0.59604644775390625;
 			
+			data[i*2+2] = (u16)ldVolutage>>8;
+			data[i*2+3] = (u16)ldVolutage&0xFF;
 
 			display(i,ldVolutage);
 			HAL_Delay(10);	
@@ -431,23 +430,29 @@ void getaddata()
 				ulResult &= 0x7fffff;
 				ulResult += 1;
 				ulResult = -ulResult;
-			}
-		
-			data[i*2-3] = ulResult>>8;
-			data[i*2-2] = ulResult&0xFF;
+			}		
 			
 			ldVolutage = (long double)ulResult*0.59604644775390625;
 
+			data[i*2-3] = (u16)ldVolutage>>8;
+			data[i*2-2] = (u16)ldVolutage&0xFF;
+			
 			display(i,ldVolutage);
 			HAL_Delay(10);	
 		}
 		
-//		data[8] = ;
-//		data[9] = ;
-//		data[10] = ;
-//		data[11] = ;
+			
+			ADC_convertedvalue[0] = (float)(ADC_detectedvalue[0]&0xffff)*3.3/65536 ;
+			ADC_convertedvalue[1] = (float)(ADC_detectedvalue[1]&0xffff)*3.3/65536  ;
 		
-		HAL_UART_Transmit(&huart8,data,15,0xfff);
+			data[8] = (u16)ADC_convertedvalue[0]>>8;
+			data[9] = (u16)ADC_convertedvalue[0]&0xFF;
+			data[10] =(u16)ADC_convertedvalue[1]>>8;
+			data[11] =(u16)ADC_convertedvalue[1]&0xFF;
+		
+			data[0] = 0xff;
+			data[1] = 0xf1;
+			HAL_UART_Transmit(&huart8,data,15,0xfff);
 		
 }
 
