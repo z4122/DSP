@@ -331,7 +331,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
     */
     GPIO_InitStruct.Pin = GPIO_PIN_8|GPIO_PIN_9;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Pull = GPIO_PULLUP;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.Alternate = GPIO_AF8_UART8;
     HAL_GPIO_Init(GPIOJ, &GPIO_InitStruct);
@@ -534,7 +534,7 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* huart)
     PE1     ------> UART8_TX
     PE0     ------> UART8_RX 
     */
-    HAL_GPIO_DeInit(GPIOE, GPIO_PIN_1|GPIO_PIN_0);
+    HAL_GPIO_DeInit(GPIOJ, GPIO_PIN_8|GPIO_PIN_9);
 
     /* UART8 interrupt DeInit */
     HAL_NVIC_DisableIRQ(UART8_IRQn);
@@ -693,20 +693,17 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 							parameter[1][0] = upperRxBuffer[2];
 							break;
 					case 2:
-							parameter[1][0] = upperRxBuffer[2];
+							parameter[2][0] = upperRxBuffer[2];
 							break;
 					case 3:
-							parameter[1][0] = upperRxBuffer[2];
+							parameter[3][0] = upperRxBuffer[2];
 							break;
 					case 4:
-							parameter[1][0] = upperRxBuffer[2];
+							parameter[4][0] = upperRxBuffer[2];
 							break;
 					case 5:
-							parameter[1][0] = upperRxBuffer[2];
-							break;
-					case 6:
-							parameter[1][0] = upperRxBuffer[2];
-							break;
+							parameter[5][0] = upperRxBuffer[2];
+							break;				
 				}
 					
 			

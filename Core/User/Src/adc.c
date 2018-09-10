@@ -156,7 +156,7 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef *hadc)
 void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc)
 {
   /* Invalidate Data Cache to get the updated content of the SRAM on the first half of the ADC converted data buffer: 32 bytes */ 
-  SCB_InvalidateDCache_by_Addr((uint32_t *) &ADC_detectedvalue[0], ADC_CONVERTED_DATA_BUFFER_SIZE);
+  //SCB_InvalidateDCache_by_Addr((uint32_t *) &ADC_detectedvalue[0], ADC_CONVERTED_DATA_BUFFER_SIZE);
 }
 
 /**
@@ -167,6 +167,6 @@ void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc)
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
    /* Invalidate Data Cache to get the updated content of the SRAM on the second half of the ADC converted data buffer: 32 bytes */ 
-  SCB_InvalidateDCache_by_Addr((uint32_t *) &ADC_detectedvalue[ADC_CONVERTED_DATA_BUFFER_SIZE/2], ADC_CONVERTED_DATA_BUFFER_SIZE);
+  //SCB_InvalidateDCache_by_Addr((uint32_t *) &ADC_detectedvalue[ADC_CONVERTED_DATA_BUFFER_SIZE/2], ADC_CONVERTED_DATA_BUFFER_SIZE);
 }
 

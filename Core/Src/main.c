@@ -124,13 +124,27 @@ int main(void)
 		
 	HAL_Delay(500);
 		
-	uint8_t test[8] = "hhhhhhh";
+	u8 t[10];
+	t[0] = 0xaa;
+	t[1] = 0xbb;
+	for(int i = 0;i<5;i++)
+	{
+		HAL_UART_Transmit(&huart8,t,2,0xfff);
+	}
+	
+	
+	
 	while(1)
 	{	
-	
-			//getaddata();
+			//HAL_UART_Receive_IT(&huart8,&UART8RxBuff,1);
+		for(int i = 0;i<5;i++)
+		{
+			HAL_UART_Transmit(&huart8,t,2,0xfff);
+		}
+ 		getaddata();
 			//VisualScope(&huart1,1,2,3,4);
 			//fputc(1,0);
+
 		
 	}
 }
@@ -380,6 +394,8 @@ void display(int i,float num)
 			GUI_DispFloat(1.828*pow(2.71828,1.904*num/1000000),4);
 			stimulate(&huart7,1.828*pow(2.71828,1.904*num*3.3/5000000));
 			break;
+		default:
+			break;
 //		case 6:
 //			GUI_DispStringAt("channel 6  ", 100, 170); 
 //			GUI_DispFloat(num/1000000,4);
@@ -411,10 +427,14 @@ void getaddata()
 			
 			ldVolutage = (long double)ulResult*0.59604644775390625;
 			
-			data[i*2+2] = (u16)ldVolutage>>8;
-			data[i*2+3] = (u16)ldVolutage&0xFF;
-
 			display(i,ldVolutage);
+			
+			
+			ldVolutage = ldVolutage/1000;
+			data[i*2+2] = ((u16)ldVolutage)>>8;
+			data[i*2+3] = ((u16)ldVolutage)&0xFF;
+
+		
 			HAL_Delay(10);	
 		}
 		
@@ -433,11 +453,14 @@ void getaddata()
 			}		
 			
 			ldVolutage = (long double)ulResult*0.59604644775390625;
-
-			data[i*2-3] = (u16)ldVolutage>>8;
-			data[i*2-2] = (u16)ldVolutage&0xFF;
 			
 			display(i,ldVolutage);
+			
+			ldVolutage = ldVolutage/1000;
+			data[i*2-3] = ((u16)ldVolutage)>>8;
+			data[i*2-2] = ((u16)ldVolutage)&0xFF;
+			
+
 			HAL_Delay(10);	
 		}
 		
@@ -454,5 +477,6 @@ void getaddata()
 			data[1] = 0xf1;
 			HAL_UART_Transmit(&huart8,data,15,0xfff);
 		
+			HAL_UART_Receive_IT(&huart8,&UART8RxBuff,1);
 }
 

@@ -43,7 +43,17 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,char amplitude)
 	stimulate_parameter[14]=txconfig.DENOMINATOR>>8;
 	stimulate_parameter[15]=txconfig.DENOMINATOR;
 	//stimulate_parameter[16]=txconfig.AMPLITUDE;
-	stimulate_parameter[16]=amplitude;
+	
+	if(testmode_flag==1)
+	{
+		if(huart==&huart5) stimulate_parameter[16] = parameter[1][0];
+		else if(huart==&huart3) stimulate_parameter[16] = parameter[2][0];
+		else if(huart==&huart1) stimulate_parameter[16] = parameter[3][0];
+		else if(huart==&huart4) stimulate_parameter[16] = parameter[4][0];
+		else if(huart==&huart7) stimulate_parameter[16] = parameter[5][0];
+	}
+	else	stimulate_parameter[16]=amplitude;
+	
 	stimulate_parameter[17]=txconfig.ENDFLAG;
 	stimulate_parameter[18]=txconfig.ENDFLAG;
 	stimulate_parameter[19]=txconfig.ENDFLAG;
