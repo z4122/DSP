@@ -31,6 +31,9 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,char amplitude)
 	stimulate_parameter[2]=txconfig.CHANNEL;
 	stimulate_parameter[3]=txconfig.LENGTH>>8;
 	stimulate_parameter[4]=txconfig.LENGTH;
+	
+
+	
 	stimulate_parameter[5]=txconfig.WIDTH>>8;
 	stimulate_parameter[6]=txconfig.WIDTH;
 	stimulate_parameter[7]=txconfig.FREQUENCY>>8;
@@ -43,16 +46,52 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,char amplitude)
 	stimulate_parameter[14]=txconfig.DENOMINATOR>>8;
 	stimulate_parameter[15]=txconfig.DENOMINATOR;
 	//stimulate_parameter[16]=txconfig.AMPLITUDE;
+	stimulate_parameter[16]=amplitude;
 	
-	if(testmode_flag==1)
+	if(testmode_flag==4)
 	{
-		if(huart==&huart5) stimulate_parameter[16] = parameter[1][0];
-		else if(huart==&huart3) stimulate_parameter[16] = parameter[2][0];
-		else if(huart==&huart1) stimulate_parameter[16] = parameter[3][0];
-		else if(huart==&huart4) stimulate_parameter[16] = parameter[4][0];
-		else if(huart==&huart7) stimulate_parameter[16] = parameter[5][0];
+		if(huart==&huart5) {
+			stimulate_parameter[16] = parameter[1][0]; 
+			stimulate_parameter[5] = parameter[1][1]>>8; //脉宽高位
+			stimulate_parameter[6] = parameter[1][1]; //脉宽低位
+			stimulate_parameter[7] = parameter[1][2]>>8; //频率高位
+			stimulate_parameter[8] = parameter[1][2]; //频率低位
+			
+		}
+		else if(huart==&huart3) {
+			stimulate_parameter[16] = parameter[2][0]; 
+			stimulate_parameter[5] = parameter[2][1]>>8; //脉宽高位
+			stimulate_parameter[6] = parameter[2][1]; //脉宽低位
+			stimulate_parameter[7] = parameter[2][2]>>8; //频率高位
+			stimulate_parameter[8] = parameter[2][2]; //频率低位
+			
+		}
+		else if(huart==&huart1) {
+			stimulate_parameter[16] = parameter[3][0]; 
+			stimulate_parameter[5] = parameter[3][1]>>8; //脉宽高位
+			stimulate_parameter[6] = parameter[3][1]; //脉宽低位
+			stimulate_parameter[7] = parameter[3][2]>>8; //频率高位
+			stimulate_parameter[8] = parameter[3][2]; //频率低位
+			
+		}
+		else if(huart==&huart4) {
+			stimulate_parameter[16] = parameter[4][0]; 
+			stimulate_parameter[5] = parameter[4][1]>>8; //脉宽高位
+			stimulate_parameter[6] = parameter[4][1]; //脉宽低位
+			stimulate_parameter[7] = parameter[4][2]>>8; //频率高位
+			stimulate_parameter[8] = parameter[4][2]; //频率低位
+			
+		}
+		else if(huart==&huart7)  {
+			stimulate_parameter[16] = parameter[5][0]; 
+			stimulate_parameter[5] = parameter[5][1]>>8; //脉宽高位
+			stimulate_parameter[6] = parameter[5][1]; //脉宽低位
+			stimulate_parameter[7] = parameter[5][2]>>8; //频率高位
+			stimulate_parameter[8] = parameter[5][2]; //频率低位
+			
+		}
 	}
-	else	stimulate_parameter[16]=amplitude;
+	
 	
 	stimulate_parameter[17]=txconfig.ENDFLAG;
 	stimulate_parameter[18]=txconfig.ENDFLAG;

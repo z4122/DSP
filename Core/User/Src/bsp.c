@@ -18,14 +18,14 @@ void BSP_Init()
 	
 	
 //	Reset_Init();
-//	AD_Init();
-//	USART1_Init();
-//	USART3_Init();
-//	UART4_Init();
-//	UART5_Init();
-//	UART7_Init();
+	AD_Init();
+	USART1_Init();
+	USART3_Init();
+	UART4_Init();
+	UART5_Init();
+	UART7_Init();
 	UART8_Init();//加入8之后，屏幕会闪烁
-	//ADC_Init();
+	ADC_Init();
 	//USART2_Init();暂时用不到
 	//USART6_Init();暂时用不到
 	

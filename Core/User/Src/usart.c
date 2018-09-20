@@ -26,15 +26,15 @@ uint8_t volatile UART5RxBuff;
 uint8_t volatile UART7RxBuff; 
 uint8_t volatile UART8RxBuff; 
 
-
-char parameter[10][5];
+//1 电流；2脉宽；3频率
+u16 parameter[6][5]; //5个通道，为了对齐选了6
 
 
 int channelchange = 0;
 uint8_t tempRxBuffer;
 uint8_t upperRxBuffer[7];
 int cnt = 0;
-int testmode_flag = 0;
+volatile int testmode_flag = 0;
 
 static void Error_Handler(void)
 {
@@ -668,50 +668,76 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 		if(UartHandle->Instance==UART8)
 	{		
 		HAL_UART_Receive_IT(&huart8,&UART8RxBuff,1);
-		if(cnt==0&&UART8RxBuff==0xFF){
-			cnt++;
-			return;
+		if(cnt==0){
+				if(UART8RxBuff==0xFF){
+					cnt++;
+				}
+				else
+					cnt=0;
 		}
-		else if(cnt==1&&UART8RxBuff==0xFF){
-			cnt++;
-			return;
+		else if(cnt==1){
+				if(UART8RxBuff==0xFF){
+					cnt++;
+				}
+				else
+					cnt=0;
 		}
-		else if(cnt<9&&cnt>2){
+		else if(cnt<9&&cnt>=2){
 			upperRxBuffer[cnt-2] = UART8RxBuff;
 			cnt++;
 			return;
 		}
-		else if(cnt==10){
-			u8 sum;
+		else if(cnt==9){
+			u8 sum = 0;
 			cnt=0;
 			for(int i=0; i<7; i++)
         sum+=upperRxBuffer[i];
+			sum = sum + 0xff + 0xff;
+			
 			if(sum==UART8RxBuff){
 				testmode_flag = upperRxBuffer[0];
-				switch(upperRxBuffer[1]){
-					case 1: 
-							parameter[1][0] = upperRxBuffer[2];
-							break;
-					case 2:
-							parameter[2][0] = upperRxBuffer[2];
-							break;
-					case 3:
-							parameter[3][0] = upperRxBuffer[2];
-							break;
-					case 4:
-							parameter[4][0] = upperRxBuffer[2];
-							break;
-					case 5:
-							parameter[5][0] = upperRxBuffer[2];
-							break;				
-				}
-					
-			
-			
+				
+				parameter[1][0] = upperRxBuffer[1];
+				parameter[2][0] = upperRxBuffer[1];
+				parameter[3][0] = upperRxBuffer[1];
+				parameter[4][0] = upperRxBuffer[1];
+				parameter[5][0] = upperRxBuffer[1];
+				
+				
+				//width 从PC中先收到低位再收到高位
+				parameter[1][1] = upperRxBuffer[3]<<8|upperRxBuffer[2];
+				parameter[2][1] = upperRxBuffer[3]<<8|upperRxBuffer[2];
+				parameter[3][1] = upperRxBuffer[3]<<8|upperRxBuffer[2];
+				parameter[4][1] = upperRxBuffer[3]<<8|upperRxBuffer[2];
+				parameter[5][1] = upperRxBuffer[3]<<8|upperRxBuffer[2];
+				
+				
+				//frequency 从PC中先收到低位再收到高位
+				parameter[1][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];
+				parameter[2][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];
+				parameter[3][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];
+				parameter[4][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];
+				parameter[5][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];
+//				switch(upperRxBuffer[1]){
+//					case 1: 
+//							parameter[1][0] = upperRxBuffer[2];
+//							break;
+//					case 2:
+//							parameter[2][0] = upperRxBuffer[2];
+//							break;
+//					case 3:
+//							parameter[3][0] = upperRxBuffer[2];
+//							break;
+//					case 4:
+//							parameter[4][0] = upperRxBuffer[2];
+//							break;
+//					case 5:
+//							parameter[5][0] = upperRxBuffer[2];
+//							break;				
+//				}			
 			}
 			return;
 		}
-		cnt++;
 		
 	}
 }

@@ -42,9 +42,9 @@ extern uint8_t volatile UART8RxBuff;
 
 extern uint8_t tempRxBuffer;
 extern uint8_t upperRxBuffer[7];
-extern int testmode_flag;
+extern volatile int testmode_flag;
 extern int channelchange;
-extern char parameter[10][5];
+extern u16 parameter[6][5];
 
 void USART1_Init(void);
 void USART2_Init(void);

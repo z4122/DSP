@@ -115,8 +115,8 @@ int main(void)
   __HAL_RCC_CRC_CLK_ENABLE(); /* Enable the CRC Module */
   
   GUI_Init();
-	MainTask("this is test",100,20);  
-	
+	MainTask("test mode",100,20);  
+	 GUI_Clear();
 
 	/*Init usart*/
 	BSP_Init();
@@ -146,6 +146,27 @@ int main(void)
 			//fputc(1,0);
 
 		
+		
+		if(testmode_flag==0){
+			GUI_DispStringAt("stop ",200,270);
+			while(testmode_flag==0);				
+		}	
+		else if(testmode_flag==1){
+			GUI_DispStringAt("amplitude mode   ", 200, 270); 			
+		}
+		else if(testmode_flag==2)
+			GUI_DispStringAt("frequency mode", 200, 270); 
+		else if(testmode_flag==3)
+			GUI_DispStringAt("width mode", 200, 270); 
+		else if(testmode_flag==4){
+			GUI_DispStringAt("test mode  ", 100, 270); 
+			GUI_DispFloat(parameter[1][0]/10.0,4);//调整显示的位数
+			GUI_DispStringAt("mA  ", 290, 270); 
+			GUI_DispFloat(parameter[1][1],4);//调整显示的位数
+			GUI_DispStringAt("us  ", 410, 270); 
+			GUI_DispFloat(parameter[1][2],4);//调整显示的位数
+			GUI_DispStringAt("hz  ", 520, 270); 
+		}
 	}
 }
 
@@ -378,7 +399,7 @@ void display(int i,float num)
 			GUI_DispFloat(num*3.3/5000000,4);
 			GUI_DispStringAt("transfered data  ", 300, 80); 
 			GUI_DispFloat(1.767*pow(2.71828,1.801*num*3.3/5000000),4);
-			stimulate(&huart1,1.767*pow(2.71828,1.801*num*3.3/5000000));
+			//stimulate(&huart1,1.767*pow(2.71828,1.801*num*3.3/5000000));
 			break;
 		case 4://15
 			GUI_DispStringAt("channel 4  ", 100, 110); 
@@ -392,7 +413,7 @@ void display(int i,float num)
 			GUI_DispFloat(num/1000000,4);
 			GUI_DispStringAt("transfered data  ", 300, 140); 
 			GUI_DispFloat(1.828*pow(2.71828,1.904*num/1000000),4);
-			stimulate(&huart7,1.828*pow(2.71828,1.904*num*3.3/5000000));
+			//stimulate(&huart7,1.828*pow(2.71828,1.904*num*3.3/5000000));
 			break;
 		default:
 			break;
@@ -457,8 +478,8 @@ void getaddata()
 			display(i,ldVolutage);
 			
 			ldVolutage = ldVolutage/1000;
-			data[i*2-3] = ((u16)ldVolutage)>>8;
-			data[i*2-2] = ((u16)ldVolutage)&0xFF;
+			data[i*2-8] = ((u16)ldVolutage)>>8;
+			data[i*2-7] = ((u16)ldVolutage)&0xFF;
 			
 
 			HAL_Delay(10);	
