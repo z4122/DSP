@@ -13,10 +13,10 @@ configtx txconfig = {
 					0x01, 			//default channel is 1st channel
 					0x000C, 		//length is 12
 					0x003C, 		//default time width is 50us = 0x32H
-					0x0032, 		//default frequeny is 100 Hz = 0x0064H
+					0x0064, 		//default frequeny is 100 Hz = 0x0064H
 					0x0A, 			//default time delay is 10us = 0x0AH
 					0x01, 			//no circulation
-					0x0001,			//stimulate times is 4
+					0x0055,			//stimulate times is 4
 					0x00,			//increment numerator is 0
 					0x0001,			//increment denominator is 1
 					0x50,			//default stimulate amplitude is 1mA 0X0A
@@ -86,8 +86,8 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,char amplitude)
 			stimulate_parameter[16] = parameter[5][0]; 
 			stimulate_parameter[5] = parameter[5][1]>>8; //脉宽高位
 			stimulate_parameter[6] = parameter[5][1]; //脉宽低位
-			stimulate_parameter[7] = parameter[5][2]>>8; //频率高位
-			stimulate_parameter[8] = parameter[5][2]; //频率低位
+			//stimulate_parameter[7] = parameter[5][2]>>8; //频率高位
+			//stimulate_parameter[8] = parameter[5][2]; //频率低位
 			
 		}
 	}
@@ -114,7 +114,7 @@ void stim_search(UART_HandleTypeDef *huart)
 		{
 			HAL_UART_Receive_IT(huart,&UART1RxBuff,1);
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
-			HAL_Delay(10);		
+			HAL_Delay(1);		
 		}
 		UART1RxBuff = 0x00;
 
@@ -125,7 +125,7 @@ void stim_search(UART_HandleTypeDef *huart)
 		{
 			HAL_UART_Receive_IT(huart,&UART3RxBuff,1);
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
-			HAL_Delay(10);
+			HAL_Delay(1);
 		}
 		UART3RxBuff = 0x00;
 
@@ -136,7 +136,7 @@ void stim_search(UART_HandleTypeDef *huart)
 		{
 			HAL_UART_Receive_IT(huart,&UART4RxBuff,1);
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
-			HAL_Delay(10);
+			HAL_Delay(1);
 		}
 		UART4RxBuff = 0x00;
 
@@ -147,7 +147,7 @@ void stim_search(UART_HandleTypeDef *huart)
 		{
 			HAL_UART_Receive_IT(huart,&UART5RxBuff,1);
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
-			HAL_Delay(10);
+			HAL_Delay(1);
 		}
 			
 		UART5RxBuff = 0x00;
@@ -159,7 +159,7 @@ void stim_search(UART_HandleTypeDef *huart)
 		{
 			HAL_UART_Receive_IT(huart,&UART7RxBuff,1);
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
-			HAL_Delay(10);
+			HAL_Delay(1);
 		}
 		UART7RxBuff = 0x00;
 
@@ -170,7 +170,7 @@ void stim_search(UART_HandleTypeDef *huart)
 		{
 			HAL_UART_Receive_IT(huart,&UART8RxBuff,1);
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
-			HAL_Delay(10);
+			HAL_Delay(1);
 		}
 		UART8RxBuff = 0x00;
 
@@ -189,7 +189,7 @@ void stim_start(UART_HandleTypeDef *huart) //receive AA 0x41 0x41
 		{
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
 			HAL_UART_Receive_IT(huart,&UART1RxBuff,1);
-			HAL_Delay(50);
+			HAL_Delay(5);
 		}
 		UART1RxBuff = 0x00;
 
@@ -200,7 +200,7 @@ void stim_start(UART_HandleTypeDef *huart) //receive AA 0x41 0x41
 		{
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
 			HAL_UART_Receive_IT(huart,&UART3RxBuff,1);
-			HAL_Delay(50);
+			HAL_Delay(5);
 		}
 		UART3RxBuff = 0x00;
 
@@ -211,7 +211,7 @@ void stim_start(UART_HandleTypeDef *huart) //receive AA 0x41 0x41
 		{
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
 			HAL_UART_Receive_IT(huart,&UART4RxBuff,1);
-			HAL_Delay(50);
+			HAL_Delay(5);
 		}
 		UART4RxBuff = 0x00;
 
@@ -222,7 +222,7 @@ void stim_start(UART_HandleTypeDef *huart) //receive AA 0x41 0x41
 		{
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
 			HAL_UART_Receive_IT(huart,&UART5RxBuff,1);
-			HAL_Delay(50);
+			HAL_Delay(5);
 		}
 		UART5RxBuff = 0x00;
 
@@ -233,7 +233,7 @@ void stim_start(UART_HandleTypeDef *huart) //receive AA 0x41 0x41
 		{
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
 			HAL_UART_Receive_IT(huart,&UART7RxBuff,1);
-			HAL_Delay(50);
+			HAL_Delay(5);
 		}
 		UART7RxBuff = 0x00;
 
@@ -244,7 +244,7 @@ void stim_start(UART_HandleTypeDef *huart) //receive AA 0x41 0x41
 		{
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
 			HAL_UART_Receive_IT(huart,&UART8RxBuff,1);
-			HAL_Delay(50);
+			HAL_Delay(5);
 		}
 		UART8RxBuff = 0x00;
 

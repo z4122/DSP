@@ -132,7 +132,7 @@ int main(void)
 		HAL_UART_Transmit(&huart8,t,2,0xfff);
 	}
 	
-	
+	int last_flag=0;
 	
 	while(1)
 	{	
@@ -145,7 +145,8 @@ int main(void)
 			//VisualScope(&huart1,1,2,3,4);
 			//fputc(1,0);
 
-		
+		if(last_flag!=testmode_flag)
+			GUI_Clear();
 		
 		if(testmode_flag==0){
 			GUI_DispStringAt("stop ",200,270);
@@ -167,6 +168,7 @@ int main(void)
 			GUI_DispFloat(parameter[1][2],4);//调整显示的位数
 			GUI_DispStringAt("hz  ", 520, 270); 
 		}
+		last_flag = testmode_flag;
 	}
 }
 
@@ -392,7 +394,7 @@ void display(int i,float num)
 			GUI_DispFloat(num/1000000,4);
 			GUI_DispStringAt("transfered data  ", 300, 50); 
 			GUI_DispFloat(2.705*pow(2.71828,1.607*num*3.3/5000000),4);
-			stimulate(&huart3,2.705*pow(2.71828,1.607*num*3.3/5000000));
+			//stimulate(&huart3,2.705*pow(2.71828,1.607*num*3.3/5000000));
 			break;
 		case 3://2
 			GUI_DispStringAt("channel 3  ", 100, 80); 
@@ -406,7 +408,7 @@ void display(int i,float num)
 			GUI_DispFloat(num/1000000,4);
 			GUI_DispStringAt("transfered data  ", 300, 110); 
 			GUI_DispFloat(6.366*pow(2.71828,1.296*num*3.3/5000000),4);
-			stimulate(&huart4,6.366*pow(2.71828,1.296*num*3.3/5000000));
+			//stimulate(&huart4,6.366*pow(2.71828,1.296*num*3.3/5000000));
 			break;
 		case 5://1
 			GUI_DispStringAt("channel 5  ", 100, 140); 
@@ -456,7 +458,7 @@ void getaddata()
 			data[i*2+3] = ((u16)ldVolutage)&0xFF;
 
 		
-			HAL_Delay(10);	
+			//HAL_Delay(10);	
 		}
 		
 		HAL_UART_Transmit(&huart8,data,15,0xfff);
@@ -482,7 +484,7 @@ void getaddata()
 			data[i*2-7] = ((u16)ldVolutage)&0xFF;
 			
 
-			HAL_Delay(10);	
+			//HAL_Delay(10);	
 		}
 		
 			

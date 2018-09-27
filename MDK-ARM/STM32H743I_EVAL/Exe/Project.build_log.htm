@@ -65,58 +65,9 @@ compiling fes.c...
 ..\Core\User\Src\fes.c(274): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
   			HAL_UART_Receive_IT(&huart1,&UART1RxBuff,1);
 ..\Core\User\Src\fes.c: 18 warnings, 0 errors
-compiling stm32h7xx_it.c...
-compiling bsp.c...
-compiling usart.c...
-..\Core\User\Src\usart.c(77): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
-  	if(HAL_UART_Receive_IT(&huart1,&UART1RxBuff, 1) != HAL_OK)
-..\Core\User\Src\usart.c(118): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
-  	if(HAL_UART_Receive_IT(&huart3, &UART3RxBuff, 1) != HAL_OK)
-..\Core\User\Src\usart.c(142): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
-  	if(HAL_UART_Receive_IT(&huart4, &UART4RxBuff, 1) != HAL_OK)
-..\Core\User\Src\usart.c(165): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
-  	if(HAL_UART_Receive_IT(&huart5, &UART5RxBuff, 1) != HAL_OK)
-..\Core\User\Src\usart.c(206): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
-  	if(HAL_UART_Receive_IT(&huart7,&UART7RxBuff, 1) != HAL_OK)
-..\Core\User\Src\usart.c(228): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
-  	if(HAL_UART_Receive_IT(&huart8, &UART8RxBuff, 1) != HAL_OK)
-..\Core\User\Src\usart.c(670): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
-  		HAL_UART_Receive_IT(&huart8,&UART8RxBuff,1);
-..\Core\User\Src\usart.c: 7 warnings, 0 errors
-compiling main.c...
-../Core/Src/main.c(71): warning:  #1295-D: Deprecated declaration getaddata - give arg types
-  void getaddata();
-../Core/Src/main.c(387): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  			GUI_DispFloat(3.486*pow(2.71828,1.589*num*3.3/5000000),4);
-../Core/Src/main.c(388): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  			stimulate(&huart5,3.486*pow(2.71828,1.589*num*3.3/5000000));
-../Core/Src/main.c(394): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  			GUI_DispFloat(2.705*pow(2.71828,1.607*num*3.3/5000000),4);
-../Core/Src/main.c(395): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  			stimulate(&huart3,2.705*pow(2.71828,1.607*num*3.3/5000000));
-../Core/Src/main.c(399): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  			GUI_DispFloat(num*3.3/5000000,4);
-../Core/Src/main.c(401): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  			GUI_DispFloat(1.767*pow(2.71828,1.801*num*3.3/5000000),4);
-../Core/Src/main.c(408): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  			GUI_DispFloat(6.366*pow(2.71828,1.296*num*3.3/5000000),4);
-../Core/Src/main.c(409): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  			stimulate(&huart4,6.366*pow(2.71828,1.296*num*3.3/5000000));
-../Core/Src/main.c(415): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  			GUI_DispFloat(1.828*pow(2.71828,1.904*num/1000000),4);
-../Core/Src/main.c(489): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  			ADC_convertedvalue[0] = (float)(ADC_detectedvalue[0]&0xffff)*3.3/65536 ;
-../Core/Src/main.c(490): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  			ADC_convertedvalue[1] = (float)(ADC_detectedvalue[1]&0xffff)*3.3/65536  ;
-../Core/Src/main.c(501): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
-  			HAL_UART_Receive_IT(&huart8,&UART8RxBuff,1);
-../Core/Src/main.c(278): warning:  #177-D: function "Error_Handler"  was declared but never referenced
-  static void Error_Handler(void)
-../Core/Src/main.c: 14 warnings, 0 errors
-compiling LCDConf_stm32h743i_eval.c...
 linking...
-Program Size: Code=77276 RO-data=19016 RW-data=440 ZI-data=314952  
-"STM32H743I_EVAL\Exe\Project.axf" - 0 Error(s), 39 Warning(s).
+Program Size: Code=77196 RO-data=19016 RW-data=440 ZI-data=314952  
+"STM32H743I_EVAL\Exe\Project.axf" - 0 Error(s), 18 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -134,7 +85,7 @@ Package Vendor: ARM
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.0.1
-Build Time Elapsed:  00:00:32
+Build Time Elapsed:  00:00:07
 </pre>
 </body>
 </html>
