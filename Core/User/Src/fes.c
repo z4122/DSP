@@ -24,16 +24,17 @@ configtx txconfig = {
 			};
 
 
-void merge_stimulate_parameter(UART_HandleTypeDef *huart,char amplitude)
+void merge_stimulate_parameter(UART_HandleTypeDef *huart,char pressure)
 {			
+	//限制最大值
+	if(pressure>100)
+		pressure = 100;
+	
 	stimulate_parameter[0]=txconfig.HEADER;	
 	stimulate_parameter[1]=txconfig.CONTROL;
 	stimulate_parameter[2]=txconfig.CHANNEL;
 	stimulate_parameter[3]=txconfig.LENGTH>>8;
 	stimulate_parameter[4]=txconfig.LENGTH;
-	
-
-	
 	stimulate_parameter[5]=txconfig.WIDTH>>8;
 	stimulate_parameter[6]=txconfig.WIDTH;
 	stimulate_parameter[7]=txconfig.FREQUENCY>>8;
@@ -45,10 +46,24 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,char amplitude)
 	stimulate_parameter[13]=txconfig.NUMERATOR;
 	stimulate_parameter[14]=txconfig.DENOMINATOR>>8;
 	stimulate_parameter[15]=txconfig.DENOMINATOR;
-	//stimulate_parameter[16]=txconfig.AMPLITUDE;
-	stimulate_parameter[16]=amplitude;
+	stimulate_parameter[16]=txconfig.AMPLITUDE;
+	stimulate_parameter[17]=txconfig.ENDFLAG;
+	stimulate_parameter[18]=txconfig.ENDFLAG;
+	stimulate_parameter[19]=txconfig.ENDFLAG;
 	
-	if(testmode_flag==4)
+	//flag==1幅值模式，flag==2频率模式，flag==3脉宽模式
+	if(testmode_flag==1){
+			stimulate_parameter[16] = pressure/10;
+	}
+	else if(testmode_flag==2){
+			stimulate_parameter[7] = (25+pressure/2)>>8; //频率高位
+			stimulate_parameter[8] = 25+pressure/2; //频率低位
+	}		
+	else if(testmode_flag==3){
+			stimulate_parameter[5] = (100+pressure)>>8; //脉宽高位
+			stimulate_parameter[6] = 100+pressure; //脉宽低位
+	}
+	else if(testmode_flag==4)
 	{
 		if(huart==&huart5) {
 			stimulate_parameter[16] = parameter[1][0]; 
@@ -56,6 +71,8 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,char amplitude)
 			stimulate_parameter[6] = parameter[1][1]; //脉宽低位
 			stimulate_parameter[7] = parameter[1][2]>>8; //频率高位
 			stimulate_parameter[8] = parameter[1][2]; //频率低位
+			stimulate_parameter[11]= parameter[1][3]>>8;
+			stimulate_parameter[12]= parameter[1][3];
 			
 		}
 		else if(huart==&huart3) {
@@ -64,6 +81,8 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,char amplitude)
 			stimulate_parameter[6] = parameter[2][1]; //脉宽低位
 			stimulate_parameter[7] = parameter[2][2]>>8; //频率高位
 			stimulate_parameter[8] = parameter[2][2]; //频率低位
+			stimulate_parameter[11]= parameter[2][3]>>8;
+			stimulate_parameter[12]= parameter[2][3];
 			
 		}
 		else if(huart==&huart1) {
@@ -72,6 +91,8 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,char amplitude)
 			stimulate_parameter[6] = parameter[3][1]; //脉宽低位
 			stimulate_parameter[7] = parameter[3][2]>>8; //频率高位
 			stimulate_parameter[8] = parameter[3][2]; //频率低位
+			stimulate_parameter[11]= parameter[3][3]>>8;
+			stimulate_parameter[12]= parameter[3][3];
 			
 		}
 		else if(huart==&huart4) {
@@ -80,22 +101,24 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,char amplitude)
 			stimulate_parameter[6] = parameter[4][1]; //脉宽低位
 			stimulate_parameter[7] = parameter[4][2]>>8; //频率高位
 			stimulate_parameter[8] = parameter[4][2]; //频率低位
+			stimulate_parameter[11]= parameter[4][3]>>8;
+			stimulate_parameter[12]= parameter[4][3];
 			
 		}
 		else if(huart==&huart7)  {
 			stimulate_parameter[16] = parameter[5][0]; 
 			stimulate_parameter[5] = parameter[5][1]>>8; //脉宽高位
 			stimulate_parameter[6] = parameter[5][1]; //脉宽低位
-			//stimulate_parameter[7] = parameter[5][2]>>8; //频率高位
-			//stimulate_parameter[8] = parameter[5][2]; //频率低位
+			stimulate_parameter[7] = parameter[5][2]>>8; //频率高位
+			stimulate_parameter[8] = parameter[5][2]; //频率低位
+			stimulate_parameter[11]= parameter[5][3]>>8;//次数高位
+			stimulate_parameter[12]= parameter[5][3];//次数低位
 			
 		}
 	}
 	
 	
-	stimulate_parameter[17]=txconfig.ENDFLAG;
-	stimulate_parameter[18]=txconfig.ENDFLAG;
-	stimulate_parameter[19]=txconfig.ENDFLAG;
+	
 	
 	HAL_UART_Transmit(huart,(uint8_t *)stimulate_parameter,sizeof(stimulate_parameter),0xffff);
 }
@@ -335,13 +358,13 @@ void stim_stop(UART_HandleTypeDef *huart)// BB 0x42 0x42
 	}
 }
 
-void stimulate(UART_HandleTypeDef *huart,float amp)
+void stimulate(UART_HandleTypeDef *huart,float pressure)
 {
 	
 	stim_search(huart);// send 800103 back BC
-	if(amp>=100)
-		amp=99;
-	merge_stimulate_parameter(huart,(int)amp);
+	
+
+	merge_stimulate_parameter(huart,(int)pressure);
 	
 	stim_start(huart);//800101,back AA
 	

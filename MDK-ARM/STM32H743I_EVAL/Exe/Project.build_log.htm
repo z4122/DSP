@@ -27,47 +27,49 @@ Project File Date:  09/04/2018
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 4 (build 422)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'STM32H743I_EVAL'
-compiling fes.c...
-..\Core\User\Src\fes.c(115): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
-  			HAL_UART_Receive_IT(huart,&UART1RxBuff,1);
-..\Core\User\Src\fes.c(126): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
-  			HAL_UART_Receive_IT(huart,&UART3RxBuff,1);
-..\Core\User\Src\fes.c(137): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
-  			HAL_UART_Receive_IT(huart,&UART4RxBuff,1);
-..\Core\User\Src\fes.c(148): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
-  			HAL_UART_Receive_IT(huart,&UART5RxBuff,1);
-..\Core\User\Src\fes.c(160): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
-  			HAL_UART_Receive_IT(huart,&UART7RxBuff,1);
-..\Core\User\Src\fes.c(171): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
-  			HAL_UART_Receive_IT(huart,&UART8RxBuff,1);
-..\Core\User\Src\fes.c(191): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
-  			HAL_UART_Receive_IT(huart,&UART1RxBuff,1);
-..\Core\User\Src\fes.c(202): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
-  			HAL_UART_Receive_IT(huart,&UART3RxBuff,1);
-..\Core\User\Src\fes.c(213): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
-  			HAL_UART_Receive_IT(huart,&UART4RxBuff,1);
-..\Core\User\Src\fes.c(224): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
-  			HAL_UART_Receive_IT(huart,&UART5RxBuff,1);
-..\Core\User\Src\fes.c(235): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
-  			HAL_UART_Receive_IT(huart,&UART7RxBuff,1);
-..\Core\User\Src\fes.c(246): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
-  			HAL_UART_Receive_IT(huart,&UART8RxBuff,1);
-..\Core\User\Src\fes.c(261): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
-  	HAL_UART_Receive_IT(&huart3,&UART3RxBuff,1);
-..\Core\User\Src\fes.c(262): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
-  	HAL_UART_Receive_IT(&huart4,&UART4RxBuff,1);
-..\Core\User\Src\fes.c(263): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
-  	HAL_UART_Receive_IT(&huart5,&UART5RxBuff,1);
-..\Core\User\Src\fes.c(264): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
-  	HAL_UART_Receive_IT(&huart7,&UART7RxBuff,1);
-..\Core\User\Src\fes.c(265): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
-  	HAL_UART_Receive_IT(&huart8,&UART8RxBuff,1);
-..\Core\User\Src\fes.c(274): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
-  			HAL_UART_Receive_IT(&huart1,&UART1RxBuff,1);
-..\Core\User\Src\fes.c: 18 warnings, 0 errors
+compiling main.c...
+../Core/Src/main.c(71): warning:  #1295-D: Deprecated declaration getaddata - give arg types
+  void getaddata();
+../Core/Src/main.c(418): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			GUI_DispFloat(3.486*pow(2.71828,1.589*num*3.3/5000000),4);
+../Core/Src/main.c(419): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			stimulate(&huart5,3.486*pow(2.71828,1.589*num*3.3/5000000));
+../Core/Src/main.c(425): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			GUI_DispFloat(2.705*pow(2.71828,1.607*num*3.3/5000000),4);
+../Core/Src/main.c(430): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			GUI_DispFloat(num*3.3/5000000,4);
+../Core/Src/main.c(432): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			GUI_DispFloat(1.767*pow(2.71828,1.801*num*3.3/5000000),4);
+../Core/Src/main.c(439): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			GUI_DispFloat(6.366*pow(2.71828,1.296*num*3.3/5000000),4);
+../Core/Src/main.c(446): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			GUI_DispFloat(1.828*pow(2.71828,1.904*num/1000000),4);
+../Core/Src/main.c(456): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			GUI_DispFloat(3.486*pow(2.71828,1.589*num*3.3/5000000),4);
+../Core/Src/main.c(457): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			stimulate(&huart5,3.486*pow(2.71828,1.589*num*3.3/5000000));
+../Core/Src/main.c(463): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			GUI_DispFloat(2.705*pow(2.71828,1.607*num*3.3/5000000),4);
+../Core/Src/main.c(468): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			GUI_DispFloat(num*3.3/5000000,4);
+../Core/Src/main.c(470): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			GUI_DispFloat(1.767*pow(2.71828,1.801*num*3.3/5000000),4);
+../Core/Src/main.c(477): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			GUI_DispFloat(6.366*pow(2.71828,1.296*num*3.3/5000000),4);
+../Core/Src/main.c(484): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			GUI_DispFloat(1.828*pow(2.71828,1.904*num/1000000),4);
+../Core/Src/main.c(561): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			ADC_convertedvalue[0] = (float)(ADC_detectedvalue[0]&0xffff)*3.3/65536 ;
+../Core/Src/main.c(562): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			ADC_convertedvalue[1] = (float)(ADC_detectedvalue[1]&0xffff)*3.3/65536  ;
+../Core/Src/main.c(571): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+  			HAL_UART_Receive_IT(&huart8,&UART8RxBuff,1);
+../Core/Src/main.c(307): warning:  #177-D: function "Error_Handler"  was declared but never referenced
+  static void Error_Handler(void)
+../Core/Src/main.c: 19 warnings, 0 errors
 linking...
-Program Size: Code=77196 RO-data=19016 RW-data=440 ZI-data=314952  
-"STM32H743I_EVAL\Exe\Project.axf" - 0 Error(s), 18 Warning(s).
+Program Size: Code=77452 RO-data=19016 RW-data=440 ZI-data=314952  
+"STM32H743I_EVAL\Exe\Project.axf" - 0 Error(s), 19 Warning(s).
 
 <h2>Software Packages used:</h2>
 
