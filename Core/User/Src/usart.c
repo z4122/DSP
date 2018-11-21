@@ -697,7 +697,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 			if(sum==UART8RxBuff){
 				testmode_flag = upperRxBuffer[0];
 				
-				//电流幅值，只有一个字节0-25.5mA
 				parameter[1][0] = upperRxBuffer[1];
 				parameter[2][0] = upperRxBuffer[1];
 				parameter[3][0] = upperRxBuffer[1];
@@ -719,15 +718,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 				parameter[3][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];
 				parameter[4][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];
 				parameter[5][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];
-				
-				
-				//times刺激次数，和frequency结合起来使用
-				parameter[1][3] = upperRxBuffer[6];
-				parameter[2][3] = upperRxBuffer[6];
-				parameter[3][3] = upperRxBuffer[6];
-				parameter[4][3] = upperRxBuffer[6];
-				parameter[5][3] = upperRxBuffer[6];
-				
 //				switch(upperRxBuffer[1]){
 //					case 1: 
 //							parameter[1][0] = upperRxBuffer[2];

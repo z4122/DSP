@@ -73,9 +73,6 @@ long ulResult;
 long double ldVolutage;
 uint8_t data[15];//传输给上位机的数据
 float ADC_convertedvalue[2];
-
-enum Hand {left=0,right=1};
-enum Hand amputatedHand = left;
 /*
 0x00 0x00  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX    0xXX 
 | 数据头 |  通道一  |  通道二   |  通道三  |  通道四  |  通道五  |保留两个字节|校验和|
@@ -151,50 +148,26 @@ int main(void)
 		if(last_flag!=testmode_flag)
 			GUI_Clear();
 		
-		switch(testmode_flag)
-		{
-			case 0:
-				GUI_Clear();
-				GUI_DispStringAt("stop ",250,270);
-				while(testmode_flag==0);
-				break;
-			case 1:
-				GUI_DispStringAt("left amplitude mode   ", 200, 270); 	
-				amputatedHand = left;
-				break;
-			case 2:
-				GUI_DispStringAt("left frequency mode", 200, 270); 
-				amputatedHand = left;
-				break;
-			case 3:
-				GUI_DispStringAt("left width mode", 200, 270); 
-				amputatedHand = left;
-				break;
-			case 4:
-				GUI_DispStringAt("test mode  ", 100, 270); 
-				GUI_DispFloat(parameter[1][0]/10.0,4);//调整显示的位数
-				GUI_DispStringAt("mA  ", 290, 270); 
-				GUI_DispFloat(parameter[1][1],4);//调整显示的位数
-				GUI_DispStringAt("us  ", 410, 270); 
-				GUI_DispFloat(parameter[1][2],4);//调整显示的位数
-				GUI_DispStringAt("hz  ", 520, 270); 
-				break;
-			case 5:
-				GUI_DispStringAt("right amplitude mode   ", 200, 270); 	
-				amputatedHand = right;
-				break;
-			case 6:
-				GUI_DispStringAt("right frequency mode", 200, 270); 
-				amputatedHand = right;
-				break;
-			case 7:
-				GUI_DispStringAt("right width mode", 200, 270); 
-				amputatedHand = right;
-				break;
-			default:
-				break;			
+		if(testmode_flag==0){
+			GUI_DispStringAt("stop ",200,270);
+			while(testmode_flag==0);				
+		}	
+		else if(testmode_flag==1){
+			GUI_DispStringAt("amplitude mode   ", 200, 270); 			
 		}
-		
+		else if(testmode_flag==2)
+			GUI_DispStringAt("frequency mode", 200, 270); 
+		else if(testmode_flag==3)
+			GUI_DispStringAt("width mode", 200, 270); 
+		else if(testmode_flag==4){
+			GUI_DispStringAt("test mode  ", 100, 270); 
+			GUI_DispFloat(parameter[1][0]/10.0,4);//调整显示的位数
+			GUI_DispStringAt("mA  ", 290, 270); 
+			GUI_DispFloat(parameter[1][1],4);//调整显示的位数
+			GUI_DispStringAt("us  ", 410, 270); 
+			GUI_DispFloat(parameter[1][2],4);//调整显示的位数
+			GUI_DispStringAt("hz  ", 520, 270); 
+		}
 		last_flag = testmode_flag;
 	}
 }
@@ -408,9 +381,7 @@ void display(int i,float num)
 {
 	switch(i)
 	{
-		
-		//左手为截肢端
-		case 0://16
+		case 1://16
 			//GUI_Clear();
 			GUI_DispStringAt("channel 1  ", 100, 20); 
 			GUI_DispFloat(num/1000000,4);//调整显示的位数
@@ -418,85 +389,50 @@ void display(int i,float num)
 			GUI_DispFloat(3.486*pow(2.71828,1.589*num*3.3/5000000),4);
 			stimulate(&huart5,3.486*pow(2.71828,1.589*num*3.3/5000000));
 			break;
-		case 1://3
+		case 2://3
 			GUI_DispStringAt("channel 2  ", 100, 50); 
 			GUI_DispFloat(num/1000000,4);
 			GUI_DispStringAt("transfered data  ", 300, 50); 
 			GUI_DispFloat(2.705*pow(2.71828,1.607*num*3.3/5000000),4);
 			//stimulate(&huart3,2.705*pow(2.71828,1.607*num*3.3/5000000));
 			break;
-		case 2://2
+		case 3://2
 			GUI_DispStringAt("channel 3  ", 100, 80); 
 			GUI_DispFloat(num*3.3/5000000,4);
 			GUI_DispStringAt("transfered data  ", 300, 80); 
 			GUI_DispFloat(1.767*pow(2.71828,1.801*num*3.3/5000000),4);
 			//stimulate(&huart1,1.767*pow(2.71828,1.801*num*3.3/5000000));
 			break;
-		case 3://15
+		case 4://15
 			GUI_DispStringAt("channel 4  ", 100, 110); 
 			GUI_DispFloat(num/1000000,4);
 			GUI_DispStringAt("transfered data  ", 300, 110); 
 			GUI_DispFloat(6.366*pow(2.71828,1.296*num*3.3/5000000),4);
 			//stimulate(&huart4,6.366*pow(2.71828,1.296*num*3.3/5000000));
 			break;
-		case 4://1
+		case 5://1
 			GUI_DispStringAt("channel 5  ", 100, 140); 
 			GUI_DispFloat(num/1000000,4);
 			GUI_DispStringAt("transfered data  ", 300, 140); 
 			GUI_DispFloat(1.828*pow(2.71828,1.904*num/1000000),4);
 			//stimulate(&huart7,1.828*pow(2.71828,1.904*num*3.3/5000000));
 			break;
-		
-		
-		//右手为截肢端
-		case 5:
-			GUI_DispStringAt("channel 1  ", 100, 20); 
-			GUI_DispFloat(num/1000000,4);//调整显示的位数
-			GUI_DispStringAt("transfered data  ", 300, 20); 
-			GUI_DispFloat(3.486*pow(2.71828,1.589*num*3.3/5000000),4);
-			stimulate(&huart5,3.486*pow(2.71828,1.589*num*3.3/5000000));
-			break;
-		case 6:
-			GUI_DispStringAt("channel 2  ", 100, 50); 
-			GUI_DispFloat(num/1000000,4);
-			GUI_DispStringAt("transfered data  ", 300, 50); 
-			GUI_DispFloat(2.705*pow(2.71828,1.607*num*3.3/5000000),4);
-			//stimulate(&huart3,2.705*pow(2.71828,1.607*num*3.3/5000000));
-			break;
-		case 7:
-			GUI_DispStringAt("channel 3  ", 100, 80); 
-			GUI_DispFloat(num*3.3/5000000,4);
-			GUI_DispStringAt("transfered data  ", 300, 80); 
-			GUI_DispFloat(1.767*pow(2.71828,1.801*num*3.3/5000000),4);
-			//stimulate(&huart1,1.767*pow(2.71828,1.801*num*3.3/5000000));
-			break;
-		case 8:
-			GUI_DispStringAt("channel 4  ", 100, 110); 
-			GUI_DispFloat(num/1000000,4);
-			GUI_DispStringAt("transfered data  ", 300, 110); 
-			GUI_DispFloat(6.366*pow(2.71828,1.296*num*3.3/5000000),4);
-			//stimulate(&huart4,6.366*pow(2.71828,1.296*num*3.3/5000000));
-			break;
-		case 9:
-			GUI_DispStringAt("channel 5  ", 100, 140); 
-			GUI_DispFloat(num/1000000,4);
-			GUI_DispStringAt("transfered data  ", 300, 140); 
-			GUI_DispFloat(1.828*pow(2.71828,1.904*num/1000000),4);
-			//stimulate(&huart7,1.828*pow(2.71828,1.904*num*3.3/5000000));
-			break;
-		
-		
 		default:
 			break;
+//		case 6:
+//			GUI_DispStringAt("channel 6  ", 100, 170); 
+//			GUI_DispFloat(num/1000000,4);
+//			GUI_DispStringAt("transfered data  ", 300, 170); 
+//			GUI_DispFloat(2.705*pow(2.71828,1.607*num/1000000),4);
+//			break;
 	}	
 }
 
 void getaddata()
 {
-		//代表1-5通道
+		
 		data[0] = 0xff;
 		data[1] = 0xff;
-	
 		for(int i = 0;i < 5;i++)
 		{
 			 ulResult = ADS_sum( (i << 4) | 0x08);	
@@ -509,27 +445,24 @@ void getaddata()
 				ulResult += 1;
 				ulResult = -ulResult;
 			}
-						
+		
+			
+			
 			ldVolutage = (long double)ulResult*0.59604644775390625;
-			if(amputatedHand==left)
-			{
-				display(i,ldVolutage);
-			}
+			
+			display(i,ldVolutage);
+			
 			
 			ldVolutage = ldVolutage/1000;
 			data[i*2+2] = ((u16)ldVolutage)>>8;
 			data[i*2+3] = ((u16)ldVolutage)&0xFF;
+
 		
 			//HAL_Delay(10);	
 		}
 		
 		HAL_UART_Transmit(&huart8,data,15,0xfff);
 		
-		
-		//代表6-10通道
-		data[0] = 0xff;
-		data[1] = 0xf1;
-	
 		for(int i = 5;i < 8;i++)
 		{
 			 ulResult = ADS_sum( (i << 4) | 0x08);	
@@ -544,11 +477,8 @@ void getaddata()
 			
 			ldVolutage = (long double)ulResult*0.59604644775390625;
 			
-			if(amputatedHand==right)
-			{
-				display(i,ldVolutage);
-			}
-				
+			display(i,ldVolutage);
+			
 			ldVolutage = ldVolutage/1000;
 			data[i*2-8] = ((u16)ldVolutage)>>8;
 			data[i*2-7] = ((u16)ldVolutage)&0xFF;
@@ -566,6 +496,8 @@ void getaddata()
 			data[10] =(u16)ADC_convertedvalue[1]>>8;
 			data[11] =(u16)ADC_convertedvalue[1]&0xFF;
 		
+			data[0] = 0xff;
+			data[1] = 0xf1;
 			HAL_UART_Transmit(&huart8,data,15,0xfff);
 		
 			HAL_UART_Receive_IT(&huart8,&UART8RxBuff,1);
