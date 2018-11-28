@@ -156,7 +156,9 @@ int main(void)
 			case 0:
 				GUI_Clear();
 				GUI_DispStringAt("stop ",250,270);
-				while(testmode_flag==0);
+				while(testmode_flag==0) {
+					getaddata();
+				}
 				break;
 			case 1:
 				GUI_DispStringAt("left amplitude mode   ", 200, 270); 	
@@ -499,7 +501,7 @@ void getaddata()
 	
 		for(int i = 0;i < 5;i++)
 		{
-			 ulResult = ADS_sum( (i << 4) | 0x08);	
+			ulResult = ADS_sum( (i << 4) | 0x08);	
 
 			//ulResult = ADS_sum( ADS1256_MUXP_AIN0 | ADS1256_MUXN_AINCOM);	
 			if( ulResult & 0x800000 )
