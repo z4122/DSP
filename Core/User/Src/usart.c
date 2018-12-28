@@ -34,7 +34,7 @@ int channelchange = 0;
 uint8_t tempRxBuffer;
 uint8_t upperRxBuffer[7];
 int cnt = 0;
-volatile int testmode_flag = 0;
+volatile int testmode_flag = 1;//通过修改此处可以修改启动的模式
 
 static void Error_Handler(void)
 {

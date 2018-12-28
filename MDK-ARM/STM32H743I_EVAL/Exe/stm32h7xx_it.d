@@ -50,7 +50,10 @@ stm32h743i_eval\exe\stm32h7xx_it.o: ..\Core\Inc\STM32H743I_EVAL\stm32h743i_eval.
 stm32h743i_eval\exe\stm32h7xx_it.o: ..\Core\User\Inc\visualscope.h
 stm32h743i_eval\exe\stm32h7xx_it.o: ..\Core\User\Inc\fes.h
 stm32h743i_eval\exe\stm32h7xx_it.o: ..\Core\User\Inc\usart.h
+stm32h743i_eval\exe\stm32h7xx_it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\time.h
 stm32h743i_eval\exe\stm32h7xx_it.o: ..\Core\User\Inc\ad.h
 stm32h743i_eval\exe\stm32h7xx_it.o: ..\Core\User\Inc\adc.h
+stm32h743i_eval\exe\stm32h7xx_it.o: ..\Core\User\Inc\timer.h
+stm32h743i_eval\exe\stm32h7xx_it.o: ..\Core\User\Inc\usart.h
 stm32h743i_eval\exe\stm32h7xx_it.o: ..\Core\Inc\STM32H743I_EVAL\stm32h743i_eval_sdram.h
 stm32h743i_eval\exe\stm32h7xx_it.o: ../Core/Inc/stm32h7xx_it.h
