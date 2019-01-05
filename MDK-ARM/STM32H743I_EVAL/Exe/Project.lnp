@@ -22,7 +22,6 @@
 "stm32h743i_eval\exe\ad.o"
 "stm32h743i_eval\exe\pc_interface.o"
 "stm32h743i_eval\exe\adc.o"
-"stm32h743i_eval\exe\timer.o"
 "stm32h743i_eval\exe\stm32h7xx_hal.o"
 "stm32h743i_eval\exe\stm32h7xx_hal_adc.o"
 "stm32h743i_eval\exe\stm32h7xx_hal_adc_ex.o"

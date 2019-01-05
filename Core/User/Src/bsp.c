@@ -26,9 +26,6 @@ void BSP_Init()
 	UART7_Init();
 	UART8_Init();//加入8之后，屏幕会闪烁
 	ADC_Init();
-	TIM3_Init(200-1,20000-1);//单位ms，用于与DSSU通信，优先级高 200M/20000 = 10k 1/10k = 0.1ms 200*0.1ms=20ms
-	TIM5_Init(500-1,20000-1);//单位ms，用于AD数据转换,优先级低 50ms
-
 	//USART2_Init();暂时用不到
 	//USART6_Init();暂时用不到
 	

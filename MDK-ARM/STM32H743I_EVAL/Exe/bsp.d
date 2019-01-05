@@ -49,8 +49,5 @@ stm32h743i_eval\exe\bsp.o: ..\Core\Inc\inc\Global.h
 stm32h743i_eval\exe\bsp.o: ..\Core\Inc\inc\GUI_Version.h
 stm32h743i_eval\exe\bsp.o: ..\Core\User\Inc\fes.h
 stm32h743i_eval\exe\bsp.o: ..\Core\User\Inc\usart.h
-stm32h743i_eval\exe\bsp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\time.h
 stm32h743i_eval\exe\bsp.o: ..\Core\User\Inc\ad.h
 stm32h743i_eval\exe\bsp.o: ..\Core\User\Inc\adc.h
-stm32h743i_eval\exe\bsp.o: ..\Core\User\Inc\timer.h
-stm32h743i_eval\exe\bsp.o: ..\Core\User\Inc\usart.h
