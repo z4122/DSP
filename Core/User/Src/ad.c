@@ -115,7 +115,7 @@ void ADS1256_Init(void)
 	while(ADS1256_DRDY);
 	ADS1256_Write_Reg(REG_ADCON,0x00);	   //ADCON=00h
 //	ADS1256_Write_Reg(REG_DRATE,DATARATE_30K);  //data rate 30k SPS
-	ADS1256_Write_Reg(REG_DRATE,0x23);  //data rate 15k SPS
+	ADS1256_Write_Reg(REG_DRATE,DATARATE_30K);  //data rate 30k SPS
 	while(ADS1256_DRDY);
 	ADS1256_Write_Reg(REG_IO,0x00);    //GPIO output  
 	while(ADS1256_DRDY);
@@ -139,13 +139,12 @@ unsigned int ADS1256ReadData()
   unsigned int sum=0;
 	
 	ClrADS1256_CS;
-	
 	while(ADS1256_DRDY);              //?ADS1256_DRDY????????? 
 //	ADS1256WREG(ADS1256_MUX,channel);		//????
 	ADS1256_Write_Byte(CMD_SYNC);
 	ADS1256_Write_Byte(0xff);	               
 	ADS1256_Write_Byte(CMD_RDATA);
-
+	
   sum |= (ADS1256_Read_Byte() << 16);
 	sum |= (ADS1256_Read_Byte() << 8);
 	sum |= ADS1256_Read_Byte();
@@ -220,12 +219,12 @@ void AD_GPIO_Init(void)
 }
 void delayad_nopar(void)
 {
-	unsigned long i = 2000;
+	unsigned long i = 2000;//2000
    	while(i--);
 }
 void delayad(unsigned tt)
 {
 	unsigned char i,j;
 	for(j=tt;j>0;j--)
-		for(i=200;i>0;i--);
+		for(i=200;i>0;i--);//200
 }

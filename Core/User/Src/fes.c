@@ -16,7 +16,8 @@ configtx txconfig = {
 					0x0064, 		//default frequeny is 100 Hz = 0x0064H
 					0x0A, 			//default time delay is 10us = 0x0AH
 					0x01, 			//no circulation
-					0x0055,			//stimulate times is 4
+					//0x0055,			//stimulate times is 4
+					0x0003,
 					0x00,			//increment numerator is 0
 					0x0001,			//increment denominator is 1
 					0x50,			//default stimulate amplitude is 1mA 0X0A
@@ -27,8 +28,8 @@ configtx txconfig = {
 void merge_stimulate_parameter(UART_HandleTypeDef *huart,char pressure)
 {			
 	//限制最大值
-	if(pressure>100)
-		pressure = 100;
+	if(pressure<0)
+		pressure = 0;
 	
 	stimulate_parameter[0]=txconfig.HEADER;	
 	stimulate_parameter[1]=txconfig.CONTROL;
@@ -53,7 +54,7 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,char pressure)
 	
 	//flag==1幅值模式，flag==2频率模式，flag==3脉宽模式
 	if(testmode_flag==1){
-			stimulate_parameter[16] = pressure/10;
+			stimulate_parameter[16] = pressure*3;
 	}
 	else if(testmode_flag==2){
 			stimulate_parameter[7] = (25+pressure/2)>>8; //频率高位
@@ -66,54 +67,124 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,char pressure)
 	else if(testmode_flag==4)
 	{
 		if(huart==&huart5) {
+			static u16 last_frequency = 0;
+			if(last_frequency != parameter[1][2]){
+				last_frequency=parameter[1][2];
+				if(last_frequency>=10000){
+					ChangePeriod(last_frequency-10000);//改变发送给DSSU的信号周期，单位ms
+					stimulate_parameter[7] = txconfig.FREQUENCY>>8; //频率高位，默认100hz
+					stimulate_parameter[8] = txconfig.FREQUENCY; //频率低位
+					stimulate_parameter[11]= 0x00;//次数高位
+					stimulate_parameter[12]= 0x01;//次数低位
+				}
+				else{
+					ChangePeriod(20);//单位ms，周期20ms
+					stimulate_parameter[7] = parameter[1][2]>>8; //频率高位
+					stimulate_parameter[8] = parameter[1][2]; //频率低位
+					stimulate_parameter[11]= (unsigned int)(last_frequency*0.02)>>8;//次数高位，计算出来的刺激次数，如200hz就是200*0.02=4次
+					stimulate_parameter[12]= (unsigned int)last_frequency*0.02;//次数低位
+					
+				}
+			}
 			stimulate_parameter[16] = parameter[1][0]; 
 			stimulate_parameter[5] = parameter[1][1]>>8; //脉宽高位
 			stimulate_parameter[6] = parameter[1][1]; //脉宽低位
-			stimulate_parameter[7] = parameter[1][2]>>8; //频率高位
-			stimulate_parameter[8] = parameter[1][2]; //频率低位
-			stimulate_parameter[11]= parameter[1][3]>>8;
-			stimulate_parameter[12]= parameter[1][3];
-			
 		}
 		else if(huart==&huart3) {
+			static u16 last_frequency = 0;
+			if(last_frequency != parameter[2][2]){
+				last_frequency=parameter[2][2];
+				if(last_frequency>=10000){
+					ChangePeriod(last_frequency-10000);//改变发送给DSSU的信号周期，单位ms
+					stimulate_parameter[7] = txconfig.FREQUENCY>>8; //频率高位，默认100hz
+					stimulate_parameter[8] = txconfig.FREQUENCY; //频率低位
+					stimulate_parameter[11]= 0x00;//次数高位
+					stimulate_parameter[12]= 0x01;//次数低位
+				}
+				else{
+					ChangePeriod(20);//单位ms，周期20ms
+					stimulate_parameter[7] = parameter[2][2]>>8; //频率高位
+					stimulate_parameter[8] = parameter[2][2]; //频率低位
+					stimulate_parameter[11]= (unsigned int)(last_frequency*0.02)>>8;//次数高位，计算出来的刺激次数，如200hz就是200*0.02=4次
+					stimulate_parameter[12]= (unsigned int)last_frequency*0.02;//次数低位
+					
+				}
+			}
 			stimulate_parameter[16] = parameter[2][0]; 
 			stimulate_parameter[5] = parameter[2][1]>>8; //脉宽高位
 			stimulate_parameter[6] = parameter[2][1]; //脉宽低位
-			stimulate_parameter[7] = parameter[2][2]>>8; //频率高位
-			stimulate_parameter[8] = parameter[2][2]; //频率低位
-			stimulate_parameter[11]= parameter[2][3]>>8;
-			stimulate_parameter[12]= parameter[2][3];
-			
 		}
 		else if(huart==&huart1) {
+			static u16 last_frequency = 0;
+			if(last_frequency != parameter[3][2]){
+				last_frequency=parameter[3][2];
+				if(last_frequency>=10000){
+					ChangePeriod(last_frequency-10000);//改变发送给DSSU的信号周期，单位ms
+					stimulate_parameter[7] = txconfig.FREQUENCY>>8; //频率高位，默认100hz
+					stimulate_parameter[8] = txconfig.FREQUENCY; //频率低位
+					stimulate_parameter[11]= 0x00;//次数高位
+					stimulate_parameter[12]= 0x01;//次数低位
+				}
+				else{
+					ChangePeriod(20);//单位ms，周期20ms
+					stimulate_parameter[7] = parameter[3][2]>>8; //频率高位
+					stimulate_parameter[8] = parameter[3][2]; //频率低位
+					stimulate_parameter[11]= (unsigned int)(last_frequency*0.02)>>8;//次数高位，计算出来的刺激次数，如200hz就是200*0.02=4次
+					stimulate_parameter[12]= (unsigned int)last_frequency*0.02;//次数低位
+					
+				}
+			}
 			stimulate_parameter[16] = parameter[3][0]; 
 			stimulate_parameter[5] = parameter[3][1]>>8; //脉宽高位
 			stimulate_parameter[6] = parameter[3][1]; //脉宽低位
-			stimulate_parameter[7] = parameter[3][2]>>8; //频率高位
-			stimulate_parameter[8] = parameter[3][2]; //频率低位
-			stimulate_parameter[11]= parameter[3][3]>>8;
-			stimulate_parameter[12]= parameter[3][3];
-			
 		}
 		else if(huart==&huart4) {
+			static u16 last_frequency = 0;
+			if(last_frequency != parameter[4][2]){
+				last_frequency=parameter[4][2];
+				if(last_frequency>=10000){
+					ChangePeriod(last_frequency-10000);//改变发送给DSSU的信号周期，单位ms
+					stimulate_parameter[7] = txconfig.FREQUENCY>>8; //频率高位，默认100hz
+					stimulate_parameter[8] = txconfig.FREQUENCY; //频率低位
+					stimulate_parameter[11]= 0x00;//次数高位
+					stimulate_parameter[12]= 0x01;//次数低位
+				}
+				else{
+					ChangePeriod(20);//单位ms，周期20ms
+					stimulate_parameter[7] = parameter[4][2]>>8; //频率高位
+					stimulate_parameter[8] = parameter[4][2]; //频率低位
+					stimulate_parameter[11]= (unsigned int)(last_frequency*0.02)>>8;//次数高位，计算出来的刺激次数，如200hz就是200*0.02=4次
+					stimulate_parameter[12]= (unsigned int)last_frequency*0.02;//次数低位
+					
+				}
+			}
 			stimulate_parameter[16] = parameter[4][0]; 
 			stimulate_parameter[5] = parameter[4][1]>>8; //脉宽高位
 			stimulate_parameter[6] = parameter[4][1]; //脉宽低位
-			stimulate_parameter[7] = parameter[4][2]>>8; //频率高位
-			stimulate_parameter[8] = parameter[4][2]; //频率低位
-			stimulate_parameter[11]= parameter[4][3]>>8;
-			stimulate_parameter[12]= parameter[4][3];
-			
 		}
 		else if(huart==&huart7)  {
+			static u16 last_frequency = 0;
+			if(last_frequency != parameter[5][2]){
+				last_frequency=parameter[5][2];
+				if(last_frequency>=10000){
+					ChangePeriod(last_frequency-10000);//改变发送给DSSU的信号周期，单位ms
+					stimulate_parameter[7] = txconfig.FREQUENCY>>8; //频率高位，默认100hz
+					stimulate_parameter[8] = txconfig.FREQUENCY; //频率低位
+					stimulate_parameter[11]= 0x00;//次数高位
+					stimulate_parameter[12]= 0x01;//次数低位
+				}
+				else{
+					ChangePeriod(20);//单位ms，周期20ms
+					stimulate_parameter[7] = parameter[5][2]>>8; //频率高位
+					stimulate_parameter[8] = parameter[5][2]; //频率低位
+					stimulate_parameter[11]= (unsigned int)(last_frequency*0.02)>>8;//次数高位，计算出来的刺激次数，如200hz就是200*0.02=4次
+					stimulate_parameter[12]= (unsigned int)last_frequency*0.02;//次数低位
+					
+				}
+			}
 			stimulate_parameter[16] = parameter[5][0]; 
 			stimulate_parameter[5] = parameter[5][1]>>8; //脉宽高位
 			stimulate_parameter[6] = parameter[5][1]; //脉宽低位
-			stimulate_parameter[7] = parameter[5][2]>>8; //频率高位
-			stimulate_parameter[8] = parameter[5][2]; //频率低位
-			stimulate_parameter[11]= parameter[5][3]>>8;//次数高位
-			stimulate_parameter[12]= parameter[5][3];//次数低位
-			
 		}
 	}
 	
@@ -212,7 +283,7 @@ void stim_start(UART_HandleTypeDef *huart) //receive AA 0x41 0x41
 		{
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
 			HAL_UART_Receive_IT(huart,&UART1RxBuff,1);
-			HAL_Delay(5);
+			HAL_Delay(1);
 		}
 		UART1RxBuff = 0x00;
 
@@ -223,7 +294,7 @@ void stim_start(UART_HandleTypeDef *huart) //receive AA 0x41 0x41
 		{
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
 			HAL_UART_Receive_IT(huart,&UART3RxBuff,1);
-			HAL_Delay(5);
+			HAL_Delay(1);
 		}
 		UART3RxBuff = 0x00;
 
@@ -234,7 +305,7 @@ void stim_start(UART_HandleTypeDef *huart) //receive AA 0x41 0x41
 		{
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
 			HAL_UART_Receive_IT(huart,&UART4RxBuff,1);
-			HAL_Delay(5);
+			HAL_Delay(1);
 		}
 		UART4RxBuff = 0x00;
 
@@ -245,7 +316,7 @@ void stim_start(UART_HandleTypeDef *huart) //receive AA 0x41 0x41
 		{
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
 			HAL_UART_Receive_IT(huart,&UART5RxBuff,1);
-			HAL_Delay(5);
+			HAL_Delay(1);
 		}
 		UART5RxBuff = 0x00;
 
@@ -256,7 +327,7 @@ void stim_start(UART_HandleTypeDef *huart) //receive AA 0x41 0x41
 		{
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
 			HAL_UART_Receive_IT(huart,&UART7RxBuff,1);
-			HAL_Delay(5);
+			HAL_Delay(1);
 		}
 		UART7RxBuff = 0x00;
 
@@ -267,7 +338,7 @@ void stim_start(UART_HandleTypeDef *huart) //receive AA 0x41 0x41
 		{
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
 			HAL_UART_Receive_IT(huart,&UART8RxBuff,1);
-			HAL_Delay(5);
+			HAL_Delay(1);
 		}
 		UART8RxBuff = 0x00;
 
@@ -363,7 +434,6 @@ void stimulate(UART_HandleTypeDef *huart,float pressure)
 	
 	stim_search(huart);// send 800103 back BC
 	
-
 	merge_stimulate_parameter(huart,(int)pressure);
 	
 	stim_start(huart);//800101,back AA

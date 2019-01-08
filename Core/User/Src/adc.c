@@ -46,7 +46,7 @@ void ADC_Init(void)
   }
   
   /* ### - 3 - Channel configuration ######################################## */
-  sConfig.Channel      = ADC_CHANNEL_10;                /* Sampled channel number */
+  sConfig.Channel      = ADC_CHANNEL_12;                /* Sampled channel number */
   sConfig.Rank         = ADC_REGULAR_RANK_1;          /* Rank of sampled channel number ADCx_CHANNEL */
   sConfig.SamplingTime = ADC_SAMPLETIME_810CYCLES_5;   /* Sampling time (number of clock cycles unit) */
   sConfig.SingleDiff   = ADC_SINGLE_ENDED;            /* Single-ended input channel */
@@ -96,7 +96,7 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef *hadc)
   
   /*##- 2- Configure peripheral GPIO #########################################*/
   /* ADC Channel GPIO pin configuration */
-  GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1;
+  GPIO_InitStruct.Pin = GPIO_PIN_2|GPIO_PIN_1;
   GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
@@ -145,7 +145,7 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef *hadc)
 
   /*##-2- Disable peripherals and GPIO Clocks ################################*/
   /* De-initialize the ADC Channel GPIO pin */
-  HAL_GPIO_DeInit(GPIOC, GPIO_PIN_0|GPIO_PIN_1);
+  HAL_GPIO_DeInit(GPIOC, GPIO_PIN_2|GPIO_PIN_1);
 }
 
 /**
