@@ -424,7 +424,7 @@ void display()
 					GUI_DispFloat(num/1000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 50); 
 					GUI_DispFloat(20.78*num/1000000-2.536,4);
-					//stimulate(&huart3,20.78*num/1000000-2.536);
+					stimulate(&huart3,20.78*num/1000000-2.536);
 					break;
 				case 7:
 					GUI_DispStringAt("channel 3  ", 100, 80); 
@@ -438,14 +438,14 @@ void display()
 					GUI_DispFloat(num,4);
 					GUI_DispStringAt("transfered data  ", 300, 110); 
 					GUI_DispFloat(21.08*num-4.121,4);
-					//stimulate(&huart4,21.08*num-4.121);
+					stimulate(&huart4,21.08*num-4.121);
 					break;
 				case 9:
 					GUI_DispStringAt("channel 5  ", 100, 140); 
 					GUI_DispFloat(num,4);
 					GUI_DispStringAt("transfered data  ", 300, 140); 
 					GUI_DispFloat(20.94*num-0.7668,4);
-					//stimulate(&huart7,20.94*num-0.7668);
+					stimulate(&huart7,20.94*num-0.7668);
 					break;
 				
 				
@@ -556,15 +556,15 @@ void MainLoop()
 	switch(testmode_flag)
 	{
 		case 0:
-			clear_flag++;
-			if(clear_flag>=10){
+			//clear_flag++;
+			//if(clear_flag>=10){
 				GUI_Clear();
-				clear_flag=0;
-			}
-			GUI_DispStringAt("stop ",250,270);
-			//while(testmode_flag==0) {
-			//	display();
+			//	clear_flag=0;
 			//}
+			GUI_DispStringAt("stop ",250,270);
+			while(testmode_flag==0) {
+				//display();
+			}
 			break;
 		case 1:
 			GUI_DispStringAt("right amplitude mode   ", 200, 270); 	

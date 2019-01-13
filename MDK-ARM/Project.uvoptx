@@ -150,9 +150,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>282</LineNumber>
+          <LineNumber>294</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134294628</Address>
+          <Address>134294844</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -161,14 +161,14 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>..\Core\User\Src\fes.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\Project\../Core/User/Src/fes.c\282</Expression>
+          <Expression>\\Project\../Core/User/Src/fes.c\294</Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>240</LineNumber>
+          <LineNumber>252</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134294420</Address>
+          <Address>134294636</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -177,23 +177,23 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>..\Core\User\Src\fes.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\Project\../Core/User/Src/fes.c\240</Expression>
+          <Expression>\\Project\../Core/User/Src/fes.c\252</Expression>
         </Bp>
         <Bp>
           <Number>2</Number>
           <Type>0</Type>
-          <LineNumber>408</LineNumber>
+          <LineNumber>76</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
+          <Address>134293716</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>../Core/Src/main.c</Filename>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>..\Core\User\Src\fes.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression></Expression>
+          <Expression>\\Project\../Core/User/Src/fes.c\76</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -256,6 +256,11 @@
           <count>11</count>
           <WinNumber>1</WinNumber>
           <ItemText>num</ItemText>
+        </Ww>
+        <Ww>
+          <count>12</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>pressure</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>

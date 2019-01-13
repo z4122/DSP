@@ -30,7 +30,7 @@ typedef struct {
 } configtx;
 
 
-void merge_stimulate_parameter(UART_HandleTypeDef *huart,char amplitude);
+void merge_stimulate_parameter(UART_HandleTypeDef *huart,int amplitude);
 void stim_search(UART_HandleTypeDef *huart);
 void stim_start(UART_HandleTypeDef *huart);
 void stim_stop(UART_HandleTypeDef *huart);

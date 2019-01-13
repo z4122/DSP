@@ -4785,29 +4785,29 @@ Image Symbol Table
     ../STemWin/Target/LCDConf_stm32h743i_eval.c 0x00000000   Number         0  lcdconf_stm32h743i_eval.o ABSOLUTE
     ../clib/../cmprslib/zerorunl2.c          0x00000000   Number         0  __dczerorl2.o ABSOLUTE
     ../clib/microlib/division.c              0x00000000   Number         0  uldiv.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
-    ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
+    ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
+    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memmovea.o ABSOLUTE
+    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memmove.o ABSOLUTE
+    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memmoveb.o ABSOLUTE
+    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memmovec.o ABSOLUTE
     ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpya.o ABSOLUTE
     ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpy.o ABSOLUTE
     ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpyc.o ABSOLUTE
     ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpyb.o ABSOLUTE
-    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memmove.o ABSOLUTE
-    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memmovea.o ABSOLUTE
-    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memmovec.o ABSOLUTE
-    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memmoveb.o ABSOLUTE
     ../clib/microlib/string/memset.c         0x00000000   Number         0  memseta.o ABSOLUTE
     ../clib/microlib/string/memset.c         0x00000000   Number         0  memset.o ABSOLUTE
     ../clib/microlib/string/strcpy.c         0x00000000   Number         0  strcpy.o ABSOLUTE
@@ -5078,91 +5078,91 @@ Image Symbol Table
     handlers.s                               0x00000000   Number         0  handlers.o ABSOLUTE
     init.s                                   0x00000000   Number         0  init.o ABSOLUTE
     startup_stm32h743xx.s                    0x00000000   Number         0  startup_stm32h743xx.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  LCD_GetEx.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  GUIDRV_Lin_16.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  GUI__DivTbl.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  GUI_Timer.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  GUI__ManageCache.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  GUI_CharM.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  GUICC_0.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  GUIDEV_WriteToActiveOpaque.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  GUI__ManageCache.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  GUI__Alpha.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  WM_Lib.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  WM.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  GUI_Alloc.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  GUI_UC_EncodeNone.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  GUICC_M565.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  GUI_Valf.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  GUI_SelectLayer.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  GUI_MULTIBUF.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  GUI_OnKey.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  GUI_DispString.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  GUIDEV_GetYSize.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  GUI_Device.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  LCD_UpdateColorIndices.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  LCD_SelectLCD.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  LCD_Mirror.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  LCD_GetP.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  GUI__SinHQ.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  GUI__Private.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  GUI__Wrap.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  GUI_Char.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  GUI_CharLine.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  F32_ASCII.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  GUI_CharP.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  GUI_DispChar.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  F6x8.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  LCD_Set.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  LCD_GetEx.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  LCD.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  GUI__DivTbl.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  GUIDRV_Lin_16.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  LCD_AA.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  GUIDEV_WriteToActiveAlpha.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  LCD_GetColorIndex.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  GUI_SPRITE_Anim.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  GUI_SPRITE.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  GUI_DrawBitmap.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  GUI_CursorResource.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  WM_SetCapture.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  WM_Screen2Win.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  LCD_GetColorIndex.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  WM_PID__GetPrevState.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  GUI__SinHQ.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  LCD_ReadRect.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  GUI_Common.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  GUIDEV_Write.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  GUI_Core.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  GUIDEV_UsageBM.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  GUICC_M565.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  GUIDEV_SetOrg.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  GUI_Valf.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  GUIDEV_ReduceYSize.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  GUI_DispString.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  GUIDEV_GetYSize.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  GUI_SelectLayer.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  GUIDEV_GetXSize.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  GUI_MULTIBUF.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  GUIDEV_GetPos.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  GUI_OnKey.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  GUIDEV_GetDataPtr.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  GUI__Private.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  GUIDEV_CreateFixed.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  GUIDEV_16.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  GUIDEV_Clear.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  GUIDEV_StaticDevices.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  GUIDEV_32.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  WM_Lib.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  GUI_Core.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  GUICC_M888_Index2Color.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  LCD_Color.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  GUICC_M8888I_Index2Color.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  GUI__Alpha.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  GUICC_M8888I.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  GUI_Time.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  GUI_SetAlpha.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  GUI_PID.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  GUIDEV_16.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  GUI_Cursor.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  GUI__ExpandPixelIndices.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  GUI__CompactPixelIndices.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  WM_Touch.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  GUI_Device.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  WM_Timer.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  GUI_UC.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  WM_Move.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  GUIDEV_Banding.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  WM__Private.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  LCD.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  LCD_SetClipRectEx.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  GUIDEV.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  LCD_GetPixelColor.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  LCD_Color.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  GUI_UC.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  LCD_GetNumDisplays.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  GUI__Wrap.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  GUI_Char.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  GUIDEV_WriteToActiveOpaque.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  GUI_Common.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  GUIDEV_Usage.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  GUI_Val.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  GUI_CharLine.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  LCD_GetP.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  F32_ASCII.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  LCD_Mirror.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  GUI_CharP.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  GUI_WaitEvent.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  LCD_SelectLCD.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  GUI_DispChar.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  F6x8.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  LCD_UpdateColorIndices.o ABSOLUTE
-    __iar_systems$$module                    0x00000001   Number         0  LCD_Set.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  GUIDEV_StaticDevices.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  GUI_Val.o ABSOLUTE
     __iar_systems$$module                    0x00000001   Number         0  F32_1.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  GUIDEV_Banding.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  GUIDEV.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  GUI_Alloc.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  GUICC_0.o ABSOLUTE
+    __iar_systems$$module                    0x00000001   Number         0  GUI_UC_EncodeNone.o ABSOLUTE
     RESET                                    0x08000000   Section      664  startup_stm32h743xx.o(RESET)
     .ARM.Collect$$$$00000000                 0x08000298   Section        0  entry.o(.ARM.Collect$$$$00000000)
     .ARM.Collect$$$$00000001                 0x08000298   Section        4  entry2.o(.ARM.Collect$$$$00000001)
@@ -6943,8 +6943,8 @@ Image Symbol Table
     .text                                    0x0800b968   Section        0  d2f.o(.text)
     .text                                    0x0800b9a0   Section        0  llshl.o(.text)
     .text                                    0x0800b9be   Section        0  llushr.o(.text)
-    .text                                    0x0800b9de   Section        0  fepilogue.o(.text)
     .text                                    0x0800b9de   Section        0  iusefp.o(.text)
+    .text                                    0x0800b9de   Section        0  fepilogue.o(.text)
     .text                                    0x0800ba4c   Section       36  init.o(.text)
     .text                                    0x0800ba70   Section        0  __dczerorl2.o(.text)
     i.ADC_ConversionStop                     0x0800bac8   Section        0  stm32h7xx_hal_adc.o(i.ADC_ConversionStop)
@@ -7170,289 +7170,288 @@ Image Symbol Table
     i.delayad                                0x080122be   Section        0  ad.o(i.delayad)
     i.delayad_nopar                          0x080122d4   Section        0  ad.o(i.delayad_nopar)
     i.display                                0x080122e0   Section        0  main.o(i.display)
-    i.floor                                  0x08012720   Section        0  floor.o(i.floor)
-    i.main                                   0x08012730   Section        0  main.o(i.main)
-    i.merge_stimulate_parameter              0x080127b0   Section        0  fes.o(i.merge_stimulate_parameter)
-    i.stim_search                            0x08012b20   Section        0  fes.o(i.stim_search)
-    i.stim_start                             0x08012c7c   Section        0  fes.o(i.stim_start)
-    i.stimulate                              0x08012dfc   Section        0  fes.o(i.stimulate)
-    .constdata                               0x08012e2c   Section       36  stm32h743i_eval.o(.constdata)
-    .constdata                               0x08012e50   Section       16  system_stm32h7xx.o(.constdata)
-    .constdata                               0x08012e60   Section        8  stm32h7xx_hal_dma.o(.constdata)
-    flagBitshiftOffset                       0x08012e60   Data           8  stm32h7xx_hal_dma.o(.constdata)
-    .constdata                               0x08012e68   Section       24  stm32h7xx_hal_uart.o(.constdata)
-    UARTPrescTable                           0x08012e68   Data          24  stm32h7xx_hal_uart.o(.constdata)
-    acFont32_1_00A0                          0x08012e80   Data          32  F32_1.o(.rodata)
-    acFont32_1_00A1                          0x08012ea0   Data          32  F32_1.o(.rodata)
-    acFont32_1_00A2                          0x08012ec0   Data          64  F32_1.o(.rodata)
-    acFont32_1_00A3                          0x08012f00   Data          64  F32_1.o(.rodata)
-    acFont32_1_00A4                          0x08012f40   Data          64  F32_1.o(.rodata)
-    acFont32_1_00A5                          0x08012f80   Data          64  F32_1.o(.rodata)
-    acFont32_1_00A6                          0x08012fc0   Data          32  F32_1.o(.rodata)
-    acFont32_1_00A7                          0x08012fe0   Data          64  F32_1.o(.rodata)
-    acFont32_1_00A8                          0x08013020   Data          64  F32_1.o(.rodata)
-    acFont32_1_00A9                          0x08013060   Data          96  F32_1.o(.rodata)
-    acFont32_1_00AA                          0x080130c0   Data          64  F32_1.o(.rodata)
-    acFont32_1_00AB                          0x08013100   Data          64  F32_1.o(.rodata)
-    acFont32_1_00AC                          0x08013140   Data          64  F32_1.o(.rodata)
-    acFont32_1_00AD                          0x08013180   Data          64  F32_1.o(.rodata)
-    acFont32_1_00AE                          0x080131c0   Data          96  F32_1.o(.rodata)
-    acFont32_1_00AF                          0x08013220   Data          64  F32_1.o(.rodata)
-    acFont32_1_00B0                          0x08013260   Data          64  F32_1.o(.rodata)
-    acFont32_1_00B1                          0x080132a0   Data          64  F32_1.o(.rodata)
-    acFont32_1_00B2                          0x080132e0   Data          64  F32_1.o(.rodata)
-    acFont32_1_00B3                          0x08013320   Data          64  F32_1.o(.rodata)
-    acFont32_1_00B4                          0x08013360   Data          64  F32_1.o(.rodata)
-    acFont32_1_00B5                          0x080133a0   Data          64  F32_1.o(.rodata)
-    acFont32_1_00B6                          0x080133e0   Data          64  F32_1.o(.rodata)
-    acFont32_1_00B7                          0x08013420   Data          32  F32_1.o(.rodata)
-    acFont32_1_00B8                          0x08013440   Data          64  F32_1.o(.rodata)
-    acFont32_1_00B9                          0x08013480   Data          64  F32_1.o(.rodata)
-    acFont32_1_00BA                          0x080134c0   Data          64  F32_1.o(.rodata)
-    acFont32_1_00BB                          0x08013500   Data          64  F32_1.o(.rodata)
-    acFont32_1_00BC                          0x08013540   Data          96  F32_1.o(.rodata)
-    acFont32_1_00BD                          0x080135a0   Data          96  F32_1.o(.rodata)
-    acFont32_1_00BE                          0x08013600   Data          96  F32_1.o(.rodata)
-    acFont32_1_00BF                          0x08013660   Data          96  F32_1.o(.rodata)
-    acFont32_1_00C0                          0x080136c0   Data          96  F32_1.o(.rodata)
-    acFont32_1_00C1                          0x08013720   Data          96  F32_1.o(.rodata)
-    acFont32_1_00C2                          0x08013780   Data          96  F32_1.o(.rodata)
-    acFont32_1_00C3                          0x080137e0   Data          96  F32_1.o(.rodata)
-    acFont32_1_00C4                          0x08013840   Data          96  F32_1.o(.rodata)
-    acFont32_1_00C5                          0x080138a0   Data          96  F32_1.o(.rodata)
-    acFont32_1_00C6                          0x08013900   Data         128  F32_1.o(.rodata)
-    acFont32_1_00C7                          0x08013980   Data          96  F32_1.o(.rodata)
-    acFont32_1_00C8                          0x080139e0   Data          96  F32_1.o(.rodata)
-    acFont32_1_00C9                          0x08013a40   Data          96  F32_1.o(.rodata)
-    acFont32_1_00CA                          0x08013aa0   Data          96  F32_1.o(.rodata)
-    acFont32_1_00CB                          0x08013b00   Data          96  F32_1.o(.rodata)
-    acFont32_1_00CC                          0x08013b60   Data          32  F32_1.o(.rodata)
-    acFont32_1_00CD                          0x08013b80   Data          32  F32_1.o(.rodata)
-    acFont32_1_00CE                          0x08013ba0   Data          32  F32_1.o(.rodata)
-    acFont32_1_00CF                          0x08013bc0   Data          32  F32_1.o(.rodata)
-    acFont32_1_00D0                          0x08013be0   Data          96  F32_1.o(.rodata)
-    acFont32_1_00D1                          0x08013c40   Data          96  F32_1.o(.rodata)
-    acFont32_1_00D2                          0x08013ca0   Data          96  F32_1.o(.rodata)
-    acFont32_1_00D3                          0x08013d00   Data          96  F32_1.o(.rodata)
-    acFont32_1_00D4                          0x08013d60   Data          96  F32_1.o(.rodata)
-    acFont32_1_00D5                          0x08013dc0   Data          96  F32_1.o(.rodata)
-    acFont32_1_00D6                          0x08013e20   Data          96  F32_1.o(.rodata)
-    acFont32_1_00D7                          0x08013e80   Data          64  F32_1.o(.rodata)
-    acFont32_1_00D8                          0x08013ec0   Data          96  F32_1.o(.rodata)
-    acFont32_1_00D9                          0x08013f20   Data          96  F32_1.o(.rodata)
-    acFont32_1_00DA                          0x08013f80   Data          96  F32_1.o(.rodata)
-    acFont32_1_00DB                          0x08013fe0   Data          96  F32_1.o(.rodata)
-    acFont32_1_00DC                          0x08014040   Data          96  F32_1.o(.rodata)
-    acFont32_1_00DD                          0x080140a0   Data          96  F32_1.o(.rodata)
-    acFont32_1_00DE                          0x08014100   Data          96  F32_1.o(.rodata)
-    acFont32_1_00DF                          0x08014160   Data          96  F32_1.o(.rodata)
-    acFont32_1_00E0                          0x080141c0   Data          64  F32_1.o(.rodata)
-    acFont32_1_00E1                          0x08014200   Data          64  F32_1.o(.rodata)
-    acFont32_1_00E2                          0x08014240   Data          64  F32_1.o(.rodata)
-    acFont32_1_00E3                          0x08014280   Data          64  F32_1.o(.rodata)
-    acFont32_1_00E4                          0x080142c0   Data          64  F32_1.o(.rodata)
-    acFont32_1_00E5                          0x08014300   Data          64  F32_1.o(.rodata)
-    acFont32_1_00E6                          0x08014340   Data          96  F32_1.o(.rodata)
-    acFont32_1_00E7                          0x080143a0   Data          64  F32_1.o(.rodata)
-    acFont32_1_00E8                          0x080143e0   Data          64  F32_1.o(.rodata)
-    acFont32_1_00E9                          0x08014420   Data          64  F32_1.o(.rodata)
-    acFont32_1_00EA                          0x08014460   Data          64  F32_1.o(.rodata)
-    acFont32_1_00EB                          0x080144a0   Data          64  F32_1.o(.rodata)
-    acFont32_1_00EC                          0x080144e0   Data          32  F32_1.o(.rodata)
-    acFont32_1_00ED                          0x08014500   Data          32  F32_1.o(.rodata)
-    acFont32_1_00EE                          0x08014520   Data          32  F32_1.o(.rodata)
-    acFont32_1_00EF                          0x08014540   Data          32  F32_1.o(.rodata)
-    acFont32_1_00F0                          0x08014560   Data          64  F32_1.o(.rodata)
-    acFont32_1_00F1                          0x080145a0   Data          64  F32_1.o(.rodata)
-    acFont32_1_00F2                          0x080145e0   Data          64  F32_1.o(.rodata)
-    acFont32_1_00F3                          0x08014620   Data          64  F32_1.o(.rodata)
-    acFont32_1_00F4                          0x08014660   Data          64  F32_1.o(.rodata)
-    acFont32_1_00F5                          0x080146a0   Data          64  F32_1.o(.rodata)
-    acFont32_1_00F6                          0x080146e0   Data          64  F32_1.o(.rodata)
-    acFont32_1_00F7                          0x08014720   Data          64  F32_1.o(.rodata)
-    acFont32_1_00F8                          0x08014760   Data          96  F32_1.o(.rodata)
-    acFont32_1_00F9                          0x080147c0   Data          64  F32_1.o(.rodata)
-    acFont32_1_00FA                          0x08014800   Data          64  F32_1.o(.rodata)
-    acFont32_1_00FB                          0x08014840   Data          64  F32_1.o(.rodata)
-    acFont32_1_00FC                          0x08014880   Data          64  F32_1.o(.rodata)
-    acFont32_1_00FD                          0x080148c0   Data          64  F32_1.o(.rodata)
-    acFont32_1_00FE                          0x08014900   Data          64  F32_1.o(.rodata)
-    acFont32_1_00FF                          0x08014940   Data          64  F32_1.o(.rodata)
-    GUI_Font32_1_CharInfo                    0x08014980   Data         768  F32_1.o(.rodata)
-    GUI_Font32_1_Prop1                       0x08014c80   Data          12  F32_1.o(.rodata)
-    .rodata_100                              0x08014c8c   Number         0  F32_1.o(.rodata)
-    .rodata8                                 0x08014cb0   Section        0  GUICC_M565.o(.rodata)
-    .rodata7                                 0x08014cc8   Section        0  GUIDRV_Lin_16.o(.rodata)
-    _SetColorAPI                             0x08014cfc   Data          12  LCD.o(.rodata)
-    acFont32_ASCII_0020                      0x08014d08   Data          32  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0021                      0x08014d28   Data          32  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0022                      0x08014d48   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0023                      0x08014d88   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0024                      0x08014dc8   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0025                      0x08014e08   Data          96  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0026                      0x08014e68   Data          96  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0027                      0x08014ec8   Data          32  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0028                      0x08014ee8   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0029                      0x08014f28   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_002A                      0x08014f68   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_002B                      0x08014fa8   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_002C                      0x08014fe8   Data          32  F32_ASCII.o(.rodata)
-    acFont32_ASCII_002D                      0x08015008   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_002E                      0x08015048   Data          32  F32_ASCII.o(.rodata)
-    acFont32_ASCII_002F                      0x08015068   Data          32  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0030                      0x08015088   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0031                      0x080150c8   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0032                      0x08015108   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0033                      0x08015148   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0034                      0x08015188   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0035                      0x080151c8   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0036                      0x08015208   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0037                      0x08015248   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0038                      0x08015288   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0039                      0x080152c8   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_003A                      0x08015308   Data          32  F32_ASCII.o(.rodata)
-    acFont32_ASCII_003B                      0x08015328   Data          32  F32_ASCII.o(.rodata)
-    acFont32_ASCII_003C                      0x08015348   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_003D                      0x08015388   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_003E                      0x080153c8   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_003F                      0x08015408   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0040                      0x08015448   Data         128  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0041                      0x080154c8   Data          96  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0042                      0x08015528   Data          96  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0043                      0x08015588   Data          96  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0044                      0x080155e8   Data          96  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0045                      0x08015648   Data          96  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0046                      0x080156a8   Data          96  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0047                      0x08015708   Data          96  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0048                      0x08015768   Data          96  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0049                      0x080157c8   Data          32  F32_ASCII.o(.rodata)
-    acFont32_ASCII_004A                      0x080157e8   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_004B                      0x08015828   Data          96  F32_ASCII.o(.rodata)
-    acFont32_ASCII_004C                      0x08015888   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_004D                      0x080158c8   Data          96  F32_ASCII.o(.rodata)
-    acFont32_ASCII_004E                      0x08015928   Data          96  F32_ASCII.o(.rodata)
-    acFont32_ASCII_004F                      0x08015988   Data          96  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0050                      0x080159e8   Data          96  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0051                      0x08015a48   Data          96  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0052                      0x08015aa8   Data          96  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0053                      0x08015b08   Data          96  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0054                      0x08015b68   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0055                      0x08015ba8   Data          96  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0056                      0x08015c08   Data          96  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0057                      0x08015c68   Data         128  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0058                      0x08015ce8   Data          96  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0059                      0x08015d48   Data          96  F32_ASCII.o(.rodata)
-    acFont32_ASCII_005A                      0x08015da8   Data          96  F32_ASCII.o(.rodata)
-    acFont32_ASCII_005B                      0x08015e08   Data          32  F32_ASCII.o(.rodata)
-    acFont32_ASCII_005C                      0x08015e28   Data          32  F32_ASCII.o(.rodata)
-    acFont32_ASCII_005D                      0x08015e48   Data          32  F32_ASCII.o(.rodata)
-    acFont32_ASCII_005E                      0x08015e68   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_005F                      0x08015ea8   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0060                      0x08015ee8   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0061                      0x08015f28   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0062                      0x08015f68   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0063                      0x08015fa8   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0064                      0x08015fe8   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0065                      0x08016028   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0066                      0x08016068   Data          32  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0067                      0x08016088   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0068                      0x080160c8   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0069                      0x08016108   Data          32  F32_ASCII.o(.rodata)
-    acFont32_ASCII_006A                      0x08016128   Data          32  F32_ASCII.o(.rodata)
-    acFont32_ASCII_006B                      0x08016148   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_006C                      0x08016188   Data          32  F32_ASCII.o(.rodata)
-    acFont32_ASCII_006D                      0x080161a8   Data          96  F32_ASCII.o(.rodata)
-    acFont32_ASCII_006E                      0x08016208   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_006F                      0x08016248   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0070                      0x08016288   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0071                      0x080162c8   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0072                      0x08016308   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0073                      0x08016348   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0074                      0x08016388   Data          32  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0075                      0x080163a8   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0076                      0x080163e8   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0077                      0x08016428   Data          96  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0078                      0x08016488   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_0079                      0x080164c8   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_007A                      0x08016508   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_007B                      0x08016548   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_007C                      0x08016588   Data          32  F32_ASCII.o(.rodata)
-    acFont32_ASCII_007D                      0x080165a8   Data          64  F32_ASCII.o(.rodata)
-    acFont32_ASCII_007E                      0x080165e8   Data          64  F32_ASCII.o(.rodata)
-    .rodata_97                               0x08016628   Number         0  F32_ASCII.o(.rodata)
-    .rodata_98                               0x08016920   Number         0  F32_ASCII.o(.rodata)
-    .rodata_99                               0x0801692c   Number         0  F32_ASCII.o(.rodata)
-    GUI_acFont6x8                            0x08016950   Data        1304  F6x8.o(.rodata)
-    GUI_F6x8_TL8859_1                        0x08016e68   Data         448  F6x8.o(.rodata)
-    GUI_F6x8_TI8859_1                        0x08017028   Data           8  F6x8.o(.rodata)
-    GUI_F6x8_Mono                            0x08017030   Data          20  F6x8.o(.rodata)
-    .rodata_6                                0x08017044   Number         0  F6x8.o(.rodata)
-    .rodata_7                                0x08017068   Number         0  F6x8.o(.rodata)
-    .rodata6                                 0x0801708c   Section        0  GUI__DivTbl.o(.rodata)
-    .rodata_3                                0x0801709c   Number         0  GUI__DivTbl.o(.rodata)
-    .rodata_4                                0x080170bc   Number         0  GUI__DivTbl.o(.rodata)
-    .rodata_5                                0x080170fc   Number         0  GUI__DivTbl.o(.rodata)
-    .rodata_6                                0x080171fc   Number         0  GUI__DivTbl.o(.rodata)
-    .rodata_7                                0x080172fc   Number         0  GUI__DivTbl.o(.rodata)
-    .rodata6                                 0x080173fc   Section        0  LCD_Mirror.o(.rodata)
-    .rodata7                                 0x080174fc   Section        0  GUICC_0.o(.rodata)
-    .rodata7                                 0x08017514   Section        0  GUICC_M8888I.o(.rodata)
-    .data                                    0x24000000   Section       24  main.o(.data)
+    i.floor                                  0x08012764   Section        0  floor.o(i.floor)
+    i.main                                   0x08012774   Section        0  main.o(i.main)
+    i.merge_stimulate_parameter              0x080127f4   Section        0  fes.o(i.merge_stimulate_parameter)
+    i.stim_search                            0x08012ba0   Section        0  fes.o(i.stim_search)
+    i.stim_start                             0x08012cfc   Section        0  fes.o(i.stim_start)
+    i.stimulate                              0x08012e7c   Section        0  fes.o(i.stimulate)
+    .constdata                               0x08012ea8   Section       36  stm32h743i_eval.o(.constdata)
+    .constdata                               0x08012ecc   Section       16  system_stm32h7xx.o(.constdata)
+    .constdata                               0x08012edc   Section        8  stm32h7xx_hal_dma.o(.constdata)
+    flagBitshiftOffset                       0x08012edc   Data           8  stm32h7xx_hal_dma.o(.constdata)
+    .constdata                               0x08012ee4   Section       24  stm32h7xx_hal_uart.o(.constdata)
+    UARTPrescTable                           0x08012ee4   Data          24  stm32h7xx_hal_uart.o(.constdata)
+    acFont32_1_00A0                          0x08012efc   Data          32  F32_1.o(.rodata)
+    acFont32_1_00A1                          0x08012f1c   Data          32  F32_1.o(.rodata)
+    acFont32_1_00A2                          0x08012f3c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00A3                          0x08012f7c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00A4                          0x08012fbc   Data          64  F32_1.o(.rodata)
+    acFont32_1_00A5                          0x08012ffc   Data          64  F32_1.o(.rodata)
+    acFont32_1_00A6                          0x0801303c   Data          32  F32_1.o(.rodata)
+    acFont32_1_00A7                          0x0801305c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00A8                          0x0801309c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00A9                          0x080130dc   Data          96  F32_1.o(.rodata)
+    acFont32_1_00AA                          0x0801313c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00AB                          0x0801317c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00AC                          0x080131bc   Data          64  F32_1.o(.rodata)
+    acFont32_1_00AD                          0x080131fc   Data          64  F32_1.o(.rodata)
+    acFont32_1_00AE                          0x0801323c   Data          96  F32_1.o(.rodata)
+    acFont32_1_00AF                          0x0801329c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00B0                          0x080132dc   Data          64  F32_1.o(.rodata)
+    acFont32_1_00B1                          0x0801331c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00B2                          0x0801335c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00B3                          0x0801339c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00B4                          0x080133dc   Data          64  F32_1.o(.rodata)
+    acFont32_1_00B5                          0x0801341c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00B6                          0x0801345c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00B7                          0x0801349c   Data          32  F32_1.o(.rodata)
+    acFont32_1_00B8                          0x080134bc   Data          64  F32_1.o(.rodata)
+    acFont32_1_00B9                          0x080134fc   Data          64  F32_1.o(.rodata)
+    acFont32_1_00BA                          0x0801353c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00BB                          0x0801357c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00BC                          0x080135bc   Data          96  F32_1.o(.rodata)
+    acFont32_1_00BD                          0x0801361c   Data          96  F32_1.o(.rodata)
+    acFont32_1_00BE                          0x0801367c   Data          96  F32_1.o(.rodata)
+    acFont32_1_00BF                          0x080136dc   Data          96  F32_1.o(.rodata)
+    acFont32_1_00C0                          0x0801373c   Data          96  F32_1.o(.rodata)
+    acFont32_1_00C1                          0x0801379c   Data          96  F32_1.o(.rodata)
+    acFont32_1_00C2                          0x080137fc   Data          96  F32_1.o(.rodata)
+    acFont32_1_00C3                          0x0801385c   Data          96  F32_1.o(.rodata)
+    acFont32_1_00C4                          0x080138bc   Data          96  F32_1.o(.rodata)
+    acFont32_1_00C5                          0x0801391c   Data          96  F32_1.o(.rodata)
+    acFont32_1_00C6                          0x0801397c   Data         128  F32_1.o(.rodata)
+    acFont32_1_00C7                          0x080139fc   Data          96  F32_1.o(.rodata)
+    acFont32_1_00C8                          0x08013a5c   Data          96  F32_1.o(.rodata)
+    acFont32_1_00C9                          0x08013abc   Data          96  F32_1.o(.rodata)
+    acFont32_1_00CA                          0x08013b1c   Data          96  F32_1.o(.rodata)
+    acFont32_1_00CB                          0x08013b7c   Data          96  F32_1.o(.rodata)
+    acFont32_1_00CC                          0x08013bdc   Data          32  F32_1.o(.rodata)
+    acFont32_1_00CD                          0x08013bfc   Data          32  F32_1.o(.rodata)
+    acFont32_1_00CE                          0x08013c1c   Data          32  F32_1.o(.rodata)
+    acFont32_1_00CF                          0x08013c3c   Data          32  F32_1.o(.rodata)
+    acFont32_1_00D0                          0x08013c5c   Data          96  F32_1.o(.rodata)
+    acFont32_1_00D1                          0x08013cbc   Data          96  F32_1.o(.rodata)
+    acFont32_1_00D2                          0x08013d1c   Data          96  F32_1.o(.rodata)
+    acFont32_1_00D3                          0x08013d7c   Data          96  F32_1.o(.rodata)
+    acFont32_1_00D4                          0x08013ddc   Data          96  F32_1.o(.rodata)
+    acFont32_1_00D5                          0x08013e3c   Data          96  F32_1.o(.rodata)
+    acFont32_1_00D6                          0x08013e9c   Data          96  F32_1.o(.rodata)
+    acFont32_1_00D7                          0x08013efc   Data          64  F32_1.o(.rodata)
+    acFont32_1_00D8                          0x08013f3c   Data          96  F32_1.o(.rodata)
+    acFont32_1_00D9                          0x08013f9c   Data          96  F32_1.o(.rodata)
+    acFont32_1_00DA                          0x08013ffc   Data          96  F32_1.o(.rodata)
+    acFont32_1_00DB                          0x0801405c   Data          96  F32_1.o(.rodata)
+    acFont32_1_00DC                          0x080140bc   Data          96  F32_1.o(.rodata)
+    acFont32_1_00DD                          0x0801411c   Data          96  F32_1.o(.rodata)
+    acFont32_1_00DE                          0x0801417c   Data          96  F32_1.o(.rodata)
+    acFont32_1_00DF                          0x080141dc   Data          96  F32_1.o(.rodata)
+    acFont32_1_00E0                          0x0801423c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00E1                          0x0801427c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00E2                          0x080142bc   Data          64  F32_1.o(.rodata)
+    acFont32_1_00E3                          0x080142fc   Data          64  F32_1.o(.rodata)
+    acFont32_1_00E4                          0x0801433c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00E5                          0x0801437c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00E6                          0x080143bc   Data          96  F32_1.o(.rodata)
+    acFont32_1_00E7                          0x0801441c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00E8                          0x0801445c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00E9                          0x0801449c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00EA                          0x080144dc   Data          64  F32_1.o(.rodata)
+    acFont32_1_00EB                          0x0801451c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00EC                          0x0801455c   Data          32  F32_1.o(.rodata)
+    acFont32_1_00ED                          0x0801457c   Data          32  F32_1.o(.rodata)
+    acFont32_1_00EE                          0x0801459c   Data          32  F32_1.o(.rodata)
+    acFont32_1_00EF                          0x080145bc   Data          32  F32_1.o(.rodata)
+    acFont32_1_00F0                          0x080145dc   Data          64  F32_1.o(.rodata)
+    acFont32_1_00F1                          0x0801461c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00F2                          0x0801465c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00F3                          0x0801469c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00F4                          0x080146dc   Data          64  F32_1.o(.rodata)
+    acFont32_1_00F5                          0x0801471c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00F6                          0x0801475c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00F7                          0x0801479c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00F8                          0x080147dc   Data          96  F32_1.o(.rodata)
+    acFont32_1_00F9                          0x0801483c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00FA                          0x0801487c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00FB                          0x080148bc   Data          64  F32_1.o(.rodata)
+    acFont32_1_00FC                          0x080148fc   Data          64  F32_1.o(.rodata)
+    acFont32_1_00FD                          0x0801493c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00FE                          0x0801497c   Data          64  F32_1.o(.rodata)
+    acFont32_1_00FF                          0x080149bc   Data          64  F32_1.o(.rodata)
+    GUI_Font32_1_CharInfo                    0x080149fc   Data         768  F32_1.o(.rodata)
+    GUI_Font32_1_Prop1                       0x08014cfc   Data          12  F32_1.o(.rodata)
+    .rodata_100                              0x08014d08   Number         0  F32_1.o(.rodata)
+    .rodata8                                 0x08014d2c   Section        0  GUICC_M565.o(.rodata)
+    .rodata7                                 0x08014d44   Section        0  GUIDRV_Lin_16.o(.rodata)
+    _SetColorAPI                             0x08014d78   Data          12  LCD.o(.rodata)
+    acFont32_ASCII_0020                      0x08014d84   Data          32  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0021                      0x08014da4   Data          32  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0022                      0x08014dc4   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0023                      0x08014e04   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0024                      0x08014e44   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0025                      0x08014e84   Data          96  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0026                      0x08014ee4   Data          96  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0027                      0x08014f44   Data          32  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0028                      0x08014f64   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0029                      0x08014fa4   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_002A                      0x08014fe4   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_002B                      0x08015024   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_002C                      0x08015064   Data          32  F32_ASCII.o(.rodata)
+    acFont32_ASCII_002D                      0x08015084   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_002E                      0x080150c4   Data          32  F32_ASCII.o(.rodata)
+    acFont32_ASCII_002F                      0x080150e4   Data          32  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0030                      0x08015104   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0031                      0x08015144   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0032                      0x08015184   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0033                      0x080151c4   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0034                      0x08015204   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0035                      0x08015244   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0036                      0x08015284   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0037                      0x080152c4   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0038                      0x08015304   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0039                      0x08015344   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_003A                      0x08015384   Data          32  F32_ASCII.o(.rodata)
+    acFont32_ASCII_003B                      0x080153a4   Data          32  F32_ASCII.o(.rodata)
+    acFont32_ASCII_003C                      0x080153c4   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_003D                      0x08015404   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_003E                      0x08015444   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_003F                      0x08015484   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0040                      0x080154c4   Data         128  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0041                      0x08015544   Data          96  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0042                      0x080155a4   Data          96  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0043                      0x08015604   Data          96  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0044                      0x08015664   Data          96  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0045                      0x080156c4   Data          96  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0046                      0x08015724   Data          96  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0047                      0x08015784   Data          96  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0048                      0x080157e4   Data          96  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0049                      0x08015844   Data          32  F32_ASCII.o(.rodata)
+    acFont32_ASCII_004A                      0x08015864   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_004B                      0x080158a4   Data          96  F32_ASCII.o(.rodata)
+    acFont32_ASCII_004C                      0x08015904   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_004D                      0x08015944   Data          96  F32_ASCII.o(.rodata)
+    acFont32_ASCII_004E                      0x080159a4   Data          96  F32_ASCII.o(.rodata)
+    acFont32_ASCII_004F                      0x08015a04   Data          96  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0050                      0x08015a64   Data          96  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0051                      0x08015ac4   Data          96  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0052                      0x08015b24   Data          96  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0053                      0x08015b84   Data          96  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0054                      0x08015be4   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0055                      0x08015c24   Data          96  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0056                      0x08015c84   Data          96  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0057                      0x08015ce4   Data         128  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0058                      0x08015d64   Data          96  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0059                      0x08015dc4   Data          96  F32_ASCII.o(.rodata)
+    acFont32_ASCII_005A                      0x08015e24   Data          96  F32_ASCII.o(.rodata)
+    acFont32_ASCII_005B                      0x08015e84   Data          32  F32_ASCII.o(.rodata)
+    acFont32_ASCII_005C                      0x08015ea4   Data          32  F32_ASCII.o(.rodata)
+    acFont32_ASCII_005D                      0x08015ec4   Data          32  F32_ASCII.o(.rodata)
+    acFont32_ASCII_005E                      0x08015ee4   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_005F                      0x08015f24   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0060                      0x08015f64   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0061                      0x08015fa4   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0062                      0x08015fe4   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0063                      0x08016024   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0064                      0x08016064   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0065                      0x080160a4   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0066                      0x080160e4   Data          32  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0067                      0x08016104   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0068                      0x08016144   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0069                      0x08016184   Data          32  F32_ASCII.o(.rodata)
+    acFont32_ASCII_006A                      0x080161a4   Data          32  F32_ASCII.o(.rodata)
+    acFont32_ASCII_006B                      0x080161c4   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_006C                      0x08016204   Data          32  F32_ASCII.o(.rodata)
+    acFont32_ASCII_006D                      0x08016224   Data          96  F32_ASCII.o(.rodata)
+    acFont32_ASCII_006E                      0x08016284   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_006F                      0x080162c4   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0070                      0x08016304   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0071                      0x08016344   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0072                      0x08016384   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0073                      0x080163c4   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0074                      0x08016404   Data          32  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0075                      0x08016424   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0076                      0x08016464   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0077                      0x080164a4   Data          96  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0078                      0x08016504   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_0079                      0x08016544   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_007A                      0x08016584   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_007B                      0x080165c4   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_007C                      0x08016604   Data          32  F32_ASCII.o(.rodata)
+    acFont32_ASCII_007D                      0x08016624   Data          64  F32_ASCII.o(.rodata)
+    acFont32_ASCII_007E                      0x08016664   Data          64  F32_ASCII.o(.rodata)
+    .rodata_97                               0x080166a4   Number         0  F32_ASCII.o(.rodata)
+    .rodata_98                               0x0801699c   Number         0  F32_ASCII.o(.rodata)
+    .rodata_99                               0x080169a8   Number         0  F32_ASCII.o(.rodata)
+    GUI_acFont6x8                            0x080169cc   Data        1304  F6x8.o(.rodata)
+    GUI_F6x8_TL8859_1                        0x08016ee4   Data         448  F6x8.o(.rodata)
+    GUI_F6x8_TI8859_1                        0x080170a4   Data           8  F6x8.o(.rodata)
+    GUI_F6x8_Mono                            0x080170ac   Data          20  F6x8.o(.rodata)
+    .rodata_6                                0x080170c0   Number         0  F6x8.o(.rodata)
+    .rodata_7                                0x080170e4   Number         0  F6x8.o(.rodata)
+    .rodata6                                 0x08017108   Section        0  GUI__DivTbl.o(.rodata)
+    .rodata_3                                0x08017118   Number         0  GUI__DivTbl.o(.rodata)
+    .rodata_4                                0x08017138   Number         0  GUI__DivTbl.o(.rodata)
+    .rodata_5                                0x08017178   Number         0  GUI__DivTbl.o(.rodata)
+    .rodata_6                                0x08017278   Number         0  GUI__DivTbl.o(.rodata)
+    .rodata_7                                0x08017378   Number         0  GUI__DivTbl.o(.rodata)
+    .rodata6                                 0x08017478   Section        0  LCD_Mirror.o(.rodata)
+    .rodata7                                 0x08017578   Section        0  GUICC_0.o(.rodata)
+    .rodata7                                 0x08017590   Section        0  GUICC_M8888I.o(.rodata)
+    .data                                    0x24000000   Section       20  main.o(.data)
     last_flag                                0x24000004   Data           4  main.o(.data)
-    clear_flag                               0x24000008   Data           4  main.o(.data)
-    .data                                    0x24000018   Section        4  gui_x.o(.data)
-    .data                                    0x2400001c   Section        8  stm32h743i_eval_io.o(.data)
-    mfxstm32l152Identifier                   0x2400001c   Data           1  stm32h743i_eval_io.o(.data)
-    IoDrv                                    0x24000020   Data           4  stm32h743i_eval_io.o(.data)
-    .data                                    0x24000024   Section        2  stm32h743i_eval_sdram.o(.data)
-    sdramstatus                              0x24000024   Data           1  stm32h743i_eval_sdram.o(.data)
-    sdramstatus                              0x24000025   Data           1  stm32h743i_eval_sdram.o(.data)
-    .data                                    0x24000028   Section        4  lcdconf_stm32h743i_eval.o(.data)
-    apColorConvAPI                           0x24000028   Data           4  lcdconf_stm32h743i_eval.o(.data)
+    .data                                    0x24000014   Section        4  gui_x.o(.data)
+    .data                                    0x24000018   Section        8  stm32h743i_eval_io.o(.data)
+    mfxstm32l152Identifier                   0x24000018   Data           1  stm32h743i_eval_io.o(.data)
+    IoDrv                                    0x2400001c   Data           4  stm32h743i_eval_io.o(.data)
+    .data                                    0x24000020   Section        2  stm32h743i_eval_sdram.o(.data)
+    sdramstatus                              0x24000020   Data           1  stm32h743i_eval_sdram.o(.data)
+    sdramstatus                              0x24000021   Data           1  stm32h743i_eval_sdram.o(.data)
+    .data                                    0x24000024   Section        4  lcdconf_stm32h743i_eval.o(.data)
+    apColorConvAPI                           0x24000024   Data           4  lcdconf_stm32h743i_eval.o(.data)
+    .data                                    0x24000028   Section        4  system_stm32h7xx.o(.data)
     .data                                    0x2400002c   Section        4  system_stm32h7xx.o(.data)
-    .data                                    0x24000030   Section        4  system_stm32h7xx.o(.data)
-    .data                                    0x24000034   Section       23  usart.o(.data)
-    .data                                    0x2400004c   Section       30  fes.o(.data)
+    .data                                    0x24000030   Section       23  usart.o(.data)
+    .data                                    0x24000048   Section       30  fes.o(.data)
+    last_frequency                           0x24000048   Data           2  fes.o(.data)
+    last_frequency                           0x2400004a   Data           2  fes.o(.data)
     last_frequency                           0x2400004c   Data           2  fes.o(.data)
     last_frequency                           0x2400004e   Data           2  fes.o(.data)
     last_frequency                           0x24000050   Data           2  fes.o(.data)
-    last_frequency                           0x24000052   Data           2  fes.o(.data)
-    last_frequency                           0x24000054   Data           2  fes.o(.data)
-    .data                                    0x2400006c   Section        8  adc.o(.data)
-    .data                                    0x24000074   Section       12  stm32h7xx_hal.o(.data)
-    uwTickFreq                               0x24000074   Data           1  stm32h7xx_hal.o(.data)
-    uwTickPrio                               0x24000078   Data           4  stm32h7xx_hal.o(.data)
-    uwTick                                   0x2400007c   Data           4  stm32h7xx_hal.o(.data)
-    _acVersion                               0x24000080   Data           8  GUI_Common.o(.data)
-    GUI__Context                             0x24000088   Data         112  GUI_Core.o(.data)
-    .data16                                  0x24000108   Section        0  GUI_Core.o(.data)
-    _pFirstExit                              0x24000120   Data           4  GUI_Core.o(.data)
-    .data17                                  0x24000124   Section        0  GUI_Core.o(.data)
-    .data8                                   0x24000128   Section        0  LCD.o(.data)
-    .data6                                   0x2400012c   Section        0  GUI__Private.o(.data)
-    .data7                                   0x24000130   Section        0  GUI__Private.o(.data)
-    .data8                                   0x24000134   Section        0  GUI__Wrap.o(.data)
-    .data7                                   0x2400013c   Section        0  GUI_CharLine.o(.data)
-    _pReadKey                                0x24000140   Data           4  GUI_OnKey.o(.data)
-    _pWriteKey                               0x24000144   Data           4  GUI_OnKey.o(.data)
-    _Key                                     0x24000148   Data           4  GUI_OnKey.o(.data)
-    _pfHook                                  0x2400014c   Data           4  GUI_OnKey.o(.data)
-    _pfWaitEvent                             0x24000150   Data           4  GUI_WaitEvent.o(.data)
-    _NumColors                               0x24000154   Data           4  LCD_Color.o(.data)
-    _pfPaletteConversionHook                 0x24000158   Data           4  LCD_Color.o(.data)
-    LCD_InitColors::RegisterExit             0x24000160   Data           8  LCD_Color.o(.data)
-    _pfAlphaBlending                         0x24000168   Data           4  GUI__Alpha.o(.data)
-    .data7                                   0x24000170   Section        0  GUI__Alpha.o(.data)
-    .data7                                   0x24000174   Section        0  WM_Touch.o(.data)
-    _aAlpha                                  0x24000188   Data           2  GUI_SetAlpha.o(.data)
-    _pIndex                                  0x2400018c   Data           4  GUI_SetAlpha.o(.data)
-    _pColor                                  0x24000190   Data           4  GUI_SetAlpha.o(.data)
-    _apDevice                                0x24000194   Data           8  GUI_SetAlpha.o(.data)
-    _InitAlpha::RegisterExit                 0x2400019c   Data           8  GUI_SetAlpha.o(.data)
-    _TimeSlice                               0x240001a4   Data           4  GUI_Time.o(.data)
-    _aGamma                                  0x240001a8   Data          16  LCD_AA.o(.data)
-    _OrMask                                  0x240001b8   Data           4  LCD_AA.o(.data)
-    .data7                                   0x240001bc   Section        0  LCD_AA.o(.data)
+    .data                                    0x24000068   Section        8  adc.o(.data)
+    .data                                    0x24000070   Section       12  stm32h7xx_hal.o(.data)
+    uwTickFreq                               0x24000070   Data           1  stm32h7xx_hal.o(.data)
+    uwTickPrio                               0x24000074   Data           4  stm32h7xx_hal.o(.data)
+    uwTick                                   0x24000078   Data           4  stm32h7xx_hal.o(.data)
+    _acVersion                               0x2400007c   Data           8  GUI_Common.o(.data)
+    GUI__Context                             0x24000084   Data         112  GUI_Core.o(.data)
+    .data16                                  0x24000104   Section        0  GUI_Core.o(.data)
+    _pFirstExit                              0x2400011c   Data           4  GUI_Core.o(.data)
+    .data17                                  0x24000120   Section        0  GUI_Core.o(.data)
+    .data8                                   0x24000124   Section        0  LCD.o(.data)
+    .data6                                   0x24000128   Section        0  GUI__Private.o(.data)
+    .data7                                   0x2400012c   Section        0  GUI__Private.o(.data)
+    .data8                                   0x24000130   Section        0  GUI__Wrap.o(.data)
+    .data7                                   0x24000138   Section        0  GUI_CharLine.o(.data)
+    _pReadKey                                0x2400013c   Data           4  GUI_OnKey.o(.data)
+    _pWriteKey                               0x24000140   Data           4  GUI_OnKey.o(.data)
+    _Key                                     0x24000144   Data           4  GUI_OnKey.o(.data)
+    _pfHook                                  0x24000148   Data           4  GUI_OnKey.o(.data)
+    _pfWaitEvent                             0x2400014c   Data           4  GUI_WaitEvent.o(.data)
+    _NumColors                               0x24000150   Data           4  LCD_Color.o(.data)
+    _pfPaletteConversionHook                 0x24000154   Data           4  LCD_Color.o(.data)
+    LCD_InitColors::RegisterExit             0x2400015c   Data           8  LCD_Color.o(.data)
+    _pfAlphaBlending                         0x24000164   Data           4  GUI__Alpha.o(.data)
+    .data7                                   0x2400016c   Section        0  GUI__Alpha.o(.data)
+    .data7                                   0x24000170   Section        0  WM_Touch.o(.data)
+    _aAlpha                                  0x24000184   Data           2  GUI_SetAlpha.o(.data)
+    _pIndex                                  0x24000188   Data           4  GUI_SetAlpha.o(.data)
+    _pColor                                  0x2400018c   Data           4  GUI_SetAlpha.o(.data)
+    _apDevice                                0x24000190   Data           8  GUI_SetAlpha.o(.data)
+    _InitAlpha::RegisterExit                 0x24000198   Data           8  GUI_SetAlpha.o(.data)
+    _TimeSlice                               0x240001a0   Data           4  GUI_Time.o(.data)
+    _aGamma                                  0x240001a4   Data          16  LCD_AA.o(.data)
+    _OrMask                                  0x240001b4   Data           4  LCD_AA.o(.data)
+    .data7                                   0x240001b8   Section        0  LCD_AA.o(.data)
     .bss                                     0x240001c0   Section      176  main.o(.bss)
     .bss                                     0x24000270   Section      312  stm32h743i_eval_sdram.o(.bss)
     mdma_handle                              0x24000270   Data         108  stm32h743i_eval_sdram.o(.bss)
@@ -8457,7 +8456,7 @@ Image Symbol Table
     LCD_X_Config                             0x08010b5d   Thumb Code   172  lcdconf_stm32h743i_eval.o(i.LCD_X_Config)
     LCD_X_DisplayDriver                      0x08010c29   Thumb Code   276  lcdconf_stm32h743i_eval.o(i.LCD_X_DisplayDriver)
     LTDC_IRQHandler                          0x08010d45   Thumb Code     6  stm32h7xx_it.o(i.LTDC_IRQHandler)
-    MainLoop                                 0x08011069   Thumb Code   288  main.o(i.MainLoop)
+    MainLoop                                 0x08011069   Thumb Code   286  main.o(i.MainLoop)
     MainTask                                 0x08011245   Thumb Code    76  basic_helloworld.o(i.MainTask)
     MeanFilter                               0x08011295   Thumb Code    48  main.o(i.MeanFilter)
     MemManage_Handler                        0x080112c9   Thumb Code     2  stm32h7xx_it.o(i.MemManage_Handler)
@@ -8497,80 +8496,80 @@ Image Symbol Table
     ceil                                     0x080122af   Thumb Code    16  ceil.o(i.ceil)
     delayad                                  0x080122bf   Thumb Code    22  ad.o(i.delayad)
     delayad_nopar                            0x080122d5   Thumb Code    10  ad.o(i.delayad_nopar)
-    display                                  0x080122e1   Thumb Code   802  main.o(i.display)
-    floor                                    0x08012721   Thumb Code    16  floor.o(i.floor)
-    main                                     0x08012731   Thumb Code   108  main.o(i.main)
-    merge_stimulate_parameter                0x080127b1   Thumb Code   836  fes.o(i.merge_stimulate_parameter)
-    stim_search                              0x08012b21   Thumb Code   296  fes.o(i.stim_search)
-    stim_start                               0x08012c7d   Thumb Code   332  fes.o(i.stim_start)
-    stimulate                                0x08012dfd   Thumb Code    46  fes.o(i.stimulate)
-    COM_TX_PIN                               0x08012e2c   Data           2  stm32h743i_eval.o(.constdata)
-    COM_RX_PIN                               0x08012e2e   Data           2  stm32h743i_eval.o(.constdata)
-    COM_TX_AF                                0x08012e30   Data           2  stm32h743i_eval.o(.constdata)
-    COM_RX_AF                                0x08012e32   Data           2  stm32h743i_eval.o(.constdata)
-    BUTTON_PIN                               0x08012e34   Data           6  stm32h743i_eval.o(.constdata)
-    BUTTON_IRQn                              0x08012e3a   Data           6  stm32h743i_eval.o(.constdata)
-    GPIO_PIN                                 0x08012e40   Data          16  stm32h743i_eval.o(.constdata)
-    D1CorePrescTable                         0x08012e50   Data          16  system_stm32h7xx.o(.constdata)
-    GUI_Font32_1                             0x08014c8c   Data          36  F32_1.o(.rodata)
-    LCD_API_ColorConv_M565                   0x08014cb0   Data          24  GUICC_M565.o(.rodata)
-    GUIDRV_Lin_16_API                        0x08014cc8   Data          52  GUIDRV_Lin_16.o(.rodata)
-    GUI_Font32_ASCII_CharInfo                0x08016628   Data         760  F32_ASCII.o(.rodata)
-    GUI_Font32_ASCII_Prop1                   0x08016920   Data          12  F32_ASCII.o(.rodata)
-    GUI_Font32_ASCII                         0x0801692c   Data          36  F32_ASCII.o(.rodata)
-    GUI_Font6x8                              0x08017044   Data          36  F6x8.o(.rodata)
-    GUI_Font6x9                              0x08017068   Data          36  F6x8.o(.rodata)
-    GUI__aConvert_15_255                     0x0801708c   Data          16  GUI__DivTbl.o(.rodata)
-    GUI__aConvert_31_255                     0x0801709c   Data          32  GUI__DivTbl.o(.rodata)
-    GUI__aConvert_63_255                     0x080170bc   Data          64  GUI__DivTbl.o(.rodata)
-    GUI__aConvert_255_15                     0x080170fc   Data         256  GUI__DivTbl.o(.rodata)
-    GUI__aConvert_255_31                     0x080171fc   Data         256  GUI__DivTbl.o(.rodata)
-    GUI__aConvert_255_63                     0x080172fc   Data         256  GUI__DivTbl.o(.rodata)
-    LCD_aMirror                              0x080173fc   Data         256  LCD_Mirror.o(.rodata)
-    LCD_API_ColorConv_0                      0x080174fc   Data          24  GUICC_0.o(.rodata)
-    LCD_API_ColorConv_M8888I                 0x08017514   Data          24  GUICC_M8888I.o(.rodata)
-    Region$$Table$$Base                      0x0801752c   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x0801754c   Number         0  anon$$obj.o(Region$$Table)
+    display                                  0x080122e1   Thumb Code   872  main.o(i.display)
+    floor                                    0x08012765   Thumb Code    16  floor.o(i.floor)
+    main                                     0x08012775   Thumb Code   108  main.o(i.main)
+    merge_stimulate_parameter                0x080127f5   Thumb Code   894  fes.o(i.merge_stimulate_parameter)
+    stim_search                              0x08012ba1   Thumb Code   296  fes.o(i.stim_search)
+    stim_start                               0x08012cfd   Thumb Code   332  fes.o(i.stim_start)
+    stimulate                                0x08012e7d   Thumb Code    44  fes.o(i.stimulate)
+    COM_TX_PIN                               0x08012ea8   Data           2  stm32h743i_eval.o(.constdata)
+    COM_RX_PIN                               0x08012eaa   Data           2  stm32h743i_eval.o(.constdata)
+    COM_TX_AF                                0x08012eac   Data           2  stm32h743i_eval.o(.constdata)
+    COM_RX_AF                                0x08012eae   Data           2  stm32h743i_eval.o(.constdata)
+    BUTTON_PIN                               0x08012eb0   Data           6  stm32h743i_eval.o(.constdata)
+    BUTTON_IRQn                              0x08012eb6   Data           6  stm32h743i_eval.o(.constdata)
+    GPIO_PIN                                 0x08012ebc   Data          16  stm32h743i_eval.o(.constdata)
+    D1CorePrescTable                         0x08012ecc   Data          16  system_stm32h7xx.o(.constdata)
+    GUI_Font32_1                             0x08014d08   Data          36  F32_1.o(.rodata)
+    LCD_API_ColorConv_M565                   0x08014d2c   Data          24  GUICC_M565.o(.rodata)
+    GUIDRV_Lin_16_API                        0x08014d44   Data          52  GUIDRV_Lin_16.o(.rodata)
+    GUI_Font32_ASCII_CharInfo                0x080166a4   Data         760  F32_ASCII.o(.rodata)
+    GUI_Font32_ASCII_Prop1                   0x0801699c   Data          12  F32_ASCII.o(.rodata)
+    GUI_Font32_ASCII                         0x080169a8   Data          36  F32_ASCII.o(.rodata)
+    GUI_Font6x8                              0x080170c0   Data          36  F6x8.o(.rodata)
+    GUI_Font6x9                              0x080170e4   Data          36  F6x8.o(.rodata)
+    GUI__aConvert_15_255                     0x08017108   Data          16  GUI__DivTbl.o(.rodata)
+    GUI__aConvert_31_255                     0x08017118   Data          32  GUI__DivTbl.o(.rodata)
+    GUI__aConvert_63_255                     0x08017138   Data          64  GUI__DivTbl.o(.rodata)
+    GUI__aConvert_255_15                     0x08017178   Data         256  GUI__DivTbl.o(.rodata)
+    GUI__aConvert_255_31                     0x08017278   Data         256  GUI__DivTbl.o(.rodata)
+    GUI__aConvert_255_63                     0x08017378   Data         256  GUI__DivTbl.o(.rodata)
+    LCD_aMirror                              0x08017478   Data         256  LCD_Mirror.o(.rodata)
+    LCD_API_ColorConv_0                      0x08017578   Data          24  GUICC_0.o(.rodata)
+    LCD_API_ColorConv_M8888I                 0x08017590   Data          24  GUICC_M8888I.o(.rodata)
+    Region$$Table$$Base                      0x080175a8   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x080175c8   Number         0  anon$$obj.o(Region$$Table)
     amputatedHand                            0x24000000   Data           1  main.o(.data)
-    ulResult                                 0x2400000c   Data           4  main.o(.data)
-    ADC_convertedvalue                       0x24000010   Data           8  main.o(.data)
-    OS_TimeMS                                0x24000018   Data           4  gui_x.o(.data)
-    SystemCoreClock                          0x2400002c   Data           4  system_stm32h7xx.o(.data)
-    SystemD2Clock                            0x24000030   Data           4  system_stm32h7xx.o(.data)
-    UART1RxBuff                              0x24000034   Data           1  usart.o(.data)
-    UART3RxBuff                              0x24000035   Data           1  usart.o(.data)
-    UART4RxBuff                              0x24000036   Data           1  usart.o(.data)
-    UART5RxBuff                              0x24000037   Data           1  usart.o(.data)
-    UART7RxBuff                              0x24000038   Data           1  usart.o(.data)
-    UART8RxBuff                              0x24000039   Data           1  usart.o(.data)
-    cnt                                      0x2400003c   Data           4  usart.o(.data)
-    testmode_flag                            0x24000040   Data           4  usart.o(.data)
-    upperRxBuffer                            0x24000044   Data           7  usart.o(.data)
-    txconfig                                 0x24000056   Data          20  fes.o(.data)
-    ADC_detectedvalue                        0x2400006c   Data           8  adc.o(.data)
-    GUI_pfAfterInitHook                      0x240000f8   Data           4  GUI_Core.o(.data)
-    GUI_pContext                             0x240000fc   Data           4  GUI_Core.o(.data)
-    GUI__apDevice                            0x24000100   Data           8  GUI_Core.o(.data)
-    GUI_DecChar                              0x24000108   Data           1  GUI_Core.o(.data)
-    GUI__IsInitialized                       0x24000109   Data           1  GUI_Core.o(.data)
-    GUI_pUC_API                              0x2400010c   Data           4  GUI_Core.o(.data)
-    GUI_pfTimerExec                          0x24000110   Data           4  GUI_Core.o(.data)
-    GUI__pFontDefault                        0x24000114   Data           4  GUI_Core.o(.data)
-    GUI__ColorDefault                        0x24000118   Data           4  GUI_Core.o(.data)
-    GUI__BkColorDefault                      0x2400011c   Data           4  GUI_Core.o(.data)
-    GUI_pfGetpPalConvTable                   0x24000124   Data           4  GUI_Core.o(.data)
-    LCD__pSetColorAPI                        0x24000128   Data           4  LCD.o(.data)
-    GUI__pfMemset                            0x2400012c   Data           4  GUI__Private.o(.data)
-    GUI__pfMemcpy                            0x24000130   Data           4  GUI__Private.o(.data)
-    GUI__Wrap_pfGetWordWrap                  0x24000134   Data           4  GUI__Wrap.o(.data)
-    GUI__Wrap_pfGetCharWrap                  0x24000138   Data           4  GUI__Wrap.o(.data)
-    GUI_CharLine_pfLog2Vis                   0x2400013c   Data           4  GUI_CharLine.o(.data)
-    LCD__aConvTable                          0x2400015c   Data           4  LCD_Color.o(.data)
-    GUI__pfMixColors                         0x2400016c   Data           4  GUI__Alpha.o(.data)
-    GUI__pfMixColorsBulk                     0x24000170   Data           4  GUI__Alpha.o(.data)
-    WM__aCHWinModal                          0x24000174   Data          16  WM_Touch.o(.data)
-    WM__ModalLayer                           0x24000184   Data           4  WM_Touch.o(.data)
-    LCD_AA_pfMixColors16                     0x240001bc   Data           4  LCD_AA.o(.data)
+    ulResult                                 0x24000008   Data           4  main.o(.data)
+    ADC_convertedvalue                       0x2400000c   Data           8  main.o(.data)
+    OS_TimeMS                                0x24000014   Data           4  gui_x.o(.data)
+    SystemCoreClock                          0x24000028   Data           4  system_stm32h7xx.o(.data)
+    SystemD2Clock                            0x2400002c   Data           4  system_stm32h7xx.o(.data)
+    UART1RxBuff                              0x24000030   Data           1  usart.o(.data)
+    UART3RxBuff                              0x24000031   Data           1  usart.o(.data)
+    UART4RxBuff                              0x24000032   Data           1  usart.o(.data)
+    UART5RxBuff                              0x24000033   Data           1  usart.o(.data)
+    UART7RxBuff                              0x24000034   Data           1  usart.o(.data)
+    UART8RxBuff                              0x24000035   Data           1  usart.o(.data)
+    cnt                                      0x24000038   Data           4  usart.o(.data)
+    testmode_flag                            0x2400003c   Data           4  usart.o(.data)
+    upperRxBuffer                            0x24000040   Data           7  usart.o(.data)
+    txconfig                                 0x24000052   Data          20  fes.o(.data)
+    ADC_detectedvalue                        0x24000068   Data           8  adc.o(.data)
+    GUI_pfAfterInitHook                      0x240000f4   Data           4  GUI_Core.o(.data)
+    GUI_pContext                             0x240000f8   Data           4  GUI_Core.o(.data)
+    GUI__apDevice                            0x240000fc   Data           8  GUI_Core.o(.data)
+    GUI_DecChar                              0x24000104   Data           1  GUI_Core.o(.data)
+    GUI__IsInitialized                       0x24000105   Data           1  GUI_Core.o(.data)
+    GUI_pUC_API                              0x24000108   Data           4  GUI_Core.o(.data)
+    GUI_pfTimerExec                          0x2400010c   Data           4  GUI_Core.o(.data)
+    GUI__pFontDefault                        0x24000110   Data           4  GUI_Core.o(.data)
+    GUI__ColorDefault                        0x24000114   Data           4  GUI_Core.o(.data)
+    GUI__BkColorDefault                      0x24000118   Data           4  GUI_Core.o(.data)
+    GUI_pfGetpPalConvTable                   0x24000120   Data           4  GUI_Core.o(.data)
+    LCD__pSetColorAPI                        0x24000124   Data           4  LCD.o(.data)
+    GUI__pfMemset                            0x24000128   Data           4  GUI__Private.o(.data)
+    GUI__pfMemcpy                            0x2400012c   Data           4  GUI__Private.o(.data)
+    GUI__Wrap_pfGetWordWrap                  0x24000130   Data           4  GUI__Wrap.o(.data)
+    GUI__Wrap_pfGetCharWrap                  0x24000134   Data           4  GUI__Wrap.o(.data)
+    GUI_CharLine_pfLog2Vis                   0x24000138   Data           4  GUI_CharLine.o(.data)
+    LCD__aConvTable                          0x24000158   Data           4  LCD_Color.o(.data)
+    GUI__pfMixColors                         0x24000168   Data           4  GUI__Alpha.o(.data)
+    GUI__pfMixColorsBulk                     0x2400016c   Data           4  GUI__Alpha.o(.data)
+    WM__aCHWinModal                          0x24000170   Data          16  WM_Touch.o(.data)
+    WM__ModalLayer                           0x24000180   Data           4  WM_Touch.o(.data)
+    LCD_AA_pfMixColors16                     0x240001b8   Data           4  LCD_AA.o(.data)
     ldVolutage                               0x240001c0   Data          80  main.o(.bss)
     data                                     0x24000210   Data          15  main.o(.bss)
     filter0                                  0x24000220   Data          40  main.o(.bss)
@@ -8642,9 +8641,9 @@ Memory Map of the image
 
   Image Entry point : 0x08000299
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x0001770c, Max: 0x00200000, ABSOLUTE, COMPRESSED[0x000175e0])
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00017784, Max: 0x00200000, ABSOLUTE, COMPRESSED[0x0001765c])
 
-    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x0001754c, Max: 0x00200000, ABSOLUTE)
+    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x000175c8, Max: 0x00200000, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -8967,68 +8966,68 @@ Memory Map of the image
     0x080122be   0x00000016   Code   RO         2139    i.delayad           ad.o
     0x080122d4   0x0000000a   Code   RO         2140    i.delayad_nopar     ad.o
     0x080122de   0x00000002   PAD
-    0x080122e0   0x00000440   Code   RO         1033    i.display           main.o
-    0x08012720   0x00000010   Code   RO        10003    i.floor             m_wv.l(floor.o)
-    0x08012730   0x00000080   Code   RO         1034    i.main              main.o
-    0x080127b0   0x00000370   Code   RO         2070    i.merge_stimulate_parameter  fes.o
-    0x08012b20   0x0000015c   Code   RO         2071    i.stim_search       fes.o
-    0x08012c7c   0x00000180   Code   RO         2072    i.stim_start        fes.o
-    0x08012dfc   0x0000002e   Code   RO         2074    i.stimulate         fes.o
-    0x08012e2a   0x00000002   PAD
-    0x08012e2c   0x00000024   Data   RO         1415    .constdata          stm32h743i_eval.o
-    0x08012e50   0x00000010   Data   RO         1864    .constdata          system_stm32h7xx.o
-    0x08012e60   0x00000008   Data   RO         3364    .constdata          stm32h7xx_hal_dma.o
-    0x08012e68   0x00000018   Data   RO         7335    .constdata          stm32h7xx_hal_uart.o
-    0x08012e80   0x00001e30   Data   RO         7867    .rodata             STemWin540_CM7_IAR_ARGB.a(F32_1.o)
-    0x08014cb0   0x00000018   Data   RO         8192    .rodata             STemWin540_CM7_IAR_ARGB.a(GUICC_M565.o)
-    0x08014cc8   0x00000034   Data   RO         8206    .rodata             STemWin540_CM7_IAR_ARGB.a(GUIDRV_Lin_16.o)
-    0x08014cfc   0x0000000c   Data   RO         8286    .rodata             STemWin540_CM7_IAR_ARGB.a(LCD.o)
-    0x08014d08   0x00001c48   Data   RO         8451    .rodata             STemWin540_CM7_IAR_ARGB.a(F32_ASCII.o)
-    0x08016950   0x0000073c   Data   RO         8456    .rodata             STemWin540_CM7_IAR_ARGB.a(F6x8.o)
-    0x0801708c   0x00000370   Data   RO         8461    .rodata             STemWin540_CM7_IAR_ARGB.a(GUI__DivTbl.o)
-    0x080173fc   0x00000100   Data   RO         8754    .rodata             STemWin540_CM7_IAR_ARGB.a(LCD_Mirror.o)
-    0x080174fc   0x00000018   Data   RO         9092    .rodata             STemWin540_CM7_IAR_ARGB.a(GUICC_0.o)
-    0x08017514   0x00000018   Data   RO         9497    .rodata             STemWin540_CM7_IAR_ARGB.a(GUICC_M8888I.o)
-    0x0801752c   0x00000020   Data   RO        10061    Region$$Table       anon$$obj.o
+    0x080122e0   0x00000484   Code   RO         1033    i.display           main.o
+    0x08012764   0x00000010   Code   RO        10003    i.floor             m_wv.l(floor.o)
+    0x08012774   0x00000080   Code   RO         1034    i.main              main.o
+    0x080127f4   0x000003ac   Code   RO         2070    i.merge_stimulate_parameter  fes.o
+    0x08012ba0   0x0000015c   Code   RO         2071    i.stim_search       fes.o
+    0x08012cfc   0x00000180   Code   RO         2072    i.stim_start        fes.o
+    0x08012e7c   0x0000002c   Code   RO         2074    i.stimulate         fes.o
+    0x08012ea8   0x00000024   Data   RO         1415    .constdata          stm32h743i_eval.o
+    0x08012ecc   0x00000010   Data   RO         1864    .constdata          system_stm32h7xx.o
+    0x08012edc   0x00000008   Data   RO         3364    .constdata          stm32h7xx_hal_dma.o
+    0x08012ee4   0x00000018   Data   RO         7335    .constdata          stm32h7xx_hal_uart.o
+    0x08012efc   0x00001e30   Data   RO         7867    .rodata             STemWin540_CM7_IAR_ARGB.a(F32_1.o)
+    0x08014d2c   0x00000018   Data   RO         8192    .rodata             STemWin540_CM7_IAR_ARGB.a(GUICC_M565.o)
+    0x08014d44   0x00000034   Data   RO         8206    .rodata             STemWin540_CM7_IAR_ARGB.a(GUIDRV_Lin_16.o)
+    0x08014d78   0x0000000c   Data   RO         8286    .rodata             STemWin540_CM7_IAR_ARGB.a(LCD.o)
+    0x08014d84   0x00001c48   Data   RO         8451    .rodata             STemWin540_CM7_IAR_ARGB.a(F32_ASCII.o)
+    0x080169cc   0x0000073c   Data   RO         8456    .rodata             STemWin540_CM7_IAR_ARGB.a(F6x8.o)
+    0x08017108   0x00000370   Data   RO         8461    .rodata             STemWin540_CM7_IAR_ARGB.a(GUI__DivTbl.o)
+    0x08017478   0x00000100   Data   RO         8754    .rodata             STemWin540_CM7_IAR_ARGB.a(LCD_Mirror.o)
+    0x08017578   0x00000018   Data   RO         9092    .rodata             STemWin540_CM7_IAR_ARGB.a(GUICC_0.o)
+    0x08017590   0x00000018   Data   RO         9497    .rodata             STemWin540_CM7_IAR_ARGB.a(GUICC_M8888I.o)
+    0x080175a8   0x00000020   Data   RO        10061    Region$$Table       anon$$obj.o
 
 
     Execution Region RW_IRAM2 (Base: 0x24000000, Size: 0x0004d000, Max: 0x00080000, ABSOLUTE, COMPRESSED[0x00000094])
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x24000000   0x00000018   Data   RW         1037    .data               main.o
-    0x24000018   0x00000004   Data   RW         1127    .data               gui_x.o
-    0x2400001c   0x00000008   Data   RW         1184    .data               stm32h743i_eval_io.o
-    0x24000024   0x00000002   Data   RW         1284    .data               stm32h743i_eval_sdram.o
-    0x24000026   0x00000002   PAD
-    0x24000028   0x00000004   Data   RW         1728    .data               lcdconf_stm32h743i_eval.o
-    0x2400002c   0x00000004   Data   RW         1865    .data               system_stm32h7xx.o
-    0x24000030   0x00000004   Data   RW         1866    .data               system_stm32h7xx.o
-    0x24000034   0x00000017   Data   RW         1947    .data               usart.o
-    0x2400004b   0x00000001   PAD
-    0x2400004c   0x0000001e   Data   RW         2077    .data               fes.o
-    0x2400006a   0x00000002   PAD
-    0x2400006c   0x00000008   Data   RW         2246    .data               adc.o
-    0x24000074   0x0000000c   Data   RW         2407    .data               stm32h7xx_hal.o
-    0x24000080   0x00000008   Data   RW         7923    .data               STemWin540_CM7_IAR_ARGB.a(GUI_Common.o)
-    0x24000088   0x00000080   Data   RW         8034    .data               STemWin540_CM7_IAR_ARGB.a(GUI_Core.o)
-    0x24000108   0x0000001c   Data   RW         8035    .data               STemWin540_CM7_IAR_ARGB.a(GUI_Core.o)
-    0x24000124   0x00000004   Data   RW         8036    .data               STemWin540_CM7_IAR_ARGB.a(GUI_Core.o)
-    0x24000128   0x00000004   Data   RW         8287    .data               STemWin540_CM7_IAR_ARGB.a(LCD.o)
-    0x2400012c   0x00000004   Data   RW         8468    .data               STemWin540_CM7_IAR_ARGB.a(GUI__Private.o)
-    0x24000130   0x00000004   Data   RW         8469    .data               STemWin540_CM7_IAR_ARGB.a(GUI__Private.o)
-    0x24000134   0x00000008   Data   RW         8516    .data               STemWin540_CM7_IAR_ARGB.a(GUI__Wrap.o)
-    0x2400013c   0x00000004   Data   RW         8546    .data               STemWin540_CM7_IAR_ARGB.a(GUI_CharLine.o)
-    0x24000140   0x00000010   Data   RW         8583    .data               STemWin540_CM7_IAR_ARGB.a(GUI_OnKey.o)
-    0x24000150   0x00000004   Data   RW         8645    .data               STemWin540_CM7_IAR_ARGB.a(GUI_WaitEvent.o)
-    0x24000154   0x00000014   Data   RW         8720    .data               STemWin540_CM7_IAR_ARGB.a(LCD_Color.o)
-    0x24000168   0x00000008   Data   RW         8991    .data               STemWin540_CM7_IAR_ARGB.a(GUI__Alpha.o)
-    0x24000170   0x00000004   Data   RW         8992    .data               STemWin540_CM7_IAR_ARGB.a(GUI__Alpha.o)
-    0x24000174   0x00000014   Data   RW         9296    .data               STemWin540_CM7_IAR_ARGB.a(WM_Touch.o)
-    0x24000188   0x0000001c   Data   RW         9402    .data               STemWin540_CM7_IAR_ARGB.a(GUI_SetAlpha.o)
-    0x240001a4   0x00000004   Data   RW         9484    .data               STemWin540_CM7_IAR_ARGB.a(GUI_Time.o)
-    0x240001a8   0x00000014   Data   RW         9955    .data               STemWin540_CM7_IAR_ARGB.a(LCD_AA.o)
-    0x240001bc   0x00000004   Data   RW         9956    .data               STemWin540_CM7_IAR_ARGB.a(LCD_AA.o)
+    0x24000000   0x00000014   Data   RW         1037    .data               main.o
+    0x24000014   0x00000004   Data   RW         1127    .data               gui_x.o
+    0x24000018   0x00000008   Data   RW         1184    .data               stm32h743i_eval_io.o
+    0x24000020   0x00000002   Data   RW         1284    .data               stm32h743i_eval_sdram.o
+    0x24000022   0x00000002   PAD
+    0x24000024   0x00000004   Data   RW         1728    .data               lcdconf_stm32h743i_eval.o
+    0x24000028   0x00000004   Data   RW         1865    .data               system_stm32h7xx.o
+    0x2400002c   0x00000004   Data   RW         1866    .data               system_stm32h7xx.o
+    0x24000030   0x00000017   Data   RW         1947    .data               usart.o
+    0x24000047   0x00000001   PAD
+    0x24000048   0x0000001e   Data   RW         2077    .data               fes.o
+    0x24000066   0x00000002   PAD
+    0x24000068   0x00000008   Data   RW         2246    .data               adc.o
+    0x24000070   0x0000000c   Data   RW         2407    .data               stm32h7xx_hal.o
+    0x2400007c   0x00000008   Data   RW         7923    .data               STemWin540_CM7_IAR_ARGB.a(GUI_Common.o)
+    0x24000084   0x00000080   Data   RW         8034    .data               STemWin540_CM7_IAR_ARGB.a(GUI_Core.o)
+    0x24000104   0x0000001c   Data   RW         8035    .data               STemWin540_CM7_IAR_ARGB.a(GUI_Core.o)
+    0x24000120   0x00000004   Data   RW         8036    .data               STemWin540_CM7_IAR_ARGB.a(GUI_Core.o)
+    0x24000124   0x00000004   Data   RW         8287    .data               STemWin540_CM7_IAR_ARGB.a(LCD.o)
+    0x24000128   0x00000004   Data   RW         8468    .data               STemWin540_CM7_IAR_ARGB.a(GUI__Private.o)
+    0x2400012c   0x00000004   Data   RW         8469    .data               STemWin540_CM7_IAR_ARGB.a(GUI__Private.o)
+    0x24000130   0x00000008   Data   RW         8516    .data               STemWin540_CM7_IAR_ARGB.a(GUI__Wrap.o)
+    0x24000138   0x00000004   Data   RW         8546    .data               STemWin540_CM7_IAR_ARGB.a(GUI_CharLine.o)
+    0x2400013c   0x00000010   Data   RW         8583    .data               STemWin540_CM7_IAR_ARGB.a(GUI_OnKey.o)
+    0x2400014c   0x00000004   Data   RW         8645    .data               STemWin540_CM7_IAR_ARGB.a(GUI_WaitEvent.o)
+    0x24000150   0x00000014   Data   RW         8720    .data               STemWin540_CM7_IAR_ARGB.a(LCD_Color.o)
+    0x24000164   0x00000008   Data   RW         8991    .data               STemWin540_CM7_IAR_ARGB.a(GUI__Alpha.o)
+    0x2400016c   0x00000004   Data   RW         8992    .data               STemWin540_CM7_IAR_ARGB.a(GUI__Alpha.o)
+    0x24000170   0x00000014   Data   RW         9296    .data               STemWin540_CM7_IAR_ARGB.a(WM_Touch.o)
+    0x24000184   0x0000001c   Data   RW         9402    .data               STemWin540_CM7_IAR_ARGB.a(GUI_SetAlpha.o)
+    0x240001a0   0x00000004   Data   RW         9484    .data               STemWin540_CM7_IAR_ARGB.a(GUI_Time.o)
+    0x240001a4   0x00000014   Data   RW         9955    .data               STemWin540_CM7_IAR_ARGB.a(LCD_AA.o)
+    0x240001b8   0x00000004   Data   RW         9956    .data               STemWin540_CM7_IAR_ARGB.a(LCD_AA.o)
+    0x240001bc   0x00000004   PAD
     0x240001c0   0x000000b0   Zero   RW         1035    .bss                main.o
     0x24000270   0x00000138   Zero   RW         1283    .bss                stm32h743i_eval_sdram.o
     0x240003a8   0x000001e0   Zero   RW         1727    .bss                lcdconf_stm32h743i_eval.o
@@ -9097,11 +9096,11 @@ Image component sizes
        396         38          0          8        248       3497   adc.o
         80          4          0          0          0      50300   basic_helloworld.o
        244          4          0          0          0       1151   bsp.o
-      1658        148          0         30         20       5028   fes.o
+      1716        150          0         30         20       5052   fes.o
         36         10          0          4          0       2124   gui_x.o
         16          6          0          0     184320       1077   guiconf_stm32h743i_eval.o
       1618        154          0          4        480      12739   lcdconf_stm32h743i_eval.o
-      2636        594          0         24        176      49094   main.o
+      2704        594          0         20        176      49110   main.o
          0          0          0          0          0       4508   mfxstm32l152.o
         36          8        664          0      16384        832   startup_stm32h743xx.o
         56         14         36          0          0       2631   stm32h743i_eval.o
@@ -9130,9 +9129,9 @@ Image component sizes
       1260        176          0         23       1084       7150   usart.o
 
     ----------------------------------------------------------------------
-     29034       2192        780        128     314192    1617455   Object Totals
+     29158       2194        780        124     314192    1617495   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        44          0          0          5     111040          0   (incl. Padding)
+        42          0          0          5     111040          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -9239,8 +9238,8 @@ Image component sizes
        110          0          0          0          0        168   fepilogue.o
 
     ----------------------------------------------------------------------
-     47658       2160      18092        320        752     116532   Library Totals
-        20          0          0          0         12          0   (incl. Padding)
+     47658       2160      18092        320        756     116532   Library Totals
+        20          0          0          0         16          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -9252,7 +9251,7 @@ Image component sizes
        204          0          0          0          0        324   mf_w.l
 
     ----------------------------------------------------------------------
-     47658       2160      18092        320        752     116532   Library Totals
+     47658       2160      18092        320        756     116532   Library Totals
 
     ----------------------------------------------------------------------
 
@@ -9261,15 +9260,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     76692       4352      18872        448     314944    1623151   Grand Totals
-     76692       4352      18872        148     314944    1623151   ELF Image Totals (compressed)
-     76692       4352      18872        148          0          0   ROM Totals
+     76816       4354      18872        444     314948    1623191   Grand Totals
+     76816       4354      18872        148     314948    1623191   ELF Image Totals (compressed)
+     76816       4354      18872        148          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                95564 (  93.32kB)
+    Total RO  Size (Code + RO Data)                95688 (  93.45kB)
     Total RW  Size (RW Data + ZI Data)            315392 ( 308.00kB)
-    Total ROM Size (Code + RO Data + RW Data)      95712 (  93.47kB)
+    Total ROM Size (Code + RO Data + RW Data)      95836 (  93.59kB)
 
 ==============================================================================
 
