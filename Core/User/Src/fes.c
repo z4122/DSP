@@ -17,10 +17,10 @@ configtx txconfig = {
 					0x0A, 			//default time delay is 10us = 0x0AH
 					0x01, 			//no circulation
 					//0x0055,			//stimulate times is 4
-					0x0003,
+					0x0001,
 					0x00,			//increment numerator is 0
 					0x0001,			//increment denominator is 1
-					0x50,			//default stimulate amplitude is 1mA 0X0A
+					0x0A,			//default stimulate amplitude is 1mA 0X0A
 					0xFF,			//end flag,should be "FF FF FF"
 			};
 
@@ -61,8 +61,8 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,int pressure)
 			stimulate_parameter[8] = 25+pressure/2; //频率低位
 	}		
 	else if(testmode_flag==3){
-			stimulate_parameter[5] = (100+pressure*3)>>8; //脉宽高位
-			stimulate_parameter[6] = 100+pressure*3; //脉宽低位
+			stimulate_parameter[5] = (100+pressure*10)>>8; //脉宽高位
+			stimulate_parameter[6] = 100+pressure*10; //脉宽低位
 	}
 	else if(testmode_flag==5){
 			stimulate_parameter[16] = pressure*3;
@@ -72,9 +72,9 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,int pressure)
 			stimulate_parameter[8] = 25+pressure*3/2; //频率低位
 	}		
 	else if(testmode_flag==7){
-			stimulate_parameter[5] = (100+pressure*3)>>8; //脉宽高位
-			stimulate_parameter[6] = 100+pressure*3; //脉宽低位
-			stimulate_parameter[16] = 10;
+			stimulate_parameter[5] = (100+pressure*10)>>8; //脉宽高位
+			stimulate_parameter[6] = 100+pressure*10; //脉宽低位
+			//stimulate_parameter[16] = 10;
 	}
 	else if(testmode_flag==4)
 	{
@@ -93,8 +93,8 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,int pressure)
 					ChangePeriod(50);//单位ms，周期20ms
 					stimulate_parameter[7] = parameter[1][2]>>8; //频率高位
 					stimulate_parameter[8] = parameter[1][2]; //频率低位
-					stimulate_parameter[11]= (unsigned int)(last_frequency*0.02)>>8;//次数高位，计算出来的刺激次数，如200hz就是200*0.02=4次
-					stimulate_parameter[12]= (unsigned int)last_frequency*0.02;//次数低位
+					stimulate_parameter[11]= (unsigned int)(last_frequency*0.05)>>8;//次数高位，计算出来的刺激次数，如200hz就是200*0.02=4次
+					stimulate_parameter[12]= (unsigned int)last_frequency*0.05;//次数低位
 					
 				}
 			}
@@ -117,8 +117,8 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,int pressure)
 					ChangePeriod(50);//单位ms，周期20ms
 					stimulate_parameter[7] = parameter[2][2]>>8; //频率高位
 					stimulate_parameter[8] = parameter[2][2]; //频率低位
-					stimulate_parameter[11]= (unsigned int)(last_frequency*0.02)>>8;//次数高位，计算出来的刺激次数，如200hz就是200*0.02=4次
-					stimulate_parameter[12]= (unsigned int)last_frequency*0.02;//次数低位
+					stimulate_parameter[11]= (unsigned int)(last_frequency*0.05)>>8;//次数高位，计算出来的刺激次数，如200hz就是200*0.02=4次
+					stimulate_parameter[12]= (unsigned int)last_frequency*0.05;//次数低位
 					
 				}
 			}
@@ -141,8 +141,8 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,int pressure)
 					ChangePeriod(50);//单位ms，周期20ms
 					stimulate_parameter[7] = parameter[3][2]>>8; //频率高位
 					stimulate_parameter[8] = parameter[3][2]; //频率低位
-					stimulate_parameter[11]= (unsigned int)(last_frequency*0.02)>>8;//次数高位，计算出来的刺激次数，如200hz就是200*0.02=4次
-					stimulate_parameter[12]= (unsigned int)last_frequency*0.02;//次数低位
+					stimulate_parameter[11]= (unsigned int)(last_frequency*0.05)>>8;//次数高位，计算出来的刺激次数，如200hz就是200*0.02=4次
+					stimulate_parameter[12]= (unsigned int)last_frequency*0.05;//次数低位
 					
 				}
 			}
@@ -165,8 +165,8 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,int pressure)
 					ChangePeriod(50);//单位ms，周期20ms
 					stimulate_parameter[7] = parameter[4][2]>>8; //频率高位
 					stimulate_parameter[8] = parameter[4][2]; //频率低位
-					stimulate_parameter[11]= (unsigned int)(last_frequency*0.02)>>8;//次数高位，计算出来的刺激次数，如200hz就是200*0.02=4次
-					stimulate_parameter[12]= (unsigned int)last_frequency*0.02;//次数低位
+					stimulate_parameter[11]= (unsigned int)(last_frequency*0.05)>>8;//次数高位，计算出来的刺激次数，如200hz就是200*0.02=4次
+					stimulate_parameter[12]= (unsigned int)last_frequency*0.05;//次数低位
 					
 				}
 			}
@@ -189,8 +189,8 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,int pressure)
 					ChangePeriod(50);//单位ms，周期20ms
 					stimulate_parameter[7] = parameter[5][2]>>8; //频率高位
 					stimulate_parameter[8] = parameter[5][2]; //频率低位
-					stimulate_parameter[11]= (unsigned int)(last_frequency*0.02)>>8;//次数高位，计算出来的刺激次数，如200hz就是200*0.02=4次
-					stimulate_parameter[12]= (unsigned int)last_frequency*0.02;//次数低位
+					stimulate_parameter[11]= (unsigned int)(last_frequency*0.05)>>8;//次数高位，计算出来的刺激次数，如200hz就是200*0.02=4次
+					stimulate_parameter[12]= (unsigned int)last_frequency*0.05;//次数低位
 					
 				}
 			}
@@ -364,11 +364,11 @@ void stim_stop(UART_HandleTypeDef *huart)// BB 0x42 0x42
 	char temp_1 = 0x80;
 	char temp_2 = 0x01;
 	char temp_3 = 0x02;
+	HAL_UART_Receive_IT(&huart1,&UART1RxBuff,1);
 	HAL_UART_Receive_IT(&huart3,&UART3RxBuff,1);
 	HAL_UART_Receive_IT(&huart4,&UART4RxBuff,1);
 	HAL_UART_Receive_IT(&huart5,&UART5RxBuff,1);
 	HAL_UART_Receive_IT(&huart7,&UART7RxBuff,1);
-	HAL_UART_Receive_IT(&huart8,&UART8RxBuff,1);
 
 	if(huart->Instance==USART1)
 	{

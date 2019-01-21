@@ -531,8 +531,8 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* huart)
     __HAL_RCC_UART8_CLK_DISABLE();
   
     /**UART8 GPIO Configuration    
-    PE1     ------> UART8_TX
-    PE0     ------> UART8_RX 
+    PJ8     ------> UART8_TX
+    PJ9     ------> UART8_RX 
     */
     HAL_GPIO_DeInit(GPIOJ, GPIO_PIN_8|GPIO_PIN_9);
 

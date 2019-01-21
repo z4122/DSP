@@ -152,7 +152,7 @@
           <Type>0</Type>
           <LineNumber>294</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134294844</Address>
+          <Address>134294864</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -162,38 +162,6 @@
           <Filename>..\Core\User\Src\fes.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\Project\../Core/User/Src/fes.c\294</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>252</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134294636</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\Core\User\Src\fes.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\Project\../Core/User/Src/fes.c\252</Expression>
-        </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
-          <LineNumber>76</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134293716</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\Core\User\Src\fes.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\Project\../Core/User/Src/fes.c\76</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -230,7 +198,7 @@
         <Ww>
           <count>6</count>
           <WinNumber>1</WinNumber>
-          <ItemText>UART8RxBuff</ItemText>
+          <ItemText>UART4RxBuff</ItemText>
         </Ww>
         <Ww>
           <count>7</count>
@@ -261,6 +229,11 @@
           <count>12</count>
           <WinNumber>1</WinNumber>
           <ItemText>pressure</ItemText>
+        </Ww>
+        <Ww>
+          <count>13</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>testmode_flag</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>

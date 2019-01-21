@@ -129,7 +129,8 @@ int main(void)
 
 		
 	HAL_Delay(500);
-		
+
+	//发送确认信号给PC
 	u8 t[10];
 	t[0] = 0xaa;
 	t[1] = 0xbb;
@@ -366,36 +367,36 @@ void display()
 					GUI_DispStringAt("channel 1  ", 100, 20); 
 					GUI_DispFloat(num/1000000,4);//调整显示的位数
 					GUI_DispStringAt("transfered data  ", 300, 20); 
-					GUI_DispFloat(16.9*num/1000000-5.19,4);
-					//stimulate(&huart5,16.9*num/1000000-5.19);//ok ch1
+					GUI_DispFloat(16.86*num/1000000-5.143,4);
+					stimulate(&huart1,16.86*num/1000000-5.143);//ok ch1
 					break;
 				case 1://3
 					GUI_DispStringAt("channel 2  ", 100, 50); 
 					GUI_DispFloat(num/1000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 50); 
-					GUI_DispFloat(22.9*num/1000000-3.459,4);
-					stimulate(&huart3,22.9*num/1000000-3.459);//ok ch2
+					GUI_DispFloat(22.88*num/1000000-3.421,4);
+					stimulate(&huart3,22.88*num/1000000-3.421);//ok ch2
 					break;
 				case 2://2
 					GUI_DispStringAt("channel 3  ", 100, 80); 
 					GUI_DispFloat(num*3.3/5000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 80); 
-					GUI_DispFloat(20.04*num/1000000-2.464,4);
-					//stimulate(&huart1,20.04*num/1000000-2.464);//bad ch3
+					GUI_DispFloat(20.03*num/1000000-2.463,4);
+					stimulate(&huart4,20.03*num/1000000-2.463);//bad ch3
 					break;
 				case 3://15
 					GUI_DispStringAt("channel 4  ", 100, 110); 
 					GUI_DispFloat(num/1000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 110); 
-					GUI_DispFloat(18.81*num/1000000-1.538,4);
-					stimulate(&huart4,18.81*num/1000000-1.538);
+					GUI_DispFloat(18.81*num/1000000-1.531,4);
+					stimulate(&huart5,18.81*num/1000000-1.531);
 					break;
 				case 4://1
 					GUI_DispStringAt("channel 5  ", 100, 140); 
 					GUI_DispFloat(num/1000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 140); 
-					GUI_DispFloat(23.48*num/1000000-2.942,4);
-					stimulate(&huart7,23.48*num/1000000-2.942);//ok ch6
+					GUI_DispFloat(23.5*num/1000000-2.953,4);
+					stimulate(&huart7,23.5*num/1000000-2.953);//ok ch6
 				
 					break;
 				
@@ -416,36 +417,36 @@ void display()
 					GUI_DispStringAt("channel 1  ", 100, 20); 
 					GUI_DispFloat(num/1000000,4);//调整显示的位数
 					GUI_DispStringAt("transfered data  ", 300, 20); 
-					GUI_DispFloat(19.86*num/1000000-3.248,4);
-					//stimulate(&huart5,19.86*num/1000000-3.248);
+					GUI_DispFloat(19.83*num/1000000-3.225,4);
+					stimulate(&huart1,19.83*num/1000000-3.225);
 					break;
 				case 6:
 					GUI_DispStringAt("channel 2  ", 100, 50); 
 					GUI_DispFloat(num/1000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 50); 
-					GUI_DispFloat(20.78*num/1000000-2.536,4);
-					stimulate(&huart3,20.78*num/1000000-2.536);
+					GUI_DispFloat(20.84*num/1000000-2.546,4);
+					stimulate(&huart3,20.84*num/1000000-2.546);
 					break;
 				case 7:
 					GUI_DispStringAt("channel 3  ", 100, 80); 
 					GUI_DispFloat(num*3.3/5000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 80); 
-					GUI_DispFloat(20.2*num/1000000-0.8187,4);
-					//stimulate(&huart1,20.2*num/1000000-0.8187);
+					GUI_DispFloat(20.18*num/1000000-0.7865,4);
+					stimulate(&huart4,20.18*num/1000000-0.7865);
 					break;
 				case 8:
 					GUI_DispStringAt("channel 4  ", 100, 110); 
 					GUI_DispFloat(num,4);
 					GUI_DispStringAt("transfered data  ", 300, 110); 
-					GUI_DispFloat(21.08*num-4.121,4);
-					stimulate(&huart4,21.08*num-4.121);
+					GUI_DispFloat(21.1*num-4.124,4);
+					stimulate(&huart5,21.1*num-4.124);
 					break;
 				case 9:
 					GUI_DispStringAt("channel 5  ", 100, 140); 
 					GUI_DispFloat(num,4);
 					GUI_DispStringAt("transfered data  ", 300, 140); 
-					GUI_DispFloat(20.94*num-0.7668,4);
-					stimulate(&huart7,20.94*num-0.7668);
+					GUI_DispFloat(23.56*num-3.688,4);
+					stimulate(&huart7,23.56*num-3.688);
 					break;
 				
 				
@@ -459,6 +460,8 @@ void display()
 
 void GetAdData(void)
 {
+	  static int cnt = 0;
+		cnt++;
 		//代表1-5通道
 		data[0] = 0xff;
 		data[1] = 0xff;
@@ -485,8 +488,8 @@ void GetAdData(void)
 		
 			//HAL_Delay(10);	
 		}
-		
-		HAL_UART_Transmit(&huart8,data,15,0xfff);
+		if(cnt==10)
+			HAL_UART_Transmit(&huart8,data,15,0xfff);
 		
 		
 		//代表6-10通道
@@ -527,9 +530,13 @@ void GetAdData(void)
 			data[10] =(u16)ADC_convertedvalue[1]>>8;
 			data[11] =(u16)ADC_convertedvalue[1]&0xFF;
 		
-			HAL_UART_Transmit(&huart8,data,15,0xfff);
+			if(cnt==10){
+				HAL_UART_Transmit(&huart8,data,15,0xfff);
+				HAL_UART_Receive_IT(&huart8,&UART8RxBuff,1);
+				cnt = 0;
+			}
 		
-			HAL_UART_Receive_IT(&huart8,&UART8RxBuff,1);
+			
 }
 
 
@@ -537,14 +544,14 @@ void MainLoop()
 {
 	static int last_flag = 0;
 	static int clear_flag = 0;
-	u8 t[10];
-	t[0] = 0xaa;
-	t[1] = 0xbb;
-	
-	for(int i = 0;i<5;i++)
-	{
-		HAL_UART_Transmit(&huart8,t,2,0xfff);
-	}
+//	u8 t[10];
+//	t[0] = 0xaa;
+//	t[1] = 0xbb;
+//	
+//	for(int i = 0;i<5;i++)
+//	{
+//		HAL_UART_Transmit(&huart8,t,2,0xfff);
+//	}
  		
 	//VisualScope(&huart1,1,2,3,4);
 	//fputc(1,0);
@@ -564,6 +571,11 @@ void MainLoop()
 			GUI_DispStringAt("stop ",250,270);
 			while(testmode_flag==0) {
 				//display();
+//				stim_stop(&huart1);
+//				stim_stop(&huart3);
+//				stim_stop(&huart4);
+//				stim_stop(&huart5);
+//				stim_stop(&huart7);
 			}
 			break;
 		case 1:
@@ -575,7 +587,7 @@ void MainLoop()
 			amputatedHand = right;
 			break;
 		case 3:
-			GUI_DispStringAt("right width mode", 200, 270); 
+			GUI_DispStringAt("right width mode", 220, 270); 
 			amputatedHand = right;
 			break;
 		case 4:

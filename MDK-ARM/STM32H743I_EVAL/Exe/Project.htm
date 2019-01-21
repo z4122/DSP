@@ -3,7 +3,7 @@
 <title>Static Call Graph - [STM32H743I_EVAL\Exe\Project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image STM32H743I_EVAL\Exe\Project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060422: Last Updated: Wed Jan 09 20:50:31 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060422: Last Updated: Mon Jan 21 11:44:55 2019
 <BR><P>
 <H3>Maximum Stack Usage =        488 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -5363,7 +5363,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[475]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LED_On
 </UL>
 
-<P><STRONG><a name="[46c]"></a>BSP_Init</STRONG> (Thumb, 240 bytes, Stack size 16 bytes, bsp.o(i.BSP_Init))
+<P><STRONG><a name="[46c]"></a>BSP_Init</STRONG> (Thumb, 238 bytes, Stack size 16 bytes, bsp.o(i.BSP_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 232 + Unknown Stack Size
 <LI>Call Chain = BSP_Init &rArr; USART3_Init &rArr; Error_Handler &rArr; MainTask &rArr; GUI_DispStringAt &rArr; GUI_DispString &rArr; GUI__DispLine &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; _SetClipRectUserIntersect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
 </UL>
@@ -5499,7 +5499,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[1ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Init
 </UL>
 
-<P><STRONG><a name="[48b]"></a>GetAdData</STRONG> (Thumb, 410 bytes, Stack size 48 bytes, main.o(i.GetAdData))
+<P><STRONG><a name="[48b]"></a>GetAdData</STRONG> (Thumb, 432 bytes, Stack size 48 bytes, main.o(i.GetAdData))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = GetAdData &rArr; HAL_UART_Transmit &rArr; UART_WaitOnFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[48c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Transmit
@@ -6093,7 +6093,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[4c4]"></a>HAL_TIM_IRQHandler</STRONG> (Thumb, 382 bytes, Stack size 16 bytes, stm32h7xx_hal_tim.o(i.HAL_TIM_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 408 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 392 + Unknown Stack Size
 <LI>Call Chain = HAL_TIM_IRQHandler &rArr; HAL_TIM_PeriodElapsedCallback &rArr; MainLoop &rArr; display &rArr; GUI_DispFloat &rArr; _DispFloatFix &rArr; GUI_DispDecShift &rArr; [Anonymous Symbol] &rArr; GUI_DispString &rArr; GUI__DispLine &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; _SetClipRectUserIntersect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_TriggerCallback
@@ -6117,7 +6117,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[4c8]"></a>HAL_TIM_PeriodElapsedCallback</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, timer.o(i.HAL_TIM_PeriodElapsedCallback))
-<BR><BR>[Stack]<UL><LI>Max Depth = 392 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 376 + Unknown Stack Size
 <LI>Call Chain = HAL_TIM_PeriodElapsedCallback &rArr; MainLoop &rArr; display &rArr; GUI_DispFloat &rArr; _DispFloatFix &rArr; GUI_DispDecShift &rArr; [Anonymous Symbol] &rArr; GUI_DispString &rArr; GUI__DispLine &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; _SetClipRectUserIntersect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainLoop
@@ -6218,7 +6218,6 @@ Global Symbols
 <LI><a href="#[452]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[4cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainLoop
 <LI><a href="#[48b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetAdData
 <LI><a href="#[4f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stim_start
 <LI><a href="#[4f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stim_search
@@ -6290,12 +6289,11 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32h743xx.o(RESET)
 </UL>
-<P><STRONG><a name="[4cc]"></a>MainLoop</STRONG> (Thumb, 286 bytes, Stack size 40 bytes, main.o(i.MainLoop))
-<BR><BR>[Stack]<UL><LI>Max Depth = 392 + Unknown Stack Size
+<P><STRONG><a name="[4cc]"></a>MainLoop</STRONG> (Thumb, 250 bytes, Stack size 24 bytes, main.o(i.MainLoop))
+<BR><BR>[Stack]<UL><LI>Max Depth = 376 + Unknown Stack Size
 <LI>Call Chain = MainLoop &rArr; display &rArr; GUI_DispFloat &rArr; _DispFloatFix &rArr; GUI_DispDecShift &rArr; [Anonymous Symbol] &rArr; GUI_DispString &rArr; GUI__DispLine &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; _SetClipRectUserIntersect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
 </UL>
-<BR>[Calls]<UL><LI><a href="#[48c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Transmit
-<LI><a href="#[202]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DispFloat
+<BR>[Calls]<UL><LI><a href="#[202]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DispFloat
 <LI><a href="#[4e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display
 <LI><a href="#[165]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DispStringAt
 <LI><a href="#[1a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Clear
@@ -6350,7 +6348,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32h743xx.o(.text)
 </UL>
 <P><STRONG><a name="[31]"></a>TIM3_IRQHandler</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, timer.o(i.TIM3_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 408 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 392 + Unknown Stack Size
 <LI>Call Chain = TIM3_IRQHandler &rArr; HAL_TIM_IRQHandler &rArr; HAL_TIM_PeriodElapsedCallback &rArr; MainLoop &rArr; display &rArr; GUI_DispFloat &rArr; _DispFloatFix &rArr; GUI_DispDecShift &rArr; [Anonymous Symbol] &rArr; GUI_DispString &rArr; GUI__DispLine &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; _SetClipRectUserIntersect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_IRQHandler
@@ -6367,7 +6365,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[45]"></a>TIM5_IRQHandler</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, timer.o(i.TIM5_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 408 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 392 + Unknown Stack Size
 <LI>Call Chain = TIM5_IRQHandler &rArr; HAL_TIM_IRQHandler &rArr; HAL_TIM_PeriodElapsedCallback &rArr; MainLoop &rArr; display &rArr; GUI_DispFloat &rArr; _DispFloatFix &rArr; GUI_DispDecShift &rArr; [Anonymous Symbol] &rArr; GUI_DispString &rArr; GUI__DispLine &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; _SetClipRectUserIntersect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_IRQHandler
@@ -6591,7 +6589,7 @@ Global Symbols
 <LI><a href="#[462]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1256_Read_Byte
 </UL>
 
-<P><STRONG><a name="[4e6]"></a>display</STRONG> (Thumb, 872 bytes, Stack size 80 bytes, main.o(i.display))
+<P><STRONG><a name="[4e6]"></a>display</STRONG> (Thumb, 930 bytes, Stack size 80 bytes, main.o(i.display))
 <BR><BR>[Stack]<UL><LI>Max Depth = 352 + Unknown Stack Size
 <LI>Call Chain = display &rArr; GUI_DispFloat &rArr; _DispFloatFix &rArr; GUI_DispDecShift &rArr; [Anonymous Symbol] &rArr; GUI_DispString &rArr; GUI__DispLine &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; _SetClipRectUserIntersect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
 </UL>
@@ -6628,7 +6626,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
-<P><STRONG><a name="[4f1]"></a>merge_stimulate_parameter</STRONG> (Thumb, 894 bytes, Stack size 40 bytes, fes.o(i.merge_stimulate_parameter))
+<P><STRONG><a name="[4f1]"></a>merge_stimulate_parameter</STRONG> (Thumb, 880 bytes, Stack size 40 bytes, fes.o(i.merge_stimulate_parameter))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = merge_stimulate_parameter &rArr; HAL_UART_Transmit &rArr; UART_WaitOnFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[48c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Transmit
@@ -7843,8 +7841,8 @@ Local Symbols
 <LI><a href="#[283]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_GetCharDistX
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DispChar
-<LI><a href="#[292]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DispChars
 <LI><a href="#[291]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DispCharAt
+<LI><a href="#[292]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DispChars
 </UL>
 
 <P><STRONG><a name="[294]"></a>_IncPointer</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, GUI_OnKey.o(.text), UNUSED)
