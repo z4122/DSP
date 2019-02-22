@@ -146,24 +146,7 @@
           <Name>UL2CM3(-S0 -C0 -P0 )  -FN3 -FC1000 -FD20000000 -FF0STM32H7x_2048 -FF1STM32H7xx_MT25TL01G -FF2STM32H7xx_MT25TL01G_DUAL -FL0200000 -FL14000000 -FL28000000 -FS08000000 -FS190000000 -FS290000000 -FP0($$Device:STM32H743XIHx$CMSIS\Flash\STM32H7x_2048.FLM) -FP1($$Device:STM32H743XIHx$CMSIS\Flash\STM32H7xx_MT25TL01G.FLM) -FP2($$Device:STM32H743XIHx$CMSIS\Flash\STM32H7xx_MT25TL01G_DUAL.FLM)</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint>
-        <Bp>
-          <Number>0</Number>
-          <Type>0</Type>
-          <LineNumber>294</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134294864</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\Core\User\Src\fes.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\Project\../Core/User/Src/fes.c\294</Expression>
-        </Bp>
-      </Breakpoint>
+      <Breakpoint/>
       <WatchWindow1>
         <Ww>
           <count>0</count>
