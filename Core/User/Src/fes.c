@@ -25,7 +25,7 @@ configtx txconfig = {
 			};
 
 
-void merge_stimulate_parameter(UART_HandleTypeDef *huart,int pressure)
+void merge_stimulate_parameter(UART_HandleTypeDef *huart,int pressure,int channel)
 {			
 	//限制最大值
 	if(pressure<0)
@@ -54,26 +54,39 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,int pressure)
 	
 	//flag==1幅值模式，flag==2频率模式，flag==3脉宽模式,flag==4自由测试模式
 	if(testmode_flag==1){
-			stimulate_parameter[16] = pressure*3;
+			stimulate_parameter[16] = pressure*3+threshold[channel][0];
+		  if(pressure*3+threshold[channel][0]>threshold[channel][1])
+				stimulate_parameter[16] = threshold[channel][1];
 	}
 	else if(testmode_flag==2){
 			stimulate_parameter[7] = (25+pressure/2)>>8; //频率高位
 			stimulate_parameter[8] = 25+pressure/2; //频率低位
 	}		
 	else if(testmode_flag==3){
-			stimulate_parameter[5] = (100+pressure*10)>>8; //脉宽高位
-			stimulate_parameter[6] = 100+pressure*10; //脉宽低位
+			stimulate_parameter[5] = (100+pressure*10+threshold[channel][2]*10)>>8; //脉宽高位
+			stimulate_parameter[6] = 100+pressure*10+threshold[channel][2]*10; //脉宽低位
+		  if(100+pressure*10+threshold[channel][2]*10>threshold[channel][3]*10){
+				stimulate_parameter[5] = (threshold[channel][3]*10)>>8;
+				stimulate_parameter[6] = (threshold[channel][3]*10);
+			}
+				
 	}
 	else if(testmode_flag==5){
-			stimulate_parameter[16] = pressure*3;
+			stimulate_parameter[16] = pressure*3+threshold[channel][0];
+			if(pressure*3+threshold[channel][0]>threshold[channel][1])
+				stimulate_parameter[16] = threshold[channel][1];
 	}
 	else if(testmode_flag==6){
 			stimulate_parameter[7] = (25+pressure*3/2)>>8; //频率高位
 			stimulate_parameter[8] = 25+pressure*3/2; //频率低位
 	}		
 	else if(testmode_flag==7){
-			stimulate_parameter[5] = (100+pressure*10)>>8; //脉宽高位
-			stimulate_parameter[6] = 100+pressure*10; //脉宽低位
+			stimulate_parameter[5] = (100+pressure*10+threshold[channel][2]*10)>>8; //脉宽高位
+			stimulate_parameter[6] = 100+pressure*10+threshold[channel][2]*10; //脉宽低位
+			if(100+pressure*10+threshold[channel][2]*10>threshold[channel][3]*10){
+				stimulate_parameter[5] = (threshold[channel][3]*10)>>8;
+				stimulate_parameter[6] = (threshold[channel][3]*10);
+			}
 			//stimulate_parameter[16] = 10;
 	}
 	else if(testmode_flag==4)
@@ -441,12 +454,12 @@ void stim_stop(UART_HandleTypeDef *huart)// BB 0x42 0x42
 	}
 }
 
-void stimulate(UART_HandleTypeDef *huart,float pressure)
+void stimulate(UART_HandleTypeDef *huart,float pressure,int channel)
 {
 	
 	stim_search(huart);// send 800103 back BC
 	
-	merge_stimulate_parameter(huart,(int)pressure);
+	merge_stimulate_parameter(huart,(int)pressure,channel);
 	
 	stim_start(huart);//800101,back AA
 	

@@ -78,9 +78,9 @@ uint8_t data[15];//传输给上位机的数据
 float ADC_convertedvalue[2];
 float filter0[10],filter1[10];
 enum Hand {left=0,right=1};
-enum Hand amputatedHand = left;
+enum Hand amputatedHand = right;
 /*
-0x00 0x00  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX    0xXX 
+0xaa 0xbb  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX    0xXX 
 | 数据头 |  通道一  |  通道二   |  通道三  |  通道四  |  通道五  |保留两个字节|校验和|
 
 */
@@ -368,35 +368,35 @@ void display()
 					GUI_DispFloat(num/1000000,4);//调整显示的位数
 					GUI_DispStringAt("transfered data  ", 300, 20); 
 					GUI_DispFloat(16.86*num/1000000-5.143,4);
-					stimulate(&huart1,16.86*num/1000000-5.143);//ok ch1
+					stimulate(&huart1,16.86*num/1000000-5.143,1);//ok ch1
 					break;
 				case 1://3
 					GUI_DispStringAt("channel 2  ", 100, 50); 
 					GUI_DispFloat(num/1000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 50); 
 					GUI_DispFloat(22.88*num/1000000-3.421,4);
-					stimulate(&huart3,22.88*num/1000000-3.421);//ok ch2
+					stimulate(&huart3,22.88*num/1000000-3.421,2);//ok ch2
 					break;
 				case 2://2
 					GUI_DispStringAt("channel 3  ", 100, 80); 
 					GUI_DispFloat(num*3.3/5000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 80); 
 					GUI_DispFloat(20.03*num/1000000-2.463,4);
-					stimulate(&huart4,20.03*num/1000000-2.463);//bad ch3
+					stimulate(&huart4,20.03*num/1000000-2.463,3);//bad ch3
 					break;
 				case 3://15
 					GUI_DispStringAt("channel 4  ", 100, 110); 
 					GUI_DispFloat(num/1000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 110); 
 					GUI_DispFloat(18.81*num/1000000-1.531,4);
-					stimulate(&huart5,18.81*num/1000000-1.531);
+					stimulate(&huart5,18.81*num/1000000-1.531,4);
 					break;
 				case 4://1
 					GUI_DispStringAt("channel 5  ", 100, 140); 
 					GUI_DispFloat(num/1000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 140); 
 					GUI_DispFloat(23.5*num/1000000-2.953,4);
-					stimulate(&huart7,23.5*num/1000000-2.953);//ok ch6
+					stimulate(&huart7,23.5*num/1000000-2.953,5);//ok ch6
 				
 					break;
 				
@@ -417,36 +417,36 @@ void display()
 					GUI_DispStringAt("channel 1  ", 100, 20); 
 					GUI_DispFloat(num/1000000,4);//调整显示的位数
 					GUI_DispStringAt("transfered data  ", 300, 20); 
-					GUI_DispFloat(19.83*num/1000000-3.225,4);
-					stimulate(&huart1,19.83*num/1000000-3.225);
+					GUI_DispFloat(1.957*exp(1.988*num/1000000*4.6/5)-1.76*exp(-3.789*num/1000000*4.6/5),4);
+					//stimulate(&huart1,1.957*exp(1.988*num/1000000*4.6/5)-1.76*exp(-3.789*num/1000000*4.6/5),1);
 					break;
 				case 6:
 					GUI_DispStringAt("channel 2  ", 100, 50); 
 					GUI_DispFloat(num/1000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 50); 
-					GUI_DispFloat(20.84*num/1000000-2.546,4);
-					stimulate(&huart3,20.84*num/1000000-2.546);
+					//GUI_DispFloat(8.315e4*exp(0.2341*num/1000000*4.6/5)-8.314e4*exp(0.234*num/1000000*4.6/5),4);
+					//stimulate(&huart3,8.315e4*exp(0.2341*num/1000000*4.6/5)-8.314e4*exp(0.234*num/1000000*4.6/5),2);
 					break;
 				case 7:
 					GUI_DispStringAt("channel 3  ", 100, 80); 
 					GUI_DispFloat(num*3.3/5000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 80); 
-					GUI_DispFloat(20.18*num/1000000-0.7865,4);
-					stimulate(&huart4,20.18*num/1000000-0.7865);
+					//GUI_DispFloat(6.976*exp(0.5619*num*3.3/5000000*4.6/5)-0.5263*exp(-0.9322*num*3.3/5000000*4.6/5),4);
+					//stimulate(&huart4,6.976*exp(0.5619*num*3.3/5000000*4.6/5)-0.5263*exp(-0.9322*num*3.3/5000000*4.6/5),3);
 					break;
 				case 8:
 					GUI_DispStringAt("channel 4  ", 100, 110); 
 					GUI_DispFloat(num,4);
 					GUI_DispStringAt("transfered data  ", 300, 110); 
-					GUI_DispFloat(21.1*num-4.124,4);
-					stimulate(&huart5,21.1*num-4.124);
+					GUI_DispFloat(-3.537e4*exp(0.7341*num*4.6/5)+3.537e4*exp(0.7344*num*4.6/5),4);
+					stimulate(&huart5,-3.537e4*exp(0.7341*num*4.6/5)+3.537e4*exp(0.7344*num*4.6/5),4);
 					break;
 				case 9:
 					GUI_DispStringAt("channel 5  ", 100, 140); 
 					GUI_DispFloat(num,4);
 					GUI_DispStringAt("transfered data  ", 300, 140); 
-					GUI_DispFloat(23.56*num-3.688,4);
-					stimulate(&huart7,23.56*num-3.688);
+					GUI_DispFloat(6.153*exp(1.237*num*4.6/5)-6.172*exp(-0.7955*num*4.6/5),4);
+					stimulate(&huart7,6.153*exp(1.237*num*4.6/5)-6.172*exp(-0.7955*num*4.6/5),5);
 					break;
 				
 				
@@ -468,7 +468,7 @@ void GetAdData(void)
 	
 		for(int i = 0;i < 5;i++)
 		{
-			ulResult = ADS_sum( (i << 4) | 0x08);	
+			ulResult = ADS_sum( (i << 4) | 0x08);
 			
 			//ulResult = ADS_sum( ADS1256_MUXP_AIN0 | ADS1256_MUXN_AINCOM);	
 			if( ulResult & 0x800000 )
@@ -560,6 +560,10 @@ void MainLoop()
 	if(last_flag!=testmode_flag)
 		GUI_Clear();
 		
+	//如果这次的mode是改变上下限阈值，那么就强制再改回模式。
+	if(testmode_flag>=8)
+		testmode_flag=last_flag;
+	
 	switch(testmode_flag)
 	{
 		case 0:
@@ -591,6 +595,18 @@ void MainLoop()
 			amputatedHand = right;
 			break;
 		case 4:
+			GUI_DispStringAt("left amplitude mode   ", 200, 270); 	
+			amputatedHand = left;
+			break;
+		case 5:
+			GUI_DispStringAt("left frequency mode", 200, 270); 
+			amputatedHand = left;
+			break;
+		case 6:
+			GUI_DispStringAt("left width mode", 200, 270); 
+			amputatedHand = left;
+			break;
+		case 7:
 			GUI_DispStringAt("test mode  ", 100, 270); 
 			GUI_DispFloat(parameter[1][0]/10.0,4);//调整显示的位数
 			GUI_DispStringAt("mA  ", 290, 270); 
@@ -598,18 +614,6 @@ void MainLoop()
 			GUI_DispStringAt("us  ", 410, 270); 
 			GUI_DispFloat(parameter[1][2],4);//调整显示的位数
 			GUI_DispStringAt("hz  ", 520, 270); 
-			break;
-		case 5:
-			GUI_DispStringAt("left amplitude mode   ", 200, 270); 	
-			amputatedHand = left;
-			break;
-		case 6:
-			GUI_DispStringAt("left frequency mode", 200, 270); 
-			amputatedHand = left;
-			break;
-		case 7:
-			GUI_DispStringAt("left width mode", 200, 270); 
-			amputatedHand = left;
 			break;
 		default:
 			break;			

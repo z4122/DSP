@@ -27,10 +27,21 @@ Project File Date:  12/28/2018
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 4 (build 422)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'STM32H743I_EVAL'
-compiling bsp.c...
+compiling main.c...
+../Core/Src/main.c(522): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			ADC_convertedvalue[0] = (float)(ADC_detectedvalue[0]&0xffff)*3.3/65536;
+../Core/Src/main.c(523): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			ADC_convertedvalue[1] = (float)(ADC_detectedvalue[1]&0xffff)*3.3/65536;
+../Core/Src/main.c(535): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+  				HAL_UART_Receive_IT(&huart8,&UART8RxBuff,1);
+../Core/Src/main.c(546): warning:  #177-D: variable "clear_flag"  was declared but never referenced
+  	static int clear_flag = 0;
+../Core/Src/main.c(253): warning:  #177-D: function "Error_Handler"  was declared but never referenced
+  static void Error_Handler(void)
+../Core/Src/main.c: 5 warnings, 0 errors
 linking...
-Program Size: Code=76844 RO-data=18872 RW-data=448 ZI-data=314944  
-"STM32H743I_EVAL\Exe\Project.axf" - 0 Error(s), 0 Warning(s).
+Program Size: Code=78084 RO-data=18960 RW-data=452 ZI-data=314940  
+"STM32H743I_EVAL\Exe\Project.axf" - 0 Error(s), 5 Warning(s).
 
 <h2>Software Packages used:</h2>
 
