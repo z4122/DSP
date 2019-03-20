@@ -29,12 +29,13 @@ uint8_t volatile UART8RxBuff;
 //1 电流；2脉宽；3频率
 u16 parameter[6][5]; //5个通道，为了对齐选了6
 
+u16 threshold[6][6]; //5个通道，为了对齐选了6。6代表有三种参数
 
 int channelchange = 0;
 uint8_t tempRxBuffer;
 uint8_t upperRxBuffer[7];
 int cnt = 0;
-volatile int testmode_flag = 6;//通过修改此处可以修改启动的模式
+volatile int testmode_flag = 3;//通过修改此处可以修改启动的模式
 
 static void Error_Handler(void)
 {
@@ -695,6 +696,47 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 			sum = sum + 0xff + 0xff;
 			
 			if(sum==UART8RxBuff){
+				
+				if(upperRxBuffer[0]==8){
+					//设置电流低阈值模式，每个通道不一样
+					threshold[1][0] = upperRxBuffer[1];
+					threshold[2][0] = upperRxBuffer[2];
+					threshold[3][0] = upperRxBuffer[3];
+					threshold[4][0] = upperRxBuffer[4];
+					threshold[5][0] = upperRxBuffer[5];
+					return;
+				}
+				
+				if(upperRxBuffer[0]==9){
+					//设置电流高阈值模式，每个通道不一样
+					threshold[1][1] = upperRxBuffer[1];
+					threshold[2][1] = upperRxBuffer[2];
+					threshold[3][1] = upperRxBuffer[3];
+					threshold[4][1] = upperRxBuffer[4];
+					threshold[5][1] = upperRxBuffer[5];
+					return;
+				}
+				
+				if(upperRxBuffer[0]==10){
+					//设置脉宽低阈值模式，每个通道不一样
+					threshold[1][2] = upperRxBuffer[1];
+					threshold[2][2] = upperRxBuffer[2];
+					threshold[3][2] = upperRxBuffer[3];
+					threshold[4][2] = upperRxBuffer[4];
+					threshold[5][2] = upperRxBuffer[5];
+					return;
+				}
+								
+				if(upperRxBuffer[0]==11){
+					//设置脉宽高阈值模式，每个通道不一样
+					threshold[1][3] = upperRxBuffer[1];
+					threshold[2][3] = upperRxBuffer[2];
+					threshold[3][3] = upperRxBuffer[3];
+					threshold[4][3] = upperRxBuffer[4];
+					threshold[5][3] = upperRxBuffer[5];
+					return;
+				}
+				
 				testmode_flag = upperRxBuffer[0];
 				
 				//电流幅值，只有一个字节0-25.5mA

@@ -101,9 +101,7 @@
         <sRunDeb>0</sRunDeb>
         <sLrtime>0</sLrtime>
         <bEvRecOn>1</bEvRecOn>
-        <bSchkAxf>0</bSchkAxf>
-        <bTchkAxf>0</bTchkAxf>
-        <nTsel>6</nTsel>
+        <nTsel>5</nTsel>
         <sDll></sDll>
         <sDllPa></sDllPa>
         <sDlgDll></sDlgDll>
@@ -140,7 +138,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>ST-LINKIII-KEIL_SWO</Key>
-          <Name>-U066FFF323535474B43122213 -O2254 -SF1800 -C0 -A0 -I0 -HNlocalhost -HP7184 -P1 -N00("ARM CoreSight SW-DP") -D00(6BA02477) -L00(0) -TO18 -TC400000000 -TP21 -TDS80C7 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO15 -FD20000000 -FC1000 -FN3 -FF0STM32H7x_2048.FLM -FS08000000 -FL0200000 -FP0($$Device:STM32H743XIHx$CMSIS\Flash\STM32H7x_2048.FLM) -FF1STM32H7xx_MT25TL01G.FLM -FS190000000 -FL14000000 -FP1($$Device:STM32H743XIHx$CMSIS\Flash\STM32H7xx_MT25TL01G.FLM) -FF2STM32H7xx_MT25TL01G_DUAL.FLM -FS290000000 -FL28000000 -FP2($$Device:STM32H743XIHx$CMSIS\Flash\STM32H7xx_MT25TL01G_DUAL.FLM)</Name>
+          <Name>-U066FFF323535474B43122213 -O2254 -S1 -C0 -A0 -N00("ARM CoreSight SW-DP") -D00(6BA02477) -L00(0) -TO18 -TC400000000 -TP21 -TDS80C7 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO15 -FD20000000 -FC1000 -FN3 -FF0STM32H7x_2048.FLM -FS08000000 -FL0200000 -FP0($$Device:STM32H743XIHx$CMSIS\Flash\STM32H7x_2048.FLM) -FF1STM32H7xx_MT25TL01G.FLM -FS190000000 -FL14000000 -FP1($$Device:STM32H743XIHx$CMSIS\Flash\STM32H7xx_MT25TL01G.FLM) -FF2STM32H7xx_MT25TL01G_DUAL.FLM -FS290000000 -FL28000000 -FP2($$Device:STM32H743XIHx$CMSIS\Flash\STM32H7xx_MT25TL01G_DUAL.FLM)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -220,11 +218,6 @@
           <WinNumber>1</WinNumber>
           <ItemText>testmode_flag</ItemText>
         </Ww>
-        <Ww>
-          <count>14</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>testmode_flag</ItemText>
-        </Ww>
       </WatchWindow1>
       <Tracepoint>
         <THDelay>0</THDelay>
@@ -264,13 +257,8 @@
       <pszMrule></pszMrule>
       <pSingCmds></pSingCmds>
       <pMultCmds></pMultCmds>
-      <pMisraNamep></pMisraNamep>
-      <pszMrulep></pszMrulep>
-      <pSingCmdsp></pSingCmdsp>
-      <pMultCmdsp></pMultCmdsp>
       <DebugDescription>
         <Enable>1</Enable>
-        <EnableFlashSeq>0</EnableFlashSeq>
         <EnableLog>0</EnableLog>
         <Protocol>2</Protocol>
         <DbgClock>10000000</DbgClock>

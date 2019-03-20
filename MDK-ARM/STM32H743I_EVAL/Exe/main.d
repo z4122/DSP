@@ -6,16 +6,14 @@ stm32h743i_eval\exe\main.o: ../Core/Inc/stm32h7xx_hal_rcc.h
 stm32h743i_eval\exe\main.o: ../Core/Inc/stm32h7xx_hal_def.h
 stm32h743i_eval\exe\main.o: ../Core/Inc/stm32h7xx.h
 stm32h743i_eval\exe\main.o: ../Core/Inc/stm32h743xx.h
-stm32h743i_eval\exe\main.o: D:\Keil uVision\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\core_cm7.h
-stm32h743i_eval\exe\main.o: D:\Keil uVision\ARM\ARMCC\Bin\..\include\stdint.h
-stm32h743i_eval\exe\main.o: D:\Keil uVision\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_version.h
-stm32h743i_eval\exe\main.o: D:\Keil uVision\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_compiler.h
-stm32h743i_eval\exe\main.o: D:\Keil uVision\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_armcc.h
-stm32h743i_eval\exe\main.o: D:\Keil uVision\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\mpu_armv7.h
+stm32h743i_eval\exe\main.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\core_cm7.h
+stm32h743i_eval\exe\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+stm32h743i_eval\exe\main.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_compiler.h
+stm32h743i_eval\exe\main.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_armcc.h
 stm32h743i_eval\exe\main.o: ../Core/Inc/system_stm32h7xx.h
 stm32h743i_eval\exe\main.o: ../Core/Inc/stm32h7xx_hal.h
 stm32h743i_eval\exe\main.o: ../Core/Inc/Legacy/stm32_hal_legacy.h
-stm32h743i_eval\exe\main.o: D:\Keil uVision\ARM\ARMCC\Bin\..\include\stdio.h
+stm32h743i_eval\exe\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 stm32h743i_eval\exe\main.o: ../Core/Inc/stm32h7xx_hal_rcc_ex.h
 stm32h743i_eval\exe\main.o: ../Core/Inc/stm32h7xx_hal_gpio.h
 stm32h743i_eval\exe\main.o: ../Core/Inc/stm32h7xx_hal_gpio_ex.h
@@ -52,7 +50,7 @@ stm32h743i_eval\exe\main.o: ..\Core\Inc\STM32H743I_EVAL\stm32h743i_eval.h
 stm32h743i_eval\exe\main.o: ..\Core\User\Inc\visualscope.h
 stm32h743i_eval\exe\main.o: ..\Core\User\Inc\fes.h
 stm32h743i_eval\exe\main.o: ..\Core\User\Inc\usart.h
-stm32h743i_eval\exe\main.o: D:\Keil uVision\ARM\ARMCC\Bin\..\include\time.h
+stm32h743i_eval\exe\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\time.h
 stm32h743i_eval\exe\main.o: ..\Core\User\Inc\ad.h
 stm32h743i_eval\exe\main.o: ..\Core\User\Inc\adc.h
 stm32h743i_eval\exe\main.o: ..\Core\User\Inc\timer.h
@@ -60,4 +58,4 @@ stm32h743i_eval\exe\main.o: ..\Core\User\Inc\usart.h
 stm32h743i_eval\exe\main.o: ..\Core\Inc\STM32H743I_EVAL\stm32h743i_eval_sdram.h
 stm32h743i_eval\exe\main.o: ..\Core\Inc\inc\WM.h
 stm32h743i_eval\exe\main.o: ..\Core\Inc\inc\WM_GUI.h
-stm32h743i_eval\exe\main.o: D:\Keil uVision\ARM\ARMCC\Bin\..\include\math.h
+stm32h743i_eval\exe\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
