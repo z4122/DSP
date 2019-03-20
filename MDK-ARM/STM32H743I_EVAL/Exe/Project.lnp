@@ -99,6 +99,6 @@
 "stm32h743i_eval\exe\stm32h7xx_hal_wwdg.o"
 "stm32h743i_eval\exe\stm32h7xx_ll_fmc.o"
 --library_type=microlib --strict --scatter "STM32H743I_EVAL\Exe\Project.sct"
---summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "Project.map" -o STM32H743I_EVAL\Exe\Project.axf
