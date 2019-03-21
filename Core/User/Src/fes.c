@@ -5,7 +5,7 @@
 uint8_t stimulate_parameter[20]="";
 
 float value[17][2];
-
+int maxpressure = 15;//最大的压力值
 
 configtx txconfig = {
 					0x80,			//communication header
@@ -25,11 +25,13 @@ configtx txconfig = {
 			};
 
 
-void merge_stimulate_parameter(UART_HandleTypeDef *huart,int pressure)
+void merge_stimulate_parameter(UART_HandleTypeDef *huart,int pressure,int channel)
 {			
 	//限制最大值
 	if(pressure<0)
 		pressure = 0;
+	if(pressure>maxpressure)
+		pressure = maxpressure;
 	
 	stimulate_parameter[0]=txconfig.HEADER;	
 	stimulate_parameter[1]=txconfig.CONTROL;
@@ -53,28 +55,21 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,int pressure)
 	stimulate_parameter[19]=txconfig.ENDFLAG;
 	
 	//flag==1幅值模式，flag==2频率模式，flag==3脉宽模式,flag==7自由测试模式
-	if(testmode_flag==1){
-			stimulate_parameter[16] = pressure*3;
+	if(testmode_flag==1||testmode_flag==4){
+			stimulate_parameter[16] = (threshold[channel][1]-threshold[channel][0])*(float)pressure/maxpressure+threshold[channel][0];
 	}
-	else if(testmode_flag==2){
+	else if(testmode_flag==2||testmode_flag==5){
 			stimulate_parameter[7] = (25+pressure/2)>>8; //频率高位
 			stimulate_parameter[8] = 25+pressure/2; //频率低位
 	}		
-	else if(testmode_flag==3){
-			stimulate_parameter[5] = (100+pressure*10)>>8; //脉宽高位
-			stimulate_parameter[6] = 100+pressure*10; //脉宽低位
-	}
-	else if(testmode_flag==4){
-			stimulate_parameter[16] = pressure*3;
-	}
-	else if(testmode_flag==5){
-			stimulate_parameter[7] = (25+pressure/2)>>8; //频率高位
-			stimulate_parameter[8] = 25+pressure/2; //频率低位
-	}		
-	else if(testmode_flag==6){
-			stimulate_parameter[5] = (100+pressure*10)>>8; //脉宽高位
-			stimulate_parameter[6] = 100+pressure*10; //脉宽低位
-			//stimulate_parameter[16] = 10;
+	else if(testmode_flag==3||testmode_flag==6){
+			float temp = (threshold[channel][3]-threshold[channel][2])*(float)pressure/maxpressure+threshold[channel][2];
+			u16 val = (u16)temp;
+		  val*=10;
+			if(val<100)
+				val=100;
+			stimulate_parameter[5] = val>>8; //????
+			stimulate_parameter[6] = val; //????
 	}
 	else if(testmode_flag==7)
 	{
@@ -441,12 +436,12 @@ void stim_stop(UART_HandleTypeDef *huart)// BB 0x42 0x42
 	}
 }
 
-void stimulate(UART_HandleTypeDef *huart,float pressure)
+void stimulate(UART_HandleTypeDef *huart,float pressure,int channel)
 {
 	
 	stim_search(huart);// send 800103 back BC
 	
-	merge_stimulate_parameter(huart,(int)pressure);
+	merge_stimulate_parameter(huart,(int)pressure,channel);
 	
 	stim_start(huart);//800101,back AA
 	

@@ -370,7 +370,7 @@ void display()
 					GUI_DispFloat(2.136*exp(1.718*num/1000000)-2.985*exp(-5.363*num/1000000),4);
 					//GUI_DispFloat(1.979*exp(1.642*num/1000000),4);//small sensor
 
-					stimulate(&huart1,2.136*exp(1.718*num/1000000)-2.985*exp(-5.363*num/1000000));//ok ch1
+					stimulate(&huart1,2.136*exp(1.718*num/1000000)-2.985*exp(-5.363*num/1000000),1);//ok ch1
 					break;
 				case 1://3
 					GUI_DispStringAt("channel 2  ", 100, 50); 
@@ -378,7 +378,7 @@ void display()
 					GUI_DispStringAt("transfered data  ", 300, 50); 
 					//GUI_DispFloat(4.302*exp(1.132*num/1000000)-3.705*exp(-1.904*num/1000000),4);
 					GUI_DispFloat(4.692*(num/1000000)*(num/1000000)*(num/1000000)-5.236*(num/1000000)*(num/1000000)+11.22*(num/1000000)-0.4206,4);//ok ch2
-				  stimulate(&huart3,4.692*(num/1000000)*(num/1000000)*(num/1000000)-5.236*(num/1000000)*(num/1000000)+11.22*(num/1000000)-0.4206);
+				  stimulate(&huart3,4.692*(num/1000000)*(num/1000000)*(num/1000000)-5.236*(num/1000000)*(num/1000000)+11.22*(num/1000000)-0.4206,2);
 					break;
 				case 2://2
 					GUI_DispStringAt("channel 3  ", 100, 80); 
@@ -386,7 +386,7 @@ void display()
 					GUI_DispStringAt("transfered data  ", 300, 80); 
 					GUI_DispFloat(9.35*(num/1000000)+0.1055,4);
 					//GUI_DispFloat(-0.003267*exp(9.787*num/1000000)+1.84*exp(2.869*num/1000000),4);//small sensor
-					stimulate(&huart4,9.35*(num/1000000)+0.1055);//bad ch3
+					stimulate(&huart4,9.35*(num/1000000)+0.1055,3);//bad ch3
 					break;
 				case 3://15
 					GUI_DispStringAt("channel 4  ", 100, 110); 
@@ -394,7 +394,7 @@ void display()
 					GUI_DispStringAt("transfered data  ", 300, 110); 
 					//GUI_DispFloat(3.732*exp(1.905*num/1000000*4.6/5)-4.65*exp(-4.638*num/1000000*4.6/5),4);
 					GUI_DispFloat(2.385*exp(1.619*num/1000000),4);//small sensor
-					stimulate(&huart5,2.385*exp(1.619*num/1000000));
+					stimulate(&huart5,2.385*exp(1.619*num/1000000),4);
 					break;
 				case 4://1
 					GUI_DispStringAt("channel 5  ", 100, 140); 
@@ -402,7 +402,7 @@ void display()
 					GUI_DispStringAt("transfered data  ", 300, 140); 
 					//GUI_DispFloat(2.878*exp( 2.423*num/1000000*4.6/5-0.08)-3.286*exp(-7.177*num/1000000*4.6/5-0.08),4);
 					GUI_DispFloat(2.941*exp(1.577*num/1000000),4);//small sensor
-					stimulate(&huart7, 2.941*exp(1.577*num/1000000));//ok ch6
+					stimulate(&huart7, 2.941*exp(1.577*num/1000000),5);//ok ch6
 				
 					break;
 				
@@ -424,35 +424,35 @@ void display()
 					GUI_DispFloat(num/1000000,4);//调整显示的位数
 					GUI_DispStringAt("transfered data  ", 300, 20); 
 					GUI_DispFloat(1.957*exp(1.988*num/1000000*4.6/5-0.35)-1.76*exp(-3.789*num/1000000*4.6/5-0.35),4);
-					stimulate(&huart1, 1.957*exp(1.988*num/1000000*4.6/5-0.35)-1.76*exp(-3.789*num/1000000*4.6/5-0.35));
+					stimulate(&huart1, 1.957*exp(1.988*num/1000000*4.6/5-0.35)-1.76*exp(-3.789*num/1000000*4.6/5-0.35),1);
 					break;
 				case 6:
 					GUI_DispStringAt("channel 2  ", 100, 50); 
 					GUI_DispFloat(num/1000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 50); 
 					GUI_DispFloat(1.946e+04*exp(0.8933*num/1000000*4.6/5-0.25)-1.946e+04*exp(0.8929*num/1000000*4.6/5-0.25),4);
-					stimulate(&huart3,1.946e+04*exp(0.8933*num/1000000*4.6/5-0.25)-1.946e+04*exp(0.8929*num/1000000*4.6/5-0.25));
+					stimulate(&huart3,1.946e+04*exp(0.8933*num/1000000*4.6/5-0.25)-1.946e+04*exp(0.8929*num/1000000*4.6/5-0.25),2);
 					break;
 				case 7:
 					GUI_DispStringAt("channel 3  ", 100, 80); 
 					GUI_DispFloat(num*3.3/5000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 80); 
 					GUI_DispFloat(2.455*exp(1.891*num*3.3/5000000*5/4.6)-2.977*exp(-3.137*num*3.3/5000000*5/4.6),4);
-					stimulate(&huart4,2.455*exp(1.891*num*3.3/5000000*5/4.6)-2.977*exp(-3.137*num*3.3/5000000*5/4.6));
+					stimulate(&huart4,2.455*exp(1.891*num*3.3/5000000*5/4.6)-2.977*exp(-3.137*num*3.3/5000000*5/4.6),3);
 					break;
 				case 8:
 					GUI_DispStringAt("channel 4  ", 100, 110); 
 					GUI_DispFloat(num,4);
 					GUI_DispStringAt("transfered data  ", 300, 110); 
 					GUI_DispFloat(22.24*(num-0.43)-0.8579,4);
-					stimulate(&huart5,22.24*(num-0.43)-0.8579);
+					stimulate(&huart5,22.24*(num-0.43)-0.8579,4);
 					break;
 				case 9:
 					GUI_DispStringAt("channel 5  ", 100, 140); 
 					GUI_DispFloat(num,4);
 					GUI_DispStringAt("transfered data  ", 300, 140); 
 					GUI_DispFloat(23.38*(num-0.37)-0.5574,4);
-					stimulate(&huart7,22.24*(num-0.43)-0.8579);
+					stimulate(&huart7,22.24*(num-0.43)-0.8579,5);
 					break;
 				
 				
@@ -565,7 +565,10 @@ void MainLoop()
 	display();
 	if(last_flag!=testmode_flag)
 		GUI_Clear();
-		
+	
+	if(testmode_flag>=8){
+		testmode_flag = last_flag;//让新加入的阈值模式不影响以前模式的工作
+	}
 	switch(testmode_flag)
 	{
 		case 0:
@@ -583,6 +586,19 @@ void MainLoop()
 //				stim_stop(&huart5);
 //				stim_stop(&huart7);
 			}
+			break;
+			
+		case 1:
+			GUI_DispStringAt("left amplitude mode   ", 200, 270); 	
+			amputatedHand = left;
+			break;
+		case 2:
+			GUI_DispStringAt("left frequency mode", 200, 270); 
+			amputatedHand = left;
+			break;
+		case 3:
+			GUI_DispStringAt("left width mode", 200, 270); 
+			amputatedHand = left;
 			break;
 		case 4:
 			GUI_DispStringAt("right amplitude mode   ", 200, 270); 	
@@ -605,18 +621,7 @@ void MainLoop()
 			GUI_DispFloat(parameter[1][2],4);//调整显示的位数
 			GUI_DispStringAt("hz  ", 520, 270); 
 			break;
-		case 1:
-			GUI_DispStringAt("left amplitude mode   ", 200, 270); 	
-			amputatedHand = left;
-			break;
-		case 2:
-			GUI_DispStringAt("left frequency mode", 200, 270); 
-			amputatedHand = left;
-			break;
-		case 3:
-			GUI_DispStringAt("left width mode", 200, 270); 
-			amputatedHand = left;
-			break;
+		
 		default:
 			break;			
 	}

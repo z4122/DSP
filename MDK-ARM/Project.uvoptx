@@ -101,9 +101,7 @@
         <sRunDeb>0</sRunDeb>
         <sLrtime>0</sLrtime>
         <bEvRecOn>1</bEvRecOn>
-        <bSchkAxf>0</bSchkAxf>
-        <bTchkAxf>0</bTchkAxf>
-        <nTsel>6</nTsel>
+        <nTsel>5</nTsel>
         <sDll></sDll>
         <sDllPa></sDllPa>
         <sDlgDll></sDlgDll>
@@ -140,7 +138,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>ST-LINKIII-KEIL_SWO</Key>
-          <Name>-U066FFF323535474B43122213 -O2254 -SF1800 -C0 -A0 -I0 -HNlocalhost -HP7184 -P1 -N00("ARM CoreSight SW-DP") -D00(6BA02477) -L00(0) -TO18 -TC400000000 -TP21 -TDS80C7 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO15 -FD20000000 -FC1000 -FN3 -FF0STM32H7x_2048.FLM -FS08000000 -FL0200000 -FP0($$Device:STM32H743XIHx$CMSIS\Flash\STM32H7x_2048.FLM) -FF1STM32H7xx_MT25TL01G.FLM -FS190000000 -FL14000000 -FP1($$Device:STM32H743XIHx$CMSIS\Flash\STM32H7xx_MT25TL01G.FLM) -FF2STM32H7xx_MT25TL01G_DUAL.FLM -FS290000000 -FL28000000 -FP2($$Device:STM32H743XIHx$CMSIS\Flash\STM32H7xx_MT25TL01G_DUAL.FLM)</Name>
+          <Name>-U066FFF323535474B43122213 -O2254 -S1 -C0 -A0 -N00("ARM CoreSight SW-DP") -D00(6BA02477) -L00(0) -TO18 -TC400000000 -TP21 -TDS80C7 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO15 -FD20000000 -FC1000 -FN3 -FF0STM32H7x_2048.FLM -FS08000000 -FL0200000 -FP0($$Device:STM32H743XIHx$CMSIS\Flash\STM32H7x_2048.FLM) -FF1STM32H7xx_MT25TL01G.FLM -FS190000000 -FL14000000 -FP1($$Device:STM32H743XIHx$CMSIS\Flash\STM32H7xx_MT25TL01G.FLM) -FF2STM32H7xx_MT25TL01G_DUAL.FLM -FS290000000 -FL28000000 -FP2($$Device:STM32H743XIHx$CMSIS\Flash\STM32H7xx_MT25TL01G_DUAL.FLM)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -148,7 +146,40 @@
           <Name>UL2CM3(-S0 -C0 -P0 )  -FN3 -FC1000 -FD20000000 -FF0STM32H7x_2048 -FF1STM32H7xx_MT25TL01G -FF2STM32H7xx_MT25TL01G_DUAL -FL0200000 -FL14000000 -FL28000000 -FS08000000 -FS190000000 -FS290000000 -FP0($$Device:STM32H743XIHx$CMSIS\Flash\STM32H7x_2048.FLM) -FP1($$Device:STM32H743XIHx$CMSIS\Flash\STM32H7xx_MT25TL01G.FLM) -FP2($$Device:STM32H743XIHx$CMSIS\Flash\STM32H7xx_MT25TL01G_DUAL.FLM)</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint/>
+      <Breakpoint>
+        <Bp>
+          <Number>0</Number>
+          <Type>0</Type>
+          <LineNumber>67</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134295434</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>..\Core\User\Src\fes.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\Project\../Core/User/Src/fes.c\67</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>69</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>..\Core\User\Src\fes.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+      </Breakpoint>
       <WatchWindow1>
         <Ww>
           <count>0</count>
@@ -225,6 +256,16 @@
           <WinNumber>1</WinNumber>
           <ItemText>testmode_flag</ItemText>
         </Ww>
+        <Ww>
+          <count>15</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>threshold[1]</ItemText>
+        </Ww>
+        <Ww>
+          <count>16</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>val</ItemText>
+        </Ww>
       </WatchWindow1>
       <Tracepoint>
         <THDelay>0</THDelay>
@@ -264,13 +305,8 @@
       <pszMrule></pszMrule>
       <pSingCmds></pSingCmds>
       <pMultCmds></pMultCmds>
-      <pMisraNamep></pMisraNamep>
-      <pszMrulep></pszMrulep>
-      <pSingCmdsp></pSingCmdsp>
-      <pMultCmdsp></pMultCmdsp>
       <DebugDescription>
         <Enable>1</Enable>
-        <EnableFlashSeq>0</EnableFlashSeq>
         <EnableLog>0</EnableLog>
         <Protocol>2</Protocol>
         <DbgClock>10000000</DbgClock>
