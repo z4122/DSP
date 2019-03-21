@@ -68,8 +68,8 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,int pressure,int channe
 		  val*=10;
 			if(val<100)
 				val=100;
-			stimulate_parameter[5] = val>>8; //????
-			stimulate_parameter[6] = val; //????
+			stimulate_parameter[5] = val>>8; //Âö¿í¸ßÎ»
+			stimulate_parameter[6] = val; //Âö¿íµÍÎ»
 	}
 	else if(testmode_flag==7)
 	{

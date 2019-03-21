@@ -484,15 +484,16 @@ void GetAdData(void)
 				ulResult += 1;
 				ulResult = -ulResult;
 			}
-						
-			ldVolutage[i] = (long double)ulResult*0.59604644775390625;
-
 			
-			//ldVolutage[i] = ldVolutage[i]/1000;
-			data[i*2+2] = ((u16)(ldVolutage[i]/1000))>>8;
-			data[i*2+3] = ((u16)(ldVolutage[i]/1000))&0xFF;
-		
-			//HAL_Delay(10);	
+			long double temp = (long double)ulResult*0.59604644775390625;
+			if(temp>0&&temp/1000<5000){
+				
+				ldVolutage[i] = (long double)ulResult*0.59604644775390625;
+				//ldVolutage[i] = ldVolutage[i]/1000;
+				data[i*2+2] = ((u16)(ldVolutage[i]/1000))>>8;
+				data[i*2+3] = ((u16)(ldVolutage[i]/1000))&0xFF;
+			}
+			//HAL_Delay(1);	
 		}
 		if(cnt==10)
 			HAL_UART_Transmit(&huart8,data,15,0xfff);
@@ -514,15 +515,16 @@ void GetAdData(void)
 				ulResult += 1;
 				ulResult = -ulResult;
 			}		
-			
-			ldVolutage[i] = (long double)ulResult*0.59604644775390625;
 				
-			//ldVolutage[i] = ldVolutage[i]/1000;
-			data[i*2-8] = ((u16)(ldVolutage[i]/1000))>>8;
-			data[i*2-7] = ((u16)(ldVolutage[i]/1000))&0xFF;
-			
+			long double temp = (long double)ulResult*0.59604644775390625;
+			if(temp>0&&temp/1000<5000){
+				ldVolutage[i] = temp;
+				//ldVolutage[i] = ldVolutage[i]/1000;
+				data[i*2-8] = ((u16)(ldVolutage[i]/1000))>>8;
+				data[i*2-7] = ((u16)(ldVolutage[i]/1000))&0xFF;
+			}
 
-			//HAL_Delay(10);	
+			//HAL_Delay(1);	
 		}
 	
 			ADC_convertedvalue[0] = (float)(ADC_detectedvalue[0]&0xffff)*3.3/65536;
@@ -531,10 +533,10 @@ void GetAdData(void)
 			ldVolutage[8] = MeanFilter(ADC_convertedvalue[0],filter0);
 			ldVolutage[9] = MeanFilter(ADC_convertedvalue[1],filter1);
 		
-			data[8] = (u16)ADC_convertedvalue[0]>>8;
-			data[9] = (u16)ADC_convertedvalue[0]&0xFF;
-			data[10] =(u16)ADC_convertedvalue[1]>>8;
-			data[11] =(u16)ADC_convertedvalue[1]&0xFF;
+			data[8] = ((u16)(ldVolutage[8]*1000))>>8;
+			data[9] = ((u16)(ldVolutage[8]*1000))&0xFF;
+			data[10] =((u16)(ldVolutage[9]*1000))>>8;
+			data[11] =((u16)(ldVolutage[9]*1000))&0xFF;
 		
 			if(cnt==10){
 				HAL_UART_Transmit(&huart8,data,15,0xfff);
