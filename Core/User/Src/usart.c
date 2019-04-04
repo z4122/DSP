@@ -29,6 +29,7 @@ uint8_t volatile UART8RxBuff;
 //1 电流；2脉宽；3频率
 u16 parameter[6][5]; //5个通道，为了对齐选了6
 u16 threshold[6][6]; // 5个通道，为了对齐选了6
+u8  channelEnableflag[6]; //5个通道，为了对齐选了6
 
 int channelchange = 0;
 uint8_t tempRxBuffer;
@@ -696,45 +697,55 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 			
 			if(sum==UART8RxBuff){
 				testmode_flag = upperRxBuffer[0];
-				if(upperRxBuffer[0]==8){
+				switch (upperRxBuffer[0]){
+					case 8:{
 					//电流最低阈值
-					threshold[1][0] = upperRxBuffer[1];
-					threshold[2][0] = upperRxBuffer[2];
-					threshold[3][0] = upperRxBuffer[3];
-					threshold[4][0] = upperRxBuffer[4];
-					threshold[5][0] = upperRxBuffer[5];
-					return;
-				}
-
-				if(upperRxBuffer[0]==9){
+						threshold[1][0] = upperRxBuffer[1];
+						threshold[2][0] = upperRxBuffer[2];
+						threshold[3][0] = upperRxBuffer[3];
+						threshold[4][0] = upperRxBuffer[4];
+						threshold[5][0] = upperRxBuffer[5];
+						return;
+					}
+					case 9:{
 					//电流最高阈值
-					threshold[1][1] = upperRxBuffer[1];
-					threshold[2][1] = upperRxBuffer[2];
-					threshold[3][1] = upperRxBuffer[3];
-					threshold[4][1] = upperRxBuffer[4];
-					threshold[5][1] = upperRxBuffer[5];
-					return;
-				}
-
-				if(upperRxBuffer[0]==10){
+						threshold[1][1] = upperRxBuffer[1];
+						threshold[2][1] = upperRxBuffer[2];
+						threshold[3][1] = upperRxBuffer[3];
+						threshold[4][1] = upperRxBuffer[4];
+						threshold[5][1] = upperRxBuffer[5];
+						return;
+					}
+					case 10:{
 					//脉宽最低阈值
-					threshold[1][2] = upperRxBuffer[1];
-					threshold[2][2] = upperRxBuffer[2];
-					threshold[3][2] = upperRxBuffer[3];
-					threshold[4][2] = upperRxBuffer[4];
-					threshold[5][2] = upperRxBuffer[5];
-					return;
-				}
-
-				if(upperRxBuffer[0]==11){
+						threshold[1][2] = upperRxBuffer[1];
+						threshold[2][2] = upperRxBuffer[2];
+						threshold[3][2] = upperRxBuffer[3];
+						threshold[4][2] = upperRxBuffer[4];
+						threshold[5][2] = upperRxBuffer[5];
+						return;;
+					}
+				  case 11:{
 					//脉宽最高阈值
-					threshold[1][3] = upperRxBuffer[1];
-					threshold[2][3] = upperRxBuffer[2];
-					threshold[3][3] = upperRxBuffer[3];
-					threshold[4][3] = upperRxBuffer[4];
-					threshold[5][3] = upperRxBuffer[5];
-					return;
-				}
+						threshold[1][3] = upperRxBuffer[1];
+						threshold[2][3] = upperRxBuffer[2];
+						threshold[3][3] = upperRxBuffer[3];
+						threshold[4][3] = upperRxBuffer[4];
+						threshold[5][3] = upperRxBuffer[5];
+						return;
+					}
+					case 12:{
+					//五个通道的使能
+						channelEnableflag[1] = upperRxBuffer[1];
+						channelEnableflag[2] = upperRxBuffer[2];
+						channelEnableflag[3] = upperRxBuffer[3];
+						channelEnableflag[4] = upperRxBuffer[4];
+						channelEnableflag[5] = upperRxBuffer[5];
+						return;
+					}
+					default:
+						break;
+				}	
 				//电流幅值，只有一个字节0-25.5mA
 				parameter[1][0] = upperRxBuffer[1];
 				parameter[2][0] = upperRxBuffer[1];
