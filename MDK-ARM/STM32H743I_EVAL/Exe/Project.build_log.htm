@@ -22,11 +22,57 @@ Dialog DLL:      TCM.DLL V1.36.1.0
  
 <h2>Project:</h2>
 E:\github\鹏宇\DSP\MDK-ARM\Project.uvprojx
-Project File Date:  03/21/2019
+Project File Date:  04/07/2019
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'F:\keil\ARM\ARMCC\Bin'
 Build target 'STM32H743I_EVAL'
+compiling stm32h7xx_it.c...
+compiling LCDConf_stm32h743i_eval.c...
+compiling main.c...
+../Core/Src/main.c(364): warning:  #546-D: transfer of control bypasses initialization of:
+            variable "curve1"  (declared at line 375)
+            variable "curve2"  (declared at line 376)
+            variable "curve3"  (declared at line 377)
+            variable "curve4"  (declared at line 394)
+            variable "curve5"  (declared at line 395)
+            variable "curve6"  (declared at line 396)
+            variable "curve7"  (declared at line 413)
+            variable "curve8"  (declared at line 414)
+            variable "curve9"  (declared at line 415)
+            variable "curve10"  (declared at line 449)
+            variable "curve11"  (declared at line 450)
+            variable "curve12"  (declared at line 451)
+  			switch(i)
+  			^
+../Core/Src/main.c(470): warning:  #546-D: transfer of control bypasses initialization of:
+            variable "curve01"  (declared at line 477)
+            variable "curve02"  (declared at line 478)
+            variable "curve03"  (declared at line 479)
+            variable "curve04"  (declared at line 490)
+            variable "curve05"  (declared at line 491)
+            variable "curve06"  (declared at line 492)
+            variable "curve07"  (declared at line 502)
+            variable "curve08"  (declared at line 503)
+            variable "curve09"  (declared at line 504)
+  			switch(i)
+  			^
+../Core/Src/main.c(357): warning:  #177-D: variable "curve01"  was declared but never referenced
+  	long double curve01=0;
+../Core/Src/main.c(358): warning:  #177-D: variable "curve02"  was declared but never referenced
+  	long double curve02=0;
+../Core/Src/main.c(604): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			ADC_convertedvalue[0] = (float)(ADC_detectedvalue[0]&0xffff)*3.3/65536;
+../Core/Src/main.c(605): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			ADC_convertedvalue[1] = (float)(ADC_detectedvalue[1]&0xffff)*3.3/65536;
+../Core/Src/main.c(617): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+  				HAL_UART_Receive_IT(&huart8,&UART8RxBuff,1);
+../Core/Src/main.c(628): warning:  #177-D: variable "clear_flag"  was declared but never referenced
+  	static int clear_flag = 0;
+../Core/Src/main.c(253): warning:  #177-D: function "Error_Handler"  was declared but never referenced
+  static void Error_Handler(void)
+../Core/Src/main.c: 9 warnings, 0 errors
+compiling bsp.c...
 compiling fes.c...
 ..\Core\User\Src\fes.c(81): warning:  #223-D: function "ChangePeriod" declared implicitly
   					ChangePeriod(last_frequency-10000);//改变发送给DSSU的信号周期，单位ms
@@ -85,10 +131,27 @@ compiling fes.c...
 ..\Core\User\Src\fes.c(375): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
   			HAL_UART_Receive_IT(&huart1,&UART1RxBuff,1);
 ..\Core\User\Src\fes.c: 28 warnings, 0 errors
+compiling usart.c...
+..\Core\User\Src\usart.c(77): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+  	if(HAL_UART_Receive_IT(&huart1,&UART1RxBuff, 1) != HAL_OK)
+..\Core\User\Src\usart.c(118): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+  	if(HAL_UART_Receive_IT(&huart3, &UART3RxBuff, 1) != HAL_OK)
+..\Core\User\Src\usart.c(142): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+  	if(HAL_UART_Receive_IT(&huart4, &UART4RxBuff, 1) != HAL_OK)
+..\Core\User\Src\usart.c(165): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+  	if(HAL_UART_Receive_IT(&huart5, &UART5RxBuff, 1) != HAL_OK)
+..\Core\User\Src\usart.c(206): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+  	if(HAL_UART_Receive_IT(&huart7,&UART7RxBuff, 1) != HAL_OK)
+..\Core\User\Src\usart.c(228): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+  	if(HAL_UART_Receive_IT(&huart8, &UART8RxBuff, 1) != HAL_OK)
+..\Core\User\Src\usart.c(670): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+  		HAL_UART_Receive_IT(&huart8,&UART8RxBuff,1);
+..\Core\User\Src\usart.c: 7 warnings, 0 errors
+compiling timer.c...
 linking...
 Program Size: Code=78640 RO-data=18964 RW-data=456 ZI-data=314936  
 FromELF: creating hex file...
-"STM32H743I_EVAL\Exe\Project.axf" - 0 Error(s), 28 Warning(s).
+"STM32H743I_EVAL\Exe\Project.axf" - 0 Error(s), 44 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -111,7 +174,7 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.1.2
-Build Time Elapsed:  00:00:12
+Build Time Elapsed:  00:01:25
 </pre>
 </body>
 </html>
