@@ -5,7 +5,7 @@
 uint8_t stimulate_parameter[20]="";
 
 float value[17][2];
-int maxpressure = 15;//最大的压力值
+int maxpressure = 10;//最大的压力值
 
 configtx txconfig = {
 					0x80,			//communication header
@@ -20,7 +20,7 @@ configtx txconfig = {
 					0x0001,
 					0x00,			//increment numerator is 0
 					0x0001,			//increment denominator is 1
-					0x0A,			//default stimulate amplitude is 1mA 0X0A
+					0x014,			//default stimulate amplitude is 1mA 0X0A
 					0xFF,			//end flag,should be "FF FF FF"
 			};
 

@@ -27,22 +27,68 @@ Project File Date:  03/21/2019
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'F:\keil\ARM\ARMCC\Bin'
 Build target 'STM32H743I_EVAL'
-compiling main.c...
-../Core/Src/main.c(534): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  			ADC_convertedvalue[0] = (float)(ADC_detectedvalue[0]&0xffff)*3.3/65536;
-../Core/Src/main.c(535): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  			ADC_convertedvalue[1] = (float)(ADC_detectedvalue[1]&0xffff)*3.3/65536;
-../Core/Src/main.c(547): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
-  				HAL_UART_Receive_IT(&huart8,&UART8RxBuff,1);
-../Core/Src/main.c(558): warning:  #177-D: variable "clear_flag"  was declared but never referenced
-  	static int clear_flag = 0;
-../Core/Src/main.c(253): warning:  #177-D: function "Error_Handler"  was declared but never referenced
-  static void Error_Handler(void)
-../Core/Src/main.c: 5 warnings, 0 errors
+compiling fes.c...
+..\Core\User\Src\fes.c(81): warning:  #223-D: function "ChangePeriod" declared implicitly
+  					ChangePeriod(last_frequency-10000);//改变发送给DSSU的信号周期，单位ms
+..\Core\User\Src\fes.c(88): warning:  #223-D: function "ChangePeriod" declared implicitly
+  					ChangePeriod(50);//单位ms，周期20ms
+..\Core\User\Src\fes.c(105): warning:  #223-D: function "ChangePeriod" declared implicitly
+  					ChangePeriod(last_frequency-10000);//改变发送给DSSU的信号周期，单位ms
+..\Core\User\Src\fes.c(112): warning:  #223-D: function "ChangePeriod" declared implicitly
+  					ChangePeriod(50);//单位ms，周期20ms
+..\Core\User\Src\fes.c(129): warning:  #223-D: function "ChangePeriod" declared implicitly
+  					ChangePeriod(last_frequency-10000);//改变发送给DSSU的信号周期，单位ms
+..\Core\User\Src\fes.c(136): warning:  #223-D: function "ChangePeriod" declared implicitly
+  					ChangePeriod(50);//单位ms，周期20ms
+..\Core\User\Src\fes.c(153): warning:  #223-D: function "ChangePeriod" declared implicitly
+  					ChangePeriod(last_frequency-10000);//改变发送给DSSU的信号周期，单位ms
+..\Core\User\Src\fes.c(160): warning:  #223-D: function "ChangePeriod" declared implicitly
+  					ChangePeriod(50);//单位ms，周期20ms
+..\Core\User\Src\fes.c(177): warning:  #223-D: function "ChangePeriod" declared implicitly
+  					ChangePeriod(last_frequency-10000);//改变发送给DSSU的信号周期，单位ms
+..\Core\User\Src\fes.c(184): warning:  #223-D: function "ChangePeriod" declared implicitly
+  					ChangePeriod(50);//单位ms，周期20ms
+..\Core\User\Src\fes.c(216): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+  			HAL_UART_Receive_IT(huart,&UART1RxBuff,1);
+..\Core\User\Src\fes.c(227): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+  			HAL_UART_Receive_IT(huart,&UART3RxBuff,1);
+..\Core\User\Src\fes.c(238): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+  			HAL_UART_Receive_IT(huart,&UART4RxBuff,1);
+..\Core\User\Src\fes.c(249): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+  			HAL_UART_Receive_IT(huart,&UART5RxBuff,1);
+..\Core\User\Src\fes.c(261): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+  			HAL_UART_Receive_IT(huart,&UART7RxBuff,1);
+..\Core\User\Src\fes.c(272): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+  			HAL_UART_Receive_IT(huart,&UART8RxBuff,1);
+..\Core\User\Src\fes.c(292): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+  			HAL_UART_Receive_IT(huart,&UART1RxBuff,1);
+..\Core\User\Src\fes.c(303): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+  			HAL_UART_Receive_IT(huart,&UART3RxBuff,1);
+..\Core\User\Src\fes.c(314): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+  			HAL_UART_Receive_IT(huart,&UART4RxBuff,1);
+..\Core\User\Src\fes.c(325): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+  			HAL_UART_Receive_IT(huart,&UART5RxBuff,1);
+..\Core\User\Src\fes.c(336): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+  			HAL_UART_Receive_IT(huart,&UART7RxBuff,1);
+..\Core\User\Src\fes.c(347): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+  			HAL_UART_Receive_IT(huart,&UART8RxBuff,1);
+..\Core\User\Src\fes.c(362): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+  	HAL_UART_Receive_IT(&huart1,&UART1RxBuff,1);
+..\Core\User\Src\fes.c(363): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+  	HAL_UART_Receive_IT(&huart3,&UART3RxBuff,1);
+..\Core\User\Src\fes.c(364): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+  	HAL_UART_Receive_IT(&huart4,&UART4RxBuff,1);
+..\Core\User\Src\fes.c(365): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+  	HAL_UART_Receive_IT(&huart5,&UART5RxBuff,1);
+..\Core\User\Src\fes.c(366): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+  	HAL_UART_Receive_IT(&huart7,&UART7RxBuff,1);
+..\Core\User\Src\fes.c(375): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+  			HAL_UART_Receive_IT(&huart1,&UART1RxBuff,1);
+..\Core\User\Src\fes.c: 28 warnings, 0 errors
 linking...
-Program Size: Code=78880 RO-data=18964 RW-data=456 ZI-data=314936  
+Program Size: Code=78640 RO-data=18964 RW-data=456 ZI-data=314936  
 FromELF: creating hex file...
-"STM32H743I_EVAL\Exe\Project.axf" - 0 Error(s), 5 Warning(s).
+"STM32H743I_EVAL\Exe\Project.axf" - 0 Error(s), 28 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -65,7 +111,7 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.1.2
-Build Time Elapsed:  00:00:14
+Build Time Elapsed:  00:00:12
 </pre>
 </body>
 </html>

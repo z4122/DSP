@@ -354,6 +354,8 @@ void assert_failed(uint8_t* file, uint32_t line)
 void display()
 {
 	long double num = 0;
+	long double curve01=0;
+	long double curve02=0;
 	if(amputatedHand==right)
 	{
 		for(int i = 0;i<5;i++)
@@ -363,46 +365,96 @@ void display()
 			{
 				//右手为截肢端
 				case 0://16
-					//GUI_Clear();	.
+					//GUI_Clear();
 					GUI_DispStringAt("channel 1  ", 100, 20); 
 					GUI_DispFloat(num/1000000,4);//调整显示的位数
 					GUI_DispStringAt("transfered data  ", 300, 20); 
-					//GUI_DispFloat(2.136*exp(1.718*num/1000000)-2.985*exp(-5.363*num/1000000),4);
-				  GUI_DispFloat(1.793*exp(2.264*num/1000000*4.6/5)-1.72*exp(-4.736*num/1000000*4.6/5),4);
-					stimulate(&huart1,1.793*exp(2.264*num/1000000*4.6/5)-1.72*exp(-4.736*num/1000000*4.6/5),1);//ok ch1
+				  //GUI_DispFloat(1.793*exp(2.264*num/1000000*4.6/5)-1.72*exp(-4.736*num/1000000*4.6/5),4);
+					//stimulate(&huart1,1.793*exp(2.264*num/1000000*4.6/5)-1.72*exp(-4.736*num/1000000*4.6/5),1);//ok ch1
+				
+				  float curve1=1.657*exp(2.113*(num/1000000-0.07));
+				  float curve2=-1.056*exp(-0.5708*(num/1000000-0.07));
+				  float curve3=curve1+curve2;
+				  GUI_DispFloat(curve3,4);//sensor20
+					stimulate(&huart1,curve3,1);
+				
+					/*float curve1=1.476*exp(1.864*num/1000000-0.07456);
+				  float curve2=-2.169*exp(-13.69*num/1000000-0.5476);
+					float temp0 = curve1+curve2;				
+				  GUI_DispFloat(temp0,4);//sensor26
+					stimulate(&huart1,temp0,1);//ok ch1	*/			
 					break;
 				case 1://3
 					GUI_DispStringAt("channel 2  ", 100, 50); 
 					GUI_DispFloat(num/1000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 50); 
-					GUI_DispFloat(3.616*exp(1.62*num/1000000*4.6/5)-3.588*exp(-2.139*num/1000000*4.6/5),4);
-					//GUI_DispFloat(4.692*(num/1000000)*(num/1000000)*(num/1000000)-5.236*(num/1000000)*(num/1000000)+11.22*(num/1000000)-0.4206,4);//ok ch2
-				  stimulate(&huart3,3.616*exp(1.62*num/1000000*4.6/5)-3.588*exp(-2.139*num/1000000*4.6/5),2);
+					//GUI_DispFloat(3.616*exp(1.62*num/1000000*4.6/5)-3.588*exp(-2.139*num/1000000*4.6/5),4);
+				  //stimulate(&huart3,3.616*exp(1.62*num/1000000*4.6/5)-3.588*exp(-2.139*num/1000000*4.6/5),2);
+
+				  float curve4=1.69*exp(1.789*(num/1000000));
+				  float curve5=-1.168*exp(-1.216*(num/1000000));
+				  float curve6=curve4+curve5;
+				  GUI_DispFloat(curve6,4);//sensor21
+					stimulate(&huart3,curve6,2);	
+				
+					/*curve01=2.282*exp(1.986*num/1000000-0.0993);
+				  curve02=-3.907*exp(-5.262*num/1000000+0.231);
+					float temp = curve01+curve02;
+					GUI_DispFloat(temp,4);//SENSOR27
+				  stimulate(&huart3,temp,2);*/				
 					break;
 				case 2://2
 					GUI_DispStringAt("channel 3  ", 100, 80); 
 					GUI_DispFloat(num/1000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 80); 
-					GUI_DispFloat(9.35*(num/1000000)+0.1055,4);
-					//GUI_DispFloat( 4.461*exp(1.572*num/1000000*4.6/5+0.15)-5.077*exp(-2.702*num/1000000*4.6/5+0.15),4);
-					stimulate(&huart4,9.35*(num/1000000)+0.1055,3);//bad ch3
+					//GUI_DispFloat(4.461*exp(1.572*num/1000000*4.6/5+0.15)-5.077*exp(-2.702*num/1000000*4.6/5+0.15),4);
+					//stimulate(&huart4,4.461*exp(1.572*num/1000000*4.6/5+0.15)-5.077*exp(-2.702*num/1000000*4.6/5+0.15),3);//bad ch3
+
+				  float curve7=2.25*exp(1.431*num/1000000+0.25);
+				  float curve8=-2.087*exp(-2.515*num/1000000+0.75);
+				  float curve9=curve7+curve8;				
+				  GUI_DispFloat(curve9,4);//sensor22
+					stimulate(&huart4,curve9,3);	
+				
+          /*float temp1=-0.026*exp(7.94*num/1000000-0.1588);
+				  float temp2=0.8*exp(4.538*num/1000000-0.09076);
+				  float temp=temp1+temp2;
+					GUI_DispFloat(temp,4);//SENSOR30
+					stimulate(&huart4,-0.026*exp(7.94*num/1000000-0.1588)+0.8*exp(4.538*num/1000000-0.09076),3);//	*/			
 					break;
 				case 3://15
 					GUI_DispStringAt("channel 4  ", 100, 110); 
 					GUI_DispFloat(num/1000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 110); 
-					GUI_DispFloat(3.732*exp(1.905*num/1000000*4.6/5)-4.65*exp(-4.638*num/1000000*4.6/5),4);
-					//GUI_DispFloat(2.385*exp(1.619*num/1000000),4);//small sensor
-					stimulate(&huart5,3.732*exp(1.905*num/1000000*4.6/5)-4.65*exp(-4.638*num/1000000*4.6/5),4);
+					//GUI_DispFloat(3.732*exp(1.905*num/1000000*4.6/5)-4.65*exp(-4.638*num/1000000*4.6/5),4);
+					//stimulate(&huart5,3.732*exp(1.905*num/1000000*4.6/5)-4.65*exp(-4.638*num/1000000*4.6/5),4);
+					
+
+					GUI_DispFloat(1.124*exp(2.141*num/1000000-0.2),4);//sensor23
+					stimulate(&huart5,1.124*exp(2.141*num/1000000-0.2),4);	
+				
+          /*float temp3 =3.438e7-3.438e7*cos(num/1000000*0.0008464-0.0000931);
+				  float temp4 =1165*sin(num/1000000*0.0008464-0.0000931);
+				  float temp5=temp3+temp4;
+				  GUI_DispFloat(temp5,4);//SENSOR33
+					stimulate(&huart5,3.438e7-3.438e7*cos(num/1000000*0.0008464-0.0000931)+1165*sin(num/1000000*0.0008464-0.0000931),4);		*/		
 					break;
 				case 4://1
 					GUI_DispStringAt("channel 5  ", 100, 140); 
 					GUI_DispFloat(num/1000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 140); 
-					GUI_DispFloat(2.878*exp( 2.423*num/1000000*4.6/5-0.08)-3.286*exp(-7.177*num/1000000*4.6/5-0.08),4);
-					//GUI_DispFloat(2.941*exp(1.577*num/1000000),4);//small sensor
-					stimulate(&huart7, 2.878*exp( 2.423*num/1000000*4.6/5-0.08)-3.286*exp(-7.177*num/1000000*4.6/5-0.08),5);//ok ch6
+					//GUI_DispFloat(2.878*exp( 2.423*num/1000000*4.6/5-0.08)-3.286*exp(-7.177*num/1000000*4.6/5-0.08),4);
+					//stimulate(&huart7, 2.878*exp( 2.423*num/1000000*4.6/5-0.08)-3.286*exp(-7.177*num/1000000*4.6/5-0.08),5);//ok ch6
 				
+				  float curve10=1.707*exp(2.293*(num/1000000-0.04));
+				  float curve11=-1.727*exp(-8.538*(num/1000000-0.04));
+				  float curve12=curve10+curve11;				
+				  GUI_DispFloat(curve12,4);//sensor24
+					stimulate(&huart7,curve12,5);
+				
+          /*float temp6 =1.118*exp((num/1000000+0.035)*3.025);
+					GUI_DispFloat(temp6,4);//SENSOR36
+					stimulate(&huart7, 1.118*exp((num/1000000+0.035)*3.025),5);		*/		
 					break;
 				
 				default:
@@ -421,42 +473,59 @@ void display()
 				case 5:
 					GUI_DispStringAt("channel 1  ", 100, 20); 
 					GUI_DispFloat(num/1000000,4);//调整显示的位数
-					GUI_DispStringAt("transfered data  ", 300, 20); 
-				  //GUI_DispFloat(1.957*exp(1.988*(num/1000000*4.6/5-0.18))-1.76*exp(-3.789*(num/1000000*4.6/5-0.18)),4);
-					GUI_DispFloat(1.957*exp(1.988*num/1000000*4.6/5-0.35)-1.76*exp(-3.789*num/1000000*4.6/5-0.35),4);
-					stimulate(&huart1,1.957*exp(1.988*num/1000000*4.6/5-0.35)-1.76*exp(-3.789*num/1000000*4.6/5-0.35),1);
+					GUI_DispStringAt("transfered data  ", 300, 20);
+				  float curve01=1.957*exp(1.988*num/1000000*4.6/5-0.05);
+				  float curve02=-1.76*exp(-3.789*num/1000000*4.6/5-0.05);
+				  float curve03=curve01+curve02;
+					GUI_DispFloat(curve03,4);
+					stimulate(&huart1,curve03,1);
+
+				  //GUI_DispFloat(1.476* exp(1.864*num/1000000)-2.169*exp(-13.69*num/1000000),4);//sensor26
+					//stimulate(&huart1,1.476* exp(1.864*num/1000000)-2.169*exp(-13.69*num/1000000),1);//ok ch1
 					break;
 				case 6:
 					GUI_DispStringAt("channel 2  ", 100, 50); 
 					GUI_DispFloat(num/1000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 50);
-				  //GUI_DispFloat(1.946e+04*exp(0.8933*(num/1000000*4.6/5-0.14))-1.946e+04*exp(0.8929*(num/1000000*4.6/5-0.14)),4);
-					GUI_DispFloat(1.946e+04*exp(0.8933*num/1000000*4.6/5-0.125)-1.946e+04*exp(0.8929*num/1000000*4.6/5-0.125),4);
-					stimulate(&huart3,1.946e+04*exp(0.8933*num/1000000*4.6/5-0.125)-1.946e+04*exp(0.8929*num/1000000*4.6/5-0.125),2);
+			    float curve04=1.946e+04*exp(0.8933*num/1000000*4.6/5-0.125);
+				  float curve05=-1.946e+04*exp(0.8929*num/1000000*4.6/5-0.125);
+				  float curve06=curve04+curve05;
+					GUI_DispFloat(curve06,4);
+					stimulate(&huart3,curve06,2);
+					//GUI_DispFloat(2.282*exp(1.986*num/1000000+0.05958)-3.907*exp(-5.262*num/1000000-0.15786),4);//SENSOR27
+				 // stimulate(&huart3,2.282*exp(1.986*num/1000000)-3.907*exp(-5.262*num/1000000),2);
 					break;
 				case 7:
 					GUI_DispStringAt("channel 3  ", 100, 80); 
-					GUI_DispFloat(num*3.3/5000000,4);
-					GUI_DispStringAt("transfered data  ", 300, 80); 
-					GUI_DispFloat(2.455*exp(1.891*num*3.3/5000000*5/4.6)-2.977*exp(-3.137*num*3.3/5000000*5/4.6),4);
-				  //GUI_DispFloat(2.455*exp(1.891*num/1000000*5/4.6)-2.977*exp(-3.137*num/1000000*5/4.6),4);
-					stimulate(&huart4,2.455*exp(1.891*num*3.3/5000000*5/4.6)-2.977*exp(-3.137*num*3.3/5000000*5/4.6),3);
+					GUI_DispFloat(num/1000000,4);
+					GUI_DispStringAt("transfered data  ", 300, 80);
+          float curve07=2.455*exp(1.891*num/1000000*5/4.6-0.3);
+          float curve08=-2.977*exp(-3.137*num/1000000*5/4.6-0.3);
+				  float curve09=curve07+curve08;
+					GUI_DispFloat(curve09,4);
+					stimulate(&huart4,curve09,3);
+					//GUI_DispFloat(-0.026*exp(7.94*num/1000000-0.794)+0.8*exp(4.538*num/1000000-0.4538),4);//SENSOR30
+					//stimulate(&huart4,-0.026*exp(7.94*num/1000000-0.794)+0.8*exp(4.538*num/1000000-0.4538),3);//
 					break;
 				case 8:
 					GUI_DispStringAt("channel 4  ", 100, 110); 
 					GUI_DispFloat(num,4);
 					GUI_DispStringAt("transfered data  ", 300, 110); 
-					//GUI_DispFloat(22.24*(num-0.43)-0.8579,4);
-				  GUI_DispFloat(16.83*(num-0.25)-1.219,4);
-					stimulate(&huart5,16.83*(num-0.25)-1.219,4);
+				  GUI_DispFloat(17*(num-0.15),4);
+					stimulate(&huart5,17*(num-0.15),4);
+				  //GUI_DispFloat(3.438e7-3.438e7*cos(num/1000000*0.0008464-0.0004232)+1165*sin(num/1000000*0.0008464-0.0004232),4);//SENSOR33
+					//stimulate(&huart5,3.438e7-3.438e7*cos(num/1000000*0.0008464-0.0004232)+1165*sin(num/1000000*0.0008464-0.0004232),4);
 					break;
 				case 9:
 					GUI_DispStringAt("channel 5  ", 100, 140); 
 					GUI_DispFloat(num,4);
 					GUI_DispStringAt("transfered data  ", 300, 140); 
 					//GUI_DispFloat(22.24*(num-0.43)-0.8579,4);
-				  GUI_DispFloat(23.38*(num-0.37)-0.5574,4);
-					stimulate(&huart7,23.38*(num-0.37)-0.5574,5);
+				  GUI_DispFloat(17*(num-0.3),4);
+					stimulate(&huart7,17*(num-0.3),5);
+
+					//GUI_DispFloat(1.118*exp((num/1000000+0.035)*3.025),4);//SENSOR36
+					//stimulate(&huart7, 1.118*exp((num/1000000+0.035)*3.025),5);				
 					break;
 				
 				
@@ -490,8 +559,8 @@ void GetAdData(void)
 			}
 			
 			long double temp = (long double)ulResult*0.59604644775390625;
+			
 			if(temp>0&&temp/1000<5000){
-				
 				ldVolutage[i] = (long double)ulResult*0.59604644775390625;
 				//ldVolutage[i] = ldVolutage[i]/1000;
 				data[i*2+2] = ((u16)(ldVolutage[i]/1000))>>8;
@@ -521,6 +590,7 @@ void GetAdData(void)
 			}		
 				
 			long double temp = (long double)ulResult*0.59604644775390625;
+			
 			if(temp>0&&temp/1000<5000){
 				ldVolutage[i] = temp;
 				//ldVolutage[i] = ldVolutage[i]/1000;
