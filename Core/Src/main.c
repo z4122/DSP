@@ -367,46 +367,55 @@ void display()
 					GUI_DispStringAt("channel 1  ", 100, 20); 
 					GUI_DispFloat(num/1000000,4);//调整显示的位数
 					GUI_DispStringAt("transfered data  ", 300, 20); 
-					GUI_DispFloat(2.136*exp(1.718*num/1000000)-2.985*exp(-5.363*num/1000000),4);
-					//GUI_DispFloat(1.979*exp(1.642*num/1000000),4);//small sensor
+					float curve1=1.657*exp(2.113*(num/1000000-0.07));
+				  float curve2=-1.056*exp(-0.5708*(num/1000000-0.07));
+				  float curve3=curve1+curve2;
+				  GUI_DispFloat(curve3,4);//sensor20
 					if(channelEnableflag[1])
-						stimulate(&huart1,2.136*exp(1.718*num/1000000)-2.985*exp(-5.363*num/1000000),1);//ok ch1
+						stimulate(&huart1,curve3,1);//ok ch1
 					break;
 				case 1://3
 					GUI_DispStringAt("channel 2  ", 100, 50); 
 					GUI_DispFloat(num/1000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 50); 
-					//GUI_DispFloat(4.302*exp(1.132*num/1000000)-3.705*exp(-1.904*num/1000000),4);
-					GUI_DispFloat(4.692*(num/1000000)*(num/1000000)*(num/1000000)-5.236*(num/1000000)*(num/1000000)+11.22*(num/1000000)-0.4206,4);//ok ch2
+					float curve4=1.69*exp(1.789*(num/1000000));
+				  float curve5=-1.168*exp(-1.216*(num/1000000));
+				  float curve6=curve4+curve5;
+				  GUI_DispFloat(curve6,4);//sensor21
 					if(channelEnableflag[2])
-						stimulate(&huart3,4.692*(num/1000000)*(num/1000000)*(num/1000000)-5.236*(num/1000000)*(num/1000000)+11.22*(num/1000000)-0.4206,2);
+						stimulate(&huart3, curve6,2);
 					break;
 				case 2://2
 					GUI_DispStringAt("channel 3  ", 100, 80); 
 					GUI_DispFloat(num/1000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 80); 
-					GUI_DispFloat(9.35*(num/1000000)+0.1055,4);
-					//GUI_DispFloat(-0.003267*exp(9.787*num/1000000)+1.84*exp(2.869*num/1000000),4);//small sensor
+					float curve7=2.25*exp(1.431*num/1000000+0.25);
+				  float curve8=-2.087*exp(-2.515*num/1000000+0.75);
+				  float curve9=curve7+curve8;				
+				  GUI_DispFloat(curve9,4);//sensor22
 					if(channelEnableflag[3])
-						stimulate(&huart4,9.35*(num/1000000)+0.1055,3);//bad ch3
+						stimulate(&huart4,curve9,3);//bad ch3
 					break;
 				case 3://15
 					GUI_DispStringAt("channel 4  ", 100, 110); 
 					GUI_DispFloat(num/1000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 110); 
 					//GUI_DispFloat(3.732*exp(1.905*num/1000000*4.6/5)-4.65*exp(-4.638*num/1000000*4.6/5),4);
-					GUI_DispFloat(2.385*exp(1.619*num/1000000),4);//small sensor
+					GUI_DispFloat(1.124*exp(2.141*num/1000000-0.2),4);//sensor23
 					if(channelEnableflag[4])
-						stimulate(&huart5,2.385*exp(1.619*num/1000000),4);
+						stimulate(&huart5,1.124*exp(2.141*num/1000000-0.2),4);
 					break;
 				case 4://1
 					GUI_DispStringAt("channel 5  ", 100, 140); 
 					GUI_DispFloat(num/1000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 140); 
 					//GUI_DispFloat(2.878*exp( 2.423*num/1000000*4.6/5-0.08)-3.286*exp(-7.177*num/1000000*4.6/5-0.08),4);
-					GUI_DispFloat(2.941*exp(1.577*num/1000000),4);//small sensor
+					float curve10=1.707*exp(2.293*(num/1000000-0.04));
+				  float curve11=-1.727*exp(-8.538*(num/1000000-0.04));
+				  float curve12=curve10+curve11;				
+				  GUI_DispFloat(curve12,4);//sensor24
 					if(channelEnableflag[5])
-						stimulate(&huart7, 2.941*exp(1.577*num/1000000),5);//ok ch6
+						stimulate(&huart7, curve12,5);//ok ch6
 				
 					break;
 				
@@ -427,41 +436,50 @@ void display()
 					GUI_DispStringAt("channel 1  ", 100, 20); 
 					GUI_DispFloat(num/1000000,4);//调整显示的位数
 					GUI_DispStringAt("transfered data  ", 300, 20); 
-					GUI_DispFloat(1.957*exp(1.988*num/1000000*4.6/5-0.35)-1.76*exp(-3.789*num/1000000*4.6/5-0.35),4);
+					 float curve01=1.957*exp(1.988*num/1000000*4.6/5-0.05);
+				  float curve02=-1.76*exp(-3.789*num/1000000*4.6/5-0.05);
+				  float curve03=curve01+curve02;
+					GUI_DispFloat(curve03,4);
 					if(channelEnableflag[1])
-						stimulate(&huart1, 1.957*exp(1.988*num/1000000*4.6/5-0.35)-1.76*exp(-3.789*num/1000000*4.6/5-0.35),1);
+						stimulate(&huart1, curve03,1);
 					break;
 				case 6:
 					GUI_DispStringAt("channel 2  ", 100, 50); 
 					GUI_DispFloat(num/1000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 50); 
-					GUI_DispFloat(1.946e+04*exp(0.8933*num/1000000*4.6/5-0.25)-1.946e+04*exp(0.8929*num/1000000*4.6/5-0.25),4);
+					float curve04=1.946e+04*exp(0.8933*num/1000000*4.6/5-0.125);
+				  float curve05=-1.946e+04*exp(0.8929*num/1000000*4.6/5-0.125);
+				  float curve06=curve04+curve05;
+					GUI_DispFloat(curve06,4);
 					if(channelEnableflag[2])
-						stimulate(&huart3,1.946e+04*exp(0.8933*num/1000000*4.6/5-0.25)-1.946e+04*exp(0.8929*num/1000000*4.6/5-0.25),2);
+						stimulate(&huart3,curve06,2);
 					break;
 				case 7:
 					GUI_DispStringAt("channel 3  ", 100, 80); 
 					GUI_DispFloat(num*3.3/5000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 80); 
-					GUI_DispFloat(2.455*exp(1.891*num*3.3/5000000*5/4.6)-2.977*exp(-3.137*num*3.3/5000000*5/4.6),4);
+					float curve07=2.455*exp(1.891*num/1000000*5/4.6-0.3);
+          float curve08=-2.977*exp(-3.137*num/1000000*5/4.6-0.3);
+				  float curve09=curve07+curve08;
+					GUI_DispFloat(curve09,4);
 					if(channelEnableflag[3])
-						stimulate(&huart4,2.455*exp(1.891*num*3.3/5000000*5/4.6)-2.977*exp(-3.137*num*3.3/5000000*5/4.6),3);
+						stimulate(&huart4,curve09,3);
 					break;
 				case 8:
 					GUI_DispStringAt("channel 4  ", 100, 110); 
 					GUI_DispFloat(num,4);
 					GUI_DispStringAt("transfered data  ", 300, 110); 
-					GUI_DispFloat(22.24*(num-0.43)-0.8579,4);
+					GUI_DispFloat(17*(num-0.15),4);
 					if(channelEnableflag[4])
-						stimulate(&huart5,22.24*(num-0.43)-0.8579,4);
+						stimulate(&huart5,17*(num-0.15),4);
 					break;
 				case 9:
 					GUI_DispStringAt("channel 5  ", 100, 140); 
 					GUI_DispFloat(num,4);
 					GUI_DispStringAt("transfered data  ", 300, 140); 
-					GUI_DispFloat(23.38*(num-0.37)-0.5574,4);
+					GUI_DispFloat(17*(num-0.3),4);
 					if(channelEnableflag[5])
-						stimulate(&huart7,22.24*(num-0.43)-0.8579,5);
+						stimulate(&huart7,17*(num-0.3),5);
 					break;
 				
 				
