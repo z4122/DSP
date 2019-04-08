@@ -380,12 +380,25 @@ void display()
 				case 1://3
 					GUI_DispStringAt("channel 2  ", 100, 50); 
 					GUI_DispFloat(num/1000000,4);
-<<<<<<< HEAD
 					GUI_DispStringAt("transferred data  ", 300, 50); 
 					//GUI_DispFloat(4.302*exp(1.132*num/1000000)-3.705*exp(-1.904*num/1000000),4);
-					GUI_DispFloat(4.692*(num/1000000)*(num/1000000)*(num/1000000)-5.236*(num/1000000)*(num/1000000)+11.22*(num/1000000)-0.4206,4);//ok ch2
-=======
-					GUI_DispStringAt("transfered data  ", 300, 50); 
+					float curve4=1.69*exp(1.789*(num/1000000));
+				  float curve5=-1.168*exp(-1.216*(num/1000000));
+				  float curve6=curve4+curve5;
+				  GUI_DispFloat(curve6,4);//sensor21
+					if(channelEnableflag[2])
+						stimulate(&huart3, curve6,2);
+					break;
+					
+				case 2://2
+					GUI_DispStringAt("channel 3  ", 100, 80); 
+					GUI_DispFloat(num/1000000,4);
+					GUI_DispStringAt("transfered data  ", 300, 80); 
+					float curve7=2.25*exp(1.431*num/1000000+0.25);
+				  float curve8=-2.087*exp(-2.515*num/1000000+0.75);
+				  float curve9=curve7+curve8;				
+				  GUI_DispFloat(curve9,4);//sensor22
+					if(channelEnableflag[3])
 						stimulate(&huart4,curve9,3);//bad ch3
 					break;
 				case 3://15
