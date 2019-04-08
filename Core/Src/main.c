@@ -74,14 +74,14 @@ void MainLoop(void);
 long ulResult;
 long double ldVolutage[10];
 
-uint8_t data[15];//´«Êä¸øÉÏÎ»»úµÄÊý¾Ý
+uint8_t data[15];//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 float ADC_convertedvalue[2];
 float filter0[10],filter1[10];
 enum Hand {left=0,right=1};
 enum Hand amputatedHand = right;
 /*
 0x00 0x00  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX    0xXX 
-| Êý¾ÝÍ· |  Í¨µÀÒ»  |  Í¨µÀ¶þ   |  Í¨µÀÈý  |  Í¨µÀËÄ  |  Í¨µÀÎå  |±£ÁôÁ½¸ö×Ö½Ú|Ð£ÑéºÍ|
+| ï¿½ï¿½ï¿½ï¿½Í· |  Í¨ï¿½ï¿½Ò»  |  Í¨ï¿½ï¿½ï¿½ï¿½   |  Í¨ï¿½ï¿½ï¿½ï¿½  |  Í¨ï¿½ï¿½ï¿½ï¿½  |  Í¨ï¿½ï¿½ï¿½ï¿½  |ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö½ï¿½|Ð£ï¿½ï¿½ï¿½|
 
 */
 /* Private functions ---------------------------------------------------------*/
@@ -131,7 +131,7 @@ int main(void)
 		
 	HAL_Delay(500);
 
-	//·¢ËÍÈ·ÈÏÐÅºÅ¸øPC
+	//ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½ï¿½ÅºÅ¸ï¿½PC
 	u8 t[10];
 	t[0] = 0xaa;
 	t[1] = 0xbb;
@@ -360,56 +360,53 @@ void display()
 		for(int i = 0;i<5;i++)
 		{
 			num = ldVolutage[i];
-			if(num<0.01)//ÎªÁËLCDÏÔÊ¾²»³öÏÖÒì³££¬ËùÒÔÌØµØÉèÖÃÎª0
+			if(num<0.01)//Îªï¿½ï¿½LCDï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½Îª0
 				num = 0;
 			switch(i)
 			{
-				//ÓÒÊÖÎª½ØÖ«¶Ë
+				//ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Ö«ï¿½ï¿½
 				case 0://16
 					//GUI_Clear();	.
 					GUI_DispStringAt("channel 1  ", 100, 20); 
-					GUI_DispFloat(num/1000000,4);//µ÷ÕûÏÔÊ¾µÄÎ»Êý
-					GUI_DispStringAt("transferred data  ", 300, 20); 
-					GUI_DispFloat(2.136*exp(1.718*num/1000000)-2.985*exp(-5.363*num/1000000),4);
-					//GUI_DispFloat(1.979*exp(1.642*num/1000000),4);//small sensor
+					GUI_DispFloat(num/1000000,4);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Î»ï¿½ï¿½
+					GUI_DispStringAt("transfered data  ", 300, 20); 
+					float curve1=1.657*exp(2.113*(num/1000000-0.07));
+				  float curve2=-1.056*exp(-0.5708*(num/1000000-0.07));
+				  float curve3=curve1+curve2;
+				  GUI_DispFloat(curve3,4);//sensor20
 					if(channelEnableflag[1])
-						stimulate(&huart1,2.136*exp(1.718*num/1000000)-2.985*exp(-5.363*num/1000000),1);//ok ch1
+						stimulate(&huart1,curve3,1);//ok ch1
 					break;
 				case 1://3
 					GUI_DispStringAt("channel 2  ", 100, 50); 
 					GUI_DispFloat(num/1000000,4);
+<<<<<<< HEAD
 					GUI_DispStringAt("transferred data  ", 300, 50); 
 					//GUI_DispFloat(4.302*exp(1.132*num/1000000)-3.705*exp(-1.904*num/1000000),4);
 					GUI_DispFloat(4.692*(num/1000000)*(num/1000000)*(num/1000000)-5.236*(num/1000000)*(num/1000000)+11.22*(num/1000000)-0.4206,4);//ok ch2
-					if(channelEnableflag[2])
-						stimulate(&huart3,4.692*(num/1000000)*(num/1000000)*(num/1000000)-5.236*(num/1000000)*(num/1000000)+11.22*(num/1000000)-0.4206,2);
-					break;
-				case 2://2
-					GUI_DispStringAt("channel 3  ", 100, 80); 
-					GUI_DispFloat(num/1000000,4);
-					GUI_DispStringAt("transferred data  ", 300, 80); 
-					GUI_DispFloat(9.35*(num/1000000)+0.1055,4);
-					//GUI_DispFloat(-0.003267*exp(9.787*num/1000000)+1.84*exp(2.869*num/1000000),4);//small sensor
-					if(channelEnableflag[3])
-						stimulate(&huart4,9.35*(num/1000000)+0.1055,3);//bad ch3
+=======
+					GUI_DispStringAt("transfered data  ", 300, 50); 
+						stimulate(&huart4,curve9,3);//bad ch3
 					break;
 				case 3://15
 					GUI_DispStringAt("channel 4  ", 100, 110); 
 					GUI_DispFloat(num/1000000,4);
-					GUI_DispStringAt("transferred data  ", 300, 110); 
 					//GUI_DispFloat(3.732*exp(1.905*num/1000000*4.6/5)-4.65*exp(-4.638*num/1000000*4.6/5),4);
-					GUI_DispFloat(2.385*exp(1.619*num/1000000),4);//small sensor
+					GUI_DispFloat(1.124*exp(2.141*num/1000000-0.2),4);//sensor23
 					if(channelEnableflag[4])
-						stimulate(&huart5,2.385*exp(1.619*num/1000000),4);
+						stimulate(&huart5,1.124*exp(2.141*num/1000000-0.2),4);
 					break;
 				case 4://1
 					GUI_DispStringAt("channel 5  ", 100, 140); 
 					GUI_DispFloat(num/1000000,4);
 					GUI_DispStringAt("transferred data  ", 300, 140); 
 					//GUI_DispFloat(2.878*exp( 2.423*num/1000000*4.6/5-0.08)-3.286*exp(-7.177*num/1000000*4.6/5-0.08),4);
-					GUI_DispFloat(2.941*exp(1.577*num/1000000),4);//small sensor
+					float curve10=1.707*exp(2.293*(num/1000000-0.04));
+				  float curve11=-1.727*exp(-8.538*(num/1000000-0.04));
+				  float curve12=curve10+curve11;				
+				  GUI_DispFloat(curve12,4);//sensor24
 					if(channelEnableflag[5])
-						stimulate(&huart7, 2.941*exp(1.577*num/1000000),5);//ok ch6
+						stimulate(&huart7, curve12,5);//ok ch6
 				
 					break;
 				
@@ -425,46 +422,80 @@ void display()
 			num = ldVolutage[i];
 			switch(i)
 			{
-				//×óÊÖÎª½ØÖ«¶Ë
+				//ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Ö«ï¿½ï¿½
 				case 5:
 					GUI_DispStringAt("channel 1  ", 100, 20); 
-					GUI_DispFloat(num/1000000,4);//µ÷ÕûÏÔÊ¾µÄÎ»Êý
+					GUI_DispFloat(num/1000000,4);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Î»ï¿½ï¿½
+<<<<<<< HEAD
 					GUI_DispStringAt("transferred data  ", 300, 20); 
 					GUI_DispFloat(1.957*exp(1.988*num/1000000*4.6/5-0.35)-1.76*exp(-3.789*num/1000000*4.6/5-0.35),4);
+=======
+					GUI_DispStringAt("transfered data  ", 300, 20); 
+					 float curve01=1.957*exp(1.988*num/1000000*4.6/5-0.05);
+				  float curve02=-1.76*exp(-3.789*num/1000000*4.6/5-0.05);
+				  float curve03=curve01+curve02;
+					GUI_DispFloat(curve03,4);
+>>>>>>> 593d0de0b42646de75d9ee4c4110e2608e84bbec
 					if(channelEnableflag[1])
-						stimulate(&huart1, 1.957*exp(1.988*num/1000000*4.6/5-0.35)-1.76*exp(-3.789*num/1000000*4.6/5-0.35),1);
+						stimulate(&huart1, curve03,1);
 					break;
 				case 6:
 					GUI_DispStringAt("channel 2  ", 100, 50); 
 					GUI_DispFloat(num/1000000,4);
+<<<<<<< HEAD
 					GUI_DispStringAt("transferred data  ", 300, 50); 
 					GUI_DispFloat(1.946e+04*exp(0.8933*num/1000000*4.6/5-0.25)-1.946e+04*exp(0.8929*num/1000000*4.6/5-0.25),4);
+=======
+					GUI_DispStringAt("transfered data  ", 300, 50); 
+					float curve04=1.946e+04*exp(0.8933*num/1000000*4.6/5-0.125);
+				  float curve05=-1.946e+04*exp(0.8929*num/1000000*4.6/5-0.125);
+				  float curve06=curve04+curve05;
+					GUI_DispFloat(curve06,4);
+>>>>>>> 593d0de0b42646de75d9ee4c4110e2608e84bbec
 					if(channelEnableflag[2])
-						stimulate(&huart3,1.946e+04*exp(0.8933*num/1000000*4.6/5-0.25)-1.946e+04*exp(0.8929*num/1000000*4.6/5-0.25),2);
+						stimulate(&huart3,curve06,2);
 					break;
 				case 7:
 					GUI_DispStringAt("channel 3  ", 100, 80); 
 					GUI_DispFloat(num*3.3/5000000,4);
+<<<<<<< HEAD
 					GUI_DispStringAt("transferred data  ", 300, 80); 
 					GUI_DispFloat(2.455*exp(1.891*num*3.3/5000000*5/4.6)-2.977*exp(-3.137*num*3.3/5000000*5/4.6),4);
+=======
+					GUI_DispStringAt("transfered data  ", 300, 80); 
+					float curve07=2.455*exp(1.891*num/1000000*5/4.6-0.3);
+          float curve08=-2.977*exp(-3.137*num/1000000*5/4.6-0.3);
+				  float curve09=curve07+curve08;
+					GUI_DispFloat(curve09,4);
+>>>>>>> 593d0de0b42646de75d9ee4c4110e2608e84bbec
 					if(channelEnableflag[3])
-						stimulate(&huart4,2.455*exp(1.891*num*3.3/5000000*5/4.6)-2.977*exp(-3.137*num*3.3/5000000*5/4.6),3);
+						stimulate(&huart4,curve09,3);
 					break;
 				case 8:
 					GUI_DispStringAt("channel 4  ", 100, 110); 
 					GUI_DispFloat(num,4);
+<<<<<<< HEAD
 					GUI_DispStringAt("transferred data  ", 300, 110); 
 					GUI_DispFloat(22.24*(num-0.43)-0.8579,4);
+=======
+					GUI_DispStringAt("transfered data  ", 300, 110); 
+					GUI_DispFloat(17*(num-0.15),4);
+>>>>>>> 593d0de0b42646de75d9ee4c4110e2608e84bbec
 					if(channelEnableflag[4])
-						stimulate(&huart5,22.24*(num-0.43)-0.8579,4);
+						stimulate(&huart5,17*(num-0.15),4);
 					break;
 				case 9:
 					GUI_DispStringAt("channel 5  ", 100, 140); 
 					GUI_DispFloat(num,4);
+<<<<<<< HEAD
 					GUI_DispStringAt("transferred data  ", 300, 140); 
 					GUI_DispFloat(23.38*(num-0.37)-0.5574,4);
+=======
+					GUI_DispStringAt("transfered data  ", 300, 140); 
+					GUI_DispFloat(17*(num-0.3),4);
+>>>>>>> 593d0de0b42646de75d9ee4c4110e2608e84bbec
 					if(channelEnableflag[5])
-						stimulate(&huart7,22.24*(num-0.43)-0.8579,5);
+						stimulate(&huart7,17*(num-0.3),5);
 					break;
 				
 				
@@ -481,7 +512,7 @@ void GetAdData(void)
 	  static int cnt = 0;
 		cnt++;
 		static int tempcnt = 0;
-		//´ú±í1-5Í¨µÀ
+		//ï¿½ï¿½ï¿½ï¿½1-5Í¨ï¿½ï¿½
 		data[0] = 0xff;
 		data[1] = 0xff;
 	
@@ -515,7 +546,7 @@ void GetAdData(void)
 			HAL_UART_Transmit(&huart8,data,15,0xfff);
 		
 		
-		//´ú±í6-10Í¨µÀ
+		//ï¿½ï¿½ï¿½ï¿½6-10Í¨ï¿½ï¿½
 		data[0] = 0xff;
 		data[1] = 0xf1;
 	
@@ -597,7 +628,7 @@ void MainLoop()
 		GUI_Clear();
 	
 	if(testmode_flag>=8){
-		testmode_flag = last_flag;//ÈÃÐÂ¼ÓÈëµÄãÐÖµÄ£Ê½²»Ó°ÏìÒÔÇ°Ä£Ê½µÄ¹¤×÷
+		testmode_flag = last_flag;//ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÖµÄ£Ê½ï¿½ï¿½Ó°ï¿½ï¿½ï¿½ï¿½Ç°Ä£Ê½ï¿½Ä¹ï¿½ï¿½ï¿½
 	}
 	switch(testmode_flag)
 	{
@@ -644,11 +675,11 @@ void MainLoop()
 			break;
 		case 7:
 			GUI_DispStringAt("test mode  ", 100, 270); 
-			GUI_DispFloat(parameter[1][0]/10.0,4);//µ÷ÕûÏÔÊ¾µÄÎ»Êý
+			GUI_DispFloat(parameter[1][0]/10.0,4);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Î»ï¿½ï¿½
 			GUI_DispStringAt("mA  ", 290, 270); 
-			GUI_DispFloat(parameter[1][1],4);//µ÷ÕûÏÔÊ¾µÄÎ»Êý
+			GUI_DispFloat(parameter[1][1],4);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Î»ï¿½ï¿½
 			GUI_DispStringAt("us  ", 410, 270); 
-			GUI_DispFloat(parameter[1][2],4);//µ÷ÕûÏÔÊ¾µÄÎ»Êý
+			GUI_DispFloat(parameter[1][2],4);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Î»ï¿½ï¿½
 			GUI_DispStringAt("hz  ", 520, 270); 
 			break;
 		
@@ -658,7 +689,7 @@ void MainLoop()
 		last_flag = testmode_flag;
 }
 
-//¾ùÖµÂË²¨
+//ï¿½ï¿½Öµï¿½Ë²ï¿½
 float MeanFilter(float input,float *a)
 {
 	float temp = 0;
