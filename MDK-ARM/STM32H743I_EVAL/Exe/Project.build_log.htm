@@ -27,11 +27,80 @@ Project File Date:  03/21/2019
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 4 (build 422)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'STM32H743I_EVAL'
-compiling bsp.c...
+compiling main.c...
+..\Core\User\Inc\ad.h(178): warning:  #1295-D: Deprecated declaration Compute_Offset - give arg types
+  void Compute_Offset();
+../Core/Src/main.c(363): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			if(num<0.01)//为了LCD显示不出现异常，所以特地设置为0
+../Core/Src/main.c(373): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  					GUI_DispFloat(2.136*exp(1.718*num/1000000)-2.985*exp(-5.363*num/1000000),4);
+../Core/Src/main.c(376): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  						stimulate(&huart1,2.136*exp(1.718*num/1000000)-2.985*exp(-5.363*num/1000000),1);//ok ch1
+../Core/Src/main.c(383): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  					GUI_DispFloat(4.692*(num/1000000)*(num/1000000)*(num/1000000)-5.236*(num/1000000)*(num/1000000)+11.22*(num/1000000)-0.4206,4);//ok ch2
+../Core/Src/main.c(383): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  					GUI_DispFloat(4.692*(num/1000000)*(num/1000000)*(num/1000000)-5.236*(num/1000000)*(num/1000000)+11.22*(num/1000000)-0.4206,4);//ok ch2
+../Core/Src/main.c(383): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  					GUI_DispFloat(4.692*(num/1000000)*(num/1000000)*(num/1000000)-5.236*(num/1000000)*(num/1000000)+11.22*(num/1000000)-0.4206,4);//ok ch2
+../Core/Src/main.c(385): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  						stimulate(&huart3,4.692*(num/1000000)*(num/1000000)*(num/1000000)-5.236*(num/1000000)*(num/1000000)+11.22*(num/1000000)-0.4206,2);
+../Core/Src/main.c(385): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  						stimulate(&huart3,4.692*(num/1000000)*(num/1000000)*(num/1000000)-5.236*(num/1000000)*(num/1000000)+11.22*(num/1000000)-0.4206,2);
+../Core/Src/main.c(385): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  						stimulate(&huart3,4.692*(num/1000000)*(num/1000000)*(num/1000000)-5.236*(num/1000000)*(num/1000000)+11.22*(num/1000000)-0.4206,2);
+../Core/Src/main.c(391): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  					GUI_DispFloat(9.35*(num/1000000)+0.1055,4);
+../Core/Src/main.c(394): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  						stimulate(&huart4,9.35*(num/1000000)+0.1055,3);//bad ch3
+../Core/Src/main.c(401): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  					GUI_DispFloat(2.385*exp(1.619*num/1000000),4);//small sensor
+../Core/Src/main.c(403): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  						stimulate(&huart5,2.385*exp(1.619*num/1000000),4);
+../Core/Src/main.c(410): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  					GUI_DispFloat(2.941*exp(1.577*num/1000000),4);//small sensor
+../Core/Src/main.c(412): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  						stimulate(&huart7, 2.941*exp(1.577*num/1000000),5);//ok ch6
+../Core/Src/main.c(433): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  					GUI_DispFloat(1.957*exp(1.988*num/1000000*4.6/5-0.35)-1.76*exp(-3.789*num/1000000*4.6/5-0.35),4);
+../Core/Src/main.c(435): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  						stimulate(&huart1, 1.957*exp(1.988*num/1000000*4.6/5-0.35)-1.76*exp(-3.789*num/1000000*4.6/5-0.35),1);
+../Core/Src/main.c(441): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  					GUI_DispFloat(1.946e+04*exp(0.8933*num/1000000*4.6/5-0.25)-1.946e+04*exp(0.8929*num/1000000*4.6/5-0.25),4);
+../Core/Src/main.c(441): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  					GUI_DispFloat(1.946e+04*exp(0.8933*num/1000000*4.6/5-0.25)-1.946e+04*exp(0.8929*num/1000000*4.6/5-0.25),4);
+../Core/Src/main.c(443): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  						stimulate(&huart3,1.946e+04*exp(0.8933*num/1000000*4.6/5-0.25)-1.946e+04*exp(0.8929*num/1000000*4.6/5-0.25),2);
+../Core/Src/main.c(443): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  						stimulate(&huart3,1.946e+04*exp(0.8933*num/1000000*4.6/5-0.25)-1.946e+04*exp(0.8929*num/1000000*4.6/5-0.25),2);
+../Core/Src/main.c(447): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  					GUI_DispFloat(num*3.3/5000000,4);
+../Core/Src/main.c(449): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  					GUI_DispFloat(2.455*exp(1.891*num*3.3/5000000*5/4.6)-2.977*exp(-3.137*num*3.3/5000000*5/4.6),4);
+../Core/Src/main.c(451): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  						stimulate(&huart4,2.455*exp(1.891*num*3.3/5000000*5/4.6)-2.977*exp(-3.137*num*3.3/5000000*5/4.6),3);
+../Core/Src/main.c(457): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  					GUI_DispFloat(22.24*(num-0.43)-0.8579,4);
+../Core/Src/main.c(459): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  						stimulate(&huart5,22.24*(num-0.43)-0.8579,4);
+../Core/Src/main.c(465): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  					GUI_DispFloat(23.38*(num-0.37)-0.5574,4);
+../Core/Src/main.c(467): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  						stimulate(&huart7,22.24*(num-0.43)-0.8579,5);
+../Core/Src/main.c(551): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			ADC_convertedvalue[0] = (float)(ADC_detectedvalue[0]&0xffff)*3.3/65536;
+../Core/Src/main.c(552): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			ADC_convertedvalue[1] = (float)(ADC_detectedvalue[1]&0xffff)*3.3/65536;
+../Core/Src/main.c(571): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+  				HAL_UART_Receive_IT(&huart8,&UART8RxBuff,1);
+../Core/Src/main.c(582): warning:  #177-D: variable "clear_flag"  was declared but never referenced
+  	static int clear_flag = 0;
+../Core/Src/main.c(254): warning:  #177-D: function "Error_Handler"  was declared but never referenced
+  static void Error_Handler(void)
+../Core/Src/main.c: 34 warnings, 0 errors
 linking...
-Program Size: Code=78716 RO-data=18960 RW-data=464 ZI-data=314928  
+Program Size: Code=78920 RO-data=18964 RW-data=468 ZI-data=314924  
 FromELF: creating hex file...
-"STM32H743I_EVAL\Exe\Project.axf" - 0 Error(s), 0 Warning(s).
+"STM32H743I_EVAL\Exe\Project.axf" - 0 Error(s), 34 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -49,7 +118,7 @@ Package Vendor: ARM
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.0.1
-Build Time Elapsed:  00:00:07
+Build Time Elapsed:  00:00:17
 </pre>
 </body>
 </html>

@@ -127,6 +127,7 @@ int main(void)
 	/*Init usart*/
 	BSP_Init();
 
+	
 		
 	HAL_Delay(500);
 
@@ -353,12 +354,14 @@ void assert_failed(uint8_t* file, uint32_t line)
   */
 void display()
 {
-	long double num = 0;
+	float num = 0;
 	if(amputatedHand==right)
 	{
 		for(int i = 0;i<5;i++)
 		{
 			num = ldVolutage[i];
+			if(num<0.01)//为了LCD显示不出现异常，所以特地设置为0
+				num = 0;
 			switch(i)
 			{
 				//右手为截肢端
@@ -366,7 +369,7 @@ void display()
 					//GUI_Clear();	.
 					GUI_DispStringAt("channel 1  ", 100, 20); 
 					GUI_DispFloat(num/1000000,4);//调整显示的位数
-					GUI_DispStringAt("transfered data  ", 300, 20); 
+					GUI_DispStringAt("transferred data  ", 300, 20); 
 					GUI_DispFloat(2.136*exp(1.718*num/1000000)-2.985*exp(-5.363*num/1000000),4);
 					//GUI_DispFloat(1.979*exp(1.642*num/1000000),4);//small sensor
 					if(channelEnableflag[1])
@@ -375,7 +378,7 @@ void display()
 				case 1://3
 					GUI_DispStringAt("channel 2  ", 100, 50); 
 					GUI_DispFloat(num/1000000,4);
-					GUI_DispStringAt("transfered data  ", 300, 50); 
+					GUI_DispStringAt("transferred data  ", 300, 50); 
 					//GUI_DispFloat(4.302*exp(1.132*num/1000000)-3.705*exp(-1.904*num/1000000),4);
 					GUI_DispFloat(4.692*(num/1000000)*(num/1000000)*(num/1000000)-5.236*(num/1000000)*(num/1000000)+11.22*(num/1000000)-0.4206,4);//ok ch2
 					if(channelEnableflag[2])
@@ -384,7 +387,7 @@ void display()
 				case 2://2
 					GUI_DispStringAt("channel 3  ", 100, 80); 
 					GUI_DispFloat(num/1000000,4);
-					GUI_DispStringAt("transfered data  ", 300, 80); 
+					GUI_DispStringAt("transferred data  ", 300, 80); 
 					GUI_DispFloat(9.35*(num/1000000)+0.1055,4);
 					//GUI_DispFloat(-0.003267*exp(9.787*num/1000000)+1.84*exp(2.869*num/1000000),4);//small sensor
 					if(channelEnableflag[3])
@@ -393,7 +396,7 @@ void display()
 				case 3://15
 					GUI_DispStringAt("channel 4  ", 100, 110); 
 					GUI_DispFloat(num/1000000,4);
-					GUI_DispStringAt("transfered data  ", 300, 110); 
+					GUI_DispStringAt("transferred data  ", 300, 110); 
 					//GUI_DispFloat(3.732*exp(1.905*num/1000000*4.6/5)-4.65*exp(-4.638*num/1000000*4.6/5),4);
 					GUI_DispFloat(2.385*exp(1.619*num/1000000),4);//small sensor
 					if(channelEnableflag[4])
@@ -402,7 +405,7 @@ void display()
 				case 4://1
 					GUI_DispStringAt("channel 5  ", 100, 140); 
 					GUI_DispFloat(num/1000000,4);
-					GUI_DispStringAt("transfered data  ", 300, 140); 
+					GUI_DispStringAt("transferred data  ", 300, 140); 
 					//GUI_DispFloat(2.878*exp( 2.423*num/1000000*4.6/5-0.08)-3.286*exp(-7.177*num/1000000*4.6/5-0.08),4);
 					GUI_DispFloat(2.941*exp(1.577*num/1000000),4);//small sensor
 					if(channelEnableflag[5])
@@ -426,7 +429,7 @@ void display()
 				case 5:
 					GUI_DispStringAt("channel 1  ", 100, 20); 
 					GUI_DispFloat(num/1000000,4);//调整显示的位数
-					GUI_DispStringAt("transfered data  ", 300, 20); 
+					GUI_DispStringAt("transferred data  ", 300, 20); 
 					GUI_DispFloat(1.957*exp(1.988*num/1000000*4.6/5-0.35)-1.76*exp(-3.789*num/1000000*4.6/5-0.35),4);
 					if(channelEnableflag[1])
 						stimulate(&huart1, 1.957*exp(1.988*num/1000000*4.6/5-0.35)-1.76*exp(-3.789*num/1000000*4.6/5-0.35),1);
@@ -434,7 +437,7 @@ void display()
 				case 6:
 					GUI_DispStringAt("channel 2  ", 100, 50); 
 					GUI_DispFloat(num/1000000,4);
-					GUI_DispStringAt("transfered data  ", 300, 50); 
+					GUI_DispStringAt("transferred data  ", 300, 50); 
 					GUI_DispFloat(1.946e+04*exp(0.8933*num/1000000*4.6/5-0.25)-1.946e+04*exp(0.8929*num/1000000*4.6/5-0.25),4);
 					if(channelEnableflag[2])
 						stimulate(&huart3,1.946e+04*exp(0.8933*num/1000000*4.6/5-0.25)-1.946e+04*exp(0.8929*num/1000000*4.6/5-0.25),2);
@@ -442,7 +445,7 @@ void display()
 				case 7:
 					GUI_DispStringAt("channel 3  ", 100, 80); 
 					GUI_DispFloat(num*3.3/5000000,4);
-					GUI_DispStringAt("transfered data  ", 300, 80); 
+					GUI_DispStringAt("transferred data  ", 300, 80); 
 					GUI_DispFloat(2.455*exp(1.891*num*3.3/5000000*5/4.6)-2.977*exp(-3.137*num*3.3/5000000*5/4.6),4);
 					if(channelEnableflag[3])
 						stimulate(&huart4,2.455*exp(1.891*num*3.3/5000000*5/4.6)-2.977*exp(-3.137*num*3.3/5000000*5/4.6),3);
@@ -450,7 +453,7 @@ void display()
 				case 8:
 					GUI_DispStringAt("channel 4  ", 100, 110); 
 					GUI_DispFloat(num,4);
-					GUI_DispStringAt("transfered data  ", 300, 110); 
+					GUI_DispStringAt("transferred data  ", 300, 110); 
 					GUI_DispFloat(22.24*(num-0.43)-0.8579,4);
 					if(channelEnableflag[4])
 						stimulate(&huart5,22.24*(num-0.43)-0.8579,4);
@@ -458,7 +461,7 @@ void display()
 				case 9:
 					GUI_DispStringAt("channel 5  ", 100, 140); 
 					GUI_DispFloat(num,4);
-					GUI_DispStringAt("transfered data  ", 300, 140); 
+					GUI_DispStringAt("transferred data  ", 300, 140); 
 					GUI_DispFloat(23.38*(num-0.37)-0.5574,4);
 					if(channelEnableflag[5])
 						stimulate(&huart7,22.24*(num-0.43)-0.8579,5);
@@ -477,6 +480,7 @@ void GetAdData(void)
 {
 	  static int cnt = 0;
 		cnt++;
+		static int tempcnt = 0;
 		//代表1-5通道
 		data[0] = 0xff;
 		data[1] = 0xff;
@@ -495,9 +499,12 @@ void GetAdData(void)
 			}
 			
 			long double temp = (long double)ulResult*0.59604644775390625;
+			if(tempcnt<10){
+				offset[i] += temp/10;
+			}
 			if(temp>0&&temp/1000<5000){
 				
-				ldVolutage[i] = (long double)ulResult*0.59604644775390625;
+				ldVolutage[i] = temp-offset[i];
 				//ldVolutage[i] = ldVolutage[i]/1000;
 				data[i*2+2] = ((u16)(ldVolutage[i]/1000))>>8;
 				data[i*2+3] = ((u16)(ldVolutage[i]/1000))&0xFF;
@@ -526,8 +533,13 @@ void GetAdData(void)
 			}		
 				
 			long double temp = (long double)ulResult*0.59604644775390625;
+			
+			if(tempcnt<10){
+				offset[i] += temp/10;
+			}
+			
 			if(temp>0&&temp/1000<5000){
-				ldVolutage[i] = temp;
+				ldVolutage[i] = temp-offset[i];
 				//ldVolutage[i] = ldVolutage[i]/1000;
 				data[i*2-8] = ((u16)(ldVolutage[i]/1000))>>8;
 				data[i*2-7] = ((u16)(ldVolutage[i]/1000))&0xFF;
@@ -539,8 +551,15 @@ void GetAdData(void)
 			ADC_convertedvalue[0] = (float)(ADC_detectedvalue[0]&0xffff)*3.3/65536;
 			ADC_convertedvalue[1] = (float)(ADC_detectedvalue[1]&0xffff)*3.3/65536;
 		
-			ldVolutage[8] = MeanFilter(ADC_convertedvalue[0],filter0);
-			ldVolutage[9] = MeanFilter(ADC_convertedvalue[1],filter1);
+			
+		
+			if(tempcnt<10){
+				tempcnt++;
+				offset[8] += ADC_convertedvalue[0]/10;
+				offset[9] += ADC_convertedvalue[1]/10;
+			}
+			ldVolutage[8] = MeanFilter(ADC_convertedvalue[0],filter0)-offset[8];
+			ldVolutage[9] = MeanFilter(ADC_convertedvalue[1],filter1)-offset[9];
 		
 			data[8] = ((u16)(ldVolutage[8]*1000))>>8;
 			data[9] = ((u16)(ldVolutage[8]*1000))&0xFF;

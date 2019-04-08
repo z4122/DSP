@@ -173,13 +173,14 @@ unsigned int ADS1256ReadData(void);
 unsigned int ADS_sum(unsigned char);
 unsigned char ADS1256_Read_Byte(void);
 void ADS1256_Write_Byte(unsigned char);
-unsigned char  ADS1256_Read_one_Reg(unsigned char);
-void  ADS1256_Write_Reg(unsigned char, unsigned char);
-
+unsigned char ADS1256_Read_one_Reg(unsigned char);
+void ADS1256_Write_Reg(unsigned char, unsigned char);
+void Compute_Offset();
 
 
 void delayad_nopar(void);
 void delayad(unsigned);
 
+extern long double offset[10];
 
 #endif
