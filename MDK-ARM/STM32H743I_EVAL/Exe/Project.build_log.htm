@@ -30,119 +30,84 @@ Build target 'STM32H743I_EVAL'
 compiling main.c...
 ..\Core\User\Inc\ad.h(178): warning:  #1295-D: Deprecated declaration Compute_Offset - give arg types
   void Compute_Offset();
-../Core/Src/main.c(363): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  			if(num<0.01)//Ϊ��LCD��ʾ�������쳣�������ص�����Ϊ0
-../Core/Src/main.c(373): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Core/Src/main.c(361): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			if(num<0.01)//为了让LCD显示0.00的时候正常显�?
+../Core/Src/main.c(371): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   					float curve1=1.657*exp(2.113*(num/1000000-0.07));
-../Core/Src/main.c(374): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  				  float curve2=-1.056*exp(-0.5708*(num/1000000-0.07));
-../Core/Src/main.c(385): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Core/Src/main.c(372): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  					float curve2=-1.056*exp(-0.5708*(num/1000000-0.07));
+../Core/Src/main.c(383): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   					float curve4=1.69*exp(1.789*(num/1000000));
-../Core/Src/main.c(397): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Core/Src/main.c(395): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   					float curve7=2.25*exp(1.431*num/1000000+0.25);
-../Core/Src/main.c(408): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Core/Src/main.c(407): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   					GUI_DispFloat(1.124*exp(2.141*num/1000000-0.2),4);//sensor23
-../Core/Src/main.c(410): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Core/Src/main.c(409): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   						stimulate(&huart5,1.124*exp(2.141*num/1000000-0.2),4);
-../Core/Src/main.c(417): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Core/Src/main.c(416): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   					float curve10=1.707*exp(2.293*(num/1000000-0.04));
-../Core/Src/main.c(418): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  				  float curve11=-1.727*exp(-8.538*(num/1000000-0.04));
-../Core/Src/main.c(365): warning:  #546-D: transfer of control bypasses initialization of:
-            variable "curve1"  (declared at line 373)
-            variable "curve2"  (declared at line 374)
-            variable "curve3"  (declared at line 375)
-            variable "curve4"  (declared at line 385)
-            variable "curve5"  (declared at line 386)
-            variable "curve6"  (declared at line 387)
-            variable "curve7"  (declared at line 397)
-            variable "curve8"  (declared at line 398)
-            variable "curve9"  (declared at line 399)
-            variable "curve10"  (declared at line 417)
-            variable "curve11"  (declared at line 418)
-            variable "curve12"  (declared at line 419)
+../Core/Src/main.c(417): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  					float curve11=-1.727*exp(-8.538*(num/1000000-0.04));
+../Core/Src/main.c(363): warning:  #546-D: transfer of control bypasses initialization of:
+            variable "curve1"  (declared at line 371)
+            variable "curve2"  (declared at line 372)
+            variable "curve3"  (declared at line 373)
+            variable "curve4"  (declared at line 383)
+            variable "curve5"  (declared at line 384)
+            variable "curve6"  (declared at line 385)
+            variable "curve7"  (declared at line 395)
+            variable "curve8"  (declared at line 396)
+            variable "curve9"  (declared at line 397)
+            variable "curve10"  (declared at line 416)
+            variable "curve11"  (declared at line 417)
+            variable "curve12"  (declared at line 418)
   			switch(i)
   			^
-../Core/Src/main.c(442): error:  #29: expected an expression
-  <<<<<<< HEAD
-../Core/Src/main.c(444): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  					GUI_DispFloat(1.957*exp(1.988*num/1000000*4.6/5-0.35)-1.76*exp(-3.789*num/1000000*4.6/5-0.35),4);
-../Core/Src/main.c(445): error:  #29: expected an expression
-  =======
-../Core/Src/main.c(447): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  					 float curve01=1.957*exp(1.988*num/1000000*4.6/5-0.05);
-../Core/Src/main.c(451): error:  #29: expected an expression
-  >>>>>>> 593d0de0b42646de75d9ee4c4110e2608e84bbec
-../Core/Src/main.c(458): error:  #29: expected an expression
-  <<<<<<< HEAD
-../Core/Src/main.c(460): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  					GUI_DispFloat(1.946e+04*exp(0.8933*num/1000000*4.6/5-0.25)-1.946e+04*exp(0.8929*num/1000000*4.6/5-0.25),4);
-../Core/Src/main.c(460): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  					GUI_DispFloat(1.946e+04*exp(0.8933*num/1000000*4.6/5-0.25)-1.946e+04*exp(0.8929*num/1000000*4.6/5-0.25),4);
-../Core/Src/main.c(461): error:  #29: expected an expression
-  =======
-../Core/Src/main.c(463): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Core/Src/main.c(443): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  					float curve01=1.957*exp(1.988*num/1000000*4.6/5-0.05);
+../Core/Src/main.c(455): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   					float curve04=1.946e+04*exp(0.8933*num/1000000*4.6/5-0.125);
-../Core/Src/main.c(464): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  				  float curve05=-1.946e+04*exp(0.8929*num/1000000*4.6/5-0.125);
-../Core/Src/main.c(467): error:  #29: expected an expression
-  >>>>>>> 593d0de0b42646de75d9ee4c4110e2608e84bbec
-../Core/Src/main.c(473): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Core/Src/main.c(456): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  					float curve05=-1.946e+04*exp(0.8929*num/1000000*4.6/5-0.125);
+../Core/Src/main.c(465): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   					GUI_DispFloat(num*3.3/5000000,4);
-../Core/Src/main.c(474): error:  #29: expected an expression
-  <<<<<<< HEAD
-../Core/Src/main.c(476): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  					GUI_DispFloat(2.455*exp(1.891*num*3.3/5000000*5/4.6)-2.977*exp(-3.137*num*3.3/5000000*5/4.6),4);
-../Core/Src/main.c(477): error:  #29: expected an expression
-  =======
-../Core/Src/main.c(479): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Core/Src/main.c(468): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   					float curve07=2.455*exp(1.891*num/1000000*5/4.6-0.3);
-../Core/Src/main.c(483): error:  #29: expected an expression
-  >>>>>>> 593d0de0b42646de75d9ee4c4110e2608e84bbec
-../Core/Src/main.c(490): error:  #29: expected an expression
-  <<<<<<< HEAD
-../Core/Src/main.c(492): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  					GUI_DispFloat(22.24*(num-0.43)-0.8579,4);
-../Core/Src/main.c(493): error:  #29: expected an expression
-  =======
-../Core/Src/main.c(495): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Core/Src/main.c(481): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   					GUI_DispFloat(17*(num-0.15),4);
-../Core/Src/main.c(496): error:  #29: expected an expression
-  >>>>>>> 593d0de0b42646de75d9ee4c4110e2608e84bbec
-../Core/Src/main.c(503): error:  #29: expected an expression
-  <<<<<<< HEAD
-../Core/Src/main.c(505): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  					GUI_DispFloat(23.38*(num-0.37)-0.5574,4);
-../Core/Src/main.c(506): error:  #29: expected an expression
-  =======
-../Core/Src/main.c(508): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Core/Src/main.c(484): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  						stimulate(&huart5,17*(num-0.15),4);
+../Core/Src/main.c(491): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   					GUI_DispFloat(17*(num-0.3),4);
-../Core/Src/main.c(509): error:  #29: expected an expression
-  >>>>>>> 593d0de0b42646de75d9ee4c4110e2608e84bbec
-../Core/Src/main.c(436): warning:  #546-D: transfer of control bypasses initialization of:
-            variable "curve01"  (declared at line 447)
-            variable "curve02"  (declared at line 448)
-            variable "curve03"  (declared at line 449)
-            variable "curve04"  (declared at line 463)
-            variable "curve05"  (declared at line 464)
-            variable "curve06"  (declared at line 465)
-            variable "curve07"  (declared at line 479)
-            variable "curve08"  (declared at line 480)
-            variable "curve09"  (declared at line 481)
+../Core/Src/main.c(494): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  						stimulate(&huart7,17*(num-0.3),5);
+../Core/Src/main.c(435): warning:  #546-D: transfer of control bypasses initialization of:
+            variable "curve01"  (declared at line 443)
+            variable "curve02"  (declared at line 444)
+            variable "curve03"  (declared at line 445)
+            variable "curve04"  (declared at line 455)
+            variable "curve05"  (declared at line 456)
+            variable "curve06"  (declared at line 457)
+            variable "curve07"  (declared at line 468)
+            variable "curve08"  (declared at line 469)
+            variable "curve09"  (declared at line 470)
   			switch(i)
   			^
-../Core/Src/main.c(595): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Core/Src/main.c(577): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   			ADC_convertedvalue[0] = (float)(ADC_detectedvalue[0]&0xffff)*3.3/65536;
-../Core/Src/main.c(596): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+../Core/Src/main.c(578): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   			ADC_convertedvalue[1] = (float)(ADC_detectedvalue[1]&0xffff)*3.3/65536;
-../Core/Src/main.c(615): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
-  				HAL_UART_Receive_IT(&huart8,&UART8RxBuff,1);
-../Core/Src/main.c(626): warning:  #177-D: variable "clear_flag"  was declared but never referenced
+../Core/Src/main.c(597): warning:  #167-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+  			HAL_UART_Receive_IT(&huart8,&UART8RxBuff,1);
+../Core/Src/main.c(607): warning:  #177-D: variable "clear_flag"  was declared but never referenced
   	static int clear_flag = 0;
-../Core/Src/main.c(254): warning:  #177-D: function "Error_Handler"  was declared but never referenced
+../Core/Src/main.c(252): warning:  #177-D: function "Error_Handler"  was declared but never referenced
   static void Error_Handler(void)
-../Core/Src/main.c: 30 warnings, 15 errors
-"STM32H743I_EVAL\Exe\Project.axf" - 15 Error(s), 30 Warning(s).
+../Core/Src/main.c: 26 warnings, 0 errors
+linking...
+Program Size: Code=78868 RO-data=18960 RW-data=464 ZI-data=314928  
+FromELF: creating hex file...
+"STM32H743I_EVAL\Exe\Project.axf" - 0 Error(s), 26 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -160,8 +125,7 @@ Package Vendor: ARM
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.0.1
-Target not created.
-Build Time Elapsed:  00:00:07
+Build Time Elapsed:  00:00:11
 </pre>
 </body>
 </html>

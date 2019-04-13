@@ -10,7 +10,7 @@ void BSP_Init()
   __HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOE_CLK_ENABLE();
 	__HAL_RCC_GPIOF_CLK_ENABLE();
-	__HAL_RCC_GPIOG_CLK_ENABLE();
+	__HAL_RCC_GPIOG_CLK_ENABLE(); 
 	__HAL_RCC_GPIOH_CLK_ENABLE();
 	__HAL_RCC_GPIOI_CLK_ENABLE();
 	__HAL_RCC_GPIOJ_CLK_ENABLE();
@@ -27,7 +27,7 @@ void BSP_Init()
 	UART8_Init();//加入8之后，屏幕会闪烁
 	ADC_Init();
 	TIM3_Init(500-1,20000-1);//单位ms，用于与DSSU通信，优先级高 200M/20000 = 10k 1/10k = 0.1ms 500*0.1ms=50ms
-	TIM5_Init(1000-1,20000-1);//单位ms，用于AD数据转换,优先级低 100ms
+	TIM5_Init(1100-1,20000-1);//单位ms，用于AD数据转换,优先级低 100ms
 
 	//USART2_Init();暂时用不到
 	//USART6_Init();暂时用不到

@@ -122,16 +122,14 @@ int main(void)
   
   GUI_Init();
 	MainTask("test mode",100,20);  
-	 GUI_Clear();
+	GUI_Clear();
 
 	/*Init usart*/
 	BSP_Init();
 
-	
-		
-	HAL_Delay(500);
+	HAL_Delay(30);
 
-	//����ȷ���źŸ�PC
+	//一开机向PC发送的字节，
 	u8 t[10];
 	t[0] = 0xaa;
 	t[1] = 0xbb;
@@ -360,20 +358,20 @@ void display()
 		for(int i = 0;i<5;i++)
 		{
 			num = ldVolutage[i];
-			if(num<0.01)//Ϊ��LCD��ʾ�������쳣�������ص�����Ϊ0
+			if(num<0.01)//为了让LCD显示0.00的时候正常显示
 				num = 0;
 			switch(i)
 			{
-				//����Ϊ��֫��
+				//右手
 				case 0://16
-					//GUI_Clear();	.
+					//GUI_Clear();	
 					GUI_DispStringAt("channel 1  ", 100, 20); 
-					GUI_DispFloat(num/1000000,4);//������ʾ��λ��
-					GUI_DispStringAt("transfered data  ", 300, 20); 
+					GUI_DispFloat(num/1000000,4);//除以1000000后是实际电压值
+					GUI_DispStringAt("transferred data  ", 300, 20); 
 					float curve1=1.657*exp(2.113*(num/1000000-0.07));
-				  float curve2=-1.056*exp(-0.5708*(num/1000000-0.07));
-				  float curve3=curve1+curve2;
-				  GUI_DispFloat(curve3,4);//sensor20
+					float curve2=-1.056*exp(-0.5708*(num/1000000-0.07));
+					float curve3=curve1+curve2;
+					GUI_DispFloat(curve3,4);//sensor20
 					if(channelEnableflag[1])
 						stimulate(&huart1,curve3,1);//ok ch1
 					break;
@@ -383,9 +381,9 @@ void display()
 					GUI_DispStringAt("transferred data  ", 300, 50); 
 					//GUI_DispFloat(4.302*exp(1.132*num/1000000)-3.705*exp(-1.904*num/1000000),4);
 					float curve4=1.69*exp(1.789*(num/1000000));
-				  float curve5=-1.168*exp(-1.216*(num/1000000));
-				  float curve6=curve4+curve5;
-				  GUI_DispFloat(curve6,4);//sensor21
+					float curve5=-1.168*exp(-1.216*(num/1000000));
+					float curve6=curve4+curve5;
+					GUI_DispFloat(curve6,4);//sensor21
 					if(channelEnableflag[2])
 						stimulate(&huart3, curve6,2);
 					break;
@@ -393,17 +391,18 @@ void display()
 				case 2://2
 					GUI_DispStringAt("channel 3  ", 100, 80); 
 					GUI_DispFloat(num/1000000,4);
-					GUI_DispStringAt("transfered data  ", 300, 80); 
+					GUI_DispStringAt("transferred data  ", 300, 80); 
 					float curve7=2.25*exp(1.431*num/1000000+0.25);
-				  float curve8=-2.087*exp(-2.515*num/1000000+0.75);
-				  float curve9=curve7+curve8;				
-				  GUI_DispFloat(curve9,4);//sensor22
+					float curve8=-2.087*exp(-2.515*num/1000000+0.75);
+					float curve9=curve7+curve8;				
+					GUI_DispFloat(curve9,4);//sensor22
 					if(channelEnableflag[3])
 						stimulate(&huart4,curve9,3);//bad ch3
 					break;
 				case 3://15
 					GUI_DispStringAt("channel 4  ", 100, 110); 
 					GUI_DispFloat(num/1000000,4);
+					GUI_DispStringAt("transferred data  ", 300, 110); 
 					//GUI_DispFloat(3.732*exp(1.905*num/1000000*4.6/5)-4.65*exp(-4.638*num/1000000*4.6/5),4);
 					GUI_DispFloat(1.124*exp(2.141*num/1000000-0.2),4);//sensor23
 					if(channelEnableflag[4])
@@ -415,9 +414,9 @@ void display()
 					GUI_DispStringAt("transferred data  ", 300, 140); 
 					//GUI_DispFloat(2.878*exp( 2.423*num/1000000*4.6/5-0.08)-3.286*exp(-7.177*num/1000000*4.6/5-0.08),4);
 					float curve10=1.707*exp(2.293*(num/1000000-0.04));
-				  float curve11=-1.727*exp(-8.538*(num/1000000-0.04));
-				  float curve12=curve10+curve11;				
-				  GUI_DispFloat(curve12,4);//sensor24
+					float curve11=-1.727*exp(-8.538*(num/1000000-0.04));
+					float curve12=curve10+curve11;				
+					GUI_DispFloat(curve12,4);//sensor24
 					if(channelEnableflag[5])
 						stimulate(&huart7, curve12,5);//ok ch6
 				
@@ -435,78 +434,62 @@ void display()
 			num = ldVolutage[i];
 			switch(i)
 			{
-				//����Ϊ��֫��
+				//左手
 				case 5:
 					GUI_DispStringAt("channel 1  ", 100, 20); 
-					GUI_DispFloat(num/1000000,4);//������ʾ��λ��
-<<<<<<< HEAD
+					GUI_DispFloat(num/1000000,4);//除以1000000后是实际电压值
+
 					GUI_DispStringAt("transferred data  ", 300, 20); 
-					GUI_DispFloat(1.957*exp(1.988*num/1000000*4.6/5-0.35)-1.76*exp(-3.789*num/1000000*4.6/5-0.35),4);
-=======
-					GUI_DispStringAt("transfered data  ", 300, 20); 
-					 float curve01=1.957*exp(1.988*num/1000000*4.6/5-0.05);
-				  float curve02=-1.76*exp(-3.789*num/1000000*4.6/5-0.05);
-				  float curve03=curve01+curve02;
+					float curve01=1.957*exp(1.988*num/1000000*4.6/5-0.05);
+					float curve02=-1.76*exp(-3.789*num/1000000*4.6/5-0.05);
+					float curve03=curve01+curve02;
 					GUI_DispFloat(curve03,4);
->>>>>>> 593d0de0b42646de75d9ee4c4110e2608e84bbec
 					if(channelEnableflag[1])
 						stimulate(&huart1, curve03,1);
 					break;
 				case 6:
 					GUI_DispStringAt("channel 2  ", 100, 50); 
 					GUI_DispFloat(num/1000000,4);
-<<<<<<< HEAD
+
 					GUI_DispStringAt("transferred data  ", 300, 50); 
-					GUI_DispFloat(1.946e+04*exp(0.8933*num/1000000*4.6/5-0.25)-1.946e+04*exp(0.8929*num/1000000*4.6/5-0.25),4);
-=======
-					GUI_DispStringAt("transfered data  ", 300, 50); 
 					float curve04=1.946e+04*exp(0.8933*num/1000000*4.6/5-0.125);
-				  float curve05=-1.946e+04*exp(0.8929*num/1000000*4.6/5-0.125);
-				  float curve06=curve04+curve05;
+					float curve05=-1.946e+04*exp(0.8929*num/1000000*4.6/5-0.125);
+					float curve06=curve04+curve05;
 					GUI_DispFloat(curve06,4);
->>>>>>> 593d0de0b42646de75d9ee4c4110e2608e84bbec
+
 					if(channelEnableflag[2])
 						stimulate(&huart3,curve06,2);
 					break;
 				case 7:
 					GUI_DispStringAt("channel 3  ", 100, 80); 
 					GUI_DispFloat(num*3.3/5000000,4);
-<<<<<<< HEAD
+
 					GUI_DispStringAt("transferred data  ", 300, 80); 
-					GUI_DispFloat(2.455*exp(1.891*num*3.3/5000000*5/4.6)-2.977*exp(-3.137*num*3.3/5000000*5/4.6),4);
-=======
-					GUI_DispStringAt("transfered data  ", 300, 80); 
 					float curve07=2.455*exp(1.891*num/1000000*5/4.6-0.3);
-          float curve08=-2.977*exp(-3.137*num/1000000*5/4.6-0.3);
-				  float curve09=curve07+curve08;
+					float curve08=-2.977*exp(-3.137*num/1000000*5/4.6-0.3);
+					float curve09=curve07+curve08;
 					GUI_DispFloat(curve09,4);
->>>>>>> 593d0de0b42646de75d9ee4c4110e2608e84bbec
+
 					if(channelEnableflag[3])
 						stimulate(&huart4,curve09,3);
 					break;
 				case 8:
 					GUI_DispStringAt("channel 4  ", 100, 110); 
 					GUI_DispFloat(num,4);
-<<<<<<< HEAD
+
 					GUI_DispStringAt("transferred data  ", 300, 110); 
-					GUI_DispFloat(22.24*(num-0.43)-0.8579,4);
-=======
-					GUI_DispStringAt("transfered data  ", 300, 110); 
 					GUI_DispFloat(17*(num-0.15),4);
->>>>>>> 593d0de0b42646de75d9ee4c4110e2608e84bbec
+
 					if(channelEnableflag[4])
 						stimulate(&huart5,17*(num-0.15),4);
 					break;
 				case 9:
 					GUI_DispStringAt("channel 5  ", 100, 140); 
 					GUI_DispFloat(num,4);
-<<<<<<< HEAD
+
 					GUI_DispStringAt("transferred data  ", 300, 140); 
-					GUI_DispFloat(23.38*(num-0.37)-0.5574,4);
-=======
-					GUI_DispStringAt("transfered data  ", 300, 140); 
 					GUI_DispFloat(17*(num-0.3),4);
->>>>>>> 593d0de0b42646de75d9ee4c4110e2608e84bbec
+
 					if(channelEnableflag[5])
 						stimulate(&huart7,17*(num-0.3),5);
 					break;
@@ -522,12 +505,11 @@ void display()
 
 void GetAdData(void)
 {
-	  static int cnt = 0;
-		cnt++;
 		static int tempcnt = 0;
-		//����1-5ͨ��
+		//前五个通道的头
 		data[0] = 0xff;
 		data[1] = 0xff;
+		AD_Init();//理论上不用初始化，这是折衷的做法，否则会出现AD采样偶尔错误的后果。经测试推测是与DSU通信有关。
 	
 		for(int i = 0;i < 5;i++)
 		{
@@ -548,18 +530,18 @@ void GetAdData(void)
 			}
 			if(temp>0&&temp/1000<5000){
 				
-				ldVolutage[i] = temp-offset[i];
+				ldVolutage[i] = temp;//-offset[i];
 				//ldVolutage[i] = ldVolutage[i]/1000;
 				data[i*2+2] = ((u16)(ldVolutage[i]/1000))>>8;
 				data[i*2+3] = ((u16)(ldVolutage[i]/1000))&0xFF;
 			}
 			//HAL_Delay(1);	
 		}
-		if(cnt==10)
-			HAL_UART_Transmit(&huart8,data,15,0xfff);
+		
+		HAL_UART_Transmit(&huart8,data,15,0xfff);
 		
 		
-		//����6-10ͨ��
+		//后五个通道的头
 		data[0] = 0xff;
 		data[1] = 0xf1;
 	
@@ -583,7 +565,7 @@ void GetAdData(void)
 			}
 			
 			if(temp>0&&temp/1000<5000){
-				ldVolutage[i] = temp-offset[i];
+				ldVolutage[i] = temp;//-offset[i];
 				//ldVolutage[i] = ldVolutage[i]/1000;
 				data[i*2-8] = ((u16)(ldVolutage[i]/1000))>>8;
 				data[i*2-7] = ((u16)(ldVolutage[i]/1000))&0xFF;
@@ -610,11 +592,10 @@ void GetAdData(void)
 			data[10] =((u16)(ldVolutage[9]*1000))>>8;
 			data[11] =((u16)(ldVolutage[9]*1000))&0xFF;
 		
-			if(cnt==10){
-				HAL_UART_Transmit(&huart8,data,15,0xfff);
-				HAL_UART_Receive_IT(&huart8,&UART8RxBuff,1);
-				cnt = 0;
-			}
+			
+			HAL_UART_Transmit(&huart8,data,15,0xfff);
+			HAL_UART_Receive_IT(&huart8,&UART8RxBuff,1);
+			
 		
 			
 }
@@ -641,7 +622,7 @@ void MainLoop()
 		GUI_Clear();
 	
 	if(testmode_flag>=8){
-		testmode_flag = last_flag;//���¼������ֵģʽ��Ӱ����ǰģʽ�Ĺ���
+		testmode_flag = last_flag;//正常工作模式不会大于7
 	}
 	switch(testmode_flag)
 	{
@@ -688,11 +669,11 @@ void MainLoop()
 			break;
 		case 7:
 			GUI_DispStringAt("test mode  ", 100, 270); 
-			GUI_DispFloat(parameter[1][0]/10.0,4);//������ʾ��λ��
+			GUI_DispFloat(parameter[1][0]/10.0,4);//电流
 			GUI_DispStringAt("mA  ", 290, 270); 
-			GUI_DispFloat(parameter[1][1],4);//������ʾ��λ��
+			GUI_DispFloat(parameter[1][1],4);//频率
 			GUI_DispStringAt("us  ", 410, 270); 
-			GUI_DispFloat(parameter[1][2],4);//������ʾ��λ��
+			GUI_DispFloat(parameter[1][2],4);//脉宽
 			GUI_DispStringAt("hz  ", 520, 270); 
 			break;
 		
@@ -702,7 +683,7 @@ void MainLoop()
 		last_flag = testmode_flag;
 }
 
-//��ֵ�˲�
+//均值滤波
 float MeanFilter(float input,float *a)
 {
 	float temp = 0;

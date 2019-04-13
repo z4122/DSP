@@ -108,7 +108,7 @@ void ADS1256_Init(void)
 //	ADS1256_Write_Byte(CMD_WAKEUP);
 	while(ADS1256_DRDY);
 	ADS1256_Write_Reg(REG_STATUS,0x06);	//STATUS REGISTER:Auto-Calibration Enabled,Analog Input Buffer Disabled
-//	ADS1256_Write_Reg(REG_STATUS,MSB_FRIST+ACAL_ON+BUFEN_OFF);	//STATUS:MSB;AOTO ColCalibration;BUFFER DISABLEED
+	//ADS1256_Write_Reg(REG_STATUS,MSB_FRIST+ACAL_ON+BUFEN_OFF);	//STATUS:MSB;AOTO ColCalibration;BUFFER DISABLEED
 	while(ADS1256_DRDY);
 //	ADS1256_Write_Reg(REG_MUX,POSITIVE_AIN0+ NEGTIVE_AINCOM);  //MUX:AIN0
     ADS1256_Write_Reg(REG_MUX,0x08);	//AIN0 is Positive,single-ended measurements

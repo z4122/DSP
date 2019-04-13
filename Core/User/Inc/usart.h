@@ -47,6 +47,7 @@ extern int channelchange;
 extern u16 parameter[6][5];
 extern u16 threshold[6][6];
 extern u8  channelEnableflag[6];
+extern u8  pressureThreshold;
 void USART1_Init(void);
 void USART2_Init(void);
 void USART3_Init(void);

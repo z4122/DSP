@@ -3,7 +3,7 @@
 <title>Static Call Graph - [STM32H743I_EVAL\Exe\Project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image STM32H743I_EVAL\Exe\Project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060422: Last Updated: Mon Apr 08 20:50:43 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060422: Last Updated: Sat Apr 13 21:14:12 2019
 <BR><P>
 <H3>Maximum Stack Usage =        488 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -52,8 +52,8 @@ Mutually Recursive functions
  <LI><a href="#[e]">BusFault_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[e]">BusFault_Handler</a><BR>
  <LI><a href="#[c]">HardFault_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[c]">HardFault_Handler</a><BR>
  <LI><a href="#[d]">MemManage_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[d]">MemManage_Handler</a><BR>
- <LI><a href="#[f]">UsageFault_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[f]">UsageFault_Handler</a><BR>
  <LI><a href="#[464]">delayad</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[464]">delayad</a><BR>
+ <LI><a href="#[f]">UsageFault_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[f]">UsageFault_Handler</a><BR>
  <LI><a href="#[30c]">_PaintTransChildren</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[30c]">_PaintTransChildren</a><BR>
 </UL>
 <P>
@@ -5357,6 +5357,7 @@ Global Symbols
 <LI><a href="#[45f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 </UL>
 <BR>[Called By]<UL><LI><a href="#[46c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_Init
+<LI><a href="#[48b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetAdData
 </UL>
 
 <P><STRONG><a name="[476]"></a>BSP_IO_WritePin</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, stm32h743i_eval_io.o(i.BSP_IO_WritePin))
@@ -5367,7 +5368,8 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 232 + Unknown Stack Size
 <LI>Call Chain = BSP_Init &rArr; USART3_Init &rArr; Error_Handler &rArr; MainTask &rArr; GUI_DispStringAt &rArr; GUI_DispString &rArr; GUI__DispLine &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; _SetClipRectUserIntersect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
 </UL>
-<BR>[Calls]<UL><LI><a href="#[46e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_Init
+<BR>[Calls]<UL><LI><a href="#[46a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AD_Init
+<LI><a href="#[46e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_Init
 <LI><a href="#[46d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_Init
 <LI><a href="#[472]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART8_Init
 <LI><a href="#[471]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART7_Init
@@ -5375,7 +5377,6 @@ Global Symbols
 <LI><a href="#[46f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_Init
 <LI><a href="#[474]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM5_Init
 <LI><a href="#[473]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM3_Init
-<LI><a href="#[46a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AD_Init
 <LI><a href="#[458]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -5499,11 +5500,12 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[1ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Init
 </UL>
 
-<P><STRONG><a name="[48b]"></a>GetAdData</STRONG> (Thumb, 644 bytes, Stack size 72 bytes, main.o(i.GetAdData))
-<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = GetAdData &rArr; HAL_UART_Transmit &rArr; UART_WaitOnFlagUntilTimeout
+<P><STRONG><a name="[48b]"></a>GetAdData</STRONG> (Thumb, 586 bytes, Stack size 72 bytes, main.o(i.GetAdData))
+<BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = GetAdData &rArr; AD_Init &rArr; AD_GPIO_Init &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[48c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Transmit
 <LI><a href="#[48e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Receive_IT
+<LI><a href="#[46a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AD_Init
 <LI><a href="#[467]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS_sum
 <LI><a href="#[48d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MeanFilter
 </UL>
@@ -5646,10 +5648,10 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[452]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
 <BR>[Called By]<UL><LI><a href="#[47a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_SDRAM_Initialization_sequence
+<LI><a href="#[46a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AD_Init
 <LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[4fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stim_start
 <LI><a href="#[4f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stim_search
-<LI><a href="#[46a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AD_Init
 </UL>
 
 <P><STRONG><a name="[491]"></a>HAL_GPIO_DeInit</STRONG> (Thumb, 300 bytes, Stack size 36 bytes, stm32h7xx_hal_gpio.o(i.HAL_GPIO_DeInit))
@@ -5678,13 +5680,13 @@ Global Symbols
 
 <P><STRONG><a name="[45f]"></a>HAL_GPIO_WritePin</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32h7xx_hal_gpio.o(i.HAL_GPIO_WritePin))
 <BR><BR>[Called By]<UL><LI><a href="#[475]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LED_On
+<LI><a href="#[46a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AD_Init
 <LI><a href="#[468]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AD_GPIO_Init
 <LI><a href="#[465]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1256_Write_Reg
 <LI><a href="#[461]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1256_Write_Byte
 <LI><a href="#[462]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1256_Read_Byte
 <LI><a href="#[463]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1256_Init
 <LI><a href="#[45e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1256ReadData
-<LI><a href="#[46a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AD_Init
 </UL>
 
 <P><STRONG><a name="[452]"></a>HAL_GetTick</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32h7xx_hal.o(i.HAL_GetTick))
@@ -6093,7 +6095,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[4c4]"></a>HAL_TIM_IRQHandler</STRONG> (Thumb, 382 bytes, Stack size 16 bytes, stm32h7xx_hal_tim.o(i.HAL_TIM_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 432 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 400 + Unknown Stack Size
 <LI>Call Chain = HAL_TIM_IRQHandler &rArr; HAL_TIM_PeriodElapsedCallback &rArr; MainLoop &rArr; display &rArr; GUI_DispFloat &rArr; _DispFloatFix &rArr; GUI_DispDecShift &rArr; [Anonymous Symbol] &rArr; GUI_DispString &rArr; GUI__DispLine &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; _SetClipRectUserIntersect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_TriggerCallback
@@ -6117,7 +6119,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[4c8]"></a>HAL_TIM_PeriodElapsedCallback</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, timer.o(i.HAL_TIM_PeriodElapsedCallback))
-<BR><BR>[Stack]<UL><LI>Max Depth = 416 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 384 + Unknown Stack Size
 <LI>Call Chain = HAL_TIM_PeriodElapsedCallback &rArr; MainLoop &rArr; display &rArr; GUI_DispFloat &rArr; _DispFloatFix &rArr; GUI_DispDecShift &rArr; [Anonymous Symbol] &rArr; GUI_DispString &rArr; GUI__DispLine &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; _SetClipRectUserIntersect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainLoop
@@ -6203,7 +6205,7 @@ Global Symbols
 <LI><a href="#[46f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_Init
 </UL>
 
-<P><STRONG><a name="[4da]"></a>HAL_UART_RxCpltCallback</STRONG> (Thumb, 352 bytes, Stack size 16 bytes, usart.o(i.HAL_UART_RxCpltCallback))
+<P><STRONG><a name="[4da]"></a>HAL_UART_RxCpltCallback</STRONG> (Thumb, 356 bytes, Stack size 16 bytes, usart.o(i.HAL_UART_RxCpltCallback))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = HAL_UART_RxCpltCallback &rArr; HAL_UART_Receive_IT
 </UL>
 <BR>[Calls]<UL><LI><a href="#[48e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Receive_IT
@@ -6290,7 +6292,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32h743xx.o(RESET)
 </UL>
 <P><STRONG><a name="[4cc]"></a>MainLoop</STRONG> (Thumb, 260 bytes, Stack size 24 bytes, main.o(i.MainLoop))
-<BR><BR>[Stack]<UL><LI>Max Depth = 416 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 384 + Unknown Stack Size
 <LI>Call Chain = MainLoop &rArr; display &rArr; GUI_DispFloat &rArr; _DispFloatFix &rArr; GUI_DispDecShift &rArr; [Anonymous Symbol] &rArr; GUI_DispString &rArr; GUI__DispLine &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; _SetClipRectUserIntersect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
 </UL>
 <BR>[Calls]<UL><LI><a href="#[202]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DispFloat
@@ -6348,7 +6350,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32h743xx.o(.text)
 </UL>
 <P><STRONG><a name="[31]"></a>TIM3_IRQHandler</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, timer.o(i.TIM3_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 432 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 400 + Unknown Stack Size
 <LI>Call Chain = TIM3_IRQHandler &rArr; HAL_TIM_IRQHandler &rArr; HAL_TIM_PeriodElapsedCallback &rArr; MainLoop &rArr; display &rArr; GUI_DispFloat &rArr; _DispFloatFix &rArr; GUI_DispDecShift &rArr; [Anonymous Symbol] &rArr; GUI_DispString &rArr; GUI__DispLine &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; _SetClipRectUserIntersect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_IRQHandler
@@ -6365,7 +6367,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[45]"></a>TIM5_IRQHandler</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, timer.o(i.TIM5_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 432 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 400 + Unknown Stack Size
 <LI>Call Chain = TIM5_IRQHandler &rArr; HAL_TIM_IRQHandler &rArr; HAL_TIM_PeriodElapsedCallback &rArr; MainLoop &rArr; display &rArr; GUI_DispFloat &rArr; _DispFloatFix &rArr; GUI_DispDecShift &rArr; [Anonymous Symbol] &rArr; GUI_DispString &rArr; GUI__DispLine &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; _SetClipRectUserIntersect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_IRQHandler
@@ -6628,8 +6630,8 @@ Global Symbols
 <LI><a href="#[462]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1256_Read_Byte
 </UL>
 
-<P><STRONG><a name="[4e6]"></a>display</STRONG> (Thumb, 1820 bytes, Stack size 120 bytes, main.o(i.display))
-<BR><BR>[Stack]<UL><LI>Max Depth = 392 + Unknown Stack Size
+<P><STRONG><a name="[4e6]"></a>display</STRONG> (Thumb, 1808 bytes, Stack size 88 bytes, main.o(i.display))
+<BR><BR>[Stack]<UL><LI>Max Depth = 360 + Unknown Stack Size
 <LI>Call Chain = display &rArr; GUI_DispFloat &rArr; _DispFloatFix &rArr; GUI_DispDecShift &rArr; [Anonymous Symbol] &rArr; GUI_DispString &rArr; GUI__DispLine &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; _SetClipRectUserIntersect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stimulate
@@ -6648,7 +6650,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[1ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_RoundHalfUp
 </UL>
 
-<P><STRONG><a name="[9e]"></a>main</STRONG> (Thumb, 108 bytes, Stack size 24 bytes, main.o(i.main))
+<P><STRONG><a name="[9e]"></a>main</STRONG> (Thumb, 106 bytes, Stack size 24 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 432 + Unknown Stack Size
 <LI>Call Chain = main &rArr; SystemClock_Config &rArr; HAL_RCC_MCOConfig &rArr; HAL_GPIO_Init
 </UL>
@@ -6666,7 +6668,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
-<P><STRONG><a name="[4f8]"></a>merge_stimulate_parameter</STRONG> (Thumb, 1076 bytes, Stack size 48 bytes, fes.o(i.merge_stimulate_parameter))
+<P><STRONG><a name="[4f8]"></a>merge_stimulate_parameter</STRONG> (Thumb, 1108 bytes, Stack size 48 bytes, fes.o(i.merge_stimulate_parameter))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = merge_stimulate_parameter &rArr; HAL_UART_Transmit &rArr; UART_WaitOnFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[48c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Transmit

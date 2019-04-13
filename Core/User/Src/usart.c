@@ -30,12 +30,13 @@ uint8_t volatile UART8RxBuff;
 u16 parameter[6][5]; //5¸öÍ¨µÀ£¬ÎªÁË¶ÔÆëÑ¡ÁË6
 u16 threshold[6][6]; // 5¸öÍ¨µÀ£¬ÎªÁË¶ÔÆëÑ¡ÁË6
 u8  channelEnableflag[6]; //5¸öÍ¨µÀ£¬ÎªÁË¶ÔÆëÑ¡ÁË6
+u8  pressureThreshold = 0;//å‹åŠ›æœ‰æ•ˆçš„ä¸‹é™
 
 int channelchange = 0;
 uint8_t tempRxBuffer;
 uint8_t upperRxBuffer[7];
 int cnt = 0;
-volatile int testmode_flag = 6;//Í¨¹ıĞŞ¸Ä´Ë´¦¿ÉÒÔĞŞ¸ÄÆô¶¯µÄÄ£Ê½
+volatile int testmode_flag = 4;//Í¨¹ıĞŞ¸Ä´Ë´¦¿ÉÒÔĞŞ¸ÄÆô¶¯µÄÄ£Ê½
 
 static void Error_Handler(void)
 {
@@ -699,16 +700,17 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 				testmode_flag = upperRxBuffer[0];
 				switch (upperRxBuffer[0]){
 					case 8:{
-					//µçÁ÷×îµÍãĞÖµ
+						//ç”µæµå¹…å€¼ä¸‹é™
 						threshold[1][0] = upperRxBuffer[1];
 						threshold[2][0] = upperRxBuffer[2];
 						threshold[3][0] = upperRxBuffer[3];
 						threshold[4][0] = upperRxBuffer[4];
 						threshold[5][0] = upperRxBuffer[5];
+						pressureThreshold = upperRxBuffer[6];//å‹åŠ›æ¿€æ´»çš„ä¸‹é™
 						return;
 					}
 					case 9:{
-					//µçÁ÷×î¸ßãĞÖµ
+						//ç”µæµå¹…å€¼ä¸Šé™
 						threshold[1][1] = upperRxBuffer[1];
 						threshold[2][1] = upperRxBuffer[2];
 						threshold[3][1] = upperRxBuffer[3];
@@ -717,7 +719,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 						return;
 					}
 					case 10:{
-					//Âö¿í×îµÍãĞÖµ
+						//Âö¿í×îµÍãĞÖµ
 						threshold[1][2] = upperRxBuffer[1];
 						threshold[2][2] = upperRxBuffer[2];
 						threshold[3][2] = upperRxBuffer[3];
@@ -742,6 +744,9 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 						channelEnableflag[4] = upperRxBuffer[4];
 						channelEnableflag[5] = upperRxBuffer[5];
 						return;
+					}
+					case 13:{
+						
 					}
 					default:
 						break;

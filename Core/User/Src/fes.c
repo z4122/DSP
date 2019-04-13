@@ -27,12 +27,12 @@ configtx txconfig = {
 
 void merge_stimulate_parameter(UART_HandleTypeDef *huart,int pressure,int channel)
 {			
-	//ÏŞÖÆ×î´óÖµ
 	if(pressure<0)
 		pressure = 0;
 	if(pressure>maxpressure)
 		pressure = maxpressure;
-	
+	if(pressure<pressureThreshold)
+		return;
 	stimulate_parameter[0]=txconfig.HEADER;	
 	stimulate_parameter[1]=txconfig.CONTROL;
 	stimulate_parameter[2]=txconfig.CHANNEL;
@@ -54,26 +54,28 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,int pressure,int channe
 	stimulate_parameter[18]=txconfig.ENDFLAG;
 	stimulate_parameter[19]=txconfig.ENDFLAG;
 	
-	//flag==1·ùÖµÄ£Ê½£¬flag==2ÆµÂÊÄ£Ê½£¬flag==3Âö¿íÄ£Ê½,flag==7×ÔÓÉ²âÊÔÄ£Ê½
+	//flag==1||4å¹…å€¼è·Ÿéšæ¨¡å¼ï¼Œflag==2||5é¢‘ç‡è·Ÿéšæ¨¡å¼ï¼Œflag==3||6è„‰å®½è·Ÿéšæ¨¡å¼,flag==7è‡ªç”±æµ‹è¯•æ¨¡å¼
 	if(testmode_flag==1||testmode_flag==4){
-			stimulate_parameter[16] = (threshold[channel][1]-threshold[channel][0])*(float)pressure/maxpressure+threshold[channel][0];
+		
+		stimulate_parameter[16] = (threshold[channel][1]-threshold[channel][0])*(float)pressure/maxpressure+threshold[channel][0];
 	}
 	else if(testmode_flag==2||testmode_flag==5){
-			stimulate_parameter[7] = (25+pressure/2)>>8; //ÆµÂÊ¸ßÎ»
-			stimulate_parameter[8] = 25+pressure/2; //ÆµÂÊµÍÎ»
+		stimulate_parameter[7] = (25+pressure/2)>>8; //é¢‘ç‡é«˜8ä½
+		stimulate_parameter[8] = 25+pressure/2; //é¢‘ç‡ä½8ä½
 	}		
 	else if(testmode_flag==3||testmode_flag==6){
-			float temp = (threshold[channel][3]-threshold[channel][2])*(float)pressure/maxpressure+threshold[channel][2];
-			u16 val = (u16)temp;
-		  val*=10;
-			if(val<100)
-				val=100;
-			stimulate_parameter[5] = val>>8; //Âö¿í¸ßÎ»
-			stimulate_parameter[6] = val; //Âö¿íµÍÎ»
+		float temp = (threshold[channel][3]-threshold[channel][2])*(float)pressure/maxpressure+threshold[channel][2];
+		u16 val = (u16)temp;
+		val*=10;
+		if(val<20)
+			val=20;
+		stimulate_parameter[5] = val>>8; //è„‰å®½é«˜8ä½
+		stimulate_parameter[6] = val; //è„‰å®½ä½8ä½
+		stimulate_parameter[16]=threshold[channel][1];//é…åˆè„‰å®½æ¨¡å¼å’Œè¯±å‘æŒ‡æ„ŸåŒºçš„æœ€ä½ç”µæµé˜ˆå€¼ï¼Œåœ¨è„‰å®½æ¨¡å¼ä¸‹ä¹Ÿä¼š
 	}
 	else if(testmode_flag==7)
 	{
-		if(huart==&huart5) {
+		if(huart==&huart1) {
 			static u16 last_frequency = 0;
 			if(last_frequency != parameter[1][2]){
 				last_frequency=parameter[1][2];
@@ -121,7 +123,7 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,int pressure,int channe
 			stimulate_parameter[5] = parameter[2][1]>>8; //Âö¿í¸ßÎ»
 			stimulate_parameter[6] = parameter[2][1]; //Âö¿íµÍÎ»
 		}
-		else if(huart==&huart1) {
+		else if(huart==&huart4) {
 			static u16 last_frequency = 0;
 			if(last_frequency != parameter[3][2]){
 				last_frequency=parameter[3][2];
@@ -145,7 +147,7 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,int pressure,int channe
 			stimulate_parameter[5] = parameter[3][1]>>8; //Âö¿í¸ßÎ»
 			stimulate_parameter[6] = parameter[3][1]; //Âö¿íµÍÎ»
 		}
-		else if(huart==&huart4) {
+		else if(huart==&huart5) {
 			static u16 last_frequency = 0;
 			if(last_frequency != parameter[4][2]){
 				last_frequency=parameter[4][2];
@@ -224,7 +226,7 @@ void stim_search(UART_HandleTypeDef *huart)
 	{
 		while((UART3RxBuff!=0xBC))
 		{
-			HAL_UART_Receive_IT(huart,&UART3RxBuff,1);
+			HAL_UART_Receive_IT(huart,(uint8_t *)&UART3RxBuff,1);
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
 			HAL_Delay(1);
 		}
@@ -235,7 +237,7 @@ void stim_search(UART_HandleTypeDef *huart)
 	{
 		while((UART4RxBuff!=0xBC))
 		{
-			HAL_UART_Receive_IT(huart,&UART4RxBuff,1);
+			HAL_UART_Receive_IT(huart,(uint8_t *)&UART4RxBuff,1);
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
 			HAL_Delay(1);
 		}
