@@ -3,7 +3,11 @@
 <title>Static Call Graph - [STM32H743I_EVAL\Exe\Project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image STM32H743I_EVAL\Exe\Project.axf</H1><HR>
+<<<<<<< HEAD
 <BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060422: Last Updated: Thu Mar 21 17:10:55 2019
+=======
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060422: Last Updated: Mon Mar 18 16:28:44 2019
+>>>>>>> c44ff6c583f3d854bc17be7bc6b966cdfafaf2a0
 <BR><P>
 <H3>Maximum Stack Usage =        488 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -759,11 +763,19 @@ Global Symbols
 <P><STRONG><a name="[501]"></a>GUI_ALLOC_p2h</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, GUI_Alloc.o(.text), UNUSED)
 
 <P><STRONG><a name="[1bc]"></a>GUI_ALLOC_FreeFixedBlock</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, GUI_Alloc.o(.text))
+<<<<<<< HEAD
 <BR><BR>[Called By]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OnExit
 <LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OnExit
 <LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OnExit
 <LI><a href="#[40f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_InitAlpha
 <LI><a href="#[1bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DEVICE_Delete
+=======
+<BR><BR>[Called By]<UL><LI><a href="#[1bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DEVICE_Delete
+<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OnExit
+<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OnExit
+<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OnExit
+<LI><a href="#[40f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_InitAlpha
+>>>>>>> c44ff6c583f3d854bc17be7bc6b966cdfafaf2a0
 </UL>
 
 <P><STRONG><a name="[13b]"></a>GUI_ALLOC_GetFixedBlock</STRONG> (Thumb, 166 bytes, Stack size 32 bytes, GUI_Alloc.o(.text))
@@ -1640,10 +1652,14 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[1d9]"></a>GUI_DEVICE__GetpDriver</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, GUI_Device.o(.text))
+<<<<<<< HEAD
 <BR><BR>[Called By]<UL><LI><a href="#[2c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetNumLayers
 <LI><a href="#[3a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_MEMDEV_CreateEx
 <LI><a href="#[380]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__ManageCacheEx
 <LI><a href="#[1e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_SelectLayer
+=======
+<BR><BR>[Called By]<UL><LI><a href="#[1e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_SelectLayer
+>>>>>>> c44ff6c583f3d854bc17be7bc6b966cdfafaf2a0
 <LI><a href="#[1e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_AssignCursorLayer
 <LI><a href="#[1d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_MULTIBUF_EndEx
 <LI><a href="#[1d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_MULTIBUF_BeginEx
@@ -1659,6 +1675,12 @@ Global Symbols
 <LI><a href="#[24d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetPaletteEx
 <LI><a href="#[23a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_GetDevProp
 <LI><a href="#[239]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_InitLUT
+<<<<<<< HEAD
+=======
+<LI><a href="#[2c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetNumLayers
+<LI><a href="#[3a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_MEMDEV_CreateEx
+<LI><a href="#[380]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__ManageCacheEx
+>>>>>>> c44ff6c583f3d854bc17be7bc6b966cdfafaf2a0
 </UL>
 
 <P><STRONG><a name="[1bb]"></a>GUI_DEVICE_Delete</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, GUI_Device.o(.text))
@@ -1691,8 +1713,12 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[3a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_MEMDEV_Select
 <LI><a href="#[1be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DEVICE_CreateAndLink
+<<<<<<< HEAD
 <LI><a href="#[1c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DEVICE_LinkDevices
+=======
+>>>>>>> c44ff6c583f3d854bc17be7bc6b966cdfafaf2a0
 <LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_SetAlpha
+<LI><a href="#[3a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_MEMDEV_Select
 </UL>
 
 <P><STRONG><a name="[1be]"></a>GUI_DEVICE_CreateAndLink</STRONG> (Thumb, 36 bytes, Stack size 16 bytes, GUI_Device.o(.text))
@@ -1935,10 +1961,10 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 272 + Unknown Stack Size
 <LI>Call Chain = GUI_DispFloat &rArr; _DispFloatFix &rArr; GUI_DispDecShift &rArr; [Anonymous Symbol] &rArr; GUI_DispString &rArr; GUI__DispLine &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; _SetClipRectUserIntersect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
 </UL>
-<BR>[Calls]<UL><LI><a href="#[1fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Long2Len
+<BR>[Calls]<UL><LI><a href="#[1f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_DispFloatFix
+<LI><a href="#[1fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Long2Len
 <LI><a href="#[1fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
 <LI><a href="#[1f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
-<LI><a href="#[1f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_DispFloatFix
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display
 <LI><a href="#[4cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainLoop
@@ -2060,8 +2086,12 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 136 + Unknown Stack Size
 <LI>Call Chain = emWin_LCD_Init &rArr; LCD_InitColors &rArr; GUI_ALLOC_GetFixedBlock &rArr; _InitOnce &rArr; _EnlargeBlocks &rArr;  _Alloc (Cycle)
 </UL>
+<<<<<<< HEAD
 <BR>[Calls]<UL><LI><a href="#[1a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FillRect
 <LI><a href="#[1e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_SelectLayer
+=======
+<BR>[Calls]<UL><LI><a href="#[1e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_SelectLayer
+>>>>>>> c44ff6c583f3d854bc17be7bc6b966cdfafaf2a0
 <LI><a href="#[1d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DEVICE__GetpDriver
 <LI><a href="#[19f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetDrawMode
 <LI><a href="#[237]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetClipRectMax
@@ -2080,6 +2110,10 @@ Global Symbols
 <LI><a href="#[279]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__SetPixelAlpha
 <LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetColor
 <LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetBkColor
+<<<<<<< HEAD
+=======
+<LI><a href="#[2c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetpPalConvTableUncached
+>>>>>>> c44ff6c583f3d854bc17be7bc6b966cdfafaf2a0
 <LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetPixelAA8_Trans
 <LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetPixelAA8_NoTrans
 <LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetPixelAA4_Trans
@@ -2430,8 +2464,13 @@ Global Symbols
 <LI><a href="#[25b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
 <LI><a href="#[257]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
 </UL>
+<<<<<<< HEAD
 <BR>[Called By]<UL><LI><a href="#[1ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_X_Config
 <LI><a href="#[1eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_SetLayerSizeEx
+=======
+<BR>[Called By]<UL><LI><a href="#[1eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_SetLayerSizeEx
+<LI><a href="#[1ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_X_Config
+>>>>>>> c44ff6c583f3d854bc17be7bc6b966cdfafaf2a0
 <LI><a href="#[267]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetSize
 </UL>
 
@@ -2769,8 +2808,13 @@ Global Symbols
 <P><STRONG><a name="[283]"></a>GUI_GetCharDistX</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, GUI_Char.o(.text))
 <BR><BR>[Calls]<UL><LI><a href="#[289]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
 </UL>
+<<<<<<< HEAD
 <BR>[Called By]<UL><LI><a href="#[290]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CL_DispChar
 <LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__GetLineDistX
+=======
+<BR>[Called By]<UL><LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__GetLineDistX
+<LI><a href="#[290]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CL_DispChar
+>>>>>>> c44ff6c583f3d854bc17be7bc6b966cdfafaf2a0
 <LI><a href="#[285]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__WrapGetNumCharsToNextLine
 <LI><a href="#[3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_GetWordWrap
 <LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_GetCharWrap
@@ -2845,6 +2889,11 @@ Global Symbols
 <LI><a href="#[16d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_GetColor
 <LI><a href="#[16a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_GetBkColor
 <LI><a href="#[19f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetDrawMode
+<<<<<<< HEAD
+=======
+<LI><a href="#[1a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FillRect
+<LI><a href="#[28f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUIPROP__FindChar
+>>>>>>> c44ff6c583f3d854bc17be7bc6b966cdfafaf2a0
 <LI><a href="#[236]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawBitmap
 </UL>
 <BR>[Address Reference Count : 2]<UL><LI> F32_1.o(.rodata)
@@ -3453,8 +3502,15 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[2db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__ActivateClipRect
 <LI><a href="#[301]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_FindNext_IVR
 </UL>
+<<<<<<< HEAD
 <BR>[Called By]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__Paint1
+=======
+<BR>[Called By]<UL><LI><a href="#[1c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__DispLine
+<LI><a href="#[1a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__InitIVRSearch
+<LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_ClearRect
+>>>>>>> c44ff6c583f3d854bc17be7bc6b966cdfafaf2a0
 <LI><a href="#[290]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CL_DispChar
+<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__Paint1
 <LI><a href="#[3a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_MEMDEV_CopyToLCDAt
 <LI><a href="#[1c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__DispLine
 <LI><a href="#[1a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__InitIVRSearch
@@ -3478,8 +3534,14 @@ Global Symbols
 <LI><a href="#[2cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__IntersectRect
 <LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
+<<<<<<< HEAD
 <BR>[Called By]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__Paint1
+=======
+<BR>[Called By]<UL><LI><a href="#[1c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__DispLine
+<LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_ClearRect
+>>>>>>> c44ff6c583f3d854bc17be7bc6b966cdfafaf2a0
 <LI><a href="#[290]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CL_DispChar
+<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__Paint1
 <LI><a href="#[3a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_MEMDEV_CopyToLCDAt
 <LI><a href="#[1c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__DispLine
 <LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_ClearRect
@@ -4371,15 +4433,25 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[3a3]"></a>GUI_MEMDEV_CopyToLCDAt</STRONG> (Thumb, 156 bytes, Stack size 40 bytes, GUIDEV.o(.text), UNUSED)
+<<<<<<< HEAD
 <BR><BR>[Calls]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_MEMDEV__WriteToActiveOpaque
 <LI><a href="#[3a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_MEMDEV_Select
 <LI><a href="#[39b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
 <LI><a href="#[1e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_SelectLayer
+=======
+<BR><BR>[Calls]<UL><LI><a href="#[1e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_SelectLayer
+>>>>>>> c44ff6c583f3d854bc17be7bc6b966cdfafaf2a0
 <LI><a href="#[1a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__InitIVRSearch
 <LI><a href="#[1a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__GetNextIVR
 <LI><a href="#[19b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_SetDrawMode
 <LI><a href="#[18c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM_Activate
 <LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_ALLOC_LockH
+<<<<<<< HEAD
+=======
+<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_MEMDEV__WriteToActiveOpaque
+<LI><a href="#[3a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_MEMDEV_Select
+<LI><a href="#[39b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
+>>>>>>> c44ff6c583f3d854bc17be7bc6b966cdfafaf2a0
 </UL>
 <BR>[Called By]<UL><LI><a href="#[3a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_MEMDEV_CopyToLCD
 </UL>
@@ -6093,7 +6165,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[4c4]"></a>HAL_TIM_IRQHandler</STRONG> (Thumb, 382 bytes, Stack size 16 bytes, stm32h7xx_hal_tim.o(i.HAL_TIM_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 408 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 416 + Unknown Stack Size
 <LI>Call Chain = HAL_TIM_IRQHandler &rArr; HAL_TIM_PeriodElapsedCallback &rArr; MainLoop &rArr; display &rArr; GUI_DispFloat &rArr; _DispFloatFix &rArr; GUI_DispDecShift &rArr; [Anonymous Symbol] &rArr; GUI_DispString &rArr; GUI__DispLine &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; _SetClipRectUserIntersect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PeriodElapsedCallback
@@ -6117,7 +6189,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[4c8]"></a>HAL_TIM_PeriodElapsedCallback</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, timer.o(i.HAL_TIM_PeriodElapsedCallback))
-<BR><BR>[Stack]<UL><LI>Max Depth = 392 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 400 + Unknown Stack Size
 <LI>Call Chain = HAL_TIM_PeriodElapsedCallback &rArr; MainLoop &rArr; display &rArr; GUI_DispFloat &rArr; _DispFloatFix &rArr; GUI_DispDecShift &rArr; [Anonymous Symbol] &rArr; GUI_DispString &rArr; GUI__DispLine &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; _SetClipRectUserIntersect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainLoop
@@ -6203,7 +6275,11 @@ Global Symbols
 <LI><a href="#[46f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_Init
 </UL>
 
+<<<<<<< HEAD
 <P><STRONG><a name="[4da]"></a>HAL_UART_RxCpltCallback</STRONG> (Thumb, 320 bytes, Stack size 16 bytes, usart.o(i.HAL_UART_RxCpltCallback))
+=======
+<P><STRONG><a name="[4da]"></a>HAL_UART_RxCpltCallback</STRONG> (Thumb, 322 bytes, Stack size 16 bytes, usart.o(i.HAL_UART_RxCpltCallback))
+>>>>>>> c44ff6c583f3d854bc17be7bc6b966cdfafaf2a0
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = HAL_UART_RxCpltCallback &rArr; HAL_UART_Receive_IT
 </UL>
 <BR>[Calls]<UL><LI><a href="#[48e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Receive_IT
@@ -6290,7 +6366,11 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32h743xx.o(RESET)
 </UL>
 <P><STRONG><a name="[4cc]"></a>MainLoop</STRONG> (Thumb, 260 bytes, Stack size 24 bytes, main.o(i.MainLoop))
+<<<<<<< HEAD
 <BR><BR>[Stack]<UL><LI>Max Depth = 392 + Unknown Stack Size
+=======
+<BR><BR>[Stack]<UL><LI>Max Depth = 400 + Unknown Stack Size
+>>>>>>> c44ff6c583f3d854bc17be7bc6b966cdfafaf2a0
 <LI>Call Chain = MainLoop &rArr; display &rArr; GUI_DispFloat &rArr; _DispFloatFix &rArr; GUI_DispDecShift &rArr; [Anonymous Symbol] &rArr; GUI_DispString &rArr; GUI__DispLine &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; _SetClipRectUserIntersect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
 </UL>
 <BR>[Calls]<UL><LI><a href="#[202]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DispFloat
@@ -6348,7 +6428,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32h743xx.o(.text)
 </UL>
 <P><STRONG><a name="[31]"></a>TIM3_IRQHandler</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, timer.o(i.TIM3_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 408 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 416 + Unknown Stack Size
 <LI>Call Chain = TIM3_IRQHandler &rArr; HAL_TIM_IRQHandler &rArr; HAL_TIM_PeriodElapsedCallback &rArr; MainLoop &rArr; display &rArr; GUI_DispFloat &rArr; _DispFloatFix &rArr; GUI_DispDecShift &rArr; [Anonymous Symbol] &rArr; GUI_DispString &rArr; GUI__DispLine &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; _SetClipRectUserIntersect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_IRQHandler
@@ -6365,7 +6445,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[45]"></a>TIM5_IRQHandler</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, timer.o(i.TIM5_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 408 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 416 + Unknown Stack Size
 <LI>Call Chain = TIM5_IRQHandler &rArr; HAL_TIM_IRQHandler &rArr; HAL_TIM_PeriodElapsedCallback &rArr; MainLoop &rArr; display &rArr; GUI_DispFloat &rArr; _DispFloatFix &rArr; GUI_DispDecShift &rArr; [Anonymous Symbol] &rArr; GUI_DispString &rArr; GUI__DispLine &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; _SetClipRectUserIntersect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_IRQHandler
@@ -6628,8 +6708,13 @@ Global Symbols
 <LI><a href="#[462]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1256_Read_Byte
 </UL>
 
+<<<<<<< HEAD
 <P><STRONG><a name="[4e6]"></a>display</STRONG> (Thumb, 1706 bytes, Stack size 96 bytes, main.o(i.display))
 <BR><BR>[Stack]<UL><LI>Max Depth = 368 + Unknown Stack Size
+=======
+<P><STRONG><a name="[4e6]"></a>display</STRONG> (Thumb, 1408 bytes, Stack size 104 bytes, main.o(i.display))
+<BR><BR>[Stack]<UL><LI>Max Depth = 376 + Unknown Stack Size
+>>>>>>> c44ff6c583f3d854bc17be7bc6b966cdfafaf2a0
 <LI>Call Chain = display &rArr; GUI_DispFloat &rArr; _DispFloatFix &rArr; GUI_DispDecShift &rArr; [Anonymous Symbol] &rArr; GUI_DispString &rArr; GUI__DispLine &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; _SetClipRectUserIntersect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stimulate
@@ -6666,8 +6751,13 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
+<<<<<<< HEAD
 <P><STRONG><a name="[4f8]"></a>merge_stimulate_parameter</STRONG> (Thumb, 1076 bytes, Stack size 48 bytes, fes.o(i.merge_stimulate_parameter))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = merge_stimulate_parameter &rArr; HAL_UART_Transmit &rArr; UART_WaitOnFlagUntilTimeout
+=======
+<P><STRONG><a name="[4f8]"></a>merge_stimulate_parameter</STRONG> (Thumb, 952 bytes, Stack size 40 bytes, fes.o(i.merge_stimulate_parameter))
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = merge_stimulate_parameter &rArr; HAL_UART_Transmit &rArr; UART_WaitOnFlagUntilTimeout
+>>>>>>> c44ff6c583f3d854bc17be7bc6b966cdfafaf2a0
 </UL>
 <BR>[Calls]<UL><LI><a href="#[48c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Transmit
 <LI><a href="#[485]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChangePeriod
@@ -6696,7 +6786,11 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[4f5]"></a>stimulate</STRONG> (Thumb, 48 bytes, Stack size 24 bytes, fes.o(i.stimulate))
+<<<<<<< HEAD
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = stimulate &rArr; merge_stimulate_parameter &rArr; HAL_UART_Transmit &rArr; UART_WaitOnFlagUntilTimeout
+=======
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = stimulate &rArr; merge_stimulate_parameter &rArr; HAL_UART_Transmit &rArr; UART_WaitOnFlagUntilTimeout
+>>>>>>> c44ff6c583f3d854bc17be7bc6b966cdfafaf2a0
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stim_start
 <LI><a href="#[4f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stim_search
@@ -7111,23 +7205,23 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 256 + Unknown Stack Size
 <LI>Call Chain = _DispFloatFix &rArr; GUI_DispDecShift &rArr; [Anonymous Symbol] &rArr; GUI_DispString &rArr; GUI__DispLine &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; _SetClipRectUserIntersect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
 </UL>
-<BR>[Calls]<UL><LI><a href="#[1f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DispSDecShift
+<BR>[Calls]<UL><LI><a href="#[1ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_RoundHalfUp
+<LI><a href="#[1f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DispSDecShift
 <LI><a href="#[1f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DispDecShift
-<LI><a href="#[1ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_RoundHalfUp
 </UL>
 <BR>[Called By]<UL><LI><a href="#[202]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DispFloat
-<LI><a href="#[1ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
 <LI><a href="#[1f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_DispFloatMin
+<LI><a href="#[1ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
 </UL>
 
 <P><STRONG><a name="[1f8]"></a>_DispFloatMin</STRONG> (Thumb, 248 bytes, Stack size 32 bytes, GUI_Valf.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[1fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Long2Len
+<BR><BR>[Calls]<UL><LI><a href="#[1ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_RoundHalfUp
+<LI><a href="#[1fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_GetDecs
+<LI><a href="#[1f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_DispFloatFix
+<LI><a href="#[1fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Long2Len
 <LI><a href="#[1fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
 <LI><a href="#[1fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
 <LI><a href="#[1f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
-<LI><a href="#[1ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_RoundHalfUp
-<LI><a href="#[1fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_GetDecs
-<LI><a href="#[1f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_DispFloatFix
 </UL>
 <BR>[Called By]<UL><LI><a href="#[201]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
 </UL>
@@ -7137,12 +7231,12 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[1ef]"></a>_RoundHalfUp</STRONG> (Thumb, 60 bytes, Stack size 8 bytes, GUI_Valf.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = _RoundHalfUp &rArr; floor &rArr; __hardfp_floor
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = _RoundHalfUp &rArr; ceil &rArr; __hardfp_ceil
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
 <LI><a href="#[1f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
-<LI><a href="#[1f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;floor
 <LI><a href="#[1f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ceil
+<LI><a href="#[1f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;floor
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_DispFloatMin
 <LI><a href="#[1f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_DispFloatFix
@@ -9254,11 +9348,11 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 208 + Unknown Stack Size
 <LI>Call Chain = _DrawBitLine16BPP &rArr; [Anonymous Symbol] &rArr; _DrawBitmapLine &rArr; _GetBitsPerPixel &rArr; LCD_GetBitsPerPixelEx &rArr; _GetDevProp
 </UL>
-<BR>[Calls]<UL><LI><a href="#[3ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
-<LI><a href="#[3f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_MixColors
-<LI><a href="#[40c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
+<BR>[Calls]<UL><LI><a href="#[40c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
 <LI><a href="#[40b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
 <LI><a href="#[40a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
+<LI><a href="#[3ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
+<LI><a href="#[3f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_MixColors
 </UL>
 <BR>[Called By]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_DrawBitmap
 </UL>
@@ -9298,10 +9392,10 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 128 + Unknown Stack Size
 <LI>Call Chain = _DrawBitLine32BPP &rArr; [Anonymous Symbol] &rArr; _GetLine &rArr; _GetBitsPerPixel &rArr; LCD_GetBitsPerPixelEx &rArr; _GetDevProp
 </UL>
-<BR>[Calls]<UL><LI><a href="#[3ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
-<LI><a href="#[3f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_MixColors
-<LI><a href="#[40b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
+<BR>[Calls]<UL><LI><a href="#[40b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
 <LI><a href="#[40a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
+<LI><a href="#[3ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
+<LI><a href="#[3f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_MixColors
 </UL>
 <BR>[Called By]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_DrawBitmap
 </UL>
@@ -9324,10 +9418,17 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 72 + Unknown Stack Size
 <LI>Call Chain = _DrawBitLine8BPP &rArr; [Anonymous Symbol] &rArr; _SetPixelIndex &rArr; _MixColors
 </UL>
+<<<<<<< HEAD
 <BR>[Calls]<UL><LI><a href="#[3fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
 <LI><a href="#[3fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
 <LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetPixelIndex
 <LI><a href="#[408]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
+=======
+<BR>[Calls]<UL><LI><a href="#[408]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
+<LI><a href="#[3fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
+<LI><a href="#[3fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
+<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetPixelIndex
+>>>>>>> c44ff6c583f3d854bc17be7bc6b966cdfafaf2a0
 </UL>
 <BR>[Called By]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_DrawBitmap
 </UL>
@@ -9336,13 +9437,13 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 264 + Unknown Stack Size
 <LI>Call Chain = _DrawBitmap &rArr; _DrawBitLine16BPP &rArr; [Anonymous Symbol] &rArr; _DrawBitmapLine &rArr; _GetBitsPerPixel &rArr; LCD_GetBitsPerPixelEx &rArr; _GetDevProp
 </UL>
-<BR>[Calls]<UL><LI><a href="#[407]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_DrawBitLine8BPP
+<BR>[Calls]<UL><LI><a href="#[40e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
+<LI><a href="#[407]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_DrawBitLine8BPP
 <LI><a href="#[405]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_DrawBitLine4BPP
 <LI><a href="#[40d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_DrawBitLine32BPP
 <LI><a href="#[3fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_DrawBitLine2BPP
 <LI><a href="#[3f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_DrawBitLine1BPP
 <LI><a href="#[409]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_DrawBitLine16BPP
-<LI><a href="#[40e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> GUI_SetAlpha.o(.text)
 </UL>
@@ -9354,9 +9455,9 @@ Local Symbols
 <LI><a href="#[3f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_GetBitsPerPixel
 <LI><a href="#[3c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__CompactPixelIndices
 </UL>
-<BR>[Called By]<UL><LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_DrawHLine
+<BR>[Called By]<UL><LI><a href="#[40c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
+<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_DrawHLine
 <LI><a href="#[3f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_DrawBitLine1BPP
-<LI><a href="#[40c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
 </UL>
 
 <P><STRONG><a name="[df]"></a>_DrawHLine</STRONG> (Thumb, 116 bytes, Stack size 56 bytes, GUI_SetAlpha.o(.text))
@@ -9422,9 +9523,9 @@ Local Symbols
 <LI><a href="#[3f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_GetBitsPerPixel
 <LI><a href="#[3f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__ExpandPixelIndices
 </UL>
-<BR>[Called By]<UL><LI><a href="#[3f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
+<BR>[Called By]<UL><LI><a href="#[40b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
+<LI><a href="#[3f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
 <LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_DrawHLine
-<LI><a href="#[40b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
 </UL>
 
 <P><STRONG><a name="[e2]"></a>_GetPixelIndex</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, GUI_SetAlpha.o(.text))
@@ -9434,9 +9535,9 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> GUI_SetAlpha.o(.text)
 </UL>
 <P><STRONG><a name="[3fc]"></a>_GetPointers</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, GUI_SetAlpha.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[3f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
+<BR><BR>[Called By]<UL><LI><a href="#[40a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
+<LI><a href="#[3f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
 <LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_DrawHLine
-<LI><a href="#[40a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
 </UL>
 
 <P><STRONG><a name="[e9]"></a>_GetRect</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, GUI_SetAlpha.o(.text))
@@ -9506,13 +9607,21 @@ Local Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_MixColors
 </UL>
+<<<<<<< HEAD
 <BR>[Called By]<UL><LI><a href="#[401]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
+=======
+<BR>[Called By]<UL><LI><a href="#[404]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
+<LI><a href="#[401]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
+>>>>>>> c44ff6c583f3d854bc17be7bc6b966cdfafaf2a0
 <LI><a href="#[400]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
 <LI><a href="#[3fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
 <LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_XorPixel
 <LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_DrawVLine
 <LI><a href="#[407]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_DrawBitLine8BPP
+<<<<<<< HEAD
 <LI><a href="#[404]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
+=======
+>>>>>>> c44ff6c583f3d854bc17be7bc6b966cdfafaf2a0
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> GUI_SetAlpha.o(.text)
 </UL>

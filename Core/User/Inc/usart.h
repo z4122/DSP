@@ -46,6 +46,10 @@ extern volatile int testmode_flag;
 extern int channelchange;
 extern u16 parameter[6][5];
 extern u16 threshold[6][6];
+<<<<<<< HEAD
+=======
+
+>>>>>>> c44ff6c583f3d854bc17be7bc6b966cdfafaf2a0
 void USART1_Init(void);
 void USART2_Init(void);
 void USART3_Init(void);

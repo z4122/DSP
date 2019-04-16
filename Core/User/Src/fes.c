@@ -54,6 +54,7 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,int pressure,int channe
 	stimulate_parameter[18]=txconfig.ENDFLAG;
 	stimulate_parameter[19]=txconfig.ENDFLAG;
 	
+<<<<<<< HEAD
 	//flag==1幅值模式，flag==2频率模式，flag==3脉宽模式,flag==7自由测试模式
 	if(testmode_flag==1||testmode_flag==4){
 			stimulate_parameter[16] = (threshold[channel][1]-threshold[channel][0])*(float)pressure/maxpressure+threshold[channel][0];
@@ -70,8 +71,46 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,int pressure,int channe
 				val=100;
 			stimulate_parameter[5] = val>>8; //脉宽高位
 			stimulate_parameter[6] = val; //脉宽低位
+=======
+	//flag==1幅值模式，flag==2频率模式，flag==3脉宽模式,flag==4自由测试模式
+	if(testmode_flag==1){
+			stimulate_parameter[16] = pressure*3+threshold[channel][0];
+		  if(pressure*3+threshold[channel][0]>threshold[channel][1])
+				stimulate_parameter[16] = threshold[channel][1];
 	}
-	else if(testmode_flag==7)
+	else if(testmode_flag==2){
+			stimulate_parameter[7] = (25+pressure/2)>>8; //频率高位
+			stimulate_parameter[8] = 25+pressure/2; //频率低位
+	}		
+	else if(testmode_flag==3){
+			stimulate_parameter[5] = (100+pressure*10+threshold[channel][2]*10)>>8; //脉宽高位
+			stimulate_parameter[6] = 100+pressure*10+threshold[channel][2]*10; //脉宽低位
+		  if(100+pressure*10+threshold[channel][2]*10>threshold[channel][3]*10){
+				stimulate_parameter[5] = (threshold[channel][3]*10)>>8;
+				stimulate_parameter[6] = (threshold[channel][3]*10);
+			}
+				
+	}
+	else if(testmode_flag==5){
+			stimulate_parameter[16] = pressure*3+threshold[channel][0];
+			if(pressure*3+threshold[channel][0]>threshold[channel][1])
+				stimulate_parameter[16] = threshold[channel][1];
+	}
+	else if(testmode_flag==6){
+			stimulate_parameter[7] = (25+pressure*3/2)>>8; //频率高位
+			stimulate_parameter[8] = 25+pressure*3/2; //频率低位
+	}		
+	else if(testmode_flag==7){
+			stimulate_parameter[5] = (100+pressure*10+threshold[channel][2]*10)>>8; //脉宽高位
+			stimulate_parameter[6] = 100+pressure*10+threshold[channel][2]*10; //脉宽低位
+			if(100+pressure*10+threshold[channel][2]*10>threshold[channel][3]*10){
+				stimulate_parameter[5] = (threshold[channel][3]*10)>>8;
+				stimulate_parameter[6] = (threshold[channel][3]*10);
+			}
+			//stimulate_parameter[16] = 10;
+>>>>>>> c44ff6c583f3d854bc17be7bc6b966cdfafaf2a0
+	}
+	else if(testmode_flag==4)
 	{
 		if(huart==&huart5) {
 			static u16 last_frequency = 0;

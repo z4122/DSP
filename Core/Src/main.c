@@ -80,7 +80,7 @@ float filter0[10],filter1[10];
 enum Hand {left=0,right=1};
 enum Hand amputatedHand = right;
 /*
-0x00 0x00  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX    0xXX 
+0xaa 0xbb  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX    0xXX 
 | 数据头 |  通道一  |  通道二   |  通道三  |  通道四  |  通道五  |保留两个字节|校验和|
 
 */
@@ -363,46 +363,71 @@ void display()
 			{
 				//右手为截肢端
 				case 0://16
-					//GUI_Clear();	.
+					//GUI_Clear();	
 					GUI_DispStringAt("channel 1  ", 100, 20); 
 					GUI_DispFloat(num/1000000,4);//调整显示的位数
 					GUI_DispStringAt("transfered data  ", 300, 20); 
+<<<<<<< .merge_file_a04680
 					GUI_DispFloat(2.136*exp(1.718*num/1000000)-2.985*exp(-5.363*num/1000000),4);
 					//GUI_DispFloat(1.979*exp(1.642*num/1000000),4);//small sensor
 
 					stimulate(&huart1,2.136*exp(1.718*num/1000000)-2.985*exp(-5.363*num/1000000),1);//ok ch1
+=======
+					GUI_DispFloat(16.86*num/1000000-5.143,4);
+					stimulate(&huart1,16.86*num/1000000-5.143,1);//ok ch1
+>>>>>>> .merge_file_a23620
 					break;
 				case 1://3
 					GUI_DispStringAt("channel 2  ", 100, 50); 
 					GUI_DispFloat(num/1000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 50); 
+<<<<<<< .merge_file_a04680
 					//GUI_DispFloat(4.302*exp(1.132*num/1000000)-3.705*exp(-1.904*num/1000000),4);
 					GUI_DispFloat(4.692*(num/1000000)*(num/1000000)*(num/1000000)-5.236*(num/1000000)*(num/1000000)+11.22*(num/1000000)-0.4206,4);//ok ch2
 				  stimulate(&huart3,4.692*(num/1000000)*(num/1000000)*(num/1000000)-5.236*(num/1000000)*(num/1000000)+11.22*(num/1000000)-0.4206,2);
+=======
+					GUI_DispFloat(22.88*num/1000000-3.421,4);
+					stimulate(&huart3,22.88*num/1000000-3.421,2);//ok ch2
+>>>>>>> .merge_file_a23620
 					break;
 				case 2://2
 					GUI_DispStringAt("channel 3  ", 100, 80); 
-					GUI_DispFloat(num/1000000,4);
+					GUI_DispFloat(num*3.3/5000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 80); 
+<<<<<<< .merge_file_a04680
 					GUI_DispFloat(9.35*(num/1000000)+0.1055,4);
 					//GUI_DispFloat(-0.003267*exp(9.787*num/1000000)+1.84*exp(2.869*num/1000000),4);//small sensor
 					stimulate(&huart4,9.35*(num/1000000)+0.1055,3);//bad ch3
+=======
+					GUI_DispFloat(20.03*num/1000000-2.463,4);
+					stimulate(&huart4,20.03*num/1000000-2.463,3);//bad ch3
+>>>>>>> .merge_file_a23620
 					break;
 				case 3://15
 					GUI_DispStringAt("channel 4  ", 100, 110); 
 					GUI_DispFloat(num/1000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 110); 
+<<<<<<< .merge_file_a04680
 					//GUI_DispFloat(3.732*exp(1.905*num/1000000*4.6/5)-4.65*exp(-4.638*num/1000000*4.6/5),4);
 					GUI_DispFloat(2.385*exp(1.619*num/1000000),4);//small sensor
 					stimulate(&huart5,2.385*exp(1.619*num/1000000),4);
+=======
+					GUI_DispFloat(18.81*num/1000000-1.531,4);
+					stimulate(&huart5,18.81*num/1000000-1.531,4);
+>>>>>>> .merge_file_a23620
 					break;
 				case 4://1
 					GUI_DispStringAt("channel 5  ", 100, 140); 
 					GUI_DispFloat(num/1000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 140); 
+<<<<<<< .merge_file_a04680
 					//GUI_DispFloat(2.878*exp( 2.423*num/1000000*4.6/5-0.08)-3.286*exp(-7.177*num/1000000*4.6/5-0.08),4);
 					GUI_DispFloat(2.941*exp(1.577*num/1000000),4);//small sensor
 					stimulate(&huart7, 2.941*exp(1.577*num/1000000),5);//ok ch6
+=======
+					GUI_DispFloat(23.5*num/1000000-2.953,4);
+					stimulate(&huart7,23.5*num/1000000-2.953,5);//ok ch6
+>>>>>>> .merge_file_a23620
 				
 					break;
 				
@@ -423,36 +448,61 @@ void display()
 					GUI_DispStringAt("channel 1  ", 100, 20); 
 					GUI_DispFloat(num/1000000,4);//调整显示的位数
 					GUI_DispStringAt("transfered data  ", 300, 20); 
+<<<<<<< .merge_file_a04680
 					GUI_DispFloat(1.957*exp(1.988*num/1000000*4.6/5-0.35)-1.76*exp(-3.789*num/1000000*4.6/5-0.35),4);
 					stimulate(&huart1, 1.957*exp(1.988*num/1000000*4.6/5-0.35)-1.76*exp(-3.789*num/1000000*4.6/5-0.35),1);
+=======
+					GUI_DispFloat(1.957*exp(1.988*num/1000000*4.6/5)-1.76*exp(-3.789*num/1000000*4.6/5),4);
+					//stimulate(&huart1,1.957*exp(1.988*num/1000000*4.6/5)-1.76*exp(-3.789*num/1000000*4.6/5),1);
+>>>>>>> .merge_file_a23620
 					break;
 				case 6:
 					GUI_DispStringAt("channel 2  ", 100, 50); 
 					GUI_DispFloat(num/1000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 50); 
+<<<<<<< .merge_file_a04680
 					GUI_DispFloat(1.946e+04*exp(0.8933*num/1000000*4.6/5-0.25)-1.946e+04*exp(0.8929*num/1000000*4.6/5-0.25),4);
 					stimulate(&huart3,1.946e+04*exp(0.8933*num/1000000*4.6/5-0.25)-1.946e+04*exp(0.8929*num/1000000*4.6/5-0.25),2);
+=======
+					//GUI_DispFloat(8.315e4*exp(0.2341*num/1000000*4.6/5)-8.314e4*exp(0.234*num/1000000*4.6/5),4);
+					//stimulate(&huart3,8.315e4*exp(0.2341*num/1000000*4.6/5)-8.314e4*exp(0.234*num/1000000*4.6/5),2);
+>>>>>>> .merge_file_a23620
 					break;
 				case 7:
 					GUI_DispStringAt("channel 3  ", 100, 80); 
 					GUI_DispFloat(num*3.3/5000000,4);
 					GUI_DispStringAt("transfered data  ", 300, 80); 
+<<<<<<< .merge_file_a04680
 					GUI_DispFloat(2.455*exp(1.891*num*3.3/5000000*5/4.6)-2.977*exp(-3.137*num*3.3/5000000*5/4.6),4);
 					stimulate(&huart4,2.455*exp(1.891*num*3.3/5000000*5/4.6)-2.977*exp(-3.137*num*3.3/5000000*5/4.6),3);
+=======
+					//GUI_DispFloat(6.976*exp(0.5619*num*3.3/5000000*4.6/5)-0.5263*exp(-0.9322*num*3.3/5000000*4.6/5),4);
+					//stimulate(&huart4,6.976*exp(0.5619*num*3.3/5000000*4.6/5)-0.5263*exp(-0.9322*num*3.3/5000000*4.6/5),3);
+>>>>>>> .merge_file_a23620
 					break;
 				case 8:
 					GUI_DispStringAt("channel 4  ", 100, 110); 
 					GUI_DispFloat(num,4);
 					GUI_DispStringAt("transfered data  ", 300, 110); 
+<<<<<<< .merge_file_a04680
 					GUI_DispFloat(22.24*(num-0.43)-0.8579,4);
 					stimulate(&huart5,22.24*(num-0.43)-0.8579,4);
+=======
+					GUI_DispFloat(-3.537e4*exp(0.7341*num*4.6/5)+3.537e4*exp(0.7344*num*4.6/5),4);
+					stimulate(&huart5,-3.537e4*exp(0.7341*num*4.6/5)+3.537e4*exp(0.7344*num*4.6/5),4);
+>>>>>>> .merge_file_a23620
 					break;
 				case 9:
 					GUI_DispStringAt("channel 5  ", 100, 140); 
 					GUI_DispFloat(num,4);
 					GUI_DispStringAt("transfered data  ", 300, 140); 
+<<<<<<< .merge_file_a04680
 					GUI_DispFloat(23.38*(num-0.37)-0.5574,4);
 					stimulate(&huart7,22.24*(num-0.43)-0.8579,5);
+=======
+					GUI_DispFloat(6.153*exp(1.237*num*4.6/5)-6.172*exp(-0.7955*num*4.6/5),4);
+					stimulate(&huart7,6.153*exp(1.237*num*4.6/5)-6.172*exp(-0.7955*num*4.6/5),5);
+>>>>>>> .merge_file_a23620
 					break;
 				
 				
@@ -474,7 +524,7 @@ void GetAdData(void)
 	
 		for(int i = 0;i < 5;i++)
 		{
-			ulResult = ADS_sum( (i << 4) | 0x08);	
+			ulResult = ADS_sum( (i << 4) | 0x08);
 			
 			//ulResult = ADS_sum( ADS1256_MUXP_AIN0 | ADS1256_MUXN_AINCOM);	
 			if( ulResult & 0x800000 )
@@ -567,10 +617,18 @@ void MainLoop()
 	display();
 	if(last_flag!=testmode_flag)
 		GUI_Clear();
+<<<<<<< .merge_file_a04680
 	
 	if(testmode_flag>=8){
 		testmode_flag = last_flag;//让新加入的阈值模式不影响以前模式的工作
 	}
+=======
+		
+	//如果这次的mode是改变上下限阈值，那么就强制再改回模式。
+	if(testmode_flag>=8)
+		testmode_flag=last_flag;
+	
+>>>>>>> .merge_file_a23620
 	switch(testmode_flag)
 	{
 		case 0:
@@ -589,6 +647,7 @@ void MainLoop()
 //				stim_stop(&huart7);
 			}
 			break;
+<<<<<<< .merge_file_a04680
 			
 		case 1:
 			GUI_DispStringAt("left amplitude mode   ", 200, 270); 	
@@ -603,17 +662,35 @@ void MainLoop()
 			amputatedHand = left;
 			break;
 		case 4:
+=======
+		case 1:
+>>>>>>> .merge_file_a23620
 			GUI_DispStringAt("right amplitude mode   ", 200, 270); 	
 			amputatedHand = right;
 			break;
-		case 5:
+		case 2:
 			GUI_DispStringAt("right frequency mode", 200, 270); 
 			amputatedHand = right;
 			break;
-		case 6:
-			GUI_DispStringAt("right width mode", 200, 270); 
+		case 3:
+			GUI_DispStringAt("right width mode", 220, 270); 
 			amputatedHand = right;
 			break;
+<<<<<<< .merge_file_a04680
+=======
+		case 4:
+			GUI_DispStringAt("left amplitude mode   ", 200, 270); 	
+			amputatedHand = left;
+			break;
+		case 5:
+			GUI_DispStringAt("left frequency mode", 200, 270); 
+			amputatedHand = left;
+			break;
+		case 6:
+			GUI_DispStringAt("left width mode", 200, 270); 
+			amputatedHand = left;
+			break;
+>>>>>>> .merge_file_a23620
 		case 7:
 			GUI_DispStringAt("test mode  ", 100, 270); 
 			GUI_DispFloat(parameter[1][0]/10.0,4);//调整显示的位数
@@ -623,7 +700,10 @@ void MainLoop()
 			GUI_DispFloat(parameter[1][2],4);//调整显示的位数
 			GUI_DispStringAt("hz  ", 520, 270); 
 			break;
+<<<<<<< .merge_file_a04680
 		
+=======
+>>>>>>> .merge_file_a23620
 		default:
 			break;			
 	}
