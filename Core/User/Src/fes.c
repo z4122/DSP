@@ -29,7 +29,7 @@ configtx txconfig = {
 void merge_stimulate_parameter(UART_HandleTypeDef *huart,int pressure,int channel)
 {			
 	if(pressure<0)
-		pressure = 0;·
+		pressure = 0;
 	if(pressure>maxpressure)
 		pressure = maxpressure;
 	
@@ -56,7 +56,6 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,int pressure,int channe
 	
 	//flag==1||4幅值跟随模式，flag==2||5频率跟随模式，flag==3||6脉宽跟随模式,flag==7自由测试模式
 	if(testmode_flag==1||testmode_flag==4){
-		
 		stimulate_parameter[16] = (threshold[channel][1]-threshold[channel][0])*(float)pressure/maxpressure+threshold[channel][0];
 	}
 	else if(testmode_flag==2||testmode_flag==5){
@@ -98,10 +97,9 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,int pressure,int channe
 		stimulate_parameter[6] = parameter[channel][1]; //脉宽低8位
 	}
 	
-	if(channelEnableflag[channel]==0||pressure<pressureThreshold){
+	if(pressure<pressureThreshold){
 		if(testmode_flag!=7){
 			stimulate_parameter[16] = 0x01;
-			
 		}
 	}
 		
@@ -345,16 +343,17 @@ void stim_stop(UART_HandleTypeDef *huart)// BB 0x42 0x42
 
 void stimulate(UART_HandleTypeDef *huart,double pressure,int channel)
 {
+	//当通道选择上并且模式不是停止模式时
+	if(channelEnableflag[channel]==1&&testmode_flag!=0){
+		stim_search(huart);// send 800103 back BC
 	
-	stim_search(huart);// send 800103 back BC
+		merge_stimulate_parameter(huart,(int)pressure,channel);
 	
-	merge_stimulate_parameter(huart,(int)pressure,channel);
+		stim_start(huart);//800101,back AA
 	
-	stim_start(huart);//800101,back AA
-	
-	//HAL_Delay(1000);
+		//HAL_Delay(1000);
 
-	//stim_stop(huart);//800102,back BB
-	
+		//stim_stop(huart);//800102,back BB
+	}
 
 }

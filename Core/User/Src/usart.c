@@ -26,17 +26,17 @@ uint8_t UART5RxBuff;
 uint8_t UART7RxBuff; 
 uint8_t UART8RxBuff; 
 
-//1 µçÁ÷£»2Âö¿í£»3ÆµÂÊ
-u16 parameter[6][5]; //5¸öÍ¨µÀ£¬ÎªÁË¶ÔÆëÑ¡ÁË6
-u16 threshold[6][6]; // 5¸öÍ¨µÀ£¬ÎªÁË¶ÔÆëÑ¡ÁË6
-u8  channelEnableflag[6]; //5¸öÍ¨µÀ£¬ÎªÁË¶ÔÆëÑ¡ÁË6
+//1 ç”µæµï¼›2é¢‘ç‡ï¼›3é¢‘ç‡
+u16 parameter[6][5]; //5ä¸ªé€šé“ï¼Œä¸ºäº†å¯¹é½é€‰äº†6
+u16 threshold[6][6]; // 5ä¸ªé€šé“ï¼Œä¸ºäº†å¯¹é½é€‰äº†6
+u8  channelEnableflag[6]; //5ä¸ªé€šé“ï¼Œä¸ºäº†å¯¹é½é€‰äº†6
 u8  pressureThreshold = 0;//å‹åŠ›æœ‰æ•ˆçš„ä¸‹é™
 
 int channelchange = 0;
 uint8_t tempRxBuffer;
 uint8_t upperRxBuffer[7];
 int cnt = 0;
-volatile int testmode_flag = 3;//Í¨¹ıĞŞ¸Ä´Ë´¦¿ÉÒÔĞŞ¸ÄÆô¶¯µÄÄ£Ê½
+volatile int testmode_flag = 3;//é€šè¿‡ä¿®æ”¹æ­¤å¤„å¯ä»¥ä¿®æ”¹å¯åŠ¨çš„æ¨¡å¼
 
 static void Error_Handler(void)
 {
@@ -719,7 +719,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 						return;
 					}
 					case 10:{
-						//Âö¿í×îµÍãĞÖµ
+						//è„‰å®½æœ€ä½é˜ˆå€¼
 						threshold[1][2] = upperRxBuffer[1];
 						threshold[2][2] = upperRxBuffer[2];
 						threshold[3][2] = upperRxBuffer[3];
@@ -728,7 +728,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 						return;;
 					}
 				  case 11:{
-					//Âö¿í×î¸ßãĞÖµ
+						//è„‰å®½æœ€é«˜é˜ˆå€¼
 						threshold[1][3] = upperRxBuffer[1];
 						threshold[2][3] = upperRxBuffer[2];
 						threshold[3][3] = upperRxBuffer[3];
@@ -737,7 +737,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 						return;
 					}
 					case 12:{
-					//Îå¸öÍ¨µÀµÄÊ¹ÄÜ
+						//äº”ä¸ªé€šé“çš„ä½¿èƒ½
 						channelEnableflag[1] = upperRxBuffer[1];
 						channelEnableflag[2] = upperRxBuffer[2];
 						channelEnableflag[3] = upperRxBuffer[3];
@@ -751,7 +751,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 					default:
 						break;
 				}	
-				//µçÁ÷·ùÖµ£¬Ö»ÓĞÒ»¸ö×Ö½Ú0-25.5mA
+				//ç”µæµå¹…å€¼ï¼Œåªæœ‰ä¸€ä¸ªå­—èŠ‚0-25.5mA
 				parameter[1][0] = upperRxBuffer[1];
 				parameter[2][0] = upperRxBuffer[1];
 				parameter[3][0] = upperRxBuffer[1];
@@ -759,7 +759,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 				parameter[5][0] = upperRxBuffer[1];
 				
 				
-				//width ´ÓPCÖĞÏÈÊÕµ½µÍÎ»ÔÙÊÕµ½¸ßÎ»
+				//width ä»PCä¸­å…ˆæ”¶åˆ°ä½ä½å†æ”¶åˆ°é«˜ä½
 				parameter[1][1] = upperRxBuffer[3]<<8|upperRxBuffer[2];
 				parameter[2][1] = upperRxBuffer[3]<<8|upperRxBuffer[2];
 				parameter[3][1] = upperRxBuffer[3]<<8|upperRxBuffer[2];
@@ -767,7 +767,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 				parameter[5][1] = upperRxBuffer[3]<<8|upperRxBuffer[2];
 				
 				
-				//frequency ´ÓPCÖĞÏÈÊÕµ½µÍÎ»ÔÙÊÕµ½¸ßÎ»
+				//frequency ä»PCä¸­å…ˆæ”¶åˆ°ä½ä½å†æ”¶åˆ°é«˜ä½
 				parameter[1][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];
 				parameter[2][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];
 				parameter[3][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];
@@ -775,7 +775,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 				parameter[5][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];
 				
 				
-				//times´Ì¼¤´ÎÊı£¬ºÍfrequency½áºÏÆğÀ´Ê¹ÓÃ
+				//timesåˆºæ¿€æ¬¡æ•°ï¼Œå’Œfrequencyç»“åˆèµ·æ¥ä½¿ç”¨
 				parameter[1][3] = upperRxBuffer[6];
 				parameter[2][3] = upperRxBuffer[6];
 				parameter[3][3] = upperRxBuffer[6];
@@ -810,7 +810,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 
 
 
-/*ÖØ¶¨Ïòc¿âº¯Êıprintfµ½DEBUG_USARTX*/
+/*é‡å®šå‘cåº“å‡½æ•°printfåˆ°DEBUG_USARTX*/
 int fputc(int ch,FILE *f)
 {
   HAL_UART_Transmit(&huart1,(uint8_t *)&ch,1,0xffff);

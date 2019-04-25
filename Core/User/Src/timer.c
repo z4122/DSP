@@ -1,35 +1,35 @@
 #include "timer.h"
 
-extern void MainLoop(void);//ÔÚÖ÷º¯ÊıÖĞ¶¨Òå
-extern void GetAdData(void);//ÔÚÖ÷º¯ÊıÖĞ¶¨Òå£¬µ÷ÓÃAD²ÉÑùÄ£¿é
-extern void TransferData2PC(void);//ÔÚÖ÷º¯ÊıÖĞ¶¨Òå£¬´«ÊäÊı¾İµ½PC¶Ë
+extern void MainLoop(void);//åœ¨ä¸»å‡½æ•°ä¸­å®šä¹‰
+extern void GetAdData(void);//åœ¨ä¸»å‡½æ•°ä¸­å®šä¹‰ï¼Œè°ƒç”¨ADé‡‡æ ·æ¨¡å—
+extern void TransferData2PC(void);//åœ¨ä¸»å‡½æ•°ä¸­å®šä¹‰ï¼Œä¼ è¾“åˆ°PCç«¯
 
 TIM_HandleTypeDef TIM3_Handler;
 TIM_HandleTypeDef TIM5_Handler;
 
-//¶¨Ê±Æ÷ÖÜÆÚ Tout = ((arr+1)*(psc+1))/Ft  us
-//Ft´ú±í¶¨Ê±Æ÷¹¤×÷ÆµÂÊ 200MHZ
+//å®šæ—¶å™¨å‘¨æœŸ Tout = ((arr+1)*(psc+1))/Ft  us
+//Ftä»£è¡¨å®šæ—¶å™¨å·¥ä½œé¢‘ç‡200MHZ
 void TIM3_Init(unsigned short arr,unsigned short psc)
 {
-	TIM3_Handler.Instance=TIM3;  //¶¨Ê±Æ÷3
-	TIM3_Handler.Init.Prescaler=psc; //·ÖÆµÏµÊı
-	TIM3_Handler.Init.CounterMode=TIM_COUNTERMODE_UP;  //ÏòÉÏ¼ÆÊıÆ÷
-	TIM3_Handler.Init.Period=arr;  //×Ô¶¯×°ÔØÖµ
-	TIM3_Handler.Init.ClockDivision=TIM_CLOCKDIVISION_DIV1; //Ê±ÖÓ·ÖÆµÒò×Ó
-	HAL_TIM_Base_Init(&TIM3_Handler);  //³õÊ¼»¯¶¨Ê±Æ÷3
-	HAL_TIM_Base_Start_IT(&TIM3_Handler);  //Ê¹ÄÜ¶¨Ê±Æ÷3ºÍ¶¨Ê±Æ÷3¸üĞÂÖĞ¶Ï
+	TIM3_Handler.Instance=TIM3;  //å®šæ—¶å™¨3
+	TIM3_Handler.Init.Prescaler=psc; //åˆ†é¢‘ç³»æ•°
+	TIM3_Handler.Init.CounterMode=TIM_COUNTERMODE_UP;  //å‘ä¸Šè®¡æ•°å™¨
+	TIM3_Handler.Init.Period=arr;  //è‡ªåŠ¨è£…è½½å€¼
+	TIM3_Handler.Init.ClockDivision=TIM_CLOCKDIVISION_DIV1; //æ—¶é’Ÿåˆ†é¢‘å› å­
+	HAL_TIM_Base_Init(&TIM3_Handler);  //åˆå§‹åŒ–å®šæ—¶å™¨3
+	HAL_TIM_Base_Start_IT(&TIM3_Handler);  //ä½¿èƒ½å®šæ—¶å™¨3å’Œå®šæ—¶å™¨3æ›´æ–°ä¸­æ–­
 }
 
 void TIM5_Init(unsigned short arr,unsigned short psc)
 {
-	TIM5_Handler.Instance=TIM5;  //¶¨Ê±Æ÷5
-	TIM5_Handler.Init.Prescaler=psc; //·ÖÆµÏµÊı
-	TIM5_Handler.Init.CounterMode=TIM_COUNTERMODE_UP;  //ÏòÉÏ¼ÆÊıÆ÷
-	TIM5_Handler.Init.Period=arr;  //×Ô¶¯×°ÔØÖµ
-	TIM5_Handler.Init.ClockDivision=TIM_CLOCKDIVISION_DIV1; //Ê±ÖÓ·ÖÆµÒò×Ó
-	HAL_TIM_Base_Init(&TIM5_Handler);  //³õÊ¼»¯¶¨Ê±Æ÷5
+	TIM5_Handler.Instance=TIM5;  //å®šæ—¶å™¨5
+	TIM5_Handler.Init.Prescaler=psc; //åˆ†é¢‘ç³»æ•°
+	TIM5_Handler.Init.CounterMode=TIM_COUNTERMODE_UP;  //å‘ä¸Šè®¡æ•°å™¨
+	TIM5_Handler.Init.Period=arr;  //è‡ªåŠ¨è£…è½½å€¼
+	TIM5_Handler.Init.ClockDivision=TIM_CLOCKDIVISION_DIV1; //æ—¶é’Ÿåˆ†é¢‘å› å­
+	HAL_TIM_Base_Init(&TIM5_Handler);  //åˆå§‹åŒ–å®šæ—¶å™¨5
 	
-	HAL_TIM_Base_Start_IT(&TIM5_Handler);  //Ê¹ÄÜ¶¨Ê±Æ÷5ºÍ¶¨Ê±Æ÷5¸üĞÂÖĞ¶Ï
+	HAL_TIM_Base_Start_IT(&TIM5_Handler);  //ä½¿èƒ½å®šæ—¶å™¨5å’Œå®šæ—¶å™¨5æ›´æ–°ä¸­æ–­
 	
 }
 
@@ -37,14 +37,14 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef *htim)
 {
 	if(htim->Instance==TIM3_Handler.Instance)
 	{
-		__HAL_RCC_TIM3_CLK_ENABLE();  //Ê¹ÄÜTIM3ÖĞ¶Ï
+		__HAL_RCC_TIM3_CLK_ENABLE();  //ä½¿èƒ½TIM3ä¸­æ–­
 		HAL_NVIC_SetPriority(TIM3_IRQn,1,0); 
 		HAL_NVIC_EnableIRQ(TIM3_IRQn); 
 	}
 	if(htim->Instance==TIM5_Handler.Instance)
 	{
-		__HAL_RCC_TIM5_CLK_ENABLE();  //Ê¹ÄÜTIM4ÖĞ¶Ï
-		HAL_NVIC_SetPriority(TIM5_IRQn,2,0);//ÓÅÏÈ¼¶µÍ£¬ÄÜ¹»±»¶¨Ê±Æ÷3ÖĞ¶ÏÇ¶Ì×¡£ ×¢Òâ×îÒ»¿ªÊ¼µÄÓÅÏÈ¼¶ÉèÖÃ
+		__HAL_RCC_TIM5_CLK_ENABLE();  //ä½¿èƒ½TIM5ä¸­æ–­
+		HAL_NVIC_SetPriority(TIM5_IRQn,2,0);//ä¼˜å…ˆçº§ä½ï¼Œèƒ½å¤Ÿè¢«å®šæ—¶å™¨3ä¸­æ–­åµŒå¥—ï¼Œæ³¨æ„ä¸€å¼€å§‹çš„ä¼˜å…ˆçº§è®¾ç½®ã€‚
 		HAL_NVIC_EnableIRQ(TIM5_IRQn); 
 	}
 }
@@ -74,10 +74,9 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	
 }
 
-
 //æ”¹å˜å®šæ—¶å™¨3çš„å®šæ—¶å‘¨æœŸï¼Œå•ä½ä¸ºms
 void ChangePeriod(u16 period){
-	TIM3_Handler.Init.Period=period*10;  //×Ô¶¯×°ÔØÖµ
-	HAL_TIM_Base_Init(&TIM3_Handler);  //³õÊ¼»¯¶¨Ê±Æ÷3
+	TIM3_Handler.Init.Period=period*10;  //è‡ªåŠ¨è£…è½½å€¼
+	HAL_TIM_Base_Init(&TIM3_Handler);  //åˆå§‹åŒ–å®šæ—¶å™¨3
 }
 

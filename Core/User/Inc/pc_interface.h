@@ -2,11 +2,10 @@
 #define __PC_INTERFACE__
 
 #include "stm32h7xx_hal.h"
+#include "usart.h"
 
-void tranmitData(UART_HandleTypeDef *huart,uint8_t *data);
-
-
-
+void TransferData2PC(void);
+extern long double ldVolutage[10];//存储十个通道的值
 
 
 #endif
