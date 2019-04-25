@@ -21,7 +21,7 @@ static u8 RS232_VisualScope_CHKSUM(u8 *Array,u16 Len)
 //通过串口发送VisualScope识别的数据
 void VisualScope(UART_HandleTypeDef *huart,int16_t CH1,int16_t CH2,int16_t CH3,int16_t CH4)	//通过串口显示四个通道的波形
 {
-    u8 i = 0;
+    //u8 i = 0;
     uint8_t Buffer[10];
     uint16_t Temp=0;
 

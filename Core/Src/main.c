@@ -571,7 +571,7 @@ void display()
 						GUI_DispStringAt("transferred data  ", 300, 110); 
 						//GUI_DispFloat(3.732*exp(1.905*num/1000000*4.6/5)-4.65*exp(-4.638*num/1000000*4.6/5),4);
 						//sensor23
-						double curve10=3.732*exp(1.905*num/1000000*4.6/5-0.15)-20;
+						double curve10=3.732*exp(1.905*num/1000000*4.6/5-0.15);
 						double curve11=-4.65*exp(-4.638*num/1000000*4.6/5-0.15);//sensor17
 						
 						float curve12=curve10+curve11;	
@@ -688,7 +688,7 @@ void GetAdData(void)
 		
 		HAL_GPIO_WritePin(RESET_GPIO_Port, RESET_Pin, GPIO_PIN_RESET);//Reset
 		ADS1256_Init();//理论上不用再次初始化，这是折衷的做法，否则会出现AD采样偶尔错误的后果。经测试推测是与DSU通信有关。
-		HAL_Delay(5);
+		HAL_Delay(10);
 		for(int i = 0;i < 5;i++)
 		{
 			ulResult = ADS_sum( (i << 4) | 0x08);	

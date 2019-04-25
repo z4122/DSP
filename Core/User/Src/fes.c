@@ -26,7 +26,7 @@ configtx txconfig = {
 };
 
 
-void merge_stimulate_parameter(UART_HandleTypeDef *huart,int pressure,int channel)
+void merge_stimulate_parameter(UART_HandleTypeDef *huart,double pressure,int channel)
 {			
 	if(pressure<0)
 		pressure = 0;
@@ -59,8 +59,8 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,int pressure,int channe
 		stimulate_parameter[16] = (threshold[channel][1]-threshold[channel][0])*(float)pressure/maxpressure+threshold[channel][0];
 	}
 	else if(testmode_flag==2||testmode_flag==5){
-		stimulate_parameter[7] = (25+pressure/2)>>8; //频率高8位
-		stimulate_parameter[8] = 25+pressure/2; //频率低8位
+		stimulate_parameter[7] = (int)(25+pressure/2)>>8; //频率高8位
+		stimulate_parameter[8] = (int)(25+pressure/2); //频率低8位
 	}		
 	else if(testmode_flag==3||testmode_flag==6){
 		float temp = (threshold[channel][3]-threshold[channel][2])*(float)pressure/maxpressure+threshold[channel][2];
@@ -70,7 +70,7 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,int pressure,int channe
 			val=20;
 		stimulate_parameter[5] = val>>8; //脉宽高8位
 		stimulate_parameter[6] = val; //脉宽低8位
-		stimulate_parameter[16]=threshold[channel][1];//配合脉宽模式和诱发指感区的最低电流阈值，在脉宽模式下也会设置
+		stimulate_parameter[16]=threshold[channel][0];//配合脉宽模式和诱发指感区的最低电流阈值，在脉宽模式下也会设置
 	}
 	else if(testmode_flag==7)
 	{
@@ -95,12 +95,6 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,int pressure,int channe
 		stimulate_parameter[16] = parameter[channel][0]; 
 		stimulate_parameter[5] = parameter[channel][1]>>8; //脉宽高8位
 		stimulate_parameter[6] = parameter[channel][1]; //脉宽低8位
-	}
-	
-	if(pressure<pressureThreshold){
-		if(testmode_flag!=7){
-			stimulate_parameter[16] = 0x01;
-		}
 	}
 		
 	HAL_UART_Transmit(huart,(uint8_t *)stimulate_parameter,sizeof(stimulate_parameter),0xffff);
@@ -345,15 +339,17 @@ void stimulate(UART_HandleTypeDef *huart,double pressure,int channel)
 {
 	//当通道选择上并且模式不是停止模式时
 	if(channelEnableflag[channel]==1&&testmode_flag!=0){
-		stim_search(huart);// send 800103 back BC
-	
-		merge_stimulate_parameter(huart,(int)pressure,channel);
-	
-		stim_start(huart);//800101,back AA
-	
-		//HAL_Delay(1000);
+		if(pressure>pressureThreshold){
+			stim_search(huart);// send 800103 back BC
+		
+			merge_stimulate_parameter(huart,pressure,channel);
+		
+			stim_start(huart);//800101,back AA
+		
+			//HAL_Delay(1000);
 
-		//stim_stop(huart);//800102,back BB
+			//stim_stop(huart);//800102,back BB
+		}
 	}
 
 }

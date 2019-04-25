@@ -30,7 +30,7 @@ uint8_t UART8RxBuff;
 u16 parameter[6][5]; //5个通道，为了对齐选了6
 u16 threshold[6][6]; // 5个通道，为了对齐选了6
 u8  channelEnableflag[6]; //5个通道，为了对齐选了6
-u8  pressureThreshold = 0;//压力有效的下限
+float  pressureThreshold = 0;//压力有效的下限
 
 int channelchange = 0;
 uint8_t tempRxBuffer;
@@ -706,7 +706,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 						threshold[3][0] = upperRxBuffer[3];
 						threshold[4][0] = upperRxBuffer[4];
 						threshold[5][0] = upperRxBuffer[5];
-						pressureThreshold = upperRxBuffer[6];//压力激活的下限
+						pressureThreshold = upperRxBuffer[6]/10;//压力激活的下限
 						return;
 					}
 					case 9:{
