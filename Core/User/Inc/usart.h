@@ -32,12 +32,12 @@ extern UART_HandleTypeDef huart7;
 extern UART_HandleTypeDef huart8;
 
 
-extern uint8_t volatile UART1RxBuff; 
-extern uint8_t volatile UART3RxBuff; 
-extern uint8_t volatile UART4RxBuff; 
-extern uint8_t volatile UART5RxBuff; 
-extern uint8_t volatile UART7RxBuff; 
-extern uint8_t volatile UART8RxBuff; 
+extern uint8_t UART1RxBuff; 
+extern uint8_t UART3RxBuff; 
+extern uint8_t UART4RxBuff; 
+extern uint8_t UART5RxBuff; 
+extern uint8_t UART7RxBuff; 
+extern uint8_t UART8RxBuff; 
 
 
 extern uint8_t tempRxBuffer;

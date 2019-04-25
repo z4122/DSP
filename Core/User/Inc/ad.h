@@ -175,7 +175,7 @@ unsigned char ADS1256_Read_Byte(void);
 void ADS1256_Write_Byte(unsigned char);
 unsigned char ADS1256_Read_one_Reg(unsigned char);
 void ADS1256_Write_Reg(unsigned char, unsigned char);
-void Compute_Offset();
+
 
 
 void delayad_nopar(void);

@@ -7,8 +7,8 @@ void BSP_Init()
 	__HAL_RCC_GPIOA_CLK_ENABLE();
 	__HAL_RCC_GPIOB_CLK_ENABLE();
 	__HAL_RCC_GPIOC_CLK_ENABLE();
-  __HAL_RCC_GPIOD_CLK_ENABLE();
-  __HAL_RCC_GPIOE_CLK_ENABLE();
+	__HAL_RCC_GPIOD_CLK_ENABLE();
+	__HAL_RCC_GPIOE_CLK_ENABLE();
 	__HAL_RCC_GPIOF_CLK_ENABLE();
 	__HAL_RCC_GPIOG_CLK_ENABLE(); 
 	__HAL_RCC_GPIOH_CLK_ENABLE();
@@ -21,16 +21,18 @@ void BSP_Init()
 	AD_Init();
 	USART1_Init();//ch1
 	USART3_Init();//ch2
-	UART4_Init();//ch3¡¤
+	UART4_Init();//ch3
 	UART5_Init();//ch4
 	UART7_Init();//ch5
-	UART8_Init();//¼ÓÈë8Ö®ºó£¬ÆÁÄ»»áÉÁË¸
+	UART8_Init();//ä¸ŽPCé€šä¿¡çš„ä¸²å£
 	ADC_Init();
-	TIM3_Init(500-1,20000-1);//µ¥Î»ms£¬ÓÃÓÚÓëDSSUÍ¨ÐÅ£¬ÓÅÏÈ¼¶¸ß 200M/20000 = 10k 1/10k = 0.1ms 500*0.1ms=50ms
-	TIM5_Init(1100-1,20000-1);//µ¥Î»ms£¬ÓÃÓÚADÊý¾Ý×ª»»,ÓÅÏÈ¼¶µÍ 100ms
+	TIM3_Init(500-1,20000-1);//ä¸ŽDSUé€šä¿¡çš„å®šæ—¶å™¨ï¼Œä¼˜å…ˆçº§é«˜ï¼Œ400M/2/20000 = 10k 1/10k = 0.1ms 500*0.1ms=50ms
+	
+	
+	TIM5_Init(1000-1,20000-1);//ADé‡‡æ ·çš„å®šæ—¶å™¨ï¼Œä¼˜å…ˆçº§ä½Žï¼Œ100ms
 
-	//USART2_Init();ÔÝÊ±ÓÃ²»µ½
-	//USART6_Init();ÔÝÊ±ÓÃ²»µ½
+	//USART2_Init();æš‚æ—¶ç”¨ä¸åˆ°
+	//USART6_Init();æš‚æ—¶ç”¨ä¸åˆ°
 	
 	
 

@@ -2,6 +2,7 @@
 
 extern void MainLoop(void);//ÔÚÖ÷º¯ÊıÖĞ¶¨Òå
 extern void GetAdData(void);//ÔÚÖ÷º¯ÊıÖĞ¶¨Òå£¬µ÷ÓÃAD²ÉÑùÄ£¿é
+extern void TransferData2PC(void);//ÔÚÖ÷º¯ÊıÖĞ¶¨Òå£¬´«ÊäÊı¾İµ½PC¶Ë
 
 TIM_HandleTypeDef TIM3_Handler;
 TIM_HandleTypeDef TIM5_Handler;
@@ -67,13 +68,14 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	}
 	else if(htim->Instance==TIM5_Handler.Instance)
 	{
-		GetAdData();
+		
+		TransferData2PC();
 	}
 	
 }
 
 
-//µ¥Î»ÊÇms
+//æ”¹å˜å®šæ—¶å™¨3çš„å®šæ—¶å‘¨æœŸï¼Œå•ä½ä¸ºms
 void ChangePeriod(u16 period){
 	TIM3_Handler.Init.Period=period*10;  //×Ô¶¯×°ÔØÖµ
 	HAL_TIM_Base_Init(&TIM3_Handler);  //³õÊ¼»¯¶¨Ê±Æ÷3

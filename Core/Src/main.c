@@ -63,7 +63,6 @@
 
 /* Private function prototypes -----------------------------------------------*/
 static void SystemClock_Config(void);
-static void Error_Handler(void);
 static void MPU_Config(void);
 static void CPU_CACHE_Enable(void);
 extern void MainTask(char*,int,int);
@@ -71,12 +70,13 @@ float MeanFilter(float input,float *a);
 void display(void);
 void GetAdData(void);
 void MainLoop(void);
+void TransferData2PC(void);
 long ulResult;
 long double ldVolutage[10];
 
 uint8_t data[15];//�������λ��������
-float ADC_convertedvalue[2];
-float filter0[10],filter1[10];
+double ADC_convertedvalue[2];
+float filter[10][10];
 enum Hand {left=0,right=1};
 enum Hand amputatedHand = right;
 /*
@@ -140,7 +140,7 @@ int main(void)
 	
 	while(1)
 	{	
-		
+		GetAdData();
 	}
 }
 
@@ -244,19 +244,7 @@ void SystemClock_Config(void)
   /* SysTick_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
 }
-/**
-  * @brief  This function is executed in case of error occurrence.
-  * @param  None
-  * @retval None
-  */
-static void Error_Handler(void)
-{
-  /* Turn LED3 on */
-  BSP_LED_On(LED3);
-  while(1)
-  {
-  }
-}
+
 
 /**
   * @brief  Configure the MPU attributes as Write Through for External SDRAM.
@@ -352,7 +340,7 @@ void assert_failed(uint8_t* file, uint32_t line)
   */
 void display()
 {
-	float num = 0;
+	double num = 0;
 	if(amputatedHand==right)
 	{
 		for(int i = 0;i<5;i++)
@@ -363,65 +351,67 @@ void display()
 			switch(i)
 			{
 				//右手
-				case 0://16
+				case 0:{//16
 					//GUI_Clear();	
 					GUI_DispStringAt("channel 1  ", 100, 20); 
 					GUI_DispFloat(num/1000000,4);//除以1000000后是实际电压值
 					GUI_DispStringAt("transferred data  ", 300, 20); 
-					float curve1=1.657*exp(2.113*(num/1000000-0.07));
-					float curve2=-1.056*exp(-0.5708*(num/1000000-0.07));
-					float curve3=curve1+curve2;
+					double curve1=(double)(1.657*exp(2.113*(num/1000000-0.07)));
+					double curve2=-1.056*exp(-0.5708*(num/1000000-0.07));
+					double curve3=curve1+curve2;
 					GUI_DispFloat(curve3,4);//sensor20
-					if(channelEnableflag[1])
-						stimulate(&huart1,curve3,1);//ok ch1
+					
+					stimulate(&huart1,curve3,1);//ok ch1
 					break;
-				case 1://3
+				}
+				case 1:{//3
 					GUI_DispStringAt("channel 2  ", 100, 50); 
 					GUI_DispFloat(num/1000000,4);
 					GUI_DispStringAt("transferred data  ", 300, 50); 
 					//GUI_DispFloat(4.302*exp(1.132*num/1000000)-3.705*exp(-1.904*num/1000000),4);
-					float curve4=1.69*exp(1.789*(num/1000000));
-					float curve5=-1.168*exp(-1.216*(num/1000000));
-					float curve6=curve4+curve5;
+					double curve4=1.69*exp(1.789*(num/1000000));
+					double curve5=-1.168*exp(-1.216*(num/1000000));
+					double curve6=curve4+curve5;
 					GUI_DispFloat(curve6,4);//sensor21
-					if(channelEnableflag[2])
-						stimulate(&huart3, curve6,2);
-					break;
 					
-				case 2://2
+					stimulate(&huart3, curve6,2);
+					break;
+				}
+				case 2:{//2
 					GUI_DispStringAt("channel 3  ", 100, 80); 
 					GUI_DispFloat(num/1000000,4);
 					GUI_DispStringAt("transferred data  ", 300, 80); 
-					float curve7=2.25*exp(1.431*num/1000000+0.25);
-					float curve8=-2.087*exp(-2.515*num/1000000+0.75);
-					float curve9=curve7+curve8;				
+					double curve7=2.25*exp(1.431*num/1000000+0.25);
+					double curve8=-2.087*exp(-2.515*num/1000000+0.75);
+					double curve9=curve7+curve8;				
 					GUI_DispFloat(curve9,4);//sensor22
-					if(channelEnableflag[3])
-						stimulate(&huart4,curve9,3);//bad ch3
+					
+					stimulate(&huart4,curve9,3);//bad ch3
 					break;
-				case 3://15
+				}
+				case 3:{//15
 					GUI_DispStringAt("channel 4  ", 100, 110); 
 					GUI_DispFloat(num/1000000,4);
 					GUI_DispStringAt("transferred data  ", 300, 110); 
 					//GUI_DispFloat(3.732*exp(1.905*num/1000000*4.6/5)-4.65*exp(-4.638*num/1000000*4.6/5),4);
 					GUI_DispFloat(1.124*exp(2.141*num/1000000-0.2),4);//sensor23
-					if(channelEnableflag[4])
-						stimulate(&huart5,1.124*exp(2.141*num/1000000-0.2),4);
+					
+					stimulate(&huart5,1.124*exp(2.141*num/1000000-0.2),4);
 					break;
-				case 4://1
+				}
+				case 4:{//1
 					GUI_DispStringAt("channel 5  ", 100, 140); 
 					GUI_DispFloat(num/1000000,4);
 					GUI_DispStringAt("transferred data  ", 300, 140); 
 					//GUI_DispFloat(2.878*exp( 2.423*num/1000000*4.6/5-0.08)-3.286*exp(-7.177*num/1000000*4.6/5-0.08),4);
-					float curve10=1.707*exp(2.293*(num/1000000-0.04));
-					float curve11=-1.727*exp(-8.538*(num/1000000-0.04));
-					float curve12=curve10+curve11;				
+					double curve10=1.707*exp(2.293*(num/1000000-0.04));
+					double curve11=-1.727*exp(-8.538*(num/1000000-0.04));
+					double curve12=curve10+curve11;				
 					GUI_DispFloat(curve12,4);//sensor24
-					if(channelEnableflag[5])
-						stimulate(&huart7, curve12,5);//ok ch6
-				
+					
+					stimulate(&huart7, curve12,5);//ok ch6
 					break;
-				
+				}
 				default:
 					break;
 			}	
@@ -435,66 +425,65 @@ void display()
 			switch(i)
 			{
 				//左手
-				case 5:
+				case 5:{
 					GUI_DispStringAt("channel 1  ", 100, 20); 
 					GUI_DispFloat(num/1000000,4);//除以1000000后是实际电压值
 
 					GUI_DispStringAt("transferred data  ", 300, 20); 
-					float curve01=1.957*exp(1.988*num/1000000*4.6/5-0.05);
-					float curve02=-1.76*exp(-3.789*num/1000000*4.6/5-0.05);
-					float curve03=curve01+curve02;
+					double curve01=1.957*exp(1.988*num/1000000*4.6/5-0.05);
+					double curve02=-1.76*exp(-3.789*num/1000000*4.6/5-0.05);
+					double curve03=curve01+curve02;
 					GUI_DispFloat(curve03,4);
-					if(channelEnableflag[1])
-						stimulate(&huart1, curve03,1);
+					
+					stimulate(&huart1, curve03,1);
 					break;
-				case 6:
+					}
+				case 6:{
 					GUI_DispStringAt("channel 2  ", 100, 50); 
 					GUI_DispFloat(num/1000000,4);
 
 					GUI_DispStringAt("transferred data  ", 300, 50); 
-					float curve04=1.946e+04*exp(0.8933*num/1000000*4.6/5-0.125);
-					float curve05=-1.946e+04*exp(0.8929*num/1000000*4.6/5-0.125);
-					float curve06=curve04+curve05;
+					double curve04=1.946e+04*exp(0.8933*num/1000000*4.6/5-0.125);
+					double curve05=-1.946e+04*exp(0.8929*num/1000000*4.6/5-0.125);
+					double curve06=curve04+curve05;
 					GUI_DispFloat(curve06,4);
 
-					if(channelEnableflag[2])
-						stimulate(&huart3,curve06,2);
+					stimulate(&huart3,curve06,2);
 					break;
-				case 7:
+				}
+				case 7:{
 					GUI_DispStringAt("channel 3  ", 100, 80); 
 					GUI_DispFloat(num*3.3/5000000,4);
 
 					GUI_DispStringAt("transferred data  ", 300, 80); 
-					float curve07=2.455*exp(1.891*num/1000000*5/4.6-0.3);
-					float curve08=-2.977*exp(-3.137*num/1000000*5/4.6-0.3);
-					float curve09=curve07+curve08;
+					double curve07=2.455*exp(1.891*num/1000000*5/4.6-0.3);
+					double curve08=-2.977*exp(-3.137*num/1000000*5/4.6-0.3);
+					double curve09=curve07+curve08;
 					GUI_DispFloat(curve09,4);
 
-					if(channelEnableflag[3])
-						stimulate(&huart4,curve09,3);
+					stimulate(&huart4,curve09,3);
 					break;
-				case 8:
+				}
+				case 8:{
 					GUI_DispStringAt("channel 4  ", 100, 110); 
 					GUI_DispFloat(num,4);
 
 					GUI_DispStringAt("transferred data  ", 300, 110); 
 					GUI_DispFloat(17*(num-0.15),4);
 
-					if(channelEnableflag[4])
-						stimulate(&huart5,17*(num-0.15),4);
+					stimulate(&huart5,17*(num-0.15),4);
 					break;
-				case 9:
+				}
+				case 9:{
 					GUI_DispStringAt("channel 5  ", 100, 140); 
 					GUI_DispFloat(num,4);
 
 					GUI_DispStringAt("transferred data  ", 300, 140); 
 					GUI_DispFloat(17*(num-0.3),4);
 
-					if(channelEnableflag[5])
-						stimulate(&huart7,17*(num-0.3),5);
-					break;
-				
-				
+					stimulate(&huart7,17*(num-0.3),5);
+					break;			
+				}
 				default:
 					break;
 			}	
@@ -506,16 +495,14 @@ void display()
 void GetAdData(void)
 {
 		static int tempcnt = 0;
-		//前五个通道的头
-		data[0] = 0xff;
-		data[1] = 0xff;
-		AD_Init();//理论上不用初始化，这是折衷的做法，否则会出现AD采样偶尔错误的后果。经测试推测是与DSU通信有关。
-	
+		
+		HAL_GPIO_WritePin(RESET_GPIO_Port, RESET_Pin, GPIO_PIN_RESET);//Reset
+		ADS1256_Init();//理论上不用再次初始化，这是折衷的做法，否则会出现AD采样偶尔错误的后果。经测试推测是与DSU通信有关。
+		HAL_Delay(5);
 		for(int i = 0;i < 5;i++)
 		{
 			ulResult = ADS_sum( (i << 4) | 0x08);	
-			
-			//ulResult = ADS_sum( ADS1256_MUXP_AIN0 | ADS1256_MUXN_AINCOM);	
+		
 			if( ulResult & 0x800000 )
 			{
 			 	ulResult = ~(unsigned long)ulResult;
@@ -531,19 +518,11 @@ void GetAdData(void)
 			if(temp>0&&temp/1000<5000){
 				
 				ldVolutage[i] = temp;//-offset[i];
+				//ldVolutage[i] = MeanFilter(temp,filter[i]);
 				//ldVolutage[i] = ldVolutage[i]/1000;
-				data[i*2+2] = ((u16)(ldVolutage[i]/1000))>>8;
-				data[i*2+3] = ((u16)(ldVolutage[i]/1000))&0xFF;
+				
 			}
-			//HAL_Delay(1);	
 		}
-		
-		HAL_UART_Transmit(&huart8,data,15,0xfff);
-		
-		
-		//后五个通道的头
-		data[0] = 0xff;
-		data[1] = 0xf1;
 	
 		for(int i = 5;i < 8;i++)
 		{
@@ -567,44 +546,57 @@ void GetAdData(void)
 			if(temp>0&&temp/1000<5000){
 				ldVolutage[i] = temp;//-offset[i];
 				//ldVolutage[i] = ldVolutage[i]/1000;
-				data[i*2-8] = ((u16)(ldVolutage[i]/1000))>>8;
-				data[i*2-7] = ((u16)(ldVolutage[i]/1000))&0xFF;
 			}
-
-			//HAL_Delay(1);	
 		}
 	
-			ADC_convertedvalue[0] = (float)(ADC_detectedvalue[0]&0xffff)*3.3/65536;
-			ADC_convertedvalue[1] = (float)(ADC_detectedvalue[1]&0xffff)*3.3/65536;
-		
-			
+			ADC_convertedvalue[0] = (ADC_detectedvalue[0]&0xffff)*3.3/65536;
+			ADC_convertedvalue[1] = (ADC_detectedvalue[1]&0xffff)*3.3/65536;
 		
 			if(tempcnt<10){
 				tempcnt++;
 				offset[8] += ADC_convertedvalue[0]/10;
 				offset[9] += ADC_convertedvalue[1]/10;
 			}
-			ldVolutage[8] = MeanFilter(ADC_convertedvalue[0],filter0)-offset[8];
-			ldVolutage[9] = MeanFilter(ADC_convertedvalue[1],filter1)-offset[9];
-		
-			data[8] = ((u16)(ldVolutage[8]*1000))>>8;
-			data[9] = ((u16)(ldVolutage[8]*1000))&0xFF;
-			data[10] =((u16)(ldVolutage[9]*1000))>>8;
-			data[11] =((u16)(ldVolutage[9]*1000))&0xFF;
-		
-			
-			HAL_UART_Transmit(&huart8,data,15,0xfff);
-			HAL_UART_Receive_IT(&huart8,&UART8RxBuff,1);
-			
-		
-			
+			ldVolutage[8] = MeanFilter(ADC_convertedvalue[0],filter[8]);//-offset[8];
+			ldVolutage[9] = MeanFilter(ADC_convertedvalue[1],filter[9]);//-offset[9];
 }
 
+void TransferData2PC(){
 
+	//前五个通道的头
+	data[0] = 0xff;
+	data[1] = 0xff;
+
+	for(int i = 0;i < 5;i++)
+	{
+		data[i*2+2] = ((u16)(ldVolutage[i]/1000))>>8;
+		data[i*2+3] = ((u16)(ldVolutage[i]/1000))&0xFF;
+	}
+
+	HAL_UART_Transmit(&huart8,data,15,0xfff);
+
+	//后五个通道的头
+	data[0] = 0xff;
+	data[1] = 0xf1;
+
+	for(int i = 5;i < 8;i++)
+	{
+		data[i*2-8] = ((u16)(ldVolutage[i]/1000))>>8;
+		data[i*2-7] = ((u16)(ldVolutage[i]/1000))&0xFF;
+	}
+
+	data[8] = ((u16)(ldVolutage[8]*1000))>>8;
+	data[9] = ((u16)(ldVolutage[8]*1000))&0xFF;
+	data[10] =((u16)(ldVolutage[9]*1000))>>8;
+	data[11] =((u16)(ldVolutage[9]*1000))&0xFF;
+
+	HAL_UART_Transmit(&huart8,data,15,0xfff);
+	HAL_UART_Receive_IT(&huart8,&UART8RxBuff,1);
+
+}
 void MainLoop()
 {
 	static int last_flag = 0;
-	static int clear_flag = 0;
 //	u8 t[10];
 //	t[0] = 0xaa;
 //	t[1] = 0xbb;

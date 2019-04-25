@@ -1,11 +1,12 @@
-
 #include "fes.h"
 
 
 uint8_t stimulate_parameter[20]="";
 
 float value[17][2];
-int maxpressure = 15;//×î´óµÄÑ¹Á¦Öµ
+int maxpressure = 15;//æœ€å¤§çš„å‹åŠ›é˜ˆå€¼
+
+extern void ChangePeriod(u16 period);
 
 configtx txconfig = {
 					0x80,			//communication header
@@ -22,17 +23,16 @@ configtx txconfig = {
 					0x0001,			//increment denominator is 1
 					0x0A,			//default stimulate amplitude is 1mA 0X0A
 					0xFF,			//end flag,should be "FF FF FF"
-			};
+};
 
 
 void merge_stimulate_parameter(UART_HandleTypeDef *huart,int pressure,int channel)
 {			
 	if(pressure<0)
-		pressure = 0;
+		pressure = 0;Â·
 	if(pressure>maxpressure)
 		pressure = maxpressure;
-	if(pressure<pressureThreshold)
-		return;
+	
 	stimulate_parameter[0]=txconfig.HEADER;	
 	stimulate_parameter[1]=txconfig.CONTROL;
 	stimulate_parameter[2]=txconfig.CHANNEL;
@@ -71,135 +71,40 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,int pressure,int channe
 			val=20;
 		stimulate_parameter[5] = val>>8; //è„‰å®½é«˜8ä½
 		stimulate_parameter[6] = val; //è„‰å®½ä½8ä½
-		stimulate_parameter[16]=threshold[channel][1];//é…åˆè„‰å®½æ¨¡å¼å’Œè¯±å‘æŒ‡æ„ŸåŒºçš„æœ€ä½ç”µæµé˜ˆå€¼ï¼Œåœ¨è„‰å®½æ¨¡å¼ä¸‹ä¹Ÿä¼š
+		stimulate_parameter[16]=threshold[channel][1];//é…åˆè„‰å®½æ¨¡å¼å’Œè¯±å‘æŒ‡æ„ŸåŒºçš„æœ€ä½ç”µæµé˜ˆå€¼ï¼Œåœ¨è„‰å®½æ¨¡å¼ä¸‹ä¹Ÿä¼šè®¾ç½®
 	}
 	else if(testmode_flag==7)
 	{
-		if(huart==&huart1) {
-			static u16 last_frequency = 0;
-			if(last_frequency != parameter[1][2]){
-				last_frequency=parameter[1][2];
-				if(last_frequency>=10000){
-					ChangePeriod(last_frequency-10000);//¸Ä±ä·¢ËÍ¸øDSSUµÄĞÅºÅÖÜÆÚ£¬µ¥Î»ms
-					stimulate_parameter[7] = txconfig.FREQUENCY>>8; //ÆµÂÊ¸ßÎ»£¬Ä¬ÈÏ100hz
-					stimulate_parameter[8] = txconfig.FREQUENCY; //ÆµÂÊµÍÎ»
-					stimulate_parameter[11]= 0x00;//´ÎÊı¸ßÎ»
-					stimulate_parameter[12]= 0x01;//´ÎÊıµÍÎ»
-				}
-				else{
-					ChangePeriod(50);//µ¥Î»ms£¬ÖÜÆÚ20ms
-					stimulate_parameter[7] = parameter[1][2]>>8; //ÆµÂÊ¸ßÎ»
-					stimulate_parameter[8] = parameter[1][2]; //ÆµÂÊµÍÎ»
-					stimulate_parameter[11]= (unsigned int)(last_frequency*0.05)>>8;//´ÎÊı¸ßÎ»£¬¼ÆËã³öÀ´µÄ´Ì¼¤´ÎÊı£¬Èç200hz¾ÍÊÇ200*0.02=4´Î
-					stimulate_parameter[12]= (unsigned int)last_frequency*0.05;//´ÎÊıµÍÎ»
-					
-				}
+		static u16 last_frequency[6] = {0};
+		if(last_frequency[channel] != parameter[channel][2]){
+			last_frequency[channel]=parameter[channel][2];
+			if(last_frequency[channel]>=10000){
+				ChangePeriod(last_frequency[channel]-10000);//æ”¹å˜å‘é€ç»™DSSUçš„ä¿¡å·å‘¨æœŸï¼Œå•ä½ms
+				stimulate_parameter[7] = txconfig.FREQUENCY>>8; //é¢‘ç‡é«˜ä½ï¼Œé»˜è®¤100hz
+				stimulate_parameter[8] = txconfig.FREQUENCY; //é¢‘ç‡ä½ä½
+				stimulate_parameter[11]= 0x00;//æ¬¡æ•°é«˜ä½
+				stimulate_parameter[12]= 0x01;//æ¬¡æ•°ä½ä½
 			}
-			stimulate_parameter[16] = parameter[1][0]; 
-			stimulate_parameter[5] = parameter[1][1]>>8; //Âö¿í¸ßÎ»
-			stimulate_parameter[6] = parameter[1][1]; //Âö¿íµÍÎ»
-		}
-		else if(huart==&huart3) {
-			static u16 last_frequency = 0;
-			if(last_frequency != parameter[2][2]){
-				last_frequency=parameter[2][2];
-				if(last_frequency>=10000){
-					ChangePeriod(last_frequency-10000);//¸Ä±ä·¢ËÍ¸øDSSUµÄĞÅºÅÖÜÆÚ£¬µ¥Î»ms
-					stimulate_parameter[7] = txconfig.FREQUENCY>>8; //ÆµÂÊ¸ßÎ»£¬Ä¬ÈÏ100hz
-					stimulate_parameter[8] = txconfig.FREQUENCY; //ÆµÂÊµÍÎ»
-					stimulate_parameter[11]= 0x00;//´ÎÊı¸ßÎ»
-					stimulate_parameter[12]= 0x01;//´ÎÊıµÍÎ»
-				}
-				else{
-					ChangePeriod(50);//µ¥Î»ms£¬ÖÜÆÚ20ms
-					stimulate_parameter[7] = parameter[2][2]>>8; //ÆµÂÊ¸ßÎ»
-					stimulate_parameter[8] = parameter[2][2]; //ÆµÂÊµÍÎ»
-					stimulate_parameter[11]= (unsigned int)(last_frequency*0.05)>>8;//´ÎÊı¸ßÎ»£¬¼ÆËã³öÀ´µÄ´Ì¼¤´ÎÊı£¬Èç200hz¾ÍÊÇ200*0.02=4´Î
-					stimulate_parameter[12]= (unsigned int)last_frequency*0.05;//´ÎÊıµÍÎ»
-					
-				}
+			else{
+				ChangePeriod(50);//å•ä½msï¼Œå‘¨æœŸ20ms
+				stimulate_parameter[7] = parameter[1][2]>>8; //é¢‘ç‡é«˜ä½
+				stimulate_parameter[8] = parameter[1][2]; //é¢‘ç‡ä½ä½
+				stimulate_parameter[11]= (unsigned int)(last_frequency[channel]*0.05)>>8;//æ¬¡æ•°é«˜ä½ï¼Œè®¡ç®—å‡ºæ¥çš„åˆºæ¿€æ¬¡æ•°ï¼Œå¦‚200hzå°±æ˜¯200*0.02=4æ¬¡
+				stimulate_parameter[12]= (unsigned int)last_frequency[channel]*0.05;//æ¬¡æ•°ä½ä½
 			}
-			stimulate_parameter[16] = parameter[2][0]; 
-			stimulate_parameter[5] = parameter[2][1]>>8; //Âö¿í¸ßÎ»
-			stimulate_parameter[6] = parameter[2][1]; //Âö¿íµÍÎ»
 		}
-		else if(huart==&huart4) {
-			static u16 last_frequency = 0;
-			if(last_frequency != parameter[3][2]){
-				last_frequency=parameter[3][2];
-				if(last_frequency>=10000){
-					ChangePeriod(last_frequency-10000);//¸Ä±ä·¢ËÍ¸øDSSUµÄĞÅºÅÖÜÆÚ£¬µ¥Î»ms
-					stimulate_parameter[7] = txconfig.FREQUENCY>>8; //ÆµÂÊ¸ßÎ»£¬Ä¬ÈÏ100hz
-					stimulate_parameter[8] = txconfig.FREQUENCY; //ÆµÂÊµÍÎ»
-					stimulate_parameter[11]= 0x00;//´ÎÊı¸ßÎ»
-					stimulate_parameter[12]= 0x01;//´ÎÊıµÍÎ»
-				}
-				else{
-					ChangePeriod(50);//µ¥Î»ms£¬ÖÜÆÚ20ms
-					stimulate_parameter[7] = parameter[3][2]>>8; //ÆµÂÊ¸ßÎ»
-					stimulate_parameter[8] = parameter[3][2]; //ÆµÂÊµÍÎ»
-					stimulate_parameter[11]= (unsigned int)(last_frequency*0.05)>>8;//´ÎÊı¸ßÎ»£¬¼ÆËã³öÀ´µÄ´Ì¼¤´ÎÊı£¬Èç200hz¾ÍÊÇ200*0.02=4´Î
-					stimulate_parameter[12]= (unsigned int)last_frequency*0.05;//´ÎÊıµÍÎ»
-					
-				}
-			}
-			stimulate_parameter[16] = parameter[3][0]; 
-			stimulate_parameter[5] = parameter[3][1]>>8; //Âö¿í¸ßÎ»
-			stimulate_parameter[6] = parameter[3][1]; //Âö¿íµÍÎ»
-		}
-		else if(huart==&huart5) {
-			static u16 last_frequency = 0;
-			if(last_frequency != parameter[4][2]){
-				last_frequency=parameter[4][2];
-				if(last_frequency>=10000){
-					ChangePeriod(last_frequency-10000);//¸Ä±ä·¢ËÍ¸øDSSUµÄĞÅºÅÖÜÆÚ£¬µ¥Î»ms
-					stimulate_parameter[7] = txconfig.FREQUENCY>>8; //ÆµÂÊ¸ßÎ»£¬Ä¬ÈÏ100hz
-					stimulate_parameter[8] = txconfig.FREQUENCY; //ÆµÂÊµÍÎ»
-					stimulate_parameter[11]= 0x00;//´ÎÊı¸ßÎ»
-					stimulate_parameter[12]= 0x01;//´ÎÊıµÍÎ»
-				}
-				else{
-					ChangePeriod(50);//µ¥Î»ms£¬ÖÜÆÚ20ms
-					stimulate_parameter[7] = parameter[4][2]>>8; //ÆµÂÊ¸ßÎ»
-					stimulate_parameter[8] = parameter[4][2]; //ÆµÂÊµÍÎ»
-					stimulate_parameter[11]= (unsigned int)(last_frequency*0.05)>>8;//´ÎÊı¸ßÎ»£¬¼ÆËã³öÀ´µÄ´Ì¼¤´ÎÊı£¬Èç200hz¾ÍÊÇ200*0.02=4´Î
-					stimulate_parameter[12]= (unsigned int)last_frequency*0.05;//´ÎÊıµÍÎ»
-					
-				}
-			}
-			stimulate_parameter[16] = parameter[4][0]; 
-			stimulate_parameter[5] = parameter[4][1]>>8; //Âö¿í¸ßÎ»
-			stimulate_parameter[6] = parameter[4][1]; //Âö¿íµÍÎ»
-		}
-		else if(huart==&huart7)  {
-			static u16 last_frequency = 0;
-			if(last_frequency != parameter[5][2]){
-				last_frequency=parameter[5][2];
-				if(last_frequency>=10000){
-					ChangePeriod(last_frequency-10000);//¸Ä±ä·¢ËÍ¸øDSSUµÄĞÅºÅÖÜÆÚ£¬µ¥Î»ms
-					stimulate_parameter[7] = txconfig.FREQUENCY>>8; //ÆµÂÊ¸ßÎ»£¬Ä¬ÈÏ100hz
-					stimulate_parameter[8] = txconfig.FREQUENCY; //ÆµÂÊµÍÎ»
-					stimulate_parameter[11]= 0x00;//´ÎÊı¸ßÎ»
-					stimulate_parameter[12]= 0x01;//´ÎÊıµÍÎ»
-				}
-				else{
-					ChangePeriod(50);//µ¥Î»ms£¬ÖÜÆÚ20ms
-					stimulate_parameter[7] = parameter[5][2]>>8; //ÆµÂÊ¸ßÎ»
-					stimulate_parameter[8] = parameter[5][2]; //ÆµÂÊµÍÎ»
-					stimulate_parameter[11]= (unsigned int)(last_frequency*0.05)>>8;//´ÎÊı¸ßÎ»£¬¼ÆËã³öÀ´µÄ´Ì¼¤´ÎÊı£¬Èç200hz¾ÍÊÇ200*0.02=4´Î
-					stimulate_parameter[12]= (unsigned int)last_frequency*0.05;//´ÎÊıµÍÎ»
-					
-				}
-			}
-			stimulate_parameter[16] = parameter[5][0]; 
-			stimulate_parameter[5] = parameter[5][1]>>8; //Âö¿í¸ßÎ»
-			stimulate_parameter[6] = parameter[5][1]; //Âö¿íµÍÎ»
-		}
+		stimulate_parameter[16] = parameter[channel][0]; 
+		stimulate_parameter[5] = parameter[channel][1]>>8; //è„‰å®½é«˜8ä½
+		stimulate_parameter[6] = parameter[channel][1]; //è„‰å®½ä½8ä½
 	}
 	
-	
-	
-	
+	if(channelEnableflag[channel]==0||pressure<pressureThreshold){
+		if(testmode_flag!=7){
+			stimulate_parameter[16] = 0x01;
+			
+		}
+	}
+		
 	HAL_UART_Transmit(huart,(uint8_t *)stimulate_parameter,sizeof(stimulate_parameter),0xffff);
 }
 
@@ -215,7 +120,7 @@ void stim_search(UART_HandleTypeDef *huart)
 	{
 		while(UART1RxBuff!=0xBC)
 		{
-			HAL_UART_Receive_IT(huart,&UART1RxBuff,1);
+			HAL_UART_Receive_IT(huart,(uint8_t *)&UART1RxBuff,1);
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
 			HAL_Delay(1);		
 		}
@@ -248,7 +153,7 @@ void stim_search(UART_HandleTypeDef *huart)
 	{
 		while((UART5RxBuff!=0xBC))
 		{
-			HAL_UART_Receive_IT(huart,&UART5RxBuff,1);
+			HAL_UART_Receive_IT(huart,(uint8_t *)&UART5RxBuff,1);
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
 			HAL_Delay(1);
 		}
@@ -260,7 +165,7 @@ void stim_search(UART_HandleTypeDef *huart)
 	{
 		while((UART7RxBuff!=0xBC))
 		{
-			HAL_UART_Receive_IT(huart,&UART7RxBuff,1);
+			HAL_UART_Receive_IT(huart,(uint8_t *)&UART7RxBuff,1);
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
 			HAL_Delay(1);
 		}
@@ -271,7 +176,7 @@ void stim_search(UART_HandleTypeDef *huart)
 	{
 		while((UART8RxBuff!=0xBC))
 		{
-			HAL_UART_Receive_IT(huart,&UART8RxBuff,1);
+			HAL_UART_Receive_IT(huart,(uint8_t *)&UART8RxBuff,1);
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
 			HAL_Delay(1);
 		}
@@ -291,7 +196,7 @@ void stim_start(UART_HandleTypeDef *huart) //receive AA 0x41 0x41
 		while((UART1RxBuff!=0xAA)&&(UART1RxBuff!=0xBB))
 		{
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
-			HAL_UART_Receive_IT(huart,&UART1RxBuff,1);
+			HAL_UART_Receive_IT(huart,(uint8_t *)&UART1RxBuff,1);
 			HAL_Delay(1);
 		}
 		UART1RxBuff = 0x00;
@@ -302,7 +207,7 @@ void stim_start(UART_HandleTypeDef *huart) //receive AA 0x41 0x41
 		while((UART3RxBuff!=0xAA)&&(UART3RxBuff!=0xBB))
 		{
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
-			HAL_UART_Receive_IT(huart,&UART3RxBuff,1);
+			HAL_UART_Receive_IT(huart,(uint8_t *)&UART3RxBuff,1);
 			HAL_Delay(1);
 		}
 		UART3RxBuff = 0x00;
@@ -313,7 +218,7 @@ void stim_start(UART_HandleTypeDef *huart) //receive AA 0x41 0x41
 		while((UART4RxBuff!=0xAA)&&(UART4RxBuff!=0xBB))
 		{
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
-			HAL_UART_Receive_IT(huart,&UART4RxBuff,1);
+			HAL_UART_Receive_IT(huart,(uint8_t *)&UART4RxBuff,1);
 			HAL_Delay(1);
 		}
 		UART4RxBuff = 0x00;
@@ -324,7 +229,7 @@ void stim_start(UART_HandleTypeDef *huart) //receive AA 0x41 0x41
 		while((UART5RxBuff!=0xAA)&&(UART5RxBuff!=0xBB))
 		{
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
-			HAL_UART_Receive_IT(huart,&UART5RxBuff,1);
+			HAL_UART_Receive_IT(huart,(uint8_t *)&UART5RxBuff,1);
 			HAL_Delay(1);
 		}
 		UART5RxBuff = 0x00;
@@ -335,7 +240,7 @@ void stim_start(UART_HandleTypeDef *huart) //receive AA 0x41 0x41
 		while((UART7RxBuff!=0xAA)&&(UART7RxBuff!=0xBB))
 		{
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
-			HAL_UART_Receive_IT(huart,&UART7RxBuff,1);
+			HAL_UART_Receive_IT(huart,(uint8_t *)&UART7RxBuff,1);
 			HAL_Delay(1);
 		}
 		UART7RxBuff = 0x00;
@@ -346,7 +251,7 @@ void stim_start(UART_HandleTypeDef *huart) //receive AA 0x41 0x41
 		while((UART8RxBuff!=0xAA)&&(UART8RxBuff!=0xBB))
 		{
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
-			HAL_UART_Receive_IT(huart,&UART8RxBuff,1);
+			HAL_UART_Receive_IT(huart,(uint8_t *)&UART8RxBuff,1);
 			HAL_Delay(1);
 		}
 		UART8RxBuff = 0x00;
@@ -361,11 +266,11 @@ void stim_stop(UART_HandleTypeDef *huart)// BB 0x42 0x42
 	char temp_1 = 0x80;
 	char temp_2 = 0x01;
 	char temp_3 = 0x02;
-	HAL_UART_Receive_IT(&huart1,&UART1RxBuff,1);
-	HAL_UART_Receive_IT(&huart3,&UART3RxBuff,1);
-	HAL_UART_Receive_IT(&huart4,&UART4RxBuff,1);
-	HAL_UART_Receive_IT(&huart5,&UART5RxBuff,1);
-	HAL_UART_Receive_IT(&huart7,&UART7RxBuff,1);
+	HAL_UART_Receive_IT(&huart1,(uint8_t *)&UART1RxBuff,1);
+	HAL_UART_Receive_IT(&huart3,(uint8_t *)&UART3RxBuff,1);
+	HAL_UART_Receive_IT(&huart4,(uint8_t *)&UART4RxBuff,1);
+	HAL_UART_Receive_IT(&huart5,(uint8_t *)&UART5RxBuff,1);
+	HAL_UART_Receive_IT(&huart7,(uint8_t *)&UART7RxBuff,1);
 
 	if(huart->Instance==USART1)
 	{
@@ -374,7 +279,7 @@ void stim_stop(UART_HandleTypeDef *huart)// BB 0x42 0x42
 			HAL_UART_Transmit(huart,(uint8_t *)&temp_1,1,0xffff);
 			HAL_UART_Transmit(huart,(uint8_t *)&temp_2,1,0xffff);
 			HAL_UART_Transmit(huart,(uint8_t *)&temp_3,1,0xffff);
-			HAL_UART_Receive_IT(&huart1,&UART1RxBuff,1);
+			HAL_UART_Receive_IT(&huart1,(uint8_t *)&UART1RxBuff,1);
 			HAL_Delay(1);
 		}
 		UART1RxBuff = 0x00;
@@ -438,7 +343,7 @@ void stim_stop(UART_HandleTypeDef *huart)// BB 0x42 0x42
 	}
 }
 
-void stimulate(UART_HandleTypeDef *huart,float pressure,int channel)
+void stimulate(UART_HandleTypeDef *huart,double pressure,int channel)
 {
 	
 	stim_search(huart);// send 800103 back BC

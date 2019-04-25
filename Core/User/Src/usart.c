@@ -19,12 +19,12 @@ int UART7RxBuffCount = 0;
 int UART8RxBuffCount = 0;
 
 
-uint8_t volatile UART1RxBuff; 
-uint8_t volatile UART3RxBuff; 
-uint8_t volatile UART4RxBuff; 
-uint8_t volatile UART5RxBuff; 
-uint8_t volatile UART7RxBuff; 
-uint8_t volatile UART8RxBuff; 
+uint8_t UART1RxBuff; 
+uint8_t UART3RxBuff; 
+uint8_t UART4RxBuff; 
+uint8_t UART5RxBuff; 
+uint8_t UART7RxBuff; 
+uint8_t UART8RxBuff; 
 
 //1 电流；2脉宽；3频率
 u16 parameter[6][5]; //5个通道，为了对齐选了6
@@ -36,7 +36,7 @@ int channelchange = 0;
 uint8_t tempRxBuffer;
 uint8_t upperRxBuffer[7];
 int cnt = 0;
-volatile int testmode_flag = 4;//通过修改此处可以修改启动的模式
+volatile int testmode_flag = 3;//通过修改此处可以修改启动的模式
 
 static void Error_Handler(void)
 {

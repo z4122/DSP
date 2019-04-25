@@ -218,35 +218,6 @@ void AD_GPIO_Init(void)
   HAL_GPIO_Init(TEST_GPIO_Port, &GPIO_InitStruct);
 }
 
-void Compute_Offset()
-{
-	long ulResult = 0;
-	
-	for(int t = 0;t<50;t++){
-			for(int i = 0;i < 8;i++)
-			{
-				ulResult = ADS_sum( (i << 4) | 0x08);	
-				
-				//ulResult = ADS_sum( ADS1256_MUXP_AIN0 | ADS1256_MUXN_AINCOM);	
-				if( ulResult & 0x800000)
-				{
-					ulResult = ~(unsigned long)ulResult;
-					ulResult &= 0x7fffff;
-					ulResult += 1;
-					ulResult = -ulResult;
-				}
-				
-				long double temp = (long double)ulResult*0.59604644775390625;
-			
-				offset[i] += (long double)ulResult*0.59604644775390625/50.0;	
-				
-			}
-			
-		
-	}
-
-	
-}
 
 void delayad_nopar(void)
 {
