@@ -357,12 +357,12 @@ void display()
 					case 0:{//16 sensor2
 						//GUI_Clear();	
 						GUI_DispStringAt("channel 1  ", 100, 20); 
-						GUI_DispFloat(num/1000000,4);//除以1000000后是实际电压值
+						GUI_DispFloat(num,4);//除以1000000后是实际电压值
 						GUI_DispStringAt("transferred data  ", 300, 20); 
-						//float curve1=1.657*exp(2.113*(num/1000000-0.07));
-						//float curve2=-1.056*exp(-0.5708*(num/1000000-0.07));
-						float curve1=-18.4*(num/1000000)*(num/1000000)*(num/1000000)*(num/1000000)+59.65*(num/1000000)*(num/1000000)*(num/1000000);
-						float curve2=-61.04*(num/1000000)*(num/1000000)+33.58*(num/1000000)-5.038;
+						//float curve1=1.657*exp(2.113*(num-0.07));
+						//float curve2=-1.056*exp(-0.5708*(num-0.07));
+						float curve1=-18.4*(num)*(num)*(num)*(num)+59.65*(num)*(num)*(num);
+						float curve2=-61.04*(num)*(num)+33.58*(num)-5.038;
 						float curve3=curve1+curve2;
 						GUI_DispFloat(curve3,4);//sensor20
 						//if(channelEnableflag[1])
@@ -371,13 +371,13 @@ void display()
 					}
 					case 1:{//3 sensor3
 						GUI_DispStringAt("channel 2  ", 100, 50); 
-						GUI_DispFloat(num/1000000,4);
+						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 50); 
-						//GUI_DispFloat(4.302*exp(1.132*num/1000000)-3.705*exp(-1.904*num/1000000),4);
-						//float curve4=1.69*exp(1.789*(num/1000000));
-						//float curve5=-1.168*exp(-1.216*(num/1000000));
-						float curve4=6.006*(num/1000000)*(num/1000000);
-						float curve5=4.532*(num/1000000)-1.164;
+						//GUI_DispFloat(4.302*exp(1.132*num)-3.705*exp(-1.904*num),4);
+						//float curve4=1.69*exp(1.789*(num));
+						//float curve5=-1.168*exp(-1.216*(num));
+						float curve4=6.006*(num)*(num);
+						float curve5=4.532*(num)-1.164;
 						float curve6=curve4+curve5;
 						GUI_DispFloat(curve6,4);//sensor21
 						//if(channelEnableflag[2])
@@ -386,12 +386,12 @@ void display()
 					}
 					case 2:{//2 sensor6
 						GUI_DispStringAt("channel 3  ", 100, 80); 
-						GUI_DispFloat(num/1000000,4);
+						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 80); 
-						//float curve7=2.25*exp(1.431*num/1000000+0.25);
-						//float curve8=-2.087*exp(-2.515*num/1000000+0.75);
-						float curve7=4.348*(num/1000000)*(num/1000000)*(num/1000000)-3.622*(num/1000000)*(num/1000000);
-						float curve8=9.488*(num/1000000)-2.023;
+						//float curve7=2.25*exp(1.431*num+0.25);
+						//float curve8=-2.087*exp(-2.515*num+0.75);
+						float curve7=4.348*(num)*(num)*(num)-3.622*(num)*(num);
+						float curve8=9.488*(num)-2.023;
 						float curve9=curve7+curve8;				
 						GUI_DispFloat(curve9,4);//sensor22
 						//if(channelEnableflag[3])
@@ -400,11 +400,11 @@ void display()
 					}
 					case 3:{//15 sensor1
 						GUI_DispStringAt("channel 4  ", 100, 110); 
-						GUI_DispFloat(num/1000000,4);
+						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 110); 
-						//GUI_DispFloat(3.732*exp(1.905*num/1000000*4.6/5)-4.65*exp(-4.638*num/1000000*4.6/5),4);
-						float curve10=12.04*(num/1000000)*(num/1000000)*(num/1000000)*(num/1000000)-24.93*(num/1000000)*(num/1000000)*(num/1000000);
-						float curve11=18.57*(num/1000000)*(num/1000000)+1.145*(num/1000000)-1.04;
+						//GUI_DispFloat(3.732*exp(1.905*num*4.6/5)-4.65*exp(-4.638*num*4.6/5),4);
+						float curve10=12.04*(num)*(num)*(num)*(num)-24.93*(num)*(num)*(num);
+						float curve11=18.57*(num)*(num)+1.145*(num)-1.04;
 						float curve12=curve10+curve11;
 						GUI_DispFloat(curve12,4);//sensor23
 						//if(channelEnableflag[4])
@@ -413,13 +413,13 @@ void display()
 					}
 					case 4:{//1 sensor4
 						GUI_DispStringAt("channel 5  ", 100, 140); 
-						GUI_DispFloat(num/1000000,4);
+						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 140); 
-						//GUI_DispFloat(2.878*exp( 2.423*num/1000000*4.6/5-0.08)-3.286*exp(-7.177*num/1000000*4.6/5-0.08),4);
-						//float curve10=1.707*exp(2.293*(num/1000000-0.04));
-						//float curve11=-1.727*exp(-8.538*(num/1000000-0.04));
-						float curve13=-8.86*(num/1000000)*(num/1000000)*(num/1000000)*(num/1000000)+30.72*(num/1000000)*(num/1000000)*(num/1000000);
-						float curve14=-29.84*(num/1000000)*(num/1000000)+16.15*(num/1000000)-2.713;
+						//GUI_DispFloat(2.878*exp( 2.423*num*4.6/5-0.08)-3.286*exp(-7.177*num*4.6/5-0.08),4);
+						//float curve10=1.707*exp(2.293*(num-0.04));
+						//float curve11=-1.727*exp(-8.538*(num-0.04));
+						float curve13=-8.86*(num)*(num)*(num)*(num)+30.72*(num)*(num)*(num);
+						float curve14=-29.84*(num)*(num)+16.15*(num)-2.713;
 						float curve15=curve13+curve14;				
 						GUI_DispFloat(curve15,4);//sensor24
 						
@@ -442,11 +442,11 @@ void display()
 					//左手
 					case 5:{
 						GUI_DispStringAt("channel 1  ", 100, 20); 
-						GUI_DispFloat(num/1000000,4);//除以1000000后是实际电压值
+						GUI_DispFloat(num,4);//除以1000000后是实际电压值
 
 						GUI_DispStringAt("transferred data  ", 300, 20); 
-						float curve01=1.957*exp(1.988*num/1000000*4.6/5-0.05);
-						float curve02=-1.76*exp(-3.789*num/1000000*4.6/5-0.05);
+						float curve01=1.957*exp(1.988*num*4.6/5-0.05);
+						float curve02=-1.76*exp(-3.789*num*4.6/5-0.05);
 						float curve03=curve01+curve02;
 						GUI_DispFloat(curve03,4);
 						if(channelEnableflag[1])
@@ -455,11 +455,11 @@ void display()
 					}
 					case 6:{
 						GUI_DispStringAt("channel 2  ", 100, 50); 
-						GUI_DispFloat(num/1000000,4);
+						GUI_DispFloat(num,4);
 
 						GUI_DispStringAt("transferred data  ", 300, 50); 
-						float curve04=1.946e+04*exp(0.8933*num/1000000*4.6/5-0.125);
-						float curve05=-1.946e+04*exp(0.8929*num/1000000*4.6/5-0.125);
+						float curve04=1.946e+04*exp(0.8933*num*4.6/5-0.125);
+						float curve05=-1.946e+04*exp(0.8929*num*4.6/5-0.125);
 						float curve06=curve04+curve05;
 						GUI_DispFloat(curve06,4);
 
@@ -469,11 +469,11 @@ void display()
 					}
 					case 7:{
 						GUI_DispStringAt("channel 3  ", 100, 80); 
-						GUI_DispFloat(num*3.3/5000000,4);
+						GUI_DispFloat(num,4);
 
 						GUI_DispStringAt("transferred data  ", 300, 80); 
-						float curve07=2.455*exp(1.891*num/1000000*5/4.6-0.3);
-						float curve08=-2.977*exp(-3.137*num/1000000*5/4.6-0.3);
+						float curve07=2.455*exp(1.891*num*5/4.6-0.3);
+						float curve08=-2.977*exp(-3.137*num*5/4.6-0.3);
 						float curve09=curve07+curve08;
 						GUI_DispFloat(curve09,4);
 
@@ -524,12 +524,12 @@ void display()
 					case 0:{//16
 						//GUI_Clear();	
 						GUI_DispStringAt("channel 1  ", 100, 20); 
-						GUI_DispFloat(num/1000000,4);//除以1000000后是实际电压值
+						GUI_DispFloat(num,4);//除以1000000后是实际电压值
 						GUI_DispStringAt("transferred data  ", 300, 20); 
-						//double curve1=(double)(1.657*exp(2.113*(num/1000000-0.07)));
-						//double curve2=-1.056*exp(-0.5708*(num/1000000-0.07));
-						double curve1=(double)(1.793*exp(2.264*num/1000000*4.6/5));
-						double curve2=-1.72*exp(-4.736*num/1000000*4.6/5)-5;					
+						//double curve1=(double)(1.657*exp(2.113*(num-0.07)));
+						//double curve2=-1.056*exp(-0.5708*(num-0.07));
+						double curve1=(double)(1.793*exp(2.264*num*4.6/5));
+						double curve2=-1.72*exp(-4.736*num*4.6/5)-5;					
 						double curve3=curve1+curve2;
 						GUI_DispFloat(curve3,4);//sensor20
 						
@@ -538,13 +538,13 @@ void display()
 					}
 					case 1:{//3
 						GUI_DispStringAt("channel 2  ", 100, 50); 
-						GUI_DispFloat(num/1000000,4);
+						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 50); 
-						//GUI_DispFloat(4.302*exp(1.132*num/1000000)-3.705*exp(-1.904*num/1000000),4);
-						//double curve4=1.69*exp(1.789*(num/1000000));
-						//double curve5=-1.168*exp(-1.216*(num/1000000));
-						double curve4=3.616*exp(1.62*num/1000000*4.6/5-0.2);
-						double curve5=-3.588*exp(-2.139*num/1000000*4.6/5-0.2);					
+						//GUI_DispFloat(4.302*exp(1.132*num)-3.705*exp(-1.904*num),4);
+						//double curve4=1.69*exp(1.789*(num));
+						//double curve5=-1.168*exp(-1.216*(num));
+						double curve4=3.616*exp(1.62*num*4.6/5-0.2);
+						double curve5=-3.588*exp(-2.139*num*4.6/5-0.2);					
 						double curve6=curve4+curve5;
 						GUI_DispFloat(curve6,4);//sensor21
 						
@@ -553,12 +553,12 @@ void display()
 					}
 					case 2:{//2
 						GUI_DispStringAt("channel 3  ", 100, 80); 
-						GUI_DispFloat(num/1000000,4);
+						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 80); 
-						//double curve7=2.25*exp(1.431*num/1000000+0.25);
-						//double curve8=-2.087*exp(-2.515*num/1000000+0.75);
-						double curve7=4.461*exp(1.572*num/1000000*4.6/5);
-						double curve8=-5.077*exp(-2.702*num/1000000*4.6/5);					
+						//double curve7=2.25*exp(1.431*num+0.25);
+						//double curve8=-2.087*exp(-2.515*num+0.75);
+						double curve7=4.461*exp(1.572*num*4.6/5);
+						double curve8=-5.077*exp(-2.702*num*4.6/5);					
 						double curve9=curve7+curve8;				
 						GUI_DispFloat(curve9,4);//sensor22
 						
@@ -567,12 +567,12 @@ void display()
 					}
 					case 3:{//15
 						GUI_DispStringAt("channel 4  ", 100, 110); 
-						GUI_DispFloat(num/1000000,4);
+						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 110); 
-						//GUI_DispFloat(3.732*exp(1.905*num/1000000*4.6/5)-4.65*exp(-4.638*num/1000000*4.6/5),4);
+						//GUI_DispFloat(3.732*exp(1.905*num*4.6/5)-4.65*exp(-4.638*num*4.6/5),4);
 						//sensor23
-						double curve10=3.732*exp(1.905*num/1000000*4.6/5-0.15);
-						double curve11=-4.65*exp(-4.638*num/1000000*4.6/5-0.15);//sensor17
+						double curve10=3.732*exp(1.905*num*4.6/5-0.15);
+						double curve11=-4.65*exp(-4.638*num*4.6/5-0.15);//sensor17
 						
 						float curve12=curve10+curve11;	
 						GUI_DispFloat(curve12,4);					
@@ -581,13 +581,13 @@ void display()
 					}
 					case 4:{//1
 						GUI_DispStringAt("channel 5  ", 100, 140); 
-						GUI_DispFloat(num/1000000,4);
+						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 140); 
-						//GUI_DispFloat(2.878*exp( 2.423*num/1000000*4.6/5-0.08)-3.286*exp(-7.177*num/1000000*4.6/5-0.08),4);
-						//double curve10=1.707*exp(2.293*(num/1000000-0.04));
-						//double curve11=-1.727*exp(-8.538*(num/1000000-0.04));
-						double curve10=2.878*exp( 2.423*num/1000000*4.6/5-0.35);
-						double curve11=-3.286*exp(-7.177*num/1000000*4.6/5-0.35);					
+						//GUI_DispFloat(2.878*exp( 2.423*num*4.6/5-0.08)-3.286*exp(-7.177*num*4.6/5-0.08),4);
+						//double curve10=1.707*exp(2.293*(num-0.04));
+						//double curve11=-1.727*exp(-8.538*(num-0.04));
+						double curve10=2.878*exp( 2.423*num*4.6/5-0.35);
+						double curve11=-3.286*exp(-7.177*num*4.6/5-0.35);					
 						double curve12=curve10+curve11;				
 						GUI_DispFloat(curve12,4);//sensor24
 						
@@ -609,13 +609,13 @@ void display()
 					//左手
 					case 5:{
 						GUI_DispStringAt("channel 1  ", 100, 20); 
-						GUI_DispFloat(num/1000000,4);//除以1000000后是实际电压值
+						GUI_DispFloat(num,4);//除以后是实际电压值
 
 						GUI_DispStringAt("transferred data  ", 300, 20); 
-						//double curve01=1.957*exp(1.988*num/1000000*4.6/5-0.05);
-						//double curve02=-1.76*exp(-3.789*num/1000000*4.6/5-0.05);
-						double curve01=1.476*exp(1.864*num/1000000+0.01984);
-						double curve02=-2.169*exp(-13.69*num/1000000-1.2321);				
+						//double curve01=1.957*exp(1.988*num*4.6/5-0.05);
+						//double curve02=-1.76*exp(-3.789*num*4.6/5-0.05);
+						double curve01=1.476*exp(1.864*num+0.01984);
+						double curve02=-2.169*exp(-13.69*num-1.2321);				
 						double curve03=curve01+curve02;
 						GUI_DispFloat(curve03,4);
 						
@@ -624,13 +624,13 @@ void display()
 						}
 					case 6:{
 						GUI_DispStringAt("channel 2  ", 100, 50); 
-						GUI_DispFloat(num/1000000,4);
+						GUI_DispFloat(num,4);
 
 						GUI_DispStringAt("transferred data  ", 300, 50); 
-						//double curve04=1.946e+04*exp(0.8933*num/1000000*4.6/5-0.125);
-						//double curve05=-1.946e+04*exp(0.8929*num/1000000*4.6/5-0.125);
-						double curve04=2.282*exp(1.986*num/1000000+0.05958);
-						double curve05=-3.907*exp(-5.262*num/1000000-0.18996);					
+						//double curve04=1.946e+04*exp(0.8933*num*4.6/5-0.125);
+						//double curve05=-1.946e+04*exp(0.8929*num*4.6/5-0.125);
+						double curve04=2.282*exp(1.986*num+0.05958);
+						double curve05=-3.907*exp(-5.262*num-0.18996);					
 						double curve06=curve04+curve05;
 						GUI_DispFloat(curve06,4);
 
@@ -639,13 +639,13 @@ void display()
 					}
 					case 7:{
 						GUI_DispStringAt("channel 3  ", 100, 80); 
-						GUI_DispFloat(num*3.3/5000000,4);
+						GUI_DispFloat(num,4);
 
 						GUI_DispStringAt("transferred data  ", 300, 80); 
-						//double curve07=2.455*exp(1.891*num/1000000*5/4.6-0.3);
-						//double curve08=-2.977*exp(-3.137*num/1000000*5/4.6-0.3);
-						double curve07=-0.026*exp(7.94*num/1000000-0.1588);
-						double curve08=0.8*exp(4.538*num/1000000-0.09076);
+						//double curve07=2.455*exp(1.891*num*5/4.6-0.3);
+						//double curve08=-2.977*exp(-3.137*num*5/4.6-0.3);
+						double curve07=-0.026*exp(7.94*num-0.1588);
+						double curve08=0.8*exp(4.538*num-0.09076);
 						double curve09=curve07+curve08;
 						GUI_DispFloat(curve09,4);
 
@@ -688,7 +688,7 @@ void GetAdData(void)
 		
 		HAL_GPIO_WritePin(RESET_GPIO_Port, RESET_Pin, GPIO_PIN_RESET);//Reset
 		ADS1256_Init();//理论上不用再次初始化，这是折衷的做法，否则会出现AD采样偶尔错误的后果。经测试推测是与DSU通信有关。
-		HAL_Delay(10);
+		HAL_Delay(20);
 		for(int i = 0;i < 5;i++)
 		{
 			ulResult = ADS_sum( (i << 4) | 0x08);	
@@ -706,7 +706,7 @@ void GetAdData(void)
 				offset[i] += temp/10;
 			}
 			if(temp>0&&temp/1000<5000){
-				ldVolutage[i] = temp;//-offset[i];
+				ldVolutage[i] = temp/1000000;//-offset[i];
 				//ldVolutage[i] = MeanFilter(temp,filter[i]);
 				//ldVolutage[i] = ldVolutage[i]/1000;
 				
@@ -732,7 +732,8 @@ void GetAdData(void)
 			}
 			
 			if(temp>0&&temp/1000<5000){
-				ldVolutage[i] = temp;//-offset[i];
+				ldVolutage[i] = temp/1000000;//-offset[i];
+				//ldVolutage[i] = MeanFilter(temp,filter[i]);
 				//ldVolutage[i] = ldVolutage[i]/1000;
 			}
 		}

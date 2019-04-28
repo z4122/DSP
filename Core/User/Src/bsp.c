@@ -16,7 +16,9 @@ void BSP_Init()
 	__HAL_RCC_GPIOJ_CLK_ENABLE();
 	__HAL_RCC_GPIOK_CLK_ENABLE();
 	
-	
+	//错开与定时器3的执行时间
+	TIM5_Init(1000-1,20000-1);//AD采样的定时器，优先级低，100ms
+
 //	Reset_Init();
 	AD_Init();
 	USART1_Init();//ch1
@@ -28,7 +30,7 @@ void BSP_Init()
 	ADC_Init();
 
 	TIM3_Init(500-1,20000-1);//与DSU通信的定时器，优先级高，400M/2/20000 = 10k 1/10k = 0.1ms 500*0.1ms=50ms
-	TIM5_Init(1000-1,20000-1);//AD采样的定时器，优先级低，100ms
+	
 
 	//USART2_Init();暂时用不到
 	//USART6_Init();暂时用不到

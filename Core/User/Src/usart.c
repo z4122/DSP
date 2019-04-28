@@ -30,13 +30,13 @@ uint8_t UART8RxBuff;
 u16 parameter[6][5]; //5个通道，为了对齐选了6
 u16 threshold[6][6]; // 5个通道，为了对齐选了6
 u8  channelEnableflag[6]; //5个通道，为了对齐选了6
-float  pressureThreshold = 0;//压力有效的下限
+float  pressureThreshold = 3;//压力有效的下限
 
 int channelchange = 0;
 uint8_t tempRxBuffer;
 uint8_t upperRxBuffer[7];
 int cnt = 0;
-volatile int testmode_flag = 3;//通过修改此处可以修改启动的模式
+volatile int testmode_flag = 6;//通过修改此处可以修改启动的模式
 
 static void Error_Handler(void)
 {

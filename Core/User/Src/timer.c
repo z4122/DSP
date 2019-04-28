@@ -76,7 +76,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 
 //改变定时器3的定时周期，单位为ms
 void ChangePeriod(u16 period){
-	TIM3_Handler.Init.Period=period*10;  //自动装载值
+	TIM3_Handler.Init.Period=period*10-1;  //自动装载值
 	HAL_TIM_Base_Init(&TIM3_Handler);  //初始化定时器3
 }
 
