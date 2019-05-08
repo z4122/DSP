@@ -1,6 +1,5 @@
 #include "fes.h"
 
-
 uint8_t stimulate_parameter[20]="";
 
 float value[17][2];
@@ -87,34 +86,31 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,double pressure,int cha
 
 	//flag==1||4幅值跟随模式，flag==2||5频率跟随模式，flag==3||6脉宽跟随模式,flag==7自由测试模式
 	if(testmode_flag==1||testmode_flag==4){
-		stimulate_parameter[16] = (threshold[channel][1]-threshold[channel][0])*(float)pressure/maxpressure+threshold[channel][0];
+		stimulate_parameter[16] = (threshold[channel][1]-threshold[channel][0])*(float)(pressure-pressureThreshold)/(maxpressure-pressureThreshold)+threshold[channel][0];
 	}
 	else if(testmode_flag==2||testmode_flag==5){
 		stimulate_parameter[7] = (int)(25+pressure/2)>>8; //频率高8位
 		stimulate_parameter[8] = (int)(25+pressure/2); //频率低8位
 	}		
 	else if(testmode_flag==3||testmode_flag==6){
-		threshold[channel][3] = 300;
-		threshold[channel][2] = 50;
-		stimulate_parameter[16] = 30; //幅值
+		//threshold[channel][3] = 30;
+		//threshold[channel][2] = 5;
+		//stimulate_parameter[16] = 30; //幅值
 		stimulate_parameter[7] = 0x0064>>8; //频率高位
 		stimulate_parameter[8] = 0x0064; //频率低位
 		//stimulate_parameter[12]= 0x02;
 
-		float temp = (threshold[channel][3]-threshold[channel][2])*(float)pressure/maxpressure+threshold[channel][2];
+		float temp = (threshold[channel][3]-threshold[channel][2])*(float)(pressure-pressureThreshold)/(maxpressure-pressureThreshold)+threshold[channel][2];
 		u16 val = (u16)temp;
 		val*=10;
 		if(val<20)
 			val=20;
 		stimulate_parameter[5] = val>>8; //脉宽高8位
 		stimulate_parameter[6] = val; //脉宽低8位
-		//stimulate_parameter[16]=threshold[channel][0];//配合脉宽模式和诱发指感区的最低电流阈值，在脉宽模式下也会设置
-
-		
+		stimulate_parameter[16]=threshold[channel][0];//配合脉宽模式和诱发指感区的最低电流阈值，在脉宽模式下也会设置
 	}
 	else if(testmode_flag==7)
 	{
-		
 		static u16 last_frequency[6] = {0};
 
 		//应用在当前频率与上一次频率改变的情况，这个时候需要更改定时器的周期值
@@ -131,7 +127,6 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,double pressure,int cha
 				ChangePeriod(50);//单位ms，周期10ms
 			}
 		}
-
 	}
 		
 	HAL_UART_Transmit(huart,(uint8_t *)stimulate_parameter,sizeof(stimulate_parameter),0xffff);
@@ -143,7 +138,6 @@ void Delay_nopar(void)
 	unsigned long i = 10000;//2000
    	while(i--);
 }
-
 
 void stim_search(UART_HandleTypeDef *huart)
 {
@@ -233,7 +227,6 @@ void stim_start(UART_HandleTypeDef *huart) //receive AA 0x41 0x41
 			HAL_Delay(1);
 		}
 		UART1RxBuff = 0x00;
-
 	}
 	else if(huart->Instance==USART3)
 	{
@@ -244,7 +237,6 @@ void stim_start(UART_HandleTypeDef *huart) //receive AA 0x41 0x41
 			HAL_Delay(1);
 		}
 		UART3RxBuff = 0x00;
-
 	}
 	else if(huart->Instance==UART4)
 	{
@@ -255,7 +247,6 @@ void stim_start(UART_HandleTypeDef *huart) //receive AA 0x41 0x41
 			HAL_Delay(1);
 		}
 		UART4RxBuff = 0x00;
-
 	}
 	else if(huart->Instance==UART5)
 	{
@@ -266,7 +257,6 @@ void stim_start(UART_HandleTypeDef *huart) //receive AA 0x41 0x41
 			HAL_Delay(1);
 		}
 		UART5RxBuff = 0x00;
-
 	}
 	else if(huart->Instance==UART7)
 	{
@@ -277,7 +267,6 @@ void stim_start(UART_HandleTypeDef *huart) //receive AA 0x41 0x41
 			HAL_Delay(1);
 		}
 		UART7RxBuff = 0x00;
-
 	}
 	else if(huart->Instance==UART8)
 	{
@@ -288,9 +277,7 @@ void stim_start(UART_HandleTypeDef *huart) //receive AA 0x41 0x41
 			HAL_Delay(1);
 		}
 		UART8RxBuff = 0x00;
-
 	}
-		
 }
 
 
@@ -378,9 +365,9 @@ void stim_stop(UART_HandleTypeDef *huart)// BB 0x42 0x42
 
 void stimulate(UART_HandleTypeDef *huart,double pressure,int channel)
 {
-	
 	stim_search(huart);// send 800103 back BC
-	channelEnableflag[channel]=1;
+	
+	//channelEnableflag[channel]=1;
 	//当通道选择上并且模式不是停止模式时
 	if(channelEnableflag[channel]==1&&testmode_flag!=0){
 		if(testmode_flag==7||pressure>pressureThreshold){
