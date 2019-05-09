@@ -78,7 +78,7 @@ float filter[10][10];
 enum Hand {left=0,right=1};
 enum Mode {zzz = 0,zj = 1};
 enum Hand amputatedHand = right;
-enum Mode name = zzz;
+enum Mode name = zj;
 
 /*
 0x00 0x00  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX    0xXX 
@@ -130,7 +130,7 @@ int main(void)
 
 	HAL_Delay(30);
 
-	//一开机向PC发送的字节，
+	//一开机向PC发送的字节
 	u8 t[10];
 	t[0] = 0xaa;
 	t[1] = 0xbb;

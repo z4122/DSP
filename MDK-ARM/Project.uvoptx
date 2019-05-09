@@ -152,7 +152,7 @@
           <Type>0</Type>
           <LineNumber>99</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134307656</Address>
+          <Address>134307810</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -162,6 +162,22 @@
           <Filename>..\Core\User\Src\fes.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\Project\../Core/User/Src/fes.c\99</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>19</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134297250</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>..\Core\User\Src\pc_interface.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\Project\../Core/User/Src/pc_interface.c\19</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -254,6 +270,11 @@
           <count>17</count>
           <WinNumber>1</WinNumber>
           <ItemText>stimulate_parameter</ItemText>
+        </Ww>
+        <Ww>
+          <count>18</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>data</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>
