@@ -86,7 +86,7 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,double pressure,int cha
 
 	//flag==1||4幅值跟随模式，flag==2||5频率跟随模式，flag==3||6脉宽跟随模式,flag==7自由测试模式
 	if(testmode_flag==1||testmode_flag==4){
-		stimulate_parameter[16] = (threshold[channel][1]-threshold[channel][0])*(float)(pressure-pressureThreshold)/(maxpressure-pressureThreshold)+threshold[channel][0];
+		stimulate_parameter[16] = (threshold[channel][1]-threshold[channel][0])*(float)(pressure-pressureThreshold[channel])/(maxpressure-pressureThreshold[channel])+threshold[channel][0];
 	}
 	else if(testmode_flag==2||testmode_flag==5){
 		stimulate_parameter[7] = (int)(25+pressure/2)>>8; //频率高8位
@@ -100,7 +100,7 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,double pressure,int cha
 		stimulate_parameter[8] = 0x0064; //频率低位
 		//stimulate_parameter[12]= 0x02;
 
-		float temp = (threshold[channel][3]-threshold[channel][2])*(float)(pressure-pressureThreshold)/(maxpressure-pressureThreshold)+threshold[channel][2];
+		float temp = (threshold[channel][3]-threshold[channel][2])*(float)(pressure-pressureThreshold[channel])/(maxpressure-pressureThreshold[channel])+threshold[channel][2];
 		u16 val = (u16)temp;
 		val*=10;
 		if(val<20)
@@ -370,7 +370,7 @@ void stimulate(UART_HandleTypeDef *huart,double pressure,int channel)
 	//channelEnableflag[channel]=1;
 	//当通道选择上并且模式不是停止模式时
 	if(channelEnableflag[channel]==1&&testmode_flag!=0){
-		if(testmode_flag==7||pressure>pressureThreshold){
+		if(testmode_flag==7||pressure>pressureThreshold[channel]){
 			
 			merge_stimulate_parameter(huart,pressure,channel);
 		

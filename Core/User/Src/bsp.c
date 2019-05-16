@@ -19,7 +19,7 @@ void BSP_Init()
 	//错开与定时器3的执行时间
 	TIM5_Init(1000-1,20000-1);//AD采样的定时器，优先级低，100ms
 
-//	Reset_Init();
+	//Reset_Init();
 	AD_Init();
 	USART1_Init();//ch1
 	USART3_Init();//ch2
