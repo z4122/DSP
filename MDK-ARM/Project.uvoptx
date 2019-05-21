@@ -150,9 +150,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>99</LineNumber>
+          <LineNumber>89</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134307810</Address>
+          <Address>134307746</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -161,23 +161,7 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>..\Core\User\Src\fes.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\Project\../Core/User/Src/fes.c\99</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>19</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134297250</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\Core\User\Src\pc_interface.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\Project\../Core/User/Src/pc_interface.c\19</Expression>
+          <Expression>\\Project\../Core/User/Src/fes.c\89</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -259,22 +243,22 @@
         <Ww>
           <count>15</count>
           <WinNumber>1</WinNumber>
-          <ItemText>channelEnableflag[channel]</ItemText>
+          <ItemText>stimulate_parameter</ItemText>
         </Ww>
         <Ww>
           <count>16</count>
           <WinNumber>1</WinNumber>
-          <ItemText>channelEnableflag[channel]</ItemText>
+          <ItemText>data</ItemText>
         </Ww>
         <Ww>
           <count>17</count>
           <WinNumber>1</WinNumber>
-          <ItemText>stimulate_parameter</ItemText>
+          <ItemText>testmode_flag</ItemText>
         </Ww>
         <Ww>
           <count>18</count>
           <WinNumber>1</WinNumber>
-          <ItemText>data</ItemText>
+          <ItemText>pressureThreshold</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>

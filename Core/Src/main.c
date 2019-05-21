@@ -755,13 +755,16 @@ void MainLoop()
 {
 	static int last_flag = 0;
 
-	display();
 	if(last_flag!=testmode_flag)
 		GUI_Clear();
 	
-	if(testmode_flag>=8){
-		testmode_flag = last_flag;//正常工作模式不会大于7
+	if(testmode_flag<8&&testmode_flag!=0){
+		display();//正常工作模式不会大于7
 	}
+	else{
+		testmode_flag=0;
+	}
+
 	switch(testmode_flag)
 	{
 		case 0:
@@ -771,14 +774,14 @@ void MainLoop()
 			//	clear_flag=0;
 			//}
 			GUI_DispStringAt("stop ",250,270);
-			while(testmode_flag==0) {
+//		while(testmode_flag==0) {
 				//display();
 //				stim_stop(&huart1);
 //				stim_stop(&huart3);
 //				stim_stop(&huart4);
 //				stim_stop(&huart5);
 //				stim_stop(&huart7);
-			}
+//		}
 			break;
 			
 		case 1:
