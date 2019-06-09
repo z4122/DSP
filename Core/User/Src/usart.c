@@ -33,10 +33,15 @@ u8  channelEnableflag[6] = {0}; //5个通道，为了对齐选了6
 float pressureThreshold[6] = {0};//5个通道，为了对齐选了6，压力有效的下限
 
 int channelchange = 0;
+int	initMode = 2;//选择跟随模式还是自由测试模式，跟随模式=1，自由测试模式=2
+int startFlag = 0;
 uint8_t tempRxBuffer;
 uint8_t upperRxBuffer[7];
 int cnt = 0;
 volatile int testmode_flag = 6;//通过修改此处可以修改启动的模式
+
+
+
 
 static void Error_Handler(void)
 {
@@ -657,13 +662,13 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 	
 		if(UartHandle->Instance==UART5)
 	{
-		HAL_UART_Receive_IT(&huart5,(uint8_t *)UART5RxBuff,1);
+		HAL_UART_Receive_IT(&huart5,&UART5RxBuff,1);
 		
 	}
 	
 		if(UartHandle->Instance==UART7)
 	{
-		HAL_UART_Receive_IT(&huart7,(uint8_t *)UART7RxBuff,1);
+		HAL_UART_Receive_IT(&huart7,&UART7RxBuff,1);
 		
 	}
 	
@@ -699,6 +704,14 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 			if(sum==UART8RxBuff){
 				testmode_flag = upperRxBuffer[0];
 				switch (upperRxBuffer[0]){
+					case 0:{
+						startFlag=0;
+						return;
+					}
+					case 7:{
+						startFlag = 1;
+						break;//跳出到下面执行参数的赋值
+					}
 					case 8:{
 						//电流幅值下限
 						threshold[1][0] = upperRxBuffer[1];
@@ -745,6 +758,10 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 						channelEnableflag[5] = upperRxBuffer[5];
 						return;
 					}
+					case 13:{
+						initMode = upperRxBuffer[1];
+						return;
+					}
 					case 14:{
 						//五个通道的激活压力下限值
 						pressureThreshold[1] = upperRxBuffer[1]/10.0;
@@ -752,6 +769,42 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 						pressureThreshold[3] = upperRxBuffer[3]/10.0;
 						pressureThreshold[4] = upperRxBuffer[4]/10.0;
 						pressureThreshold[5] = upperRxBuffer[5]/10.0;
+						return;
+					}
+					case 0x11:{
+						//1通道freerun参数
+						parameter[1][0] = upperRxBuffer[1];//1通道幅值
+						parameter[1][1] = upperRxBuffer[3]<<8|upperRxBuffer[2];//1通道脉宽
+						parameter[1][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];//1通道频率
+						return;
+					}
+					case 0x12:{
+						//2通道freerun参数
+						parameter[2][0] = upperRxBuffer[1];//2通道幅值
+						parameter[2][1] = upperRxBuffer[3]<<8|upperRxBuffer[2];//2通道脉宽
+						parameter[2][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];//2通道频率
+						return;
+					}
+					case 0x13:{
+						//3通道freerun参数
+						parameter[3][0] = upperRxBuffer[1];//3通道幅值
+						parameter[3][1] = upperRxBuffer[3]<<8|upperRxBuffer[2];//3通道脉宽
+						parameter[3][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];//3通道频率
+						return;
+					}
+					case 0x14:{
+						//4通道freerun参数
+						parameter[4][0] = upperRxBuffer[1];//4通道幅值
+						parameter[4][1] = upperRxBuffer[3]<<8|upperRxBuffer[2];//4通道脉宽
+						parameter[5][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];//4通道频率
+						return;
+					}
+
+					case 0x15:{
+						//5通道freerun参数
+						parameter[5][0] = upperRxBuffer[1];//5通道幅值
+						parameter[5][1] = upperRxBuffer[3]<<8|upperRxBuffer[2];//5通道脉宽
+						parameter[5][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];//5通道频率
 						return;
 					}
 					default:
@@ -788,23 +841,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 				parameter[4][3] = upperRxBuffer[6];
 				parameter[5][3] = upperRxBuffer[6];
 				
-//				switch(upperRxBuffer[1]){
-//					case 1: 
-//							parameter[1][0] = upperRxBuffer[2];
-//							break;
-//					case 2:
-//							parameter[2][0] = upperRxBuffer[2];
-//							break;
-//					case 3:
-//							parameter[3][0] = upperRxBuffer[2];
-//							break;
-//					case 4:
-//							parameter[4][0] = upperRxBuffer[2];
-//							break;
-//					case 5:
-//							parameter[5][0] = upperRxBuffer[2];
-//							break;				
-//				}			
 			}
 			return;
 		}

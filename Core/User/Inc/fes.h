@@ -31,9 +31,12 @@ typedef struct {
 
 
 void merge_stimulate_parameter(UART_HandleTypeDef *huart,double amplitude,int channel);
+void merge_stimulate_parameter_freerun(UART_HandleTypeDef *huart,int channel);
 void stim_search(UART_HandleTypeDef *huart);
 void stim_start(UART_HandleTypeDef *huart);
 void stim_stop(UART_HandleTypeDef *huart);
 void stimulate(UART_HandleTypeDef *huart,double amplitude,int channel);
+void stimulateFreeRun(UART_HandleTypeDef *huart,int channel);
+void FreeRun_Init(void);
 
 #endif

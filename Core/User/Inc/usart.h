@@ -44,6 +44,8 @@ extern uint8_t tempRxBuffer;
 extern uint8_t upperRxBuffer[7];
 extern volatile int testmode_flag;
 extern int channelchange;
+extern int initMode;
+extern int startFlag;
 extern u16 parameter[6][5];
 extern u16 threshold[6][6];
 extern u8  channelEnableflag[6];

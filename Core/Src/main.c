@@ -96,8 +96,6 @@ UART_HandleTypeDef UartHandle;
   */
 int main(void)
 {
-	
-	
   /* Configure the MPU attributes as Write Through */
 
   MPU_Config();
@@ -122,14 +120,13 @@ int main(void)
   __HAL_RCC_CRC_CLK_ENABLE(); /* Enable the CRC Module */
   
   GUI_Init();
-	MainTask("test mode",100,20);  
 	GUI_Clear();
 
 	/*Init usart*/
 	BSP_Init();
 
 	HAL_Delay(30);
-
+	
 	//一开机向PC发送的字节
 	u8 t[10];
 	t[0] = 0xaa;
@@ -365,8 +362,7 @@ void display()
 						float curve2=-61.04*(num)*(num)+33.58*(num)-5.038;
 						float curve3=curve1+curve2;
 						GUI_DispFloat(curve3,4);//sensor20
-						//if(channelEnableflag[1])
-							stimulate(&huart1,curve3,1);//ok ch1
+						stimulate(&huart1,curve3,1);//ok ch1
 						break;
 					}
 					case 1:{//3 sensor3
@@ -380,8 +376,8 @@ void display()
 						float curve5=4.532*(num)-1.164;
 						float curve6=curve4+curve5;
 						GUI_DispFloat(curve6,4);//sensor21
-						//if(channelEnableflag[2])
-							stimulate(&huart3, curve6,2);
+					
+						stimulate(&huart3, curve6,2);
 						break;
 					}
 					case 2:{//2 sensor6
@@ -394,8 +390,8 @@ void display()
 						float curve8=9.488*(num)-2.023;
 						float curve9=curve7+curve8;				
 						GUI_DispFloat(curve9,4);//sensor22
-						//if(channelEnableflag[3])
-							stimulate(&huart4,curve9,3);//bad ch3
+						
+						stimulate(&huart4,curve9,3);//bad ch3
 						break;
 					}
 					case 3:{//15 sensor1
@@ -407,8 +403,8 @@ void display()
 						float curve11=18.57*(num)*(num)+1.145*(num)-1.04;
 						float curve12=curve10+curve11;
 						GUI_DispFloat(curve12,4);//sensor23
-						//if(channelEnableflag[4])
-							stimulate(&huart5,curve12,4);
+						
+						stimulate(&huart5,curve12,4);
 						break;
 					}
 					case 4:{//1 sensor4
@@ -449,8 +445,8 @@ void display()
 						float curve02=-1.76*exp(-3.789*num*4.6/5-0.05);
 						float curve03=curve01+curve02;
 						GUI_DispFloat(curve03,4);
-						if(channelEnableflag[1])
-							stimulate(&huart1, curve03,1);
+						
+						stimulate(&huart1, curve03,1);
 						break;
 					}
 					case 6:{
@@ -462,9 +458,8 @@ void display()
 						float curve05=-1.946e+04*exp(0.8929*num*4.6/5-0.125);
 						float curve06=curve04+curve05;
 						GUI_DispFloat(curve06,4);
-
-						if(channelEnableflag[2])
-							stimulate(&huart3,curve06,2);
+			
+						stimulate(&huart3,curve06,2);
 						break;
 					}
 					case 7:{
@@ -476,9 +471,8 @@ void display()
 						float curve08=-2.977*exp(-3.137*num*5/4.6-0.3);
 						float curve09=curve07+curve08;
 						GUI_DispFloat(curve09,4);
-
-						if(channelEnableflag[3])
-							stimulate(&huart4,curve09,3);
+					
+						stimulate(&huart4,curve09,3);
 						break;
 					}
 					case 8:{
@@ -487,9 +481,8 @@ void display()
 
 						GUI_DispStringAt("transferred data  ", 300, 110); 
 						GUI_DispFloat(17*(num-0.15),4);
-
-						if(channelEnableflag[4])
-							stimulate(&huart5,17*(num-0.15),4);
+						
+						stimulate(&huart5,17*(num-0.15),4);
 						break;
 					}
 					case 9:{
@@ -499,8 +492,7 @@ void display()
 						GUI_DispStringAt("transferred data  ", 300, 140); 
 						GUI_DispFloat(17*(num-0.3),4);
 
-						if(channelEnableflag[5])
-							stimulate(&huart7,17*(num-0.3),5);
+						stimulate(&huart7,17*(num-0.3),5);
 						break;
 					}
 					default:

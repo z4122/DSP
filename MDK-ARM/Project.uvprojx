@@ -584,6 +584,11 @@
               <FileType>5</FileType>
               <FilePath>..\Core\User\Inc\timer.h</FilePath>
             </File>
+            <File>
+              <FileName>lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\User\Src\lcd.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

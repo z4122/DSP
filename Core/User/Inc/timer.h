@@ -5,8 +5,10 @@
 
 #include "stm32h7xx_hal.h"
 #include "usart.h"
+#include "lcd.h"
 
 void TIM3_Init(unsigned short arr,unsigned short psc);
+void TIM4_Init(unsigned short arr,unsigned short psc);
 void TIM5_Init(unsigned short arr,unsigned short psc);
 void ChangePeriod(u16 period);
 #endif 
