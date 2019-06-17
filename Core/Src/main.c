@@ -65,7 +65,7 @@
 static void SystemClock_Config(void);
 static void MPU_Config(void);
 static void CPU_CACHE_Enable(void);
-extern void MainTask(char*,int,int);
+
 float MeanFilter(float input,float *a);
 void display(void);
 void GetAdData(void);
@@ -353,9 +353,9 @@ void display()
 					//右手
 					case 0:{//16 sensor2
 						//GUI_Clear();	
-						GUI_DispStringAt("channel 1  ", 100, 20); 
+						GUI_DispStringAt("channel 1  ", 100, 150); 
 						GUI_DispFloat(num,4);//除以1000000后是实际电压值
-						GUI_DispStringAt("transferred data  ", 300, 20); 
+						GUI_DispStringAt("transferred data  ", 300, 150); 
 						//float curve1=1.657*exp(2.113*(num-0.07));
 						//float curve2=-1.056*exp(-0.5708*(num-0.07));
 						float curve1=-18.4*(num)*(num)*(num)*(num)+59.65*(num)*(num)*(num);
@@ -366,9 +366,9 @@ void display()
 						break;
 					}
 					case 1:{//3 sensor3
-						GUI_DispStringAt("channel 2  ", 100, 50); 
+						GUI_DispStringAt("channel 2  ", 100, 180); 
 						GUI_DispFloat(num,4);
-						GUI_DispStringAt("transferred data  ", 300, 50); 
+						GUI_DispStringAt("transferred data  ", 300, 180); 
 						//GUI_DispFloat(4.302*exp(1.132*num)-3.705*exp(-1.904*num),4);
 						//float curve4=1.69*exp(1.789*(num));
 						//float curve5=-1.168*exp(-1.216*(num));
@@ -381,9 +381,9 @@ void display()
 						break;
 					}
 					case 2:{//2 sensor6
-						GUI_DispStringAt("channel 3  ", 100, 80); 
+						GUI_DispStringAt("channel 3  ", 100, 210); 
 						GUI_DispFloat(num,4);
-						GUI_DispStringAt("transferred data  ", 300, 80); 
+						GUI_DispStringAt("transferred data  ", 300, 210); 
 						//float curve7=2.25*exp(1.431*num+0.25);
 						//float curve8=-2.087*exp(-2.515*num+0.75);
 						float curve7=4.348*(num)*(num)*(num)-3.622*(num)*(num);
@@ -395,9 +395,9 @@ void display()
 						break;
 					}
 					case 3:{//15 sensor1
-						GUI_DispStringAt("channel 4  ", 100, 110); 
+						GUI_DispStringAt("channel 4  ", 100, 240); 
 						GUI_DispFloat(num,4);
-						GUI_DispStringAt("transferred data  ", 300, 110); 
+						GUI_DispStringAt("transferred data  ", 300, 240); 
 						//GUI_DispFloat(3.732*exp(1.905*num*4.6/5)-4.65*exp(-4.638*num*4.6/5),4);
 						float curve10=12.04*(num)*(num)*(num)*(num)-24.93*(num)*(num)*(num);
 						float curve11=18.57*(num)*(num)+1.145*(num)-1.04;
@@ -408,9 +408,9 @@ void display()
 						break;
 					}
 					case 4:{//1 sensor4
-						GUI_DispStringAt("channel 5  ", 100, 140); 
+						GUI_DispStringAt("channel 5  ", 100, 270); 
 						GUI_DispFloat(num,4);
-						GUI_DispStringAt("transferred data  ", 300, 140); 
+						GUI_DispStringAt("transferred data  ", 300, 270); 
 						//GUI_DispFloat(2.878*exp( 2.423*num*4.6/5-0.08)-3.286*exp(-7.177*num*4.6/5-0.08),4);
 						//float curve10=1.707*exp(2.293*(num-0.04));
 						//float curve11=-1.727*exp(-8.538*(num-0.04));
@@ -437,10 +437,10 @@ void display()
 				{
 					//左手
 					case 5:{
-						GUI_DispStringAt("channel 1  ", 100, 20); 
+						GUI_DispStringAt("channel 1  ", 100, 150); 
 						GUI_DispFloat(num,4);//除以1000000后是实际电压值
 
-						GUI_DispStringAt("transferred data  ", 300, 20); 
+						GUI_DispStringAt("transferred data  ", 300, 150); 
 						float curve01=1.957*exp(1.988*num*4.6/5-0.05);
 						float curve02=-1.76*exp(-3.789*num*4.6/5-0.05);
 						float curve03=curve01+curve02;
@@ -450,10 +450,10 @@ void display()
 						break;
 					}
 					case 6:{
-						GUI_DispStringAt("channel 2  ", 100, 50); 
+						GUI_DispStringAt("channel 2  ", 100, 180); 
 						GUI_DispFloat(num,4);
 
-						GUI_DispStringAt("transferred data  ", 300, 50); 
+						GUI_DispStringAt("transferred data  ", 300, 180); 
 						float curve04=1.946e+04*exp(0.8933*num*4.6/5-0.125);
 						float curve05=-1.946e+04*exp(0.8929*num*4.6/5-0.125);
 						float curve06=curve04+curve05;
@@ -463,10 +463,10 @@ void display()
 						break;
 					}
 					case 7:{
-						GUI_DispStringAt("channel 3  ", 100, 80); 
+						GUI_DispStringAt("channel 3  ", 100, 210); 
 						GUI_DispFloat(num,4);
 
-						GUI_DispStringAt("transferred data  ", 300, 80); 
+						GUI_DispStringAt("transferred data  ", 300, 210); 
 						float curve07=2.455*exp(1.891*num*5/4.6-0.3);
 						float curve08=-2.977*exp(-3.137*num*5/4.6-0.3);
 						float curve09=curve07+curve08;
@@ -476,20 +476,20 @@ void display()
 						break;
 					}
 					case 8:{
-						GUI_DispStringAt("channel 4  ", 100, 110); 
+						GUI_DispStringAt("channel 4  ", 100, 240); 
 						GUI_DispFloat(num,4);
 
-						GUI_DispStringAt("transferred data  ", 300, 110); 
+						GUI_DispStringAt("transferred data  ", 300, 240); 
 						GUI_DispFloat(17*(num-0.15),4);
 						
 						stimulate(&huart5,17*(num-0.15),4);
 						break;
 					}
 					case 9:{
-						GUI_DispStringAt("channel 5  ", 100, 140); 
+						GUI_DispStringAt("channel 5  ", 100, 270); 
 						GUI_DispFloat(num,4);
 
-						GUI_DispStringAt("transferred data  ", 300, 140); 
+						GUI_DispStringAt("transferred data  ", 300, 270); 
 						GUI_DispFloat(17*(num-0.3),4);
 
 						stimulate(&huart7,17*(num-0.3),5);
@@ -515,9 +515,9 @@ void display()
 					//右手
 					case 0:{//16
 						//GUI_Clear();	
-						GUI_DispStringAt("channel 1  ", 100, 20); 
+						GUI_DispStringAt("channel 1  ", 100, 150); 
 						GUI_DispFloat(num,4);//除以1000000后是实际电压值
-						GUI_DispStringAt("transferred data  ", 300, 20); 
+						GUI_DispStringAt("transferred data  ", 300, 150); 
 						//double curve1=(double)(1.657*exp(2.113*(num-0.07)));
 						//double curve2=-1.056*exp(-0.5708*(num-0.07));
 						double curve1=(double)(1.793*exp(2.264*num*4.6/5));
@@ -529,9 +529,9 @@ void display()
 						break;
 					}
 					case 1:{//3
-						GUI_DispStringAt("channel 2  ", 100, 50); 
+						GUI_DispStringAt("channel 2  ", 100, 180); 
 						GUI_DispFloat(num,4);
-						GUI_DispStringAt("transferred data  ", 300, 50); 
+						GUI_DispStringAt("transferred data  ", 300, 180); 
 						//GUI_DispFloat(4.302*exp(1.132*num)-3.705*exp(-1.904*num),4);
 						//double curve4=1.69*exp(1.789*(num));
 						//double curve5=-1.168*exp(-1.216*(num));
@@ -544,9 +544,9 @@ void display()
 						break;
 					}
 					case 2:{//2
-						GUI_DispStringAt("channel 3  ", 100, 80); 
+						GUI_DispStringAt("channel 3  ", 100, 210); 
 						GUI_DispFloat(num,4);
-						GUI_DispStringAt("transferred data  ", 300, 80); 
+						GUI_DispStringAt("transferred data  ", 300, 210); 
 						//double curve7=2.25*exp(1.431*num+0.25);
 						//double curve8=-2.087*exp(-2.515*num+0.75);
 						double curve7=4.461*exp(1.572*num*4.6/5);
@@ -558,9 +558,9 @@ void display()
 						break;
 					}
 					case 3:{//15
-						GUI_DispStringAt("channel 4  ", 100, 110); 
+						GUI_DispStringAt("channel 4  ", 100, 240); 
 						GUI_DispFloat(num,4);
-						GUI_DispStringAt("transferred data  ", 300, 110); 
+						GUI_DispStringAt("transferred data  ", 300, 240); 
 						//GUI_DispFloat(3.732*exp(1.905*num*4.6/5)-4.65*exp(-4.638*num*4.6/5),4);
 						//sensor23
 						double curve10=3.732*exp(1.905*num*4.6/5-0.15);
@@ -572,9 +572,9 @@ void display()
 						break;
 					}
 					case 4:{//1
-						GUI_DispStringAt("channel 5  ", 100, 140); 
+						GUI_DispStringAt("channel 5  ", 100, 270); 
 						GUI_DispFloat(num,4);
-						GUI_DispStringAt("transferred data  ", 300, 140); 
+						GUI_DispStringAt("transferred data  ", 300, 270); 
 						//GUI_DispFloat(2.878*exp( 2.423*num*4.6/5-0.08)-3.286*exp(-7.177*num*4.6/5-0.08),4);
 						//double curve10=1.707*exp(2.293*(num-0.04));
 						//double curve11=-1.727*exp(-8.538*(num-0.04));
@@ -600,10 +600,10 @@ void display()
 				{
 					//左手
 					case 5:{
-						GUI_DispStringAt("channel 1  ", 100, 20); 
+						GUI_DispStringAt("channel 1  ", 100, 150); 
 						GUI_DispFloat(num,4);//除以后是实际电压值
 
-						GUI_DispStringAt("transferred data  ", 300, 20); 
+						GUI_DispStringAt("transferred data  ", 300, 150); 
 						//double curve01=1.957*exp(1.988*num*4.6/5-0.05);
 						//double curve02=-1.76*exp(-3.789*num*4.6/5-0.05);
 						double curve01=1.476*exp(1.864*num+0.01984);
@@ -615,10 +615,10 @@ void display()
 						break;
 						}
 					case 6:{
-						GUI_DispStringAt("channel 2  ", 100, 50); 
+						GUI_DispStringAt("channel 2  ", 100, 180); 
 						GUI_DispFloat(num,4);
 
-						GUI_DispStringAt("transferred data  ", 300, 50); 
+						GUI_DispStringAt("transferred data  ", 300, 180); 
 						//double curve04=1.946e+04*exp(0.8933*num*4.6/5-0.125);
 						//double curve05=-1.946e+04*exp(0.8929*num*4.6/5-0.125);
 						double curve04=2.282*exp(1.986*num+0.05958);
@@ -630,10 +630,10 @@ void display()
 						break;
 					}
 					case 7:{
-						GUI_DispStringAt("channel 3  ", 100, 80); 
+						GUI_DispStringAt("channel 3  ", 100, 210); 
 						GUI_DispFloat(num,4);
 
-						GUI_DispStringAt("transferred data  ", 300, 80); 
+						GUI_DispStringAt("transferred data  ", 300, 210); 
 						//double curve07=2.455*exp(1.891*num*5/4.6-0.3);
 						//double curve08=-2.977*exp(-3.137*num*5/4.6-0.3);
 						double curve07=-0.026*exp(7.94*num-0.1588);
@@ -645,20 +645,20 @@ void display()
 						break;
 					}
 					case 8:{
-						GUI_DispStringAt("channel 4  ", 100, 110); 
+						GUI_DispStringAt("channel 4  ", 100, 240); 
 						GUI_DispFloat(num,4);
 
-						GUI_DispStringAt("transferred data  ", 300, 110); 
+						GUI_DispStringAt("transferred data  ", 300, 240); 
 						GUI_DispFloat(14.1*num-4,4);
 
 						stimulate(&huart5,14.1*num-4,4);
 						break;
 					}
 					case 9:{
-						GUI_DispStringAt("channel 5  ", 100, 140); 
+						GUI_DispStringAt("channel 5  ", 100, 270); 
 						GUI_DispFloat(num,4);
 
-						GUI_DispStringAt("transferred data  ", 300, 140); 
+						GUI_DispStringAt("transferred data  ", 300, 270); 
 						GUI_DispFloat(16.55*num-4.5,4);
 
 						stimulate(&huart7,16.55*num-4.5,5);
@@ -747,8 +747,9 @@ void MainLoop()
 {
 	static int last_flag = 0;
 
-	if(last_flag!=testmode_flag)
+	if(last_flag!=testmode_flag){
 		GUI_Clear();
+	}
 	
 	if(testmode_flag<8&&testmode_flag!=0){
 		display();//正常工作模式不会大于7
@@ -762,52 +763,48 @@ void MainLoop()
 		case 0:
 			//clear_flag++;
 			//if(clear_flag>=10){
-				GUI_Clear();
+			//	GUI_Clear();
 			//	clear_flag=0;
 			//}
+			if(last_flag!=testmode_flag){
+				GUI_Clear();
+			}
 			GUI_DispStringAt("stop ",250,270);
-//		while(testmode_flag==0) {
-				//display();
-//				stim_stop(&huart1);
-//				stim_stop(&huart3);
-//				stim_stop(&huart4);
-//				stim_stop(&huart5);
-//				stim_stop(&huart7);
-//		}
+
 			break;
 			
 		case 1:
-			GUI_DispStringAt("left amplitude mode   ", 200, 270); 	
+			GUI_DispStringAt("left amplitude mode   ", 200, 330); 	
 			amputatedHand = left;
 			break;
 		case 2:
-			GUI_DispStringAt("left frequency mode", 200, 270); 
+			GUI_DispStringAt("left frequency mode", 200, 330); 
 			amputatedHand = left;
 			break;
 		case 3:
-			GUI_DispStringAt("left width mode", 200, 270); 
+			GUI_DispStringAt("left width mode", 200, 330); 
 			amputatedHand = left;
 			break;
 		case 4:
-			GUI_DispStringAt("right amplitude mode   ", 200, 270); 	
+			GUI_DispStringAt("right amplitude mode   ", 200, 330); 	
 			amputatedHand = right;
 			break;
 		case 5:
-			GUI_DispStringAt("right frequency mode", 200, 270); 
+			GUI_DispStringAt("right frequency mode", 200, 330); 
 			amputatedHand = right;
 			break;
 		case 6:
-			GUI_DispStringAt("right width mode", 200, 270); 
+			GUI_DispStringAt("right width mode", 200, 330); 
 			amputatedHand = right;
 			break;
 		case 7:
-			GUI_DispStringAt("test mode  ", 100, 270); 
+			GUI_DispStringAt("test mode  ", 100, 330); 
 			GUI_DispFloat(parameter[1][0]/10.0,4);//电流
-			GUI_DispStringAt("mA  ", 290, 270); 
+			GUI_DispStringAt("mA  ", 290, 330); 
 			GUI_DispFloat(parameter[1][1],4);//频率
-			GUI_DispStringAt("us  ", 410, 270); 
+			GUI_DispStringAt("us  ", 410, 330); 
 			GUI_DispFloat(parameter[1][2],4);//脉宽
-			GUI_DispStringAt("hz  ", 520, 270); 
+			GUI_DispStringAt("hz  ", 520, 330); 
 			break;
 		
 		default:

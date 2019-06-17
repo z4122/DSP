@@ -33,7 +33,7 @@ u8  channelEnableflag[6] = {0}; //5个通道，为了对齐选了6
 float pressureThreshold[6] = {0};//5个通道，为了对齐选了6，压力有效的下限
 
 int channelchange = 0;
-int	initMode = 2;//选择跟随模式还是自由测试模式，跟随模式=1，自由测试模式=2
+int	initMode =0;//选择跟随模式还是自由测试模式，跟随模式=1，自由测试模式=2
 int startFlag = 0;
 uint8_t tempRxBuffer;
 uint8_t upperRxBuffer[7];
@@ -47,7 +47,8 @@ static void Error_Handler(void)
 {
   /* Turn LED3 on */
   BSP_LED_On(LED3);
-	MainTask("usart error",100,20);
+	GUI_DispStringAt("usart error",100,20);
+
   while(1)
   {
   }
@@ -710,7 +711,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 					}
 					case 7:{
 						startFlag = 1;
-						break;//跳出到下面执行参数的赋值
+						return;//跳出到下面执行参数的赋值
 					}
 					case 8:{
 						//电流幅值下限
@@ -719,7 +720,13 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 						threshold[3][0] = upperRxBuffer[3];
 						threshold[4][0] = upperRxBuffer[4];
 						threshold[5][0] = upperRxBuffer[5];
-						
+
+						//频率设定的值
+						parameter[1][2] = upperRxBuffer[6];
+						parameter[2][2] = upperRxBuffer[6];
+						parameter[3][2] = upperRxBuffer[6];
+						parameter[4][2] = upperRxBuffer[6];
+						parameter[5][2] = upperRxBuffer[6];
 						return;
 					}
 					case 9:{
@@ -738,7 +745,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 						threshold[3][2] = upperRxBuffer[3];
 						threshold[4][2] = upperRxBuffer[4];
 						threshold[5][2] = upperRxBuffer[5];
-						return;;
+						return;
 					}
 				  case 11:{
 						//脉宽最高阈值
@@ -796,7 +803,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 						//4通道freerun参数
 						parameter[4][0] = upperRxBuffer[1];//4通道幅值
 						parameter[4][1] = upperRxBuffer[3]<<8|upperRxBuffer[2];//4通道脉宽
-						parameter[5][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];//4通道频率
+						parameter[4][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];//4通道频率
 						return;
 					}
 
@@ -808,39 +815,8 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 						return;
 					}
 					default:
-						break;
+						return;
 				}	
-				//电流幅值，只有一个字节0-25.5mA
-				parameter[1][0] = upperRxBuffer[1];
-				parameter[2][0] = upperRxBuffer[1];
-				parameter[3][0] = upperRxBuffer[1];
-				parameter[4][0] = upperRxBuffer[1];
-				parameter[5][0] = upperRxBuffer[1];
-				
-				
-				//width 从PC中先收到低位再收到高位
-				parameter[1][1] = upperRxBuffer[3]<<8|upperRxBuffer[2];
-				parameter[2][1] = upperRxBuffer[3]<<8|upperRxBuffer[2];
-				parameter[3][1] = upperRxBuffer[3]<<8|upperRxBuffer[2];
-				parameter[4][1] = upperRxBuffer[3]<<8|upperRxBuffer[2];
-				parameter[5][1] = upperRxBuffer[3]<<8|upperRxBuffer[2];
-				
-				
-				//frequency 从PC中先收到低位再收到高位
-				parameter[1][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];
-				parameter[2][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];
-				parameter[3][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];
-				parameter[4][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];
-				parameter[5][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];
-				
-				
-				//times刺激次数，和frequency结合起来使用
-				parameter[1][3] = upperRxBuffer[6];
-				parameter[2][3] = upperRxBuffer[6];
-				parameter[3][3] = upperRxBuffer[6];
-				parameter[4][3] = upperRxBuffer[6];
-				parameter[5][3] = upperRxBuffer[6];
-				
 			}
 			return;
 		}

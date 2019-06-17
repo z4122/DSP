@@ -1,5 +1,13 @@
 #include "lcd.h"
 
+void LCDFontInit() {
+  GUI_SetLayerVisEx (1, 0);
+  GUI_SetBkColor(GUI_BLACK);
+  GUI_Clear();
+  GUI_SetColor(GUI_WHITE);
+  GUI_SetFont(&GUI_Font32_1);
+}
+
 
 void DisplayRunning(){
 	static unsigned int i = 0;
@@ -30,5 +38,8 @@ void DisplayRunning(){
 			break;
 	}
 	i++;
-	
+	if(initMode==1)
+		GUI_DispStringAt("Follow    mode", 50, 90);
+	else if(initMode==2)
+		GUI_DispStringAt("Freerun   mode", 50, 90);
 }
