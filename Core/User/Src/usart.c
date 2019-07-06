@@ -30,7 +30,8 @@ uint8_t UART8RxBuff;
 u16 parameter[6][5]; //5个通道，为了对齐选了6
 u16 threshold[6][6]; // 5个通道，为了对齐选了6
 u8  channelEnableflag[6] = {0}; //5个通道，为了对齐选了6
-float pressureThreshold[6] = {0};//5个通道，为了对齐选了6，压力有效的下限
+float pressureLowerThreshold[6] = {0};//5个通道，为了对齐选了6，压力有效的下限
+float pressureUpperThreshold[6] = {0};//5个通道，为了对齐选了6，压力有效的上限
 
 int channelchange = 0;
 int	initMode =0;//选择跟随模式还是自由测试模式，跟随模式=1，自由测试模式=2
@@ -771,11 +772,20 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 					}
 					case 14:{
 						//五个通道的激活压力下限值
-						pressureThreshold[1] = upperRxBuffer[1]/10.0;
-						pressureThreshold[2] = upperRxBuffer[2]/10.0;
-						pressureThreshold[3] = upperRxBuffer[3]/10.0;
-						pressureThreshold[4] = upperRxBuffer[4]/10.0;
-						pressureThreshold[5] = upperRxBuffer[5]/10.0;
+						pressureLowerThreshold[1] = upperRxBuffer[1]/10.0;
+						pressureLowerThreshold[2] = upperRxBuffer[2]/10.0;
+						pressureLowerThreshold[3] = upperRxBuffer[3]/10.0;
+						pressureLowerThreshold[4] = upperRxBuffer[4]/10.0;
+						pressureLowerThreshold[5] = upperRxBuffer[5]/10.0;
+						return;
+					}
+					case 15:{
+						//五个通道的激活压力上限值，是整数值，不用除以10
+						pressureUpperThreshold[1] = upperRxBuffer[1];
+						pressureUpperThreshold[2] = upperRxBuffer[2];
+						pressureUpperThreshold[3] = upperRxBuffer[3];
+						pressureUpperThreshold[4] = upperRxBuffer[4];
+						pressureUpperThreshold[5] = upperRxBuffer[5];
 						return;
 					}
 					case 0x11:{
@@ -806,7 +816,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 						parameter[4][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];//4通道频率
 						return;
 					}
-
 					case 0x15:{
 						//5通道freerun参数
 						parameter[5][0] = upperRxBuffer[1];//5通道幅值

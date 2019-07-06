@@ -3,7 +3,7 @@
 uint8_t stimulate_parameter[20]="";
 
 float value[17][2];
-float maxpressure = 15;//最大的压力阈值
+
 
 extern void ChangePeriod(u16 period);
 
@@ -28,8 +28,8 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,double pressure,int cha
 {			
 	if(pressure<0)
 		pressure = 0;
-	if(pressure>maxpressure)
-		pressure = maxpressure;
+	if(pressure>pressureUpperThreshold[channel])
+		pressure = pressureUpperThreshold[channel];
 	
 	stimulate_parameter[0]=txconfig.HEADER;	
 	stimulate_parameter[1]=txconfig.CONTROL;
@@ -69,21 +69,22 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,double pressure,int cha
 		stimulate_parameter[12] = 0x05;//次数
 	else if(parameter[channel][2]==20)
 		stimulate_parameter[12] = 0x02;//次数
-	else if(parameter[channel][2]==20)
+	else if(parameter[channel][2]==10){
+		stimulate_parameter[8] = 100;
 		stimulate_parameter[12] = 0x01;//次数
-
+	}
 
 
 	//flag==1||4幅值跟随模式，flag==2||5频率跟随模式，flag==3||6脉宽跟随模式,flag==7自由测试模式
 	if(testmode_flag==1||testmode_flag==4){
-		stimulate_parameter[16] = (threshold[channel][1]-threshold[channel][0])*(float)(pressure-pressureThreshold[channel])/(maxpressure-pressureThreshold[channel])+threshold[channel][0];
+		stimulate_parameter[16] = (threshold[channel][1]-threshold[channel][0])*(float)(pressure-pressureLowerThreshold[channel])/(pressureUpperThreshold[channel]-pressureLowerThreshold[channel])+threshold[channel][0];
 	}
 	else if(testmode_flag==2||testmode_flag==5){
 		stimulate_parameter[7] = (int)(25+pressure/2)>>8; //频率高8位
 		stimulate_parameter[8] = (int)(25+pressure/2); //频率低8位
 	}		
 	else if(testmode_flag==3||testmode_flag==6){
-		float temp = (threshold[channel][3]-threshold[channel][2])*(float)(pressure-pressureThreshold[channel])/(maxpressure-pressureThreshold[channel])+threshold[channel][2];
+		float temp = (threshold[channel][3]-threshold[channel][2])*(float)(pressure-pressureLowerThreshold[channel])/(pressureUpperThreshold[channel]-pressureLowerThreshold[channel])+threshold[channel][2];
 		u16 val = (u16)temp;
 		val*=10;
 		if(val<20)
@@ -352,7 +353,7 @@ void stimulate(UART_HandleTypeDef *huart,double pressure,int channel)
 	//channelEnableflag[channel]=1;
 	//当通道选择上并且模式不是停止模式时
 	if(channelEnableflag[channel]==1&&testmode_flag!=0){	
-		if(pressure>pressureThreshold[channel]){
+		if(pressure>pressureLowerThreshold[channel]){
 			stim_stop(huart);//800102, no feedback
 			stim_stop(huart);//800102, no feedback
 			stim_stop(huart);//800102, no feedback
@@ -392,13 +393,47 @@ void FreeRun_Init(){
 			stimulateFreeRun(&huart5,4);
 			stimulateFreeRun(&huart7,5);
 			GUI_Clear();
-			GUI_DispStringAt("test mode  ", 100, 270); 
+
+			GUI_DispStringAt("Channel 1 ", 100, 150); 
 			GUI_DispFloat(parameter[1][0]/10.0,4);//电流
-			GUI_DispStringAt("mA  ", 290, 270); 
+			GUI_DispStringAt("mA  ", 290, 150); 
 			GUI_DispFloat(parameter[1][1],4);//频率
-			GUI_DispStringAt("us  ", 410, 270); 
+			GUI_DispStringAt("us  ", 410, 150); 
 			GUI_DispFloat(parameter[1][2],4);//脉宽
+			GUI_DispStringAt("hz  ", 520, 150); 
+
+			GUI_DispStringAt("Channel 2 ", 100, 180); 
+			GUI_DispFloat(parameter[2][0]/10.0,4);//电流
+			GUI_DispStringAt("mA  ", 290, 180); 
+			GUI_DispFloat(parameter[2][1],4);//频率
+			GUI_DispStringAt("us  ", 410, 180); 
+			GUI_DispFloat(parameter[2][2],4);//脉宽
+			GUI_DispStringAt("hz  ", 520, 180); 
+
+			GUI_DispStringAt("Channel 3 ", 100, 210); 
+			GUI_DispFloat(parameter[3][0]/10.0,4);//电流
+			GUI_DispStringAt("mA  ", 290, 210); 
+			GUI_DispFloat(parameter[3][1],4);//频率
+			GUI_DispStringAt("us  ", 410, 210); 
+			GUI_DispFloat(parameter[3][2],4);//脉宽
+			GUI_DispStringAt("hz  ", 520, 210); 
+
+			GUI_DispStringAt("Channel 4 ", 100, 240); 
+			GUI_DispFloat(parameter[4][0]/10.0,4);//电流
+			GUI_DispStringAt("mA  ", 290, 240); 
+			GUI_DispFloat(parameter[4][1],4);//频率
+			GUI_DispStringAt("us  ", 410, 240); 
+			GUI_DispFloat(parameter[4][2],4);//脉宽
+			GUI_DispStringAt("hz  ", 520, 240); 
+
+			GUI_DispStringAt("Channel 5 ", 100, 270); 
+			GUI_DispFloat(parameter[5][0]/10.0,4);//电流
+			GUI_DispStringAt("mA  ", 290, 270); 
+			GUI_DispFloat(parameter[5][1],4);//频率
+			GUI_DispStringAt("us  ", 410, 270); 
+			GUI_DispFloat(parameter[5][2],4);//脉宽
 			GUI_DispStringAt("hz  ", 520, 270); 
+
 			startFlag = 2;
 		}
 		else if(startFlag==0){
