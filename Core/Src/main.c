@@ -746,7 +746,7 @@ void GetAdData(void)
 			}
 			if(temp>0&&temp/1000<5000){
 				ldVolutage[i] = temp/1000000;//-offset[i];
-				//ldVolutage[i] = MeanFilter(temp,filter[i]);
+				ldVolutage[i] = MeanFilter(temp,filter[i]);
 				//ldVolutage[i] = ldVolutage[i]/1000;
 				
 			}
@@ -772,7 +772,7 @@ void GetAdData(void)
 			
 			if(temp>0&&temp/1000<5000){
 				ldVolutage[i] = temp/1000000;//-offset[i];
-				//ldVolutage[i] = MeanFilter(temp,filter[i]);
+				ldVolutage[i] = MeanFilter(temp,filter[i]);
 				//ldVolutage[i] = ldVolutage[i]/1000;
 			}
 		}
