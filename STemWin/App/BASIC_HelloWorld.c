@@ -32,14 +32,6 @@ Purpose     : Simple demo drawing "Hello world"
 *
 *       MainTask
 */
-void MainTask(char* display,int a,int b) {
-  GUI_SetLayerVisEx (1, 0);
-  GUI_SetBkColor(GUI_BLACK);
-  GUI_Clear();
-  GUI_SetColor(GUI_WHITE);
-  GUI_SetFont(&GUI_Font32_1);
-  GUI_DispStringAt(display, (LCD_GetXSize()-a)/2, (LCD_GetYSize()-b)/2); 
- 
-}
+
 
 /*************************** End of file ****************************/

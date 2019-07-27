@@ -19,33 +19,37 @@ int UART7RxBuffCount = 0;
 int UART8RxBuffCount = 0;
 
 
-uint8_t volatile UART1RxBuff; 
-uint8_t volatile UART3RxBuff; 
-uint8_t volatile UART4RxBuff; 
-uint8_t volatile UART5RxBuff; 
-uint8_t volatile UART7RxBuff; 
-uint8_t volatile UART8RxBuff; 
+uint8_t UART1RxBuff; 
+uint8_t UART3RxBuff; 
+uint8_t UART4RxBuff; 
+uint8_t UART5RxBuff; 
+uint8_t UART7RxBuff; 
+uint8_t UART8RxBuff; 
 
-//1 µçÁ÷£»2Âö¿í£»3ÆµÂÊ
-u16 parameter[6][5]; //5¸öÍ¨µÀ£¬ÎªÁË¶ÔÆëÑ¡ÁË6
-<<<<<<< HEAD
-u16 threshold[6][6]; // 5¸öÍ¨µÀ£¬ÎªÁË¶ÔÆëÑ¡ÁË6
-=======
-
-u16 threshold[6][6]; //5¸öÍ¨µÀ£¬ÎªÁË¶ÔÆëÑ¡ÁË6¡£6´ú±íÓĞÈıÖÖ²ÎÊı
->>>>>>> c44ff6c583f3d854bc17be7bc6b966cdfafaf2a0
+//1 ç”µæµï¼›2é¢‘ç‡ï¼›3é¢‘ç‡
+u16 parameter[6][5]; //5ä¸ªé€šé“ï¼Œä¸ºäº†å¯¹é½é€‰äº†6
+u16 threshold[6][6]; // 5ä¸ªé€šé“ï¼Œä¸ºäº†å¯¹é½é€‰äº†6
+u8  channelEnableflag[6] = {0}; //5ä¸ªé€šé“ï¼Œä¸ºäº†å¯¹é½é€‰äº†6
+float pressureLowerThreshold[6] = {0};//5ä¸ªé€šé“ï¼Œä¸ºäº†å¯¹é½é€‰äº†6ï¼Œå‹åŠ›æœ‰æ•ˆçš„ä¸‹é™
+float pressureUpperThreshold[6] = {0};//5ä¸ªé€šé“ï¼Œä¸ºäº†å¯¹é½é€‰äº†6ï¼Œå‹åŠ›æœ‰æ•ˆçš„ä¸Šé™
 
 int channelchange = 0;
+int	initMode =0;//é€‰æ‹©è·Ÿéšæ¨¡å¼è¿˜æ˜¯è‡ªç”±æµ‹è¯•æ¨¡å¼ï¼Œè·Ÿéšæ¨¡å¼=1ï¼Œè‡ªç”±æµ‹è¯•æ¨¡å¼=2
+int startFlag = 0;
 uint8_t tempRxBuffer;
 uint8_t upperRxBuffer[7];
 int cnt = 0;
-volatile int testmode_flag = 3;//Í¨¹ıĞŞ¸Ä´Ë´¦¿ÉÒÔĞŞ¸ÄÆô¶¯µÄÄ£Ê½
+volatile int testmode_flag = 6;//é€šè¿‡ä¿®æ”¹æ­¤å¤„å¯ä»¥ä¿®æ”¹å¯åŠ¨çš„æ¨¡å¼
+
+
+
 
 static void Error_Handler(void)
 {
   /* Turn LED3 on */
   BSP_LED_On(LED3);
-	MainTask("usart error",100,20);
+	GUI_DispStringAt("usart error",100,20);
+
   while(1)
   {
   }
@@ -660,13 +664,13 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 	
 		if(UartHandle->Instance==UART5)
 	{
-		HAL_UART_Receive_IT(&huart5,(uint8_t *)UART5RxBuff,1);
+		HAL_UART_Receive_IT(&huart5,&UART5RxBuff,1);
 		
 	}
 	
 		if(UartHandle->Instance==UART7)
 	{
-		HAL_UART_Receive_IT(&huart7,(uint8_t *)UART7RxBuff,1);
+		HAL_UART_Receive_IT(&huart7,&UART7RxBuff,1);
 		
 	}
 	
@@ -700,135 +704,128 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 			sum = sum + 0xff + 0xff;
 			
 			if(sum==UART8RxBuff){
-				
-				if(upperRxBuffer[0]==8){
-					//ÉèÖÃµçÁ÷µÍãĞÖµÄ£Ê½£¬Ã¿¸öÍ¨µÀ²»Ò»Ñù
-					threshold[1][0] = upperRxBuffer[1];
-					threshold[2][0] = upperRxBuffer[2];
-					threshold[3][0] = upperRxBuffer[3];
-					threshold[4][0] = upperRxBuffer[4];
-					threshold[5][0] = upperRxBuffer[5];
-					return;
-				}
-				
-				if(upperRxBuffer[0]==9){
-					//ÉèÖÃµçÁ÷¸ßãĞÖµÄ£Ê½£¬Ã¿¸öÍ¨µÀ²»Ò»Ñù
-					threshold[1][1] = upperRxBuffer[1];
-					threshold[2][1] = upperRxBuffer[2];
-					threshold[3][1] = upperRxBuffer[3];
-					threshold[4][1] = upperRxBuffer[4];
-					threshold[5][1] = upperRxBuffer[5];
-					return;
-				}
-				
-				if(upperRxBuffer[0]==10){
-					//ÉèÖÃÂö¿íµÍãĞÖµÄ£Ê½£¬Ã¿¸öÍ¨µÀ²»Ò»Ñù
-					threshold[1][2] = upperRxBuffer[1];
-					threshold[2][2] = upperRxBuffer[2];
-					threshold[3][2] = upperRxBuffer[3];
-					threshold[4][2] = upperRxBuffer[4];
-					threshold[5][2] = upperRxBuffer[5];
-					return;
-				}
-								
-				if(upperRxBuffer[0]==11){
-					//ÉèÖÃÂö¿í¸ßãĞÖµÄ£Ê½£¬Ã¿¸öÍ¨µÀ²»Ò»Ñù
-					threshold[1][3] = upperRxBuffer[1];
-					threshold[2][3] = upperRxBuffer[2];
-					threshold[3][3] = upperRxBuffer[3];
-					threshold[4][3] = upperRxBuffer[4];
-					threshold[5][3] = upperRxBuffer[5];
-					return;
-				}
-				
 				testmode_flag = upperRxBuffer[0];
-				if(upperRxBuffer[0]==8){
-					//µçÁ÷×îµÍãĞÖµ
-					threshold[1][0] = upperRxBuffer[1];
-					threshold[2][0] = upperRxBuffer[2];
-					threshold[3][0] = upperRxBuffer[3];
-					threshold[4][0] = upperRxBuffer[4];
-					threshold[5][0] = upperRxBuffer[5];
-					return;
-				}
+				switch (upperRxBuffer[0]){
+					case 0:{
+						startFlag=0;
+						return;
+					}
+					case 7:{
+						startFlag = 1;
+						return;//è·³å‡ºåˆ°ä¸‹é¢æ‰§è¡Œå‚æ•°çš„èµ‹å€¼
+					}
+					case 8:{
+						//ç”µæµå¹…å€¼ä¸‹é™
+						threshold[1][0] = upperRxBuffer[1];
+						threshold[2][0] = upperRxBuffer[2];
+						threshold[3][0] = upperRxBuffer[3];
+						threshold[4][0] = upperRxBuffer[4];
+						threshold[5][0] = upperRxBuffer[5];
 
-				if(upperRxBuffer[0]==9){
-					//µçÁ÷×î¸ßãĞÖµ
-					threshold[1][1] = upperRxBuffer[1];
-					threshold[2][1] = upperRxBuffer[2];
-					threshold[3][1] = upperRxBuffer[3];
-					threshold[4][1] = upperRxBuffer[4];
-					threshold[5][1] = upperRxBuffer[5];
-					return;
-				}
-
-				if(upperRxBuffer[0]==10){
-					//Âö¿í×îµÍãĞÖµ
-					threshold[1][2] = upperRxBuffer[1];
-					threshold[2][2] = upperRxBuffer[2];
-					threshold[3][2] = upperRxBuffer[3];
-					threshold[4][2] = upperRxBuffer[4];
-					threshold[5][2] = upperRxBuffer[5];
-					return;
-				}
-
-				if(upperRxBuffer[0]==11){
-					//Âö¿í×î¸ßãĞÖµ
-					threshold[1][3] = upperRxBuffer[1];
-					threshold[2][3] = upperRxBuffer[2];
-					threshold[3][3] = upperRxBuffer[3];
-					threshold[4][3] = upperRxBuffer[4];
-					threshold[5][3] = upperRxBuffer[5];
-					return;
-				}
-				//µçÁ÷·ùÖµ£¬Ö»ÓĞÒ»¸ö×Ö½Ú0-25.5mA
-				parameter[1][0] = upperRxBuffer[1];
-				parameter[2][0] = upperRxBuffer[1];
-				parameter[3][0] = upperRxBuffer[1];
-				parameter[4][0] = upperRxBuffer[1];
-				parameter[5][0] = upperRxBuffer[1];
-				
-				
-				//width ´ÓPCÖĞÏÈÊÕµ½µÍÎ»ÔÙÊÕµ½¸ßÎ»
-				parameter[1][1] = upperRxBuffer[3]<<8|upperRxBuffer[2];
-				parameter[2][1] = upperRxBuffer[3]<<8|upperRxBuffer[2];
-				parameter[3][1] = upperRxBuffer[3]<<8|upperRxBuffer[2];
-				parameter[4][1] = upperRxBuffer[3]<<8|upperRxBuffer[2];
-				parameter[5][1] = upperRxBuffer[3]<<8|upperRxBuffer[2];
-				
-				
-				//frequency ´ÓPCÖĞÏÈÊÕµ½µÍÎ»ÔÙÊÕµ½¸ßÎ»
-				parameter[1][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];
-				parameter[2][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];
-				parameter[3][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];
-				parameter[4][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];
-				parameter[5][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];
-				
-				
-				//times´Ì¼¤´ÎÊı£¬ºÍfrequency½áºÏÆğÀ´Ê¹ÓÃ
-				parameter[1][3] = upperRxBuffer[6];
-				parameter[2][3] = upperRxBuffer[6];
-				parameter[3][3] = upperRxBuffer[6];
-				parameter[4][3] = upperRxBuffer[6];
-				parameter[5][3] = upperRxBuffer[6];
-				
-//				switch(upperRxBuffer[1]){
-//					case 1: 
-//							parameter[1][0] = upperRxBuffer[2];
-//							break;
-//					case 2:
-//							parameter[2][0] = upperRxBuffer[2];
-//							break;
-//					case 3:
-//							parameter[3][0] = upperRxBuffer[2];
-//							break;
-//					case 4:
-//							parameter[4][0] = upperRxBuffer[2];
-//							break;
-//					case 5:
-//							parameter[5][0] = upperRxBuffer[2];
-//							break;				
-//				}			
+						//é¢‘ç‡è®¾å®šçš„å€¼
+						parameter[1][2] = upperRxBuffer[6];
+						parameter[2][2] = upperRxBuffer[6];
+						parameter[3][2] = upperRxBuffer[6];
+						parameter[4][2] = upperRxBuffer[6];
+						parameter[5][2] = upperRxBuffer[6];
+						return;
+					}
+					case 9:{
+						//ç”µæµå¹…å€¼ä¸Šé™
+						threshold[1][1] = upperRxBuffer[1];
+						threshold[2][1] = upperRxBuffer[2];
+						threshold[3][1] = upperRxBuffer[3];
+						threshold[4][1] = upperRxBuffer[4];
+						threshold[5][1] = upperRxBuffer[5];
+						return;
+					}
+					case 10:{
+						//è„‰å®½æœ€ä½é˜ˆå€¼
+						threshold[1][2] = upperRxBuffer[1];
+						threshold[2][2] = upperRxBuffer[2];
+						threshold[3][2] = upperRxBuffer[3];
+						threshold[4][2] = upperRxBuffer[4];
+						threshold[5][2] = upperRxBuffer[5];
+						return;
+					}
+				  case 11:{
+						//è„‰å®½æœ€é«˜é˜ˆå€¼
+						threshold[1][3] = upperRxBuffer[1];
+						threshold[2][3] = upperRxBuffer[2];
+						threshold[3][3] = upperRxBuffer[3];
+						threshold[4][3] = upperRxBuffer[4];
+						threshold[5][3] = upperRxBuffer[5];
+						return;
+					}
+					case 12:{
+						//äº”ä¸ªé€šé“çš„ä½¿èƒ½
+						channelEnableflag[1] = upperRxBuffer[1];
+						channelEnableflag[2] = upperRxBuffer[2];
+						channelEnableflag[3] = upperRxBuffer[3];
+						channelEnableflag[4] = upperRxBuffer[4];
+						channelEnableflag[5] = upperRxBuffer[5];
+						return;
+					}
+					case 13:{
+						initMode = upperRxBuffer[1];
+						return;
+					}
+					case 14:{
+						//äº”ä¸ªé€šé“çš„æ¿€æ´»å‹åŠ›ä¸‹é™å€¼
+						pressureLowerThreshold[1] = upperRxBuffer[1]/10.0;
+						pressureLowerThreshold[2] = upperRxBuffer[2]/10.0;
+						pressureLowerThreshold[3] = upperRxBuffer[3]/10.0;
+						pressureLowerThreshold[4] = upperRxBuffer[4]/10.0;
+						pressureLowerThreshold[5] = upperRxBuffer[5]/10.0;
+						return;
+					}
+					case 15:{
+						//äº”ä¸ªé€šé“çš„æ¿€æ´»å‹åŠ›ä¸Šé™å€¼ï¼Œæ˜¯æ•´æ•°å€¼ï¼Œä¸ç”¨é™¤ä»¥10
+						pressureUpperThreshold[1] = upperRxBuffer[1];
+						pressureUpperThreshold[2] = upperRxBuffer[2];
+						pressureUpperThreshold[3] = upperRxBuffer[3];
+						pressureUpperThreshold[4] = upperRxBuffer[4];
+						pressureUpperThreshold[5] = upperRxBuffer[5];
+						return;
+					}
+					case 0x11:{
+						//1é€šé“freerunå‚æ•°
+						parameter[1][0] = upperRxBuffer[1];//1é€šé“å¹…å€¼
+						parameter[1][1] = upperRxBuffer[3]<<8|upperRxBuffer[2];//1é€šé“è„‰å®½
+						parameter[1][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];//1é€šé“é¢‘ç‡
+						return;
+					}
+					case 0x12:{
+						//2é€šé“freerunå‚æ•°
+						parameter[2][0] = upperRxBuffer[1];//2é€šé“å¹…å€¼
+						parameter[2][1] = upperRxBuffer[3]<<8|upperRxBuffer[2];//2é€šé“è„‰å®½
+						parameter[2][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];//2é€šé“é¢‘ç‡
+						return;
+					}
+					case 0x13:{
+						//3é€šé“freerunå‚æ•°
+						parameter[3][0] = upperRxBuffer[1];//3é€šé“å¹…å€¼
+						parameter[3][1] = upperRxBuffer[3]<<8|upperRxBuffer[2];//3é€šé“è„‰å®½
+						parameter[3][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];//3é€šé“é¢‘ç‡
+						return;
+					}
+					case 0x14:{
+						//4é€šé“freerunå‚æ•°
+						parameter[4][0] = upperRxBuffer[1];//4é€šé“å¹…å€¼
+						parameter[4][1] = upperRxBuffer[3]<<8|upperRxBuffer[2];//4é€šé“è„‰å®½
+						parameter[4][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];//4é€šé“é¢‘ç‡
+						return;
+					}
+					case 0x15:{
+						//5é€šé“freerunå‚æ•°
+						parameter[5][0] = upperRxBuffer[1];//5é€šé“å¹…å€¼
+						parameter[5][1] = upperRxBuffer[3]<<8|upperRxBuffer[2];//5é€šé“è„‰å®½
+						parameter[5][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];//5é€šé“é¢‘ç‡
+						return;
+					}
+					default:
+						return;
+				}	
 			}
 			return;
 		}
@@ -840,7 +837,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 
 
 
-/*ÖØ¶¨Ïòc¿âº¯Êıprintfµ½DEBUG_USARTX*/
+/*é‡å®šå‘cåº“å‡½æ•°printfåˆ°DEBUG_USARTX*/
 int fputc(int ch,FILE *f)
 {
   HAL_UART_Transmit(&huart1,(uint8_t *)&ch,1,0xffff);

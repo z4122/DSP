@@ -32,24 +32,26 @@ extern UART_HandleTypeDef huart7;
 extern UART_HandleTypeDef huart8;
 
 
-extern uint8_t volatile UART1RxBuff; 
-extern uint8_t volatile UART3RxBuff; 
-extern uint8_t volatile UART4RxBuff; 
-extern uint8_t volatile UART5RxBuff; 
-extern uint8_t volatile UART7RxBuff; 
-extern uint8_t volatile UART8RxBuff; 
+extern uint8_t UART1RxBuff; 
+extern uint8_t UART3RxBuff; 
+extern uint8_t UART4RxBuff; 
+extern uint8_t UART5RxBuff; 
+extern uint8_t UART7RxBuff; 
+extern uint8_t UART8RxBuff; 
 
 
 extern uint8_t tempRxBuffer;
 extern uint8_t upperRxBuffer[7];
 extern volatile int testmode_flag;
 extern int channelchange;
+extern int initMode;
+extern int startFlag;
 extern u16 parameter[6][5];
 extern u16 threshold[6][6];
-<<<<<<< HEAD
-=======
+extern u8  channelEnableflag[6];
+extern float  pressureLowerThreshold[6];
+extern float 	pressureUpperThreshold[6];
 
->>>>>>> c44ff6c583f3d854bc17be7bc6b966cdfafaf2a0
 void USART1_Init(void);
 void USART2_Init(void);
 void USART3_Init(void);

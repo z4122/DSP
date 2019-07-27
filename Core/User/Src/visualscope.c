@@ -1,12 +1,12 @@
 #include "visualscope.h"
 
-//Ğ£ÑéÀàĞÍ£¬Ö»ÄÜ¶¨ÒåÒ»¸ö£¬ĞèÒªºÍÉÏÎ»»úÉèÖÃÏàÍ¬
+//æ ¡éªŒç±»å‹ï¼Œåªèƒ½å®šä¹‰ä¸€ä¸ªï¼Œéœ€è¦å’Œä¸Šä½æœºè®¾ç½®ç›¸åŒ
 //#define CHECK_CRC_16
 #define CHECK_SUM
 
 
 
-#ifdef CHECK_SUM	//VisualScopeµÄÇóºÍĞ£Ñé
+#ifdef CHECK_SUM	//VisualScopeçš„æ±‚å’Œæ ¡éªŒ
 static u8 RS232_VisualScope_CHKSUM(u8 *Array,u16 Len)
 {
     u8 sum=0;
@@ -18,10 +18,10 @@ static u8 RS232_VisualScope_CHKSUM(u8 *Array,u16 Len)
 #endif
 
 
-//Í¨¹ı´®¿Ú·¢ËÍVisualScopeÊ¶±ğµÄÊı¾İ
-void VisualScope(UART_HandleTypeDef *huart,int16_t CH1,int16_t CH2,int16_t CH3,int16_t CH4)	//Í¨¹ı´®¿ÚÏÔÊ¾ËÄ¸öÍ¨µÀµÄ²¨ĞÎ
+//é€šè¿‡ä¸²å£å‘é€VisualScopeè¯†åˆ«çš„æ•°æ®
+void VisualScope(UART_HandleTypeDef *huart,int16_t CH1,int16_t CH2,int16_t CH3,int16_t CH4)	//é€šè¿‡ä¸²å£æ˜¾ç¤ºå››ä¸ªé€šé“çš„æ³¢å½¢
 {
-    u8 i = 0;
+    //u8 i = 0;
     uint8_t Buffer[10];
     uint16_t Temp=0;
 
@@ -36,7 +36,7 @@ void VisualScope(UART_HandleTypeDef *huart,int16_t CH1,int16_t CH2,int16_t CH3,i
 
 
 
-#ifdef CHECK_SUM	//VisualScopeµÄÇóºÍĞ£Ñé
+#ifdef CHECK_SUM	//VisualScopeçš„æ±‚å’Œæ ¡éªŒ
     Temp = RS232_VisualScope_CHKSUM(Buffer, 8);
     Buffer[8] = Temp&0x00ff;
 

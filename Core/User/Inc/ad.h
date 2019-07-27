@@ -163,6 +163,9 @@
 #define ClrADS1256_IN     HAL_GPIO_WritePin(MOSI_GPIO_Port,MOSI_Pin,GPIO_PIN_RESET)
 #define ClrADS1256_CLK    HAL_GPIO_WritePin(SCK_GPIO_Port,SCK_Pin,GPIO_PIN_RESET);HAL_GPIO_WritePin(TEST_GPIO_Port,TEST_Pin,GPIO_PIN_RESET)
 
+extern long double offset[10];
+extern long double ldVolutage[10];//存储十个通道的值
+extern double ADC_convertedvalue[2];//转换了通道的原始AD值后的值
 
 void Readad(void);
 void AD_Init(void);
@@ -173,10 +176,8 @@ unsigned int ADS1256ReadData(void);
 unsigned int ADS_sum(unsigned char);
 unsigned char ADS1256_Read_Byte(void);
 void ADS1256_Write_Byte(unsigned char);
-unsigned char  ADS1256_Read_one_Reg(unsigned char);
-void  ADS1256_Write_Reg(unsigned char, unsigned char);
-
-
+unsigned char ADS1256_Read_one_Reg(unsigned char);
+void ADS1256_Write_Reg(unsigned char, unsigned char);
 
 void delayad_nopar(void);
 void delayad(unsigned);

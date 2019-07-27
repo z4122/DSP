@@ -1,6 +1,8 @@
 #include "ad.h"
 
-
+long double offset[10];
+double ADC_convertedvalue[2];
+long double ldVolutage[10];//存储十个通道的值
 
  void ADS1256_Write_Byte(unsigned char d)
 {
@@ -9,15 +11,15 @@
    	while(i--)
   	{
 		if(d & 0X80)
-	  	SetADS1256_IN  ;
+			SetADS1256_IN  ;
 		else  
 			ClrADS1256_IN  ;
-    delayad_nopar(); 	  	  
+		delayad_nopar(); 	  	  
 		SetADS1256_CLK;
-	  delayad_nopar();
-	  ClrADS1256_CLK ;
-	  delayad_nopar();
-	  d <<= 1;
+		delayad_nopar();
+		ClrADS1256_CLK ;
+		delayad_nopar();
+		d <<= 1;
 	}
 }
 
@@ -108,7 +110,7 @@ void ADS1256_Init(void)
 //	ADS1256_Write_Byte(CMD_WAKEUP);
 	while(ADS1256_DRDY);
 	ADS1256_Write_Reg(REG_STATUS,0x06);	//STATUS REGISTER:Auto-Calibration Enabled,Analog Input Buffer Disabled
-//	ADS1256_Write_Reg(REG_STATUS,MSB_FRIST+ACAL_ON+BUFEN_OFF);	//STATUS:MSB;AOTO ColCalibration;BUFFER DISABLEED
+	//ADS1256_Write_Reg(REG_STATUS,MSB_FRIST+ACAL_ON+BUFEN_OFF);	//STATUS:MSB;AOTO ColCalibration;BUFFER DISABLEED
 	while(ADS1256_DRDY);
 //	ADS1256_Write_Reg(REG_MUX,POSITIVE_AIN0+ NEGTIVE_AINCOM);  //MUX:AIN0
     ADS1256_Write_Reg(REG_MUX,0x08);	//AIN0 is Positive,single-ended measurements
@@ -159,7 +161,7 @@ void AD_Init(void)
 	HAL_Delay(100);
 	HAL_GPIO_WritePin(RESET_GPIO_Port, RESET_Pin, GPIO_PIN_RESET);//Reset???1
 	ADS1256_Init();
-	
+	//Compute_Offset();
 }
 
 
@@ -174,49 +176,51 @@ void AD_GPIO_Init(void)
 	HAL_GPIO_WritePin(RESET_GPIO_Port, RESET_Pin, GPIO_PIN_RESET);
 	
 	GPIO_InitStruct.Pin = SCK_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(SCK_GPIO_Port, &GPIO_InitStruct);
+	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	HAL_GPIO_Init(SCK_GPIO_Port, &GPIO_InitStruct);
 
 	GPIO_InitStruct.Pin = NSS_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(NSS_GPIO_Port, &GPIO_InitStruct);
+	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	HAL_GPIO_Init(NSS_GPIO_Port, &GPIO_InitStruct);
 
-  GPIO_InitStruct.Pin = MOSI_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(MOSI_GPIO_Port, &GPIO_InitStruct);
+	GPIO_InitStruct.Pin = MOSI_Pin;
+	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	HAL_GPIO_Init(MOSI_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : MISO_Pin */
-  GPIO_InitStruct.Pin = MISO_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(MISO_GPIO_Port, &GPIO_InitStruct);
+	/*Configure GPIO pin : MISO_Pin */
+	GPIO_InitStruct.Pin = MISO_Pin;
+	GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	HAL_GPIO_Init(MISO_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : RESET_Pin */
-  GPIO_InitStruct.Pin = RESET_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(RESET_GPIO_Port, &GPIO_InitStruct);
+	/*Configure GPIO pin : RESET_Pin */
+	GPIO_InitStruct.Pin = RESET_Pin;
+	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	HAL_GPIO_Init(RESET_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : DRDY_Pin */
-  GPIO_InitStruct.Pin = DRDY_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(DRDY_GPIO_Port, &GPIO_InitStruct);
+	/*Configure GPIO pin : DRDY_Pin */
+	GPIO_InitStruct.Pin = DRDY_Pin;
+	GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	HAL_GPIO_Init(DRDY_GPIO_Port, &GPIO_InitStruct);
 	
 	
 	GPIO_InitStruct.Pin = TEST_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(TEST_GPIO_Port, &GPIO_InitStruct);
+	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	HAL_GPIO_Init(TEST_GPIO_Port, &GPIO_InitStruct);
 }
+
+
 void delayad_nopar(void)
 {
 	unsigned long i = 2000;//2000

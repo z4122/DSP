@@ -9,8 +9,8 @@
 #include "ad.h"
 #include "adc.h"
 #include "timer.h"
-
-
+#include "pc_interface.h"
+#include "lcd.h"
 
 void BSP_Init(void);
 
