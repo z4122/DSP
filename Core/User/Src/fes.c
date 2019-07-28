@@ -74,7 +74,10 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,double pressure,int cha
 		stimulate_parameter[12] = 0x01;//次数
 	}
 
-
+	float a=0.8;//脉宽分段函数断点
+	float b=0.8;//压力分段函数断点
+	
+	float temp=0;
 	//flag==1||4幅值跟随模式，flag==2||5频率跟随模式，flag==3||6脉宽跟随模式,flag==7自由测试模式
 	if(testmode_flag==1||testmode_flag==4){
 		stimulate_parameter[16] = (threshold[channel][1]-threshold[channel][0])*(float)(pressure-pressureLowerThreshold[channel])/(pressureUpperThreshold[channel]-pressureLowerThreshold[channel])+threshold[channel][0];
@@ -84,7 +87,23 @@ void merge_stimulate_parameter(UART_HandleTypeDef *huart,double pressure,int cha
 		stimulate_parameter[8] = (int)(25+pressure/2); //频率低8位
 	}		
 	else if(testmode_flag==3||testmode_flag==6){
-		float temp = (threshold[channel][3]-threshold[channel][2])*(float)(pressure-pressureLowerThreshold[channel])/(pressureUpperThreshold[channel]-pressureLowerThreshold[channel])+threshold[channel][2];
+		
+		if (channel==1){
+			if (pressure <= b*( pressureUpperThreshold[1]- pressureLowerThreshold[1] ) + pressureLowerThreshold[1]){	
+				temp = a *(threshold[1][3]-threshold[1][2])/(b*(pressureUpperThreshold[1]-pressureLowerThreshold[1])) *(pressure-pressureLowerThreshold[1])+threshold[1][2];
+			}
+			if (pressure > b*(pressureUpperThreshold[1]-pressureLowerThreshold[1]) + pressureLowerThreshold[1]){
+				temp = (1-a)*(threshold[1][3]-threshold[1][2])/((1-b)*(pressureUpperThreshold[1]-pressureLowerThreshold[1])) *(pressure - (b*(pressureUpperThreshold[1]- pressureLowerThreshold[1])+ pressureLowerThreshold[1])) + (a * (threshold[1][3]-threshold[1][2]) + threshold[1][2]);
+//				temp = (threshold[channel][3]-(a*threshold[channel][3]+(1-a)*threshold[channel][2]))/(pressureUpperThreshold[channel]-(b*pressureUpperThreshold[channel]+(1-b)*pressureLowerThreshold[channel]))*(pressure-(b*pressureUpperThreshold[channel]+(1-b)*pressureLowerThreshold[channel]))+a*threshold[channel][3]+(1-a)*threshold[channel][2];
+			}
+		}
+
+		if (channel!=1){
+			temp = (threshold[channel][3]-threshold[channel][2])*(float)(pressure-pressureLowerThreshold[channel])/(pressureUpperThreshold[channel]-pressureLowerThreshold[channel])+threshold[channel][2];
+		
+		}	
+		
+		//float temp = (threshold[channel][3]-threshold[channel][2])*(float)(pressure-pressureLowerThreshold[channel])/(pressureUpperThreshold[channel]-pressureLowerThreshold[channel])+threshold[channel][2];
 		u16 val = (u16)temp;
 		val*=10;
 		if(val<20)
