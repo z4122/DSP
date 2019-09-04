@@ -339,7 +339,7 @@ void assert_failed(uint8_t* file, uint32_t line)
 void display()
 {
 	double num = 0;
-	if(name == zzz)
+		if(name == zzz)
 	{
 		if(amputatedHand==right)
 		{
@@ -364,8 +364,11 @@ void display()
 //						float curve2=-9.486*(num)*(num)+13.34*(num)-3.192;
 //						float curve3=curve1+curve2;
 
-						float curve1=-9.368*(num)*(num)*(num)*(num)+32.51*(num)*(num)*(num);//sensor10_modified1
-						float curve2=-26.39*(num)*(num)+16.84*(num)-2.77;
+//						float curve1=-9.368*(num)*(num)*(num)*(num)+32.51*(num)*(num)*(num);//sensor10_modified1
+//						float curve2=-26.39*(num)*(num)+16.84*(num)-2.77;
+//						float curve3=curve1+curve2;
+						float curve1=8.111*(num)*(num)*(num)-4.052*(num)*(num);//sensor13_19.8.28
+						float curve2=5.218*(num)-1.338;
 						float curve3=curve1+curve2;
 //						float curve1=9.038*(num)*(num)*(num)*(num)-19.81*(num)*(num)*(num);//sensor10_zjsystem
 //						float curve2=24.75*(num)*(num)-5.059*(num)-0.04702;
@@ -396,8 +399,11 @@ void display()
 //						float curve5=-101.6*(num)*(num)+50.09*(num)-7.829;
 //						float curve6=curve4+curve5;
 
-						float curve4=11.01*(num)*(num)*(num)*(num)-25.4*(num)*(num)*(num);//sensor11_modified1
-						float curve5=29.67*(num)*(num)-5.807*(num)+0.2646;
+//						float curve4=11.01*(num)*(num)*(num)*(num)-25.4*(num)*(num)*(num);//sensor11_modified1
+//						float curve5=29.67*(num)*(num)-5.807*(num)+0.2646;
+//						float curve6=curve4+curve5;	
+						float curve4=2.339*(num)*(num)*(num)+6.488*(num)*(num);//sensor14_19.8.28
+						float curve5=1.666*(num)-0.9607;
 						float curve6=curve4+curve5;	
 //					  float curve4=9.925*(num)*(num)*(num)*(num)-16*(num)*(num)*(num);//sensor11_zjsystem
 //						float curve5=15.57*(num)*(num)-1.162*(num)-0.4986;
@@ -547,9 +553,13 @@ void display()
 //						float curve02=7.375*(num)-1.312;
 //						float curve03=curve01+curve02;
 //						float curve03=(2.404*exp(1.894*num)*1/1-2.848*exp(-3.094*num)*1/1)*1/1;
-						float curve01=4.505*(num)*(num)*(num);//A201 25lbs sensor26
-						float curve02=3.267*(num)*(num)+3.478*(num)+0.1523;
+//						float curve01=4.505*(num)*(num)*(num);//A201 25lbs sensor26
+//						float curve02=3.267*(num)*(num)+3.478*(num)+0.1523;
+//						float curve03=curve01+curve02;
+						float curve01=-29.21*(num)*(num)*(num);//A201 25lbs sneor20 19.8.26
+						float curve02=58.28*(num)*(num)-8.299*(num)+0.4372 ;
 						float curve03=curve01+curve02;
+
 						GUI_DispFloat(curve03,4);
 						
 						stimulate(&huart1, curve03,1);
@@ -570,9 +580,13 @@ void display()
 //						float curve04=1.89*exp(1.921*num);//A201 25lbs sensor21_zjsystem
 //						float curve05=-2.864*exp(-1.983*num);
 //						float curve06=curve04+curve05;
-						float curve04=-35.59*(num)*(num)*(num);//A201 25lbs sensor27
-						float curve05=51.93*(num)*(num)+0.1189*(num)+0.648;
+//						float curve04=-35.59*(num)*(num)*(num);//A201 25lbs sensor27
+//						float curve05=51.93*(num)*(num)+0.1189*(num)+0.648;
+//						float curve06=curve04+curve05;
+						float curve04=15.75*(num)*(num);//A201 25lbs sneor21 19.8.26
+						float curve05= -5.504 *num +1.579;
 						float curve06=curve04+curve05;
+
 						GUI_DispFloat(curve06,4);
 			
 						stimulate(&huart3,curve06,2);
@@ -592,9 +606,13 @@ void display()
 //						float curve07=2470*exp(0.7199*num);//A201 25lbs sensor22_zjsystem
 //						float curve08=-2471*exp(0.7168*num);
 //						float curve09=curve07+curve08;
-						float curve07=-58.81*(num)*(num)*(num)*(num)+112.3*(num)*(num)*(num);//A201 25lbs sensor29
-						float curve08=-55.17*(num)*(num)+24.16*(num)-1.139;
+//						float curve07=-58.81*(num)*(num)*(num)*(num)+112.3*(num)*(num)*(num);//A201 25lbs sensor29
+//						float curve08=-55.17*(num)*(num)+24.16*(num)-1.139;
+//						float curve09=curve07+curve08;	
+						float curve07=10.8*(num)*(num)*(num);//A201 25lbs sneor22 19.8.26
+						float curve08= -9.334 *(num)*(num) + 12.11*(num) -1.722;
 						float curve09=curve07+curve08;	
+
 						GUI_DispFloat(curve09,4);
 					
 						stimulate(&huart4,curve09,3);
@@ -611,9 +629,13 @@ void display()
 //						float curve10=5.451*exp(1.285*num);//A201 25lbs sensor23_zjsystem
 //						float curve11=-7.063*exp(-0.4687*num);
 //						float curve12=curve10+curve11;
-						float curve10=19.7*(num)*(num)*(num)*(num)-28.02*(num)*(num)*(num);//A201 25lbs sensor33
-						float curve11=23.44*(num)*(num)+5.416*(num)-1.32;
+//						float curve10=19.7*(num)*(num)*(num)*(num)-28.02*(num)*(num)*(num);//A201 25lbs sensor33
+//						float curve11=23.44*(num)*(num)+5.416*(num)-1.32;
+//						float curve12=curve10+curve11;
+						float curve10= 17.4*(num)*(num);//A201 25lbs sneor23 19.8.26
+						float curve11= -4.452 *num +0.9479;
 						float curve12=curve10+curve11;
+
 						GUI_DispFloat(curve12,4);
 						
 						stimulate(&huart5,curve12,4);
@@ -630,9 +652,13 @@ void display()
 //						float curve13=1.884*exp(2.133*num);//A201 25lbs sensor23_zjsystem
 //						float curve14=-3.291*exp(-2.677*num);
 //						float curve15=curve13+curve14;
-						float curve13=1.792*exp(1.931*num);//A201 25lbs sensor36
-						float curve14=-2.049*exp(-3.516*num);
+//						float curve13=1.792*exp(1.931*num);//A201 25lbs sensor36
+//						float curve14=-2.049*exp(-3.516*num);
+//						float curve15=curve13+curve14;
+						float curve13= 9.01*(num)*(num)*(num);//A201 25lbs sneor24 19.8.26
+						float curve14= -5.22*(num)*(num) + 8.735*(num) -1.199;
 						float curve15=curve13+curve14;
+
 						GUI_DispFloat(curve15,4);
 
 						stimulate(&huart7,curve15,5);
@@ -937,7 +963,7 @@ void GetAdData(void)
 			}
 			if(temp>0&&temp/1000<5000){
 				ldVolutage[i] = temp/1000000;//-offset[i];
-				ldVolutage[i] = MeanFilter(temp,filter[i]);
+				//ldVolutage[i] = MeanFilter(temp,filter[i]);
 				//ldVolutage[i] = ldVolutage[i]/1000;
 				
 			}
@@ -963,7 +989,7 @@ void GetAdData(void)
 			
 			if(temp>0&&temp/1000<5000){
 				ldVolutage[i] = temp/1000000;//-offset[i];
-				ldVolutage[i] = MeanFilter(temp,filter[i]);
+				//ldVolutage[i] = MeanFilter(temp,filter[i]);
 				//ldVolutage[i] = ldVolutage[i]/1000;
 			}
 		}
