@@ -305,17 +305,17 @@ void stim_stop(UART_HandleTypeDef *huart)// BB 0x42 0x42
 
 	if(huart->Instance==USART1)
 	{
-		//while((UART1RxBuff!=0xAA)&&(UART1RxBuff!=0xBB))
-		//{
+		while((UART1RxBuff!=0xAA)&&(UART1RxBuff!=0xBB))
+		{
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
 			HAL_UART_Receive_IT(huart,(uint8_t *)&UART1RxBuff,1);
 			//HAL_Delay(1);
-		//}
+		}
 		UART1RxBuff = 0x00;
 	}
 	else if(huart->Instance==USART3)
 	{
-		//while((UART3RxBuff!=0xAA)&&(UART3RxBuff!=0xBB))
+		while((UART3RxBuff!=0xAA)&&(UART3RxBuff!=0xBB))
 		{
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
 			HAL_UART_Receive_IT(huart,(uint8_t *)&UART3RxBuff,1);
@@ -325,7 +325,7 @@ void stim_stop(UART_HandleTypeDef *huart)// BB 0x42 0x42
 	}
 	else if(huart->Instance==UART4)
 	{
-		//while((UART4RxBuff!=0xAA)&&(UART4RxBuff!=0xBB))
+		while((UART4RxBuff!=0xAA)&&(UART4RxBuff!=0xBB))
 		{
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
 			HAL_UART_Receive_IT(huart,(uint8_t *)&UART4RxBuff,1);
@@ -335,7 +335,7 @@ void stim_stop(UART_HandleTypeDef *huart)// BB 0x42 0x42
 	}
 	else if(huart->Instance==UART5)
 	{
-		//while((UART5RxBuff!=0xAA)&&(UART5RxBuff!=0xBB))
+		while((UART5RxBuff!=0xAA)&&(UART5RxBuff!=0xBB))
 		{
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
 			HAL_UART_Receive_IT(huart,(uint8_t *)&UART5RxBuff,1);
@@ -345,7 +345,7 @@ void stim_stop(UART_HandleTypeDef *huart)// BB 0x42 0x42
 	}
 	else if(huart->Instance==UART7)
 	{
-		//while((UART7RxBuff!=0xAA)&&(UART7RxBuff!=0xBB))
+		while((UART7RxBuff!=0xAA)&&(UART7RxBuff!=0xBB))
 		{
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
 			HAL_UART_Receive_IT(huart,(uint8_t *)&UART7RxBuff,1);
@@ -355,7 +355,7 @@ void stim_stop(UART_HandleTypeDef *huart)// BB 0x42 0x42
 	}
 	else if(huart->Instance==UART8)
 	{
-		//while((UART8RxBuff!=0xAA)&&(UART8RxBuff!=0xBB))
+		while((UART8RxBuff!=0xAA)&&(UART8RxBuff!=0xBB))
 		{
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
 			HAL_UART_Receive_IT(huart,(uint8_t *)&UART8RxBuff,1);
@@ -374,17 +374,7 @@ void stimulate(UART_HandleTypeDef *huart,double pressure,int channel)
 	if(channelEnableflag[channel]==1&&testmode_flag!=0){	
 		if(pressure>pressureLowerThreshold[channel]){
 			stim_stop(huart);//800102, no feedback
-			stim_stop(huart);//800102, no feedback
-			stim_stop(huart);//800102, no feedback
-			stim_stop(huart);//800102, no feedback
-			stim_stop(huart);//800102, no feedback
-			stim_stop(huart);//800102, no feedback
-			stim_stop(huart);//800102, no feedback
-
-			//HAL_Delay(1);
-			stim_stop(huart);//800102, no feedback
-			//HAL_Delay(1);
-			stim_stop(huart);//800102, no feedback
+			
 			//HAL_Delay(20);//在stop后必须加一个延时否则DUS会崩掉。
 			merge_stimulate_parameter(huart,pressure,channel);
 		
@@ -456,13 +446,12 @@ void FreeRun_Init(){
 			startFlag = 2;
 		}
 		else if(startFlag==0){
-			for(int i = 0;i<7;i++){
-				stim_stop(&huart1);//800102, no feedback
-				stim_stop(&huart3);//800102, no feedback
-				stim_stop(&huart4);//800102, no feedback
-				stim_stop(&huart5);//800102, no feedback
-				stim_stop(&huart7);//800102, no feedback	 
- 			}	
+			stim_stop(&huart1);//800102, no feedback
+			stim_stop(&huart3);//800102, no feedback
+			stim_stop(&huart4);//800102, no feedback
+			stim_stop(&huart5);//800102, no feedback
+			stim_stop(&huart7);//800102, no feedback	 
+ 			
 			GUI_Clear(); 
 			GUI_DispStringAt("stop",280,270);
 			startFlag = 2;

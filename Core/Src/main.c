@@ -137,8 +137,11 @@ int main(void)
 	}
 	
 	while(1)
-	{	
+	{
+		
 		GetAdData();
+
+		HAL_Delay(20);
 	}
 }
 
@@ -942,13 +945,15 @@ void GetAdData(void)
 {
 		static int tempcnt = 0;
 		
-		HAL_GPIO_WritePin(RESET_GPIO_Port, RESET_Pin, GPIO_PIN_RESET);//Reset
-		ADS1256_Init();//理论上不用再次初始化，这是折衷的做法，否则会出现AD采样偶尔错误的后果。经测试推测是与DSU通信有关。
-		HAL_Delay(20);
+		//HAL_GPIO_WritePin(RESET_GPIO_Port, RESET_Pin, GPIO_PIN_RESET);//Reset
+		//ADS1256_Init();//理论上不用再次初始化，这是折衷的做法，否则会出现AD采样偶尔错误的后果。经测试推测是与DSU通信有关。
+		
 		for(int i = 0;i < 5;i++)
 		{
+			__disable_irq();
 			ulResult = ADS_sum( (i << 4) | 0x08);	
-		
+			__enable_irq();
+
 			if( ulResult & 0x800000 )
 			{
 			 	ulResult = ~(unsigned long)ulResult;
@@ -963,16 +968,17 @@ void GetAdData(void)
 			}
 			if(temp>0&&temp/1000<5000){
 				ldVolutage[i] = temp/1000000;//-offset[i];
-				//ldVolutage[i] = MeanFilter(temp,filter[i]);
+				ldVolutage[i] = MeanFilter(ldVolutage[i],filter[i]);
 				//ldVolutage[i] = ldVolutage[i]/1000;
 				
 			}
 		}
-	
+
 		for(int i = 5;i < 8;i++)
 		{
-			 ulResult = ADS_sum( (i << 4) | 0x08);
-		
+			__disable_irq();
+			ulResult = ADS_sum( (i << 4) | 0x08);
+			__enable_irq();
 			if( ulResult & 0x800000 )
 			{
 			 	ulResult = ~(unsigned long)ulResult;
@@ -989,7 +995,7 @@ void GetAdData(void)
 			
 			if(temp>0&&temp/1000<5000){
 				ldVolutage[i] = temp/1000000;//-offset[i];
-				//ldVolutage[i] = MeanFilter(temp,filter[i]);
+				ldVolutage[i] = MeanFilter(ldVolutage[i],filter[i]);
 				//ldVolutage[i] = ldVolutage[i]/1000;
 			}
 		}
