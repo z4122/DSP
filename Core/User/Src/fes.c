@@ -309,7 +309,7 @@ void stim_stop(UART_HandleTypeDef *huart)// BB 0x42 0x42
 		{
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
 			HAL_UART_Receive_IT(huart,(uint8_t *)&UART1RxBuff,1);
-			//HAL_Delay(1);
+			HAL_Delay(1);
 		}
 		UART1RxBuff = 0x00;
 	}
@@ -319,7 +319,7 @@ void stim_stop(UART_HandleTypeDef *huart)// BB 0x42 0x42
 		{
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
 			HAL_UART_Receive_IT(huart,(uint8_t *)&UART3RxBuff,1);
-			//HAL_Delay(1);
+			HAL_Delay(1);
 		}
 		UART3RxBuff = 0x00;
 	}
@@ -329,7 +329,7 @@ void stim_stop(UART_HandleTypeDef *huart)// BB 0x42 0x42
 		{
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
 			HAL_UART_Receive_IT(huart,(uint8_t *)&UART4RxBuff,1);
-			//HAL_Delay(1);
+			HAL_Delay(1);
 		}
 		UART4RxBuff = 0x00;
 	}
@@ -339,7 +339,7 @@ void stim_stop(UART_HandleTypeDef *huart)// BB 0x42 0x42
 		{
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
 			HAL_UART_Receive_IT(huart,(uint8_t *)&UART5RxBuff,1);
-			//HAL_Delay(1);
+			HAL_Delay(1);
 		}
 		UART5RxBuff = 0x00;
 	}
@@ -349,7 +349,7 @@ void stim_stop(UART_HandleTypeDef *huart)// BB 0x42 0x42
 		{
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
 			HAL_UART_Receive_IT(huart,(uint8_t *)&UART7RxBuff,1);
-			//HAL_Delay(1);
+			HAL_Delay(1);
 		}
 		UART7RxBuff = 0x00;
 	}
@@ -359,7 +359,7 @@ void stim_stop(UART_HandleTypeDef *huart)// BB 0x42 0x42
 		{
 			HAL_UART_Transmit(huart,(uint8_t *)&temp,3,0xffff);
 			HAL_UART_Receive_IT(huart,(uint8_t *)&UART8RxBuff,1);
-			//HAL_Delay(1);
+			HAL_Delay(1);
 		}
 		UART8RxBuff = 0x00;
 	}
@@ -374,13 +374,8 @@ void stimulate(UART_HandleTypeDef *huart,double pressure,int channel)
 	if(channelEnableflag[channel]==1&&testmode_flag!=0){	
 		if(pressure>pressureLowerThreshold[channel]){
 			stim_stop(huart);//800102, no feedback
-			
-			//HAL_Delay(20);//在stop后必须加一个延时否则DUS会崩掉。
 			merge_stimulate_parameter(huart,pressure,channel);
-		
 			stim_start(huart);//800101,back AA
-		
-			//HAL_Delay(10);		
 		}
 	}
 }

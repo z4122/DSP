@@ -141,7 +141,7 @@ int main(void)
 		
 		GetAdData();
 
-		HAL_Delay(20);
+		HAL_Delay(10);
 	}
 }
 
@@ -968,7 +968,7 @@ void GetAdData(void)
 			}
 			if(temp>0&&temp/1000<5000){
 				ldVolutage[i] = temp/1000000;//-offset[i];
-				ldVolutage[i] = MeanFilter(ldVolutage[i],filter[i]);
+				//ldVolutage[i] = MeanFilter(ldVolutage[i],filter[i]);
 				//ldVolutage[i] = ldVolutage[i]/1000;
 				
 			}
@@ -995,7 +995,7 @@ void GetAdData(void)
 			
 			if(temp>0&&temp/1000<5000){
 				ldVolutage[i] = temp/1000000;//-offset[i];
-				ldVolutage[i] = MeanFilter(ldVolutage[i],filter[i]);
+				//ldVolutage[i] = MeanFilter(ldVolutage[i],filter[i]);
 				//ldVolutage[i] = ldVolutage[i]/1000;
 			}
 		}
