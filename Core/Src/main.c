@@ -546,21 +546,8 @@ void display()
 						GUI_DispFloat(num,4);//除以1000000后是实际电压值
 
 						GUI_DispStringAt("transferred data  ", 300, 150); 
-//						float curve01=1.957*exp(1.988*num*4.6/5-0.05);
-//						float curve02=-1.76*exp(-3.789*num*4.6/5-0.05);
-//						float curve03=curve01+curve02;
-//						float curve01=-572*exp(0.7345*num);//A201 25lbs sensor20
-//						float curve02=571.7*exp(0.749*num);
-//						float curve03=curve01+curve02;
-//						float curve01=10.58*(num)*(num);//A201 25lbs sensor20_zjsystem
-//						float curve02=7.375*(num)-1.312;
-//						float curve03=curve01+curve02;
-//						float curve03=(2.404*exp(1.894*num)*1/1-2.848*exp(-3.094*num)*1/1)*1/1;
-//						float curve01=4.505*(num)*(num)*(num);//A201 25lbs sensor26
-//						float curve02=3.267*(num)*(num)+3.478*(num)+0.1523;
-//						float curve03=curve01+curve02;
-						float curve01=-29.21*(num)*(num)*(num);//A201 25lbs sneor20 19.8.26
-						float curve02=58.28*(num)*(num)-8.299*(num)+0.4372 ;
+						float curve01=19.5*(num)*(num);//A201 25lbs sneor20 19.09.20
+						float curve02=-6.607*(num)+1.761 ;
 						float curve03=curve01+curve02;
 
 						GUI_DispFloat(curve03,4);
@@ -573,21 +560,8 @@ void display()
 						GUI_DispFloat(num,4);
 
 						GUI_DispStringAt("transferred data  ", 300, 180); 
-//						float curve04=1.946e+04*exp(0.8933*num*4.6/5-0.125);
-//						float curve05=-1.946e+04*exp(0.8929*num*4.6/5-0.125);
-//						float curve06=curve04+curve05;
-
-//						float curve04=1.814*exp(2.017*num);//A201 25lbs sensor21
-//						float curve05=-1.785*exp(-2.315*num);
-//						float curve06=curve04+curve05;
-//						float curve04=1.89*exp(1.921*num);//A201 25lbs sensor21_zjsystem
-//						float curve05=-2.864*exp(-1.983*num);
-//						float curve06=curve04+curve05;
-//						float curve04=-35.59*(num)*(num)*(num);//A201 25lbs sensor27
-//						float curve05=51.93*(num)*(num)+0.1189*(num)+0.648;
-//						float curve06=curve04+curve05;
-						float curve04=15.75*(num)*(num);//A201 25lbs sneor21 19.8.26
-						float curve05= -5.504 *num +1.579;
+						float curve04=12.97*(num)*(num)*(num);//A201 25lbs sneor21 19.9.20
+						float curve05= -10.46*(num)*(num)+11.26*num -1.258;
 						float curve06=curve04+curve05;
 
 						GUI_DispFloat(curve06,4);
@@ -600,20 +574,8 @@ void display()
 						GUI_DispFloat(num,4);
 
 						GUI_DispStringAt("transferred data  ", 300, 210); 
-//						float curve07=2.455*exp(1.891*num*5/4.6-0.3);
-//						float curve08=-2.977*exp(-3.137*num*5/4.6-0.3);
-//						float curve09=curve07+curve08;
-//						float curve07=3.047*exp(1.593*num);//A201 25lbs sensor22
-//						float curve08=-3.33*exp(-2.045*num);
-//						float curve09=curve07+curve08;
-//						float curve07=2470*exp(0.7199*num);//A201 25lbs sensor22_zjsystem
-//						float curve08=-2471*exp(0.7168*num);
-//						float curve09=curve07+curve08;
-//						float curve07=-58.81*(num)*(num)*(num)*(num)+112.3*(num)*(num)*(num);//A201 25lbs sensor29
-//						float curve08=-55.17*(num)*(num)+24.16*(num)-1.139;
-//						float curve09=curve07+curve08;	
-						float curve07=10.8*(num)*(num)*(num);//A201 25lbs sneor22 19.8.26
-						float curve08= -9.334 *(num)*(num) + 12.11*(num) -1.722;
+						float curve07=5.526*(num)*(num)*(num);//A201 25lbs sneor22 19.9.20
+						float curve08= 1.15 *(num)*(num) + 6.804*(num) -0.7225;
 						float curve09=curve07+curve08;	
 
 						GUI_DispFloat(curve09,4);
@@ -626,17 +588,10 @@ void display()
 						GUI_DispFloat(num,4);
 
 						GUI_DispStringAt("transferred data  ", 300, 240); 
-//						float curve10=3.118*exp(1.671*num);//A201 25lbs sensor23
-//						float curve11=-3.553*exp(-1.261*num);
-//						float curve12=curve10+curve11;
-//						float curve10=5.451*exp(1.285*num);//A201 25lbs sensor23_zjsystem
-//						float curve11=-7.063*exp(-0.4687*num);
-//						float curve12=curve10+curve11;
-//						float curve10=19.7*(num)*(num)*(num)*(num)-28.02*(num)*(num)*(num);//A201 25lbs sensor33
-//						float curve11=23.44*(num)*(num)+5.416*(num)-1.32;
-//						float curve12=curve10+curve11;
 						float curve10= 17.4*(num)*(num);//A201 25lbs sneor23 19.8.26
 						float curve11= -4.452 *num +0.9479;
+//						float curve10= 6.928*(num)*(num)*(num);//A201 25lbs sneor23 19.9.20
+//						float curve11= 0.2163*(num)*(num)+9.428 *num  -1.657;
 						float curve12=curve10+curve11;
 
 						GUI_DispFloat(curve12,4);
@@ -649,17 +604,8 @@ void display()
 						GUI_DispFloat(num,4);
 
 						GUI_DispStringAt("transferred data  ", 300, 270); 
-//						float curve13=3.799*exp(1.526*num);//A201 25lbs sensor23
-//						float curve14=-3.897*exp(-1.069*num);
-//						float curve15=curve13+curve14;
-//						float curve13=1.884*exp(2.133*num);//A201 25lbs sensor23_zjsystem
-//						float curve14=-3.291*exp(-2.677*num);
-//						float curve15=curve13+curve14;
-//						float curve13=1.792*exp(1.931*num);//A201 25lbs sensor36
-//						float curve14=-2.049*exp(-3.516*num);
-//						float curve15=curve13+curve14;
-						float curve13= 9.01*(num)*(num)*(num);//A201 25lbs sneor24 19.8.26
-						float curve14= -5.22*(num)*(num) + 8.735*(num) -1.199;
+						float curve13=27.16*(num)*(num)*(num);//A201 25lbs sneor24 19.9.20
+						float curve14= -38.06*(num)*(num) + 27.1*(num)  -3.862 ;
 						float curve15=curve13+curve14;
 
 						GUI_DispFloat(curve15,4);
