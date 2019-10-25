@@ -51,7 +51,7 @@ extern u16 threshold[6][6];
 extern u8  channelEnableflag[6];
 extern float  pressureLowerThreshold[6];
 extern float 	pressureUpperThreshold[6];
-
+extern int parameterTransmittedSuccess;
 void USART1_Init(void);
 void USART2_Init(void);
 void USART3_Init(void);

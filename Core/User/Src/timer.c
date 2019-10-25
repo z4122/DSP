@@ -52,13 +52,13 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef *htim)
 	if(htim->Instance==TIM3_Handler.Instance)
 	{
 		__HAL_RCC_TIM3_CLK_ENABLE();  //使能TIM3中断
-		HAL_NVIC_SetPriority(TIM3_IRQn,1,0); 
+		HAL_NVIC_SetPriority(TIM3_IRQn,1,0); //优先级高
 		HAL_NVIC_EnableIRQ(TIM3_IRQn); 
 	}
 	if(htim->Instance==TIM4_Handler.Instance)
 	{
 		__HAL_RCC_TIM4_CLK_ENABLE();  //使能TIM4中断
-		HAL_NVIC_SetPriority(TIM4_IRQn,3,0);//优先级低，能够被定时器3中断嵌套，注意一开始的优先级设置。
+		HAL_NVIC_SetPriority(TIM4_IRQn,2,0);//优先级低，能够被定时器3中断嵌套，注意一开始的优先级设置。
 		HAL_NVIC_EnableIRQ(TIM4_IRQn); 
 	}
 	if(htim->Instance==TIM5_Handler.Instance)
@@ -86,17 +86,30 @@ void TIM5_IRQHandler(void)
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
+	//TIM3的周期为10ms，频率为100hz
 	if(htim->Instance==TIM3_Handler.Instance)
 	{
-		MainLoop();
+		static int timesCount = 1;
+		GetAdData();//AD采样频率100hz
+		
+		//if(timesCount%5==0)
+			stimulateDSU();
+
+		if(timesCount%4==0)
+			MainLoop();//意味着每30ms刷新一次屏幕，刷新频率为33hz
+		if(timesCount%10==0){
+			TransferData2PC();//意味着每100ms，发送一次数据到PC端。
+			timesCount=0;
+		}
+		timesCount++;
 	}
 	else if(htim->Instance==TIM4_Handler.Instance)
 	{
-		DisplayRunning();
+		DisplayRunning();//周期500ms，用来进行状态显示
 	}
 	else if(htim->Instance==TIM5_Handler.Instance)
 	{
-		TransferData2PC();
+		//TIM5弃用
 	}
 	
 	

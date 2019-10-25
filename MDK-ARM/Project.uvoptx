@@ -150,9 +150,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>338</LineNumber>
+          <LineNumber>558</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134311170</Address>
+          <Address>134311294</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -161,14 +161,14 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>..\Core\User\Src\fes.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\Project\../Core/User/Src/fes.c\338</Expression>
+          <Expression>\\Project\../Core/User/Src/fes.c\558</Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>338</LineNumber>
+          <LineNumber>550</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134311202</Address>
+          <Address>134311956</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -177,14 +177,14 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>..\Core\User\Src\fes.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\Project\../Core/User/Src/fes.c\338</Expression>
+          <Expression>\\Project\../Core/User/Src/fes.c\550</Expression>
         </Bp>
         <Bp>
           <Number>2</Number>
           <Type>0</Type>
-          <LineNumber>348</LineNumber>
+          <LineNumber>359</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134311234</Address>
+          <Address>134307582</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -193,14 +193,14 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>..\Core\User\Src\fes.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\Project\../Core/User/Src/fes.c\348</Expression>
+          <Expression>\\Project\../Core/User/Src/fes.c\359</Expression>
         </Bp>
         <Bp>
           <Number>3</Number>
           <Type>0</Type>
-          <LineNumber>348</LineNumber>
+          <LineNumber>342</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134311266</Address>
+          <Address>134307358</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -209,7 +209,55 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>..\Core\User\Src\fes.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\Project\../Core/User/Src/fes.c\348</Expression>
+          <Expression>\\Project\../Core/User/Src/fes.c\342</Expression>
+        </Bp>
+        <Bp>
+          <Number>4</Number>
+          <Type>0</Type>
+          <LineNumber>341</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134307348</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>..\Core\User\Src\fes.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\Project\../Core/User/Src/fes.c\341</Expression>
+        </Bp>
+        <Bp>
+          <Number>5</Number>
+          <Type>0</Type>
+          <LineNumber>553</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>..\Core\User\Src\fes.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>6</Number>
+          <Type>0</Type>
+          <LineNumber>561</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>..\Core\User\Src\fes.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -291,7 +339,22 @@
         <Ww>
           <count>15</count>
           <WinNumber>1</WinNumber>
-          <ItemText>parameter[4]</ItemText>
+          <ItemText>parameter[1]</ItemText>
+        </Ww>
+        <Ww>
+          <count>16</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>transferredDsuValue[i]</ItemText>
+        </Ww>
+        <Ww>
+          <count>17</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>transferredDsuValue</ItemText>
+        </Ww>
+        <Ww>
+          <count>18</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>threshold[1]</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>
@@ -587,7 +650,7 @@
 
   <Group>
     <GroupName>Middlewares/lib</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

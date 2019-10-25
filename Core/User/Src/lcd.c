@@ -37,9 +37,19 @@ void DisplayRunning(){
 			GUI_DispStringAt("Running -------->", 50, 50);
 			break;
 	}
+
+	if(parameterTransmittedSuccess==1){//传递一次参数就在屏幕上显示一个500ms的提示
+		GUI_DispStringAt("Parameter transmitted", 300, 50);
+		parameterTransmittedSuccess = 0;
+	}else{
+		GUI_DispStringAt("                                    ", 300, 50);
+	}
+
 	i++;
 	if(initMode==1)
 		GUI_DispStringAt("Follow    mode", 50, 90);
 	else if(initMode==2)
 		GUI_DispStringAt("Freerun   mode", 50, 90);
+	else if(initMode==3)
+		GUI_DispStringAt("PC Follow    mode", 50, 90);
 }

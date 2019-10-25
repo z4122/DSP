@@ -3,6 +3,7 @@
 long double offset[10];
 double ADC_convertedvalue[2];
 long double ldVolutage[10];//存储十个通道的值
+long double transferredDsuValue[10];
 
  void ADS1256_Write_Byte(unsigned char d)
 {
@@ -223,7 +224,7 @@ void AD_GPIO_Init(void)
 
 void delayad_nopar(void)
 {
-	unsigned long i = 2000;//2000
+	unsigned long i = 900;//2000
    	while(i--);
 }
 void delayad(unsigned tt)

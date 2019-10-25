@@ -166,6 +166,7 @@
 extern long double offset[10];
 extern long double ldVolutage[10];//存储十个通道的值
 extern double ADC_convertedvalue[2];//转换了通道的原始AD值后的值
+extern long double transferredDsuValue[10];//ad值转换为应该发送给DSU的值。
 
 void Readad(void);
 void AD_Init(void);

@@ -40,7 +40,7 @@ uint8_t tempRxBuffer;
 uint8_t upperRxBuffer[7];
 int cnt = 0;
 volatile int testmode_flag = 6;//通过修改此处可以修改启动的模式
-
+int parameterTransmittedSuccess=0;
 
 
 
@@ -698,6 +698,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 			
 			if(sum==UART8RxBuff){
 				testmode_flag = upperRxBuffer[0];
+				parameterTransmittedSuccess = 1;
 				switch (upperRxBuffer[0]){
 					case 0:{
 						startFlag=0;
@@ -779,6 +780,11 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 						pressureUpperThreshold[3] = upperRxBuffer[3];
 						pressureUpperThreshold[4] = upperRxBuffer[4];
 						pressureUpperThreshold[5] = upperRxBuffer[5];
+						return;
+					}
+					case 16:{
+						
+						
 						return;
 					}
 					case 0x11:{

@@ -75,10 +75,8 @@ long ulResult;
 
 
 float filter[10][10];
-enum Hand {left=0,right=1};
-enum Mode {zzz = 0,zj = 1};
-enum Hand amputatedHand = right;
-enum Mode name = zzz;
+
+
 
 /*
 0x00 0x00  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX  0xXX 0xXX    0xXX 
@@ -139,9 +137,6 @@ int main(void)
 	while(1)
 	{
 		
-		GetAdData();
-
-		HAL_Delay(10);
 	}
 }
 
@@ -354,178 +349,39 @@ void display()
 				switch(i)
 				{
 					//右手
-					case 0:{//16 sensor2
-						//GUI_Clear();	
+					case 0:{
 						GUI_DispStringAt("channel 1  ", 100, 150); 
-						GUI_DispFloat(num,4);//除以1000000后是实际电压值
+						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 150); 
-
-//						float curve1=12.04*(num)*(num)*(num)*(num)-24.93*(num)*(num)*(num);//sensor1
-//						float curve2=18.57*(num)*(num)+1.145*(num)-1.04;
-//						float curve3=curve1+curve2;
-//						float curve1=0.7073*(num)*(num)*(num)*(num)+6.861*(num)*(num)*(num);//sensor7
-//						float curve2=-9.486*(num)*(num)+13.34*(num)-3.192;
-//						float curve3=curve1+curve2;
-
-//						float curve1=-9.368*(num)*(num)*(num)*(num)+32.51*(num)*(num)*(num);//sensor10_modified1
-//						float curve2=-26.39*(num)*(num)+16.84*(num)-2.77;
-//						float curve3=curve1+curve2;
-						float curve1=8.111*(num)*(num)*(num)-4.052*(num)*(num);//sensor13_19.8.28
-						float curve2=5.218*(num)-1.338;
-						float curve3=curve1+curve2;
-//						float curve1=9.038*(num)*(num)*(num)*(num)-19.81*(num)*(num)*(num);//sensor10_zjsystem
-//						float curve2=24.75*(num)*(num)-5.059*(num)-0.04702;
-//						float curve3=curve1+curve2;
-//						float curve1=-21.71*(num)*(num)*(num)*(num)+84.42*(num)*(num)*(num);//A201 25lbs sensor35
-//						float curve2=-44.53*(num)*(num)+42.89*(num)-5.881;
-//						float curve3=curve1+curve2;
-//						float curve1=11.61*(num)*(num)*(num);//namisuo sensor6
-//						float curve2=-23.74*(num)*(num)+17.8*(num)-4.146;
-//						float curve3=curve1+curve2;
-//						float curve1=-48.03*(num)*(num)*(num)*(num)+135.8*(num)*(num)*(num);//namisuo sensor1
-//						float curve2=-134.5*(num)*(num)+57.13*(num)-8.466;
-//						float curve3=curve1+curve2;
-						GUI_DispFloat(curve3,4);//sensor20
-						//if(channelEnableflag[1])
-							stimulate(&huart1,curve3,1);//ok ch1
+						GUI_DispFloat(transferredDsuValue[i],4);//sensor20
 						break;
 					}
-					case 1:{//3 sensor3
+					case 1:{
 						GUI_DispStringAt("channel 2  ", 100, 180); 
 						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 180); 
-
-//						float curve4=6.006*(num)*(num);//sensor3
-//						float curve5=4.532*(num)-1.164;
-//						float curve6=curve4+curve5;
-//						float curve4=-29.41*(num)*(num)*(num)*(num)+98.32*(num)*(num)*(num);//sensor8
-//						float curve5=-101.6*(num)*(num)+50.09*(num)-7.829;
-//						float curve6=curve4+curve5;
-
-//						float curve4=11.01*(num)*(num)*(num)*(num)-25.4*(num)*(num)*(num);//sensor11_modified1
-//						float curve5=29.67*(num)*(num)-5.807*(num)+0.2646;
-//						float curve6=curve4+curve5;	
-						float curve4=2.339*(num)*(num)*(num)+6.488*(num)*(num);//sensor14_19.8.28
-						float curve5=1.666*(num)-0.9607;
-						float curve6=curve4+curve5;	
-//					  float curve4=9.925*(num)*(num)*(num)*(num)-16*(num)*(num)*(num);//sensor11_zjsystem
-//						float curve5=15.57*(num)*(num)-1.162*(num)-0.4986;
-//						float curve6=curve4+curve5;
-//						float curve4=-3.045*(num)*(num)*(num)*(num)+44.08*(num)*(num)*(num);//A201 25lbs sensor25
-//						float curve5=-32.39*(num)*(num)+38.67*(num)-3.168;
-//						float curve6=curve4+curve5;
-//						float curve4=8.482*(num)*(num)*(num);//sensor8
-//						float curve5=-15.2*(num)*(num)+9.845*(num)-1.995; //namisuo sensor7
-//						float curve6=curve4+curve5;
-//						float curve4=1.551*(num)*(num)*(num)*(num)+10.15*(num)*(num)*(num);//namisuo sensor2
-//						float curve5=-22.6*(num)*(num)+15.59*(num)-3.069;
-//						float curve6=curve4+curve5;
-						GUI_DispFloat(curve6,4);
-						//if(channelEnableflag[2])
-							stimulate(&huart3, curve6,2);
+						GUI_DispFloat(transferredDsuValue[i],4);									
 						break;
 					}
-					case 2:{//2 sensor6
+					case 2:{
 						GUI_DispStringAt("channel 3  ", 100, 210); 
 						GUI_DispFloat(num,4);
-						GUI_DispStringAt("transferred data  ", 300, 210); 
-
-//						float curve7=4.348*(num)*(num)*(num)-3.622*(num)*(num);//sensor6
-//						float curve8=9.488*(num)-2.023;
-//						float curve9=curve7+curve8;
-//						float curve7=1.004*(num)*(num)*(num)*(num)+4.567*(num)*(num)*(num);//sensor9
-//						float curve8=-7.793*(num)*(num)+12.99*(num)-2.708;
-//						float curve9=curve7+curve8;		
-//						float curve7=10.17*(num)*(num)*(num)*(num)-21.69*(num)*(num)*(num);//sensor9_modified1
-//						float curve8=21.51*(num)*(num)-3.173*(num)+0.2217;
-//						float curve9=curve7+curve8;		
-						float curve7=16.67*(num)*(num)*(num)*(num)-39.43*(num)*(num)*(num);//sensor8_modified1
-						float curve8=38.47*(num)*(num)-8.183*(num)+0.3524;
-						float curve9=curve7+curve8;
-//						float curve7=-5.625*(num)*(num)*(num)*(num)+23.75*(num)*(num)*(num);//sensor8_zjsystem
-//						float curve8=-15.12*(num)*(num)+9.447*(num)-1.811;
-//						float curve9=curve7+curve8;
-//						float curve7=-30.89*(num)*(num)*(num)*(num)+99.53*(num)*(num)*(num);//A201 25lbs sensor31
-//						float curve8=-55.95*(num)*(num)+53.72*(num)-6.505;
-//						float curve9=curve7+curve8;	
-
-//						float curve7=5.223*(num)*(num)*(num)-8.161*(num)*(num);//nnamisuo sensor8
-//						float curve8=6.196*(num)-1.177;
-//						float curve9=curve7+curve8;	
-//						float curve7=-38.96*(num)*(num)*(num)*(num)+114.2*(num)*(num)*(num);//namisuo sensor3
-//						float curve8=-112.1*(num)*(num)+46.17*(num)-6.709;
-//						float curve9=curve7+curve8;							
-						GUI_DispFloat(curve9,4);//sensor22
-						//if(channelEnableflag[3])
-							stimulate(&huart4,curve9,3);//bad ch3
+						GUI_DispStringAt("transferred data  ", 300, 210); 	
+						GUI_DispFloat(transferredDsuValue[i],4);//sensor22	
 						break;
 					}
 					case 3:{//15 sensor1
 						GUI_DispStringAt("channel 4  ", 100, 240); 
 						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 240); 
-
-//						float curve10=-18.4*(num)*(num)*(num)*(num)+59.65*(num)*(num)*(num);//sensor2
-//						float curve11=-61.04*(num)*(num)+33.58*(num)-5.038;
-//						float curve12=curve10+curve11;
-//						float curve10=4.212*(num)*(num)*(num)*(num)+0.2938*(num)*(num)*(num);//sensor10
-//						float curve11=-6.719*(num)*(num)+15.99*(num)-3.489;
-//						float curve12=curve10+curve11;
-						float curve10=-1.664*(num)*(num)*(num)*(num)+16.54*(num)*(num)*(num);//sensor7_modified1
-						float curve11=-18.74*(num)*(num)+16.48*(num)-3.238;
-						float curve12=curve10+curve11;
-//						float curve10=22.89*(num)*(num)*(num)*(num)-60.87*(num)*(num)*(num);//sensor7_zjsystem
-//						float curve11=70.75*(num)*(num)-24.36*(num)+2.574;
-//						float curve12=curve10+curve11;
-//						float curve10=3.909*(num)*(num)*(num)*(num)+12.39*(num)*(num)*(num);//A201 25lbs sensor34
-//						float curve11=17.49*(num)*(num)+21.28*(num)-2.004;
-//						float curve12=curve10+curve11;
-//						float curve10=-26.66*(num)*(num)*(num)*(num)+80.63*(num)*(num)*(num);//namisuo sensor9
-//						float curve11=-83.53*(num)*(num)+36.66*(num)-5.676;
-//						float curve12=curve10+curve11;
-						GUI_DispFloat(curve12,4);//sensor23
-						//if(channelEnableflag[4])
-							stimulate(&huart5,curve12,4);
+						GUI_DispFloat(transferredDsuValue[i],4);//sensor23
 						break;
 					}
 					case 4:{//1 sensor4
 						GUI_DispStringAt("channel 5  ", 100, 270); 
 						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 270); 
-
-//						float curve13=-8.86*(num)*(num)*(num)*(num)+30.72*(num)*(num)*(num);//sensor4
-//						float curve14=-29.84*(num)*(num)+16.15*(num)-2.713;
-//						float curve15=curve13+curve14;	
-						
-//						float curve13=-3.237*(num)*(num)*(num)*(num)+16.61*(num)*(num)*(num);//sensor11
-//						float curve14=-16.17*(num)*(num)+14.18*(num)-3.079;
-//						float curve15=curve13+curve14;		
-//						float curve13=-3.975*(num)*(num)*(num)*(num)+14.22*(num)*(num)*(num);//sensor12
-//						float curve14=-4.909*(num)*(num)+4.908*(num)-1.074;
-//						float curve15=curve13+curve14;	
-
-						float curve13=-2.035*(num)*(num)*(num)*(num)+14.54*(num)*(num)*(num);//sensor12_modified1
-						float curve14=-13.22*(num)*(num)+11.94*(num)-2.073;
-						float curve15=curve13+curve14;
-//						float curve13=29.33*(num)*(num)*(num)*(num)-83.12*(num)*(num)*(num);//sensor12_zjsystem
-//						float curve14=87.87*(num)*(num)-29.84*(num)+3.258;
-//						float curve15=curve13+curve14;
-//						float curve13=83.39*(num)*(num)*(num)*(num)-141.3*(num)*(num)*(num);//A201 25lbs sensor37
-//						float curve14=116.2*(num)*(num)+5.029*(num)-1.712;
-//						float curve15=curve13+curve14;
-//						float curve13=-848.4*(num)*(num)*(num)*(num)+1110*(num)*(num)*(num);//namisuo sensor5
-//						float curve14=-697.7*(num)*(num)+211.7*(num)-24.87+250.8*(num)*(num)*(num)*(num)*(num);
-//						float curve15=curve13+curve14;	
-//						float curve13=-19.9*(num)*(num)*(num)*(num)+61*(num)*(num)*(num);//namisuo sensor10
-//						float curve14=-63.94*(num)*(num)+29.21*(num)-4.6;
-//						float curve15=curve13+curve14;	
-//						float curve13=26.62*(num)*(num)*(num);//namisuo sensor5
-//						float curve14=-50.28*(num)*(num)+32.63*(num)-6.94;
-//						float curve15=curve13+curve14;						
-						GUI_DispFloat(curve15,4);//sensor24
-						
-						stimulate(&huart7, curve15,5);//ok ch6
-					
+						GUI_DispFloat(transferredDsuValue[i],4);//sensor24
 						break;
 					}
 					default:
@@ -540,77 +396,40 @@ void display()
 				num = ldVolutage[i];
 				switch(i)
 				{
-					//左手
+					//左手1
 					case 5:{
 						GUI_DispStringAt("channel 1  ", 100, 150); 
-						GUI_DispFloat(num,4);//除以1000000后是实际电压值
-
+						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 150); 
-						float curve01=19.5*(num)*(num);//A201 25lbs sneor20 19.09.20
-						float curve02=-6.607*(num)+1.761 ;
-						float curve03=curve01+curve02;
-
-						GUI_DispFloat(curve03,4);
-						
-						stimulate(&huart1, curve03,1);
+						GUI_DispFloat(transferredDsuValue[i],4);
 						break;
 					}
 					case 6:{
 						GUI_DispStringAt("channel 2  ", 100, 180); 
 						GUI_DispFloat(num,4);
-
 						GUI_DispStringAt("transferred data  ", 300, 180); 
-						float curve04=12.97*(num)*(num)*(num);//A201 25lbs sneor21 19.9.20
-						float curve05= -10.46*(num)*(num)+11.26*num -1.258;
-						float curve06=curve04+curve05;
-
-						GUI_DispFloat(curve06,4);
-			
-						stimulate(&huart3,curve06,2);
+						GUI_DispFloat(transferredDsuValue[i],4);
 						break;
 					}
 					case 7:{
 						GUI_DispStringAt("channel 3  ", 100, 210); 
 						GUI_DispFloat(num,4);
-
 						GUI_DispStringAt("transferred data  ", 300, 210); 
-						float curve07=5.526*(num)*(num)*(num);//A201 25lbs sneor22 19.9.20
-						float curve08= 1.15 *(num)*(num) + 6.804*(num) -0.7225;
-						float curve09=curve07+curve08;	
-
-						GUI_DispFloat(curve09,4);
-					
-						stimulate(&huart4,curve09,3);
+						GUI_DispFloat(transferredDsuValue[i],4);
 						break;
 					}
 					case 8:{
 						GUI_DispStringAt("channel 4  ", 100, 240); 
 						GUI_DispFloat(num,4);
-
 						GUI_DispStringAt("transferred data  ", 300, 240); 
-						float curve10= 17.4*(num)*(num);//A201 25lbs sneor23 19.8.26
-						float curve11= -4.452 *num +0.9479;
-//						float curve10= 6.928*(num)*(num)*(num);//A201 25lbs sneor23 19.9.20
-//						float curve11= 0.2163*(num)*(num)+9.428 *num  -1.657;
-						float curve12=curve10+curve11;
-
-						GUI_DispFloat(curve12,4);
-						
-						stimulate(&huart5,curve12,4);
+						GUI_DispFloat(transferredDsuValue[i],4);				
 						break;
 					}
 					case 9:{
 						GUI_DispStringAt("channel 5  ", 100, 270); 
 						GUI_DispFloat(num,4);
-
 						GUI_DispStringAt("transferred data  ", 300, 270); 
-						float curve13=27.16*(num)*(num)*(num);//A201 25lbs sneor24 19.9.20
-						float curve14= -38.06*(num)*(num) + 27.1*(num)  -3.862 ;
-						float curve15=curve13+curve14;
-
-						GUI_DispFloat(curve15,4);
-
-						stimulate(&huart7,curve15,5);
+						GUI_DispFloat(transferredDsuValue[i],4);						
 						break;
 					}
 					default:
@@ -632,171 +451,38 @@ void display()
 				{
 					//右手
 					case 0:{//16 sensor2
-						//GUI_Clear();	
 						GUI_DispStringAt("channel 1  ", 100, 150); 
 						GUI_DispFloat(num,4);//除以1000000后是实际电压值
 						GUI_DispStringAt("transferred data  ", 300, 150); 
-
-//						float curve1=12.04*(num)*(num)*(num)*(num)-24.93*(num)*(num)*(num);//sensor1
-//						float curve2=18.57*(num)*(num)+1.145*(num)-1.04;
-//						float curve3=curve1+curve2;
-//						float curve1=0.7073*(num)*(num)*(num)*(num)+6.861*(num)*(num)*(num);//sensor7
-//						float curve2=-9.486*(num)*(num)+13.34*(num)-3.192;
-//						float curve3=curve1+curve2;
-
-//						float curve1=-9.368*(num)*(num)*(num)*(num)+32.51*(num)*(num)*(num);//sensor10_modified1
-//						float curve2=-26.39*(num)*(num)+16.84*(num)-2.77;
-//						float curve3=curve1+curve2;
-//						float curve1=9.038*(num)*(num)*(num)*(num)-19.81*(num)*(num)*(num);//sensor10_zjsystem
-//						float curve2=24.75*(num)*(num)-5.059*(num)-0.04702;
-//						float curve3=curve1+curve2;
-						float curve1=-21.71*(num)*(num)*(num)*(num)+84.42*(num)*(num)*(num);//A201 25lbs sensor35
-						float curve2=-44.53*(num)*(num)+42.89*(num)-5.881;
-						float curve3=curve1+curve2;
-//						float curve1=11.61*(num)*(num)*(num);//namisuo sensor6
-//						float curve2=-23.74*(num)*(num)+17.8*(num)-4.146;
-//						float curve3=curve1+curve2;
-//						float curve1=-48.03*(num)*(num)*(num)*(num)+135.8*(num)*(num)*(num);//namisuo sensor1
-//						float curve2=-134.5*(num)*(num)+57.13*(num)-8.466;
-//						float curve3=curve1+curve2;
-						GUI_DispFloat(curve3,4);//sensor20
-						//if(channelEnableflag[1])
-							stimulate(&huart1,curve3,1);//ok ch1
+						GUI_DispFloat(transferredDsuValue[i],4);//sensor20	
 						break;
 					}
 					case 1:{//3 sensor3
 						GUI_DispStringAt("channel 2  ", 100, 180); 
 						GUI_DispFloat(num,4);
-						GUI_DispStringAt("transferred data  ", 300, 180); 
-
-//						float curve4=6.006*(num)*(num);//sensor3
-//						float curve5=4.532*(num)-1.164;
-//						float curve6=curve4+curve5;
-//						float curve4=-29.41*(num)*(num)*(num)*(num)+98.32*(num)*(num)*(num);//sensor8
-//						float curve5=-101.6*(num)*(num)+50.09*(num)-7.829;
-//						float curve6=curve4+curve5;
-
-//						float curve4=11.01*(num)*(num)*(num)*(num)-25.4*(num)*(num)*(num);//sensor11_modified1
-//						float curve5=29.67*(num)*(num)-5.807*(num)+0.2646;
-//						float curve6=curve4+curve5;	
-//					  float curve4=9.925*(num)*(num)*(num)*(num)-16*(num)*(num)*(num);//sensor11_zjsystem
-//						float curve5=15.57*(num)*(num)-1.162*(num)-0.4986;
-//						float curve6=curve4+curve5;
-						float curve4=-3.045*(num)*(num)*(num)*(num)+44.08*(num)*(num)*(num);//A201 25lbs sensor25
-						float curve5=-32.39*(num)*(num)+38.67*(num)-3.168;
-						float curve6=curve4+curve5;
-//						float curve4=8.482*(num)*(num)*(num);//sensor8
-//						float curve5=-15.2*(num)*(num)+9.845*(num)-1.995; //namisuo sensor7
-//						float curve6=curve4+curve5;
-//						float curve4=1.551*(num)*(num)*(num)*(num)+10.15*(num)*(num)*(num);//namisuo sensor2
-//						float curve5=-22.6*(num)*(num)+15.59*(num)-3.069;
-//						float curve6=curve4+curve5;
-						GUI_DispFloat(curve6,4);
-						//if(channelEnableflag[2])
-							stimulate(&huart3, curve6,2);
+						GUI_DispStringAt("transferred data  ", 300, 180); 						
+						GUI_DispFloat(transferredDsuValue[i],4);
 						break;
 					}
 					case 2:{//2 sensor6
 						GUI_DispStringAt("channel 3  ", 100, 210); 
 						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 210); 
-
-//						float curve7=4.348*(num)*(num)*(num)-3.622*(num)*(num);//sensor6
-//						float curve8=9.488*(num)-2.023;
-//						float curve9=curve7+curve8;
-//						float curve7=1.004*(num)*(num)*(num)*(num)+4.567*(num)*(num)*(num);//sensor9
-//						float curve8=-7.793*(num)*(num)+12.99*(num)-2.708;
-//						float curve9=curve7+curve8;		
-//						float curve7=10.17*(num)*(num)*(num)*(num)-21.69*(num)*(num)*(num);//sensor9_modified1
-//						float curve8=21.51*(num)*(num)-3.173*(num)+0.2217;
-//						float curve9=curve7+curve8;		
-//						float curve7=16.67*(num)*(num)*(num)*(num)-39.43*(num)*(num)*(num);//sensor8_modified1
-//						float curve8=38.47*(num)*(num)-8.183*(num)+0.3524;
-//						float curve9=curve7+curve8;
-//						float curve7=-5.625*(num)*(num)*(num)*(num)+23.75*(num)*(num)*(num);//sensor8_zjsystem
-//						float curve8=-15.12*(num)*(num)+9.447*(num)-1.811;
-//						float curve9=curve7+curve8;
-						float curve7=-30.89*(num)*(num)*(num)*(num)+99.53*(num)*(num)*(num);//A201 25lbs sensor31
-						float curve8=-55.95*(num)*(num)+53.72*(num)-6.505;
-						float curve9=curve7+curve8;	
-
-//						float curve7=5.223*(num)*(num)*(num)-8.161*(num)*(num);//nnamisuo sensor8
-//						float curve8=6.196*(num)-1.177;
-//						float curve9=curve7+curve8;	
-//						float curve7=-38.96*(num)*(num)*(num)*(num)+114.2*(num)*(num)*(num);//namisuo sensor3
-//						float curve8=-112.1*(num)*(num)+46.17*(num)-6.709;
-//						float curve9=curve7+curve8;							
-						GUI_DispFloat(curve9,4);//sensor22
-						//if(channelEnableflag[3])
-							stimulate(&huart4,curve9,3);//bad ch3
+						GUI_DispFloat(transferredDsuValue[i],4);//sensor22
 						break;
 					}
 					case 3:{//15 sensor1
 						GUI_DispStringAt("channel 4  ", 100, 240); 
 						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 240); 
-
-//						float curve10=-18.4*(num)*(num)*(num)*(num)+59.65*(num)*(num)*(num);//sensor2
-//						float curve11=-61.04*(num)*(num)+33.58*(num)-5.038;
-//						float curve12=curve10+curve11;
-//						float curve10=4.212*(num)*(num)*(num)*(num)+0.2938*(num)*(num)*(num);//sensor10
-//						float curve11=-6.719*(num)*(num)+15.99*(num)-3.489;
-//						float curve12=curve10+curve11;
-//						float curve10=-1.664*(num)*(num)*(num)*(num)+16.54*(num)*(num)*(num);//sensor7_modified1
-//						float curve11=-18.74*(num)*(num)+16.48*(num)-3.238;
-//						float curve12=curve10+curve11;
-//						float curve10=22.89*(num)*(num)*(num)*(num)-60.87*(num)*(num)*(num);//sensor7_zjsystem
-//						float curve11=70.75*(num)*(num)-24.36*(num)+2.574;
-//						float curve12=curve10+curve11;
-						float curve10=3.909*(num)*(num)*(num)*(num)+12.39*(num)*(num)*(num);//A201 25lbs sensor34
-						float curve11=17.49*(num)*(num)+21.28*(num)-2.004;
-						float curve12=curve10+curve11;
-//						float curve10=-26.66*(num)*(num)*(num)*(num)+80.63*(num)*(num)*(num);//namisuo sensor9
-//						float curve11=-83.53*(num)*(num)+36.66*(num)-5.676;
-//						float curve12=curve10+curve11;
-						GUI_DispFloat(curve12,4);//sensor23
-						//if(channelEnableflag[4])
-							stimulate(&huart5,curve12,4);
+						GUI_DispFloat(transferredDsuValue[i],4);//sensor23
 						break;
 					}
 					case 4:{//1 sensor4
 						GUI_DispStringAt("channel 5  ", 100, 270); 
 						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 270); 
-
-//						float curve13=-8.86*(num)*(num)*(num)*(num)+30.72*(num)*(num)*(num);//sensor4
-//						float curve14=-29.84*(num)*(num)+16.15*(num)-2.713;
-//						float curve15=curve13+curve14;	
-						
-//						float curve13=-3.237*(num)*(num)*(num)*(num)+16.61*(num)*(num)*(num);//sensor11
-//						float curve14=-16.17*(num)*(num)+14.18*(num)-3.079;
-//						float curve15=curve13+curve14;		
-//						float curve13=-3.975*(num)*(num)*(num)*(num)+14.22*(num)*(num)*(num);//sensor12
-//						float curve14=-4.909*(num)*(num)+4.908*(num)-1.074;
-//						float curve15=curve13+curve14;	
-
-//						float curve13=-2.035*(num)*(num)*(num)*(num)+14.54*(num)*(num)*(num);//sensor12_modified1
-//						float curve14=-13.22*(num)*(num)+11.94*(num)-2.073;
-//						float curve15=curve13+curve14;
-//						float curve13=29.33*(num)*(num)*(num)*(num)-83.12*(num)*(num)*(num);//sensor12_zjsystem
-//						float curve14=87.87*(num)*(num)-29.84*(num)+3.258;
-//						float curve15=curve13+curve14;
-						float curve13=83.39*(num)*(num)*(num)*(num)-141.3*(num)*(num)*(num);//A201 25lbs sensor37
-						float curve14=116.2*(num)*(num)+5.029*(num)-1.712;
-						float curve15=curve13+curve14;
-//						float curve13=-848.4*(num)*(num)*(num)*(num)+1110*(num)*(num)*(num);//namisuo sensor5
-//						float curve14=-697.7*(num)*(num)+211.7*(num)-24.87+250.8*(num)*(num)*(num)*(num)*(num);
-//						float curve15=curve13+curve14;	
-//						float curve13=-19.9*(num)*(num)*(num)*(num)+61*(num)*(num)*(num);//namisuo sensor10
-//						float curve14=-63.94*(num)*(num)+29.21*(num)-4.6;
-//						float curve15=curve13+curve14;	
-//						float curve13=26.62*(num)*(num)*(num);//namisuo sensor5
-//						float curve14=-50.28*(num)*(num)+32.63*(num)-6.94;
-//						float curve15=curve13+curve14;						
-						GUI_DispFloat(curve15,4);//sensor24
-						
-						stimulate(&huart7, curve15,5);//ok ch6
-					
+						GUI_DispFloat(transferredDsuValue[i],4);//sensor24
 						break;
 					}
 					default:
@@ -815,66 +501,36 @@ void display()
 					case 5:{
 						GUI_DispStringAt("channel 1  ", 100, 150); 
 						GUI_DispFloat(num,4);//除以后是实际电压值
-
-						GUI_DispStringAt("transferred data  ", 300, 150); 
-						//double curve01=1.957*exp(1.988*num*4.6/5-0.05);
-						//double curve02=-1.76*exp(-3.789*num*4.6/5-0.05);
-						double curve01=1.476*exp(1.864*num+0.01984);
-						double curve02=-2.169*exp(-13.69*num-1.2321);				
-						double curve03=curve01+curve02;
-						GUI_DispFloat(curve03,4);
-						
-						stimulate(&huart1, curve03,1);
+						GUI_DispStringAt("transferred data  ", 300, 150); 						
+						GUI_DispFloat(transferredDsuValue[i],4);
 						break;
-						}
+					}
 					case 6:{
 						GUI_DispStringAt("channel 2  ", 100, 180); 
 						GUI_DispFloat(num,4);
-
-						GUI_DispStringAt("transferred data  ", 300, 180); 
-						//double curve04=1.946e+04*exp(0.8933*num*4.6/5-0.125);
-						//double curve05=-1.946e+04*exp(0.8929*num*4.6/5-0.125);
-						double curve04=2.282*exp(1.986*num+0.05958);
-						double curve05=-3.907*exp(-5.262*num-0.18996);					
-						double curve06=curve04+curve05;
-						GUI_DispFloat(curve06,4);
-
-						stimulate(&huart3,curve06,2);
+						GUI_DispStringAt("transferred data  ", 300, 180); 							
+						GUI_DispFloat(transferredDsuValue[i],4);
 						break;
 					}
 					case 7:{
 						GUI_DispStringAt("channel 3  ", 100, 210); 
 						GUI_DispFloat(num,4);
-
-						GUI_DispStringAt("transferred data  ", 300, 210); 
-						//double curve07=2.455*exp(1.891*num*5/4.6-0.3);
-						//double curve08=-2.977*exp(-3.137*num*5/4.6-0.3);
-						double curve07=-0.026*exp(7.94*num-0.1588);
-						double curve08=0.8*exp(4.538*num-0.09076);
-						double curve09=curve07+curve08;
-						GUI_DispFloat(curve09,4);
-
-						stimulate(&huart4,curve09,3);
+						GUI_DispStringAt("transferred data  ", 300, 210); 						
+						GUI_DispFloat(transferredDsuValue[i],4);						
 						break;
 					}
 					case 8:{
 						GUI_DispStringAt("channel 4  ", 100, 240); 
 						GUI_DispFloat(num,4);
-
 						GUI_DispStringAt("transferred data  ", 300, 240); 
-						GUI_DispFloat(14.1*num-4,4);
-
-						stimulate(&huart5,14.1*num-4,4);
+						GUI_DispFloat(transferredDsuValue[i],4);
 						break;
 					}
 					case 9:{
 						GUI_DispStringAt("channel 5  ", 100, 270); 
 						GUI_DispFloat(num,4);
-
 						GUI_DispStringAt("transferred data  ", 300, 270); 
-						GUI_DispFloat(16.55*num-4.5,4);
-
-						stimulate(&huart7,16.55*num-4.5,5);
+						GUI_DispFloat(transferredDsuValue[i],4);						
 						break;			
 					}
 					default:
@@ -891,15 +547,10 @@ void GetAdData(void)
 {
 		static int tempcnt = 0;
 		
-		//HAL_GPIO_WritePin(RESET_GPIO_Port, RESET_Pin, GPIO_PIN_RESET);//Reset
-		//ADS1256_Init();//理论上不用再次初始化，这是折衷的做法，否则会出现AD采样偶尔错误的后果。经测试推测是与DSU通信有关。
-		
 		for(int i = 0;i < 5;i++)
 		{
-			__disable_irq();
 			ulResult = ADS_sum( (i << 4) | 0x08);	
-			__enable_irq();
-
+			
 			if( ulResult & 0x800000 )
 			{
 			 	ulResult = ~(unsigned long)ulResult;
@@ -922,9 +573,7 @@ void GetAdData(void)
 
 		for(int i = 5;i < 8;i++)
 		{
-			__disable_irq();
 			ulResult = ADS_sum( (i << 4) | 0x08);
-			__enable_irq();
 			if( ulResult & 0x800000 )
 			{
 			 	ulResult = ~(unsigned long)ulResult;
