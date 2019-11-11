@@ -69,7 +69,8 @@ static void CPU_CACHE_Enable(void);
 float MeanFilter(float input,float *a);
 void display(void);
 void GetAdData(void);
-void MainLoop(void);
+void FollowLoop(void);
+void PcFollowLoop(void);
 void TransferData2PC(void);
 long ulResult;
 
@@ -607,8 +608,11 @@ void GetAdData(void)
 			ldVolutage[9] = MeanFilter(ADC_convertedvalue[1],filter[9]);//-offset[9];
 }
 
-//负责把内容显示在屏幕上，并且
-void MainLoop()
+
+
+
+//负责把跟随模式内容显示在屏幕上，并且
+void FollowLoop()
 {
 	static int last_flag = 0;
 
@@ -676,6 +680,40 @@ void MainLoop()
 			break;			
 	}
 		last_flag = testmode_flag;
+}
+
+//PC压力跟随显示
+void PcFollowLoop()
+{
+	static int last_flag = 0;
+	if(testmode_flag==0x21||testmode_flag==0x22){
+		GUI_DispStringAt("Channel 1 ", 170, 150); 
+		GUI_DispFloat(ldVolutage[0],3);
+		GUI_DispStringAt("N  ", 390, 150); 
+
+		GUI_DispStringAt("Channel 2 ", 170, 180); 
+		GUI_DispFloat(ldVolutage[1],3);
+		GUI_DispStringAt("N  ", 390, 180); 
+	
+		GUI_DispStringAt("Channel 3 ", 170, 210); 
+		GUI_DispFloat(ldVolutage[2],3);
+		GUI_DispStringAt("N  ", 390, 210); 
+	
+		GUI_DispStringAt("Channel 4 ", 170, 240); 
+		GUI_DispFloat(ldVolutage[3],3);
+		GUI_DispStringAt("N  ", 390, 240); 
+	
+		GUI_DispStringAt("Channel 5 ", 170, 270); 
+		GUI_DispFloat(ldVolutage[4],3);
+		GUI_DispStringAt("N  ", 390, 270); 
+	}else {
+		GUI_DispStringAt("stop ",250,270);
+	}
+	if(last_flag!=testmode_flag&&testmode_flag!=0x21&&testmode_flag!=0x22){
+		GUI_Clear();
+	}
+
+	last_flag = testmode_flag;
 }
 
 //均值滤波

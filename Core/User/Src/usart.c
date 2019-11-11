@@ -698,7 +698,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 			
 			if(sum==UART8RxBuff){
 				testmode_flag = upperRxBuffer[0];
-				parameterTransmittedSuccess = 1;
+				parameterTransmittedSuccess = 1;//与屏幕显示相配合，做提示用
 				switch (upperRxBuffer[0]){
 					case 0:{
 						startFlag=0;
@@ -761,6 +761,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 						return;
 					}
 					case 13:{
+						//开机三种模式的选择，follow mode，freerun mode，mojoco mode
 						initMode = upperRxBuffer[1];
 						return;
 					}
@@ -822,6 +823,20 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 						parameter[5][2] = upperRxBuffer[5]<<8|upperRxBuffer[4];//5通道频率
 						return;
 					}
+					case 0x21:{
+						ldVolutage[0] = (upperRxBuffer[1]<<8|upperRxBuffer[2])/1000.0;//mojoco模式通道1
+						ldVolutage[1] = (upperRxBuffer[3]<<8|upperRxBuffer[4])/1000.0;//mojoco模式通道2
+						ldVolutage[2] = (upperRxBuffer[5]<<8|upperRxBuffer[6])/1000.0;//mojoco模式通道3
+						parameterTransmittedSuccess = 0;
+						return;
+					}
+					case 0x22:{
+						ldVolutage[3] = (upperRxBuffer[1]<<8|upperRxBuffer[2])/1000.0;//mojoco模式通道4
+						ldVolutage[4] = (upperRxBuffer[3]<<8|upperRxBuffer[4])/1000.0;//mojoco模式通道5
+						parameterTransmittedSuccess = 0;
+						return;
+					}
+
 					default:
 						return;
 				}	

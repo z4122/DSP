@@ -44,6 +44,6 @@ void stimulate(UART_HandleTypeDef *huart,double amplitude,int channel);
 void stimulateFreeRun(UART_HandleTypeDef *huart,int channel);
 void stimulateDSU(void);
 void FreeRun_Init(void);
-void PCFollow_Init(void);
+void PCFollowStimulateDSU(void);
 
 #endif

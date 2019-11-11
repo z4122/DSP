@@ -1,8 +1,10 @@
 #include "timer.h"
 
-extern void MainLoop(void);//在主函数中定义
+extern void FollowLoop(void);//在主函数中定义
+extern void PcFollowLoop(void);//在主函数中定义，后面要调换位置
 extern void GetAdData(void);//在主函数中定义，调用AD采样模块
 extern void TransferData2PC(void);//在主函数中定义，传输到PC端
+extern void PCFollowStimulateDSU(void);//
 
 TIM_HandleTypeDef TIM3_Handler;
 TIM_HandleTypeDef TIM4_Handler;
@@ -90,18 +92,28 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	if(htim->Instance==TIM3_Handler.Instance)
 	{
 		static int timesCount = 1;
-		GetAdData();//AD采样频率100hz
+		if(initMode!=3){//不是mojoco模式
+			GetAdData();//AD采样频率100hz
 		
 		//if(timesCount%5==0)
 			stimulateDSU();
-
-		if(timesCount%4==0)
-			MainLoop();//意味着每30ms刷新一次屏幕，刷新频率为33hz
-		if(timesCount%10==0){
-			TransferData2PC();//意味着每100ms，发送一次数据到PC端。
-			timesCount=0;
+			if(timesCount%4==0)
+				FollowLoop();//意味着每30ms刷新一次屏幕，刷新频率为33hz
+			if(timesCount%10==0){
+				TransferData2PC();//意味着每100ms，发送一次数据到PC端。
+				timesCount=0;
+			}
+			timesCount++;
 		}
-		timesCount++;
+		else{//在mojoco模式下有差别
+			PCFollowStimulateDSU();
+			if(timesCount%4==0)
+				PcFollowLoop();//意味着每30ms刷新一次屏幕，刷新频率为33hz
+			if(timesCount%10==0){
+				timesCount=0;
+			}
+			timesCount++;
+		}	
 	}
 	else if(htim->Instance==TIM4_Handler.Instance)
 	{

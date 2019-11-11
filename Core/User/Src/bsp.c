@@ -39,7 +39,6 @@ void BSP_Init()
 		FreeRun_Init();
 	}else if(initMode==3){
 		//接受从PC端传过来的压力数据。
-		PCFollow_Init();
 		TIM3_Init(100-1,20000-1);//通用定时器，优先级高，400M/2/20000 = 10k 1/10k = 0.1ms 100*0.1ms=10ms
 	}
 

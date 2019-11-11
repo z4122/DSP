@@ -375,9 +375,7 @@ void stimulate(UART_HandleTypeDef *huart,double pressure,int channel)
 		pressure = 0;
 
 	//当通道选择上并且模式不是停止模式时
-	if(channelEnableflag[channel]==1&&testmode_flag!=0){	
-		if(pressure>=pressureLowerThreshold[channel]){
-
+	if(channelEnableflag[channel]==1&&testmode_flag!=0&&pressure>=pressureLowerThreshold[channel]){	
 			if(firstFlag[channel]==0){//只有第一次进入的时候会传递所有参数
 				//stim_stop(huart);//800102, no feedback
 				merge_stimulate_parameter(huart,pressure,channel);
@@ -388,9 +386,7 @@ void stimulate(UART_HandleTypeDef *huart,double pressure,int channel)
 			else{//除了第一次之外，参数只传递幅值大小
 				stim_change_amplitude(huart,pressure,channel);
 			}
-			
-		}
-	}
+	} 
 	else{//记住如果进入了停止模式，也即是testmode_flag==0，或是通道没有选择上，那么相应的firstFlag标志位就要重新刷新，代表着停止电刺激了
 		firstFlag[channel]=0;
 		if(onStimFlag[channel]==1){ //如果正在刺激，并且进入了停止模式，那么就会发送停止信号。
@@ -673,8 +669,38 @@ void FreeRun_Init(){
 
 }
 
-void PCFollow_Init()
+void PCFollowStimulateDSU()
 {
-	
-
+		for(int i = 0;i<5;i++){
+			double num = ldVolutage[i];
+			switch(i){
+			case 0: {
+				transferredDsuValue[i] = num;
+				stimulate(&huart1,num,1);//
+				break;
+			}
+			case 1: {
+				transferredDsuValue[i] = num;
+				stimulate(&huart3, num,2);
+				break;
+			}
+			case 2: {
+				transferredDsuValue[i] = num;
+				stimulate(&huart4,num,3);
+				break;
+			}
+			case 3: {
+				transferredDsuValue[i] = num;
+				stimulate(&huart5,num,4);
+				break;
+			}
+			case 4: {	
+				transferredDsuValue[i] = num;
+				stimulate(&huart7, num,5);//ok ch6
+				break;
+			}
+			default:
+				break;
+			}
+		}	
 }

@@ -2,6 +2,7 @@
 #include "stm32h743i_eval.h"
 #include "visualscope.h"
 #include "GUI.h"
+#include "ad.h"
 
 
 
