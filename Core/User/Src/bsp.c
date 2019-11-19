@@ -15,7 +15,9 @@ void BSP_Init()
 	__HAL_RCC_GPIOI_CLK_ENABLE();
 	__HAL_RCC_GPIOJ_CLK_ENABLE();
 	__HAL_RCC_GPIOK_CLK_ENABLE();
-	
+	__HAL_RCC_DMA1_CLK_ENABLE();   
+	__HAL_RCC_ADC12_CLK_ENABLE();
+
 	USART1_Init();//ch1
 	USART3_Init();//ch2
 	UART4_Init();//ch3

@@ -5,7 +5,7 @@ uint8_t stimulate_parameter[20]="";
 float value[17][2];
 
 
-enum Mode name = zj;
+enum Mode name = zzz;
 enum Hand amputatedHand = right;
 
 extern void ChangePeriod(u16 period);

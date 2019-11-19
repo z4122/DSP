@@ -345,8 +345,10 @@ void display()
 			for(int i = 0;i<5;i++)
 			{
 				num = ldVolutage[i];
+				num=( (float)( (int)( (num+0.005)*100 ) ) )/100; //保留两位小数，这是一种常用的小技巧。
 				if(num<0.01)//为了让LCD显示0.00的时候正常显示
 					num = 0;
+				float tempTransferredDsuValue = ((float)( (int)( (transferredDsuValue[i]+0.005)*100 ) ) )/100;
 				switch(i)
 				{
 					//右手
@@ -354,35 +356,35 @@ void display()
 						GUI_DispStringAt("channel 1  ", 100, 150); 
 						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 150); 
-						GUI_DispFloat(transferredDsuValue[i],4);//sensor20
+						GUI_DispFloat(tempTransferredDsuValue,5);//sensor20
 						break;
 					}
 					case 1:{
 						GUI_DispStringAt("channel 2  ", 100, 180); 
 						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 180); 
-						GUI_DispFloat(transferredDsuValue[i],4);									
+						GUI_DispFloat(tempTransferredDsuValue,5);									
 						break;
 					}
 					case 2:{
 						GUI_DispStringAt("channel 3  ", 100, 210); 
 						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 210); 	
-						GUI_DispFloat(transferredDsuValue[i],4);//sensor22	
+						GUI_DispFloat(tempTransferredDsuValue,5);//sensor22	
 						break;
 					}
 					case 3:{//15 sensor1
 						GUI_DispStringAt("channel 4  ", 100, 240); 
 						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 240); 
-						GUI_DispFloat(transferredDsuValue[i],4);//sensor23
+						GUI_DispFloat(tempTransferredDsuValue,5);//sensor23
 						break;
 					}
 					case 4:{//1 sensor4
 						GUI_DispStringAt("channel 5  ", 100, 270); 
 						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 270); 
-						GUI_DispFloat(transferredDsuValue[i],4);//sensor24
+						GUI_DispFloat(tempTransferredDsuValue,5);//sensor24
 						break;
 					}
 					default:
@@ -395,6 +397,10 @@ void display()
 			for(int i = 5;i<10;i++)
 			{
 				num = ldVolutage[i];
+				num=( (float)( (int)( (num+0.005)*100 ) ) )/100; //保留两位小数，这是一种常用的小技巧。
+				if(num<0.01)//为了让LCD显示0.00的时候正常显示
+					num = 0;
+				float tempTransferredDsuValue = ((float)( (int)( (transferredDsuValue[i]+0.005)*100 ) ) )/100;
 				switch(i)
 				{
 					//左手1
@@ -402,35 +408,35 @@ void display()
 						GUI_DispStringAt("channel 1  ", 100, 150); 
 						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 150); 
-						GUI_DispFloat(transferredDsuValue[i],4);
+						GUI_DispFloat(tempTransferredDsuValue,5);
 						break;
 					}
 					case 6:{
 						GUI_DispStringAt("channel 2  ", 100, 180); 
 						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 180); 
-						GUI_DispFloat(transferredDsuValue[i],4);
+						GUI_DispFloat(tempTransferredDsuValue,5);
 						break;
 					}
 					case 7:{
 						GUI_DispStringAt("channel 3  ", 100, 210); 
 						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 210); 
-						GUI_DispFloat(transferredDsuValue[i],4);
+						GUI_DispFloat(tempTransferredDsuValue,5);
 						break;
 					}
 					case 8:{
 						GUI_DispStringAt("channel 4  ", 100, 240); 
 						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 240); 
-						GUI_DispFloat(transferredDsuValue[i],4);				
+						GUI_DispFloat(tempTransferredDsuValue,5);				
 						break;
 					}
 					case 9:{
 						GUI_DispStringAt("channel 5  ", 100, 270); 
 						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 270); 
-						GUI_DispFloat(transferredDsuValue[i],4);						
+						GUI_DispFloat(tempTransferredDsuValue,5);						
 						break;
 					}
 					default:
@@ -446,8 +452,10 @@ void display()
 			for(int i = 0;i<5;i++)
 			{
 				num = ldVolutage[i];
+				num=( (float)( (int)( (num+0.005)*100 ) ) )/100; //保留两位小数，这是一种常用的小技巧。
 				if(num<0.01)//为了让LCD显示0.00的时候正常显示
 					num = 0;
+				float tempTransferredDsuValue = ((float)( (int)( (transferredDsuValue[i]+0.005)*100 ) ) )/100;
 				switch(i)
 				{
 					//右手
@@ -455,35 +463,35 @@ void display()
 						GUI_DispStringAt("channel 1  ", 100, 150); 
 						GUI_DispFloat(num,4);//除以1000000后是实际电压值
 						GUI_DispStringAt("transferred data  ", 300, 150); 
-						GUI_DispFloat(transferredDsuValue[i],4);//sensor20	
+						GUI_DispFloat(tempTransferredDsuValue,5);//sensor20	
 						break;
 					}
 					case 1:{//3 sensor3
 						GUI_DispStringAt("channel 2  ", 100, 180); 
 						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 180); 						
-						GUI_DispFloat(transferredDsuValue[i],4);
+						GUI_DispFloat(tempTransferredDsuValue,5);
 						break;
 					}
 					case 2:{//2 sensor6
 						GUI_DispStringAt("channel 3  ", 100, 210); 
 						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 210); 
-						GUI_DispFloat(transferredDsuValue[i],4);//sensor22
+						GUI_DispFloat(tempTransferredDsuValue,5);//sensor22
 						break;
 					}
 					case 3:{//15 sensor1
 						GUI_DispStringAt("channel 4  ", 100, 240); 
 						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 240); 
-						GUI_DispFloat(transferredDsuValue[i],4);//sensor23
+						GUI_DispFloat(tempTransferredDsuValue,5);//sensor23
 						break;
 					}
 					case 4:{//1 sensor4
 						GUI_DispStringAt("channel 5  ", 100, 270); 
 						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 270); 
-						GUI_DispFloat(transferredDsuValue[i],4);//sensor24
+						GUI_DispFloat(tempTransferredDsuValue,5);//sensor24
 						break;
 					}
 					default:
@@ -496,6 +504,10 @@ void display()
 			for(int i = 5;i<10;i++)
 			{
 				num = ldVolutage[i];
+				num=( (float)( (int)( (num+0.005)*100 ) ) )/100; //保留两位小数，这是一种常用的小技巧。
+				if(num<0.01)//为了让LCD显示0.00的时候正常显示
+					num = 0;
+				float tempTransferredDsuValue = ((float)( (int)( (transferredDsuValue[i]+0.005)*100 ) ) )/100;
 				switch(i)
 				{
 					//左手
@@ -503,35 +515,35 @@ void display()
 						GUI_DispStringAt("channel 1  ", 100, 150); 
 						GUI_DispFloat(num,4);//除以后是实际电压值
 						GUI_DispStringAt("transferred data  ", 300, 150); 						
-						GUI_DispFloat(transferredDsuValue[i],4);
+						GUI_DispFloat(tempTransferredDsuValue,5);
 						break;
 					}
 					case 6:{
 						GUI_DispStringAt("channel 2  ", 100, 180); 
 						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 180); 							
-						GUI_DispFloat(transferredDsuValue[i],4);
+						GUI_DispFloat(tempTransferredDsuValue,5);
 						break;
 					}
 					case 7:{
 						GUI_DispStringAt("channel 3  ", 100, 210); 
 						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 210); 						
-						GUI_DispFloat(transferredDsuValue[i],4);						
+						GUI_DispFloat(tempTransferredDsuValue,5);						
 						break;
 					}
 					case 8:{
 						GUI_DispStringAt("channel 4  ", 100, 240); 
 						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 240); 
-						GUI_DispFloat(transferredDsuValue[i],4);
+						GUI_DispFloat(tempTransferredDsuValue,5);
 						break;
 					}
 					case 9:{
 						GUI_DispStringAt("channel 5  ", 100, 270); 
 						GUI_DispFloat(num,4);
 						GUI_DispStringAt("transferred data  ", 300, 270); 
-						GUI_DispFloat(transferredDsuValue[i],4);						
+						GUI_DispFloat(tempTransferredDsuValue,5);						
 						break;			
 					}
 					default:
@@ -687,24 +699,29 @@ void PcFollowLoop()
 {
 	static int last_flag = 0;
 	if(testmode_flag==0x21||testmode_flag==0x22){
-		GUI_DispStringAt("Channel 1 ", 170, 150); 
-		GUI_DispFloat(ldVolutage[0],3);
+		GUI_DispStringAt("Channel 1 ", 170, 150);
+		float tempNum = ( (float)( (int)( (ldVolutage[0]+0.005)*100 ) ) )/100; //保留两位小数，这是一种常用的小技巧。
+		GUI_DispFloat(tempNum,4);
 		GUI_DispStringAt("N  ", 390, 150); 
 
 		GUI_DispStringAt("Channel 2 ", 170, 180); 
-		GUI_DispFloat(ldVolutage[1],3);
+		tempNum = ( (float)( (int)( (ldVolutage[1]+0.005)*100 ) ) )/100; //保留两位小数，这是一种常用的小技巧。
+		GUI_DispFloat(tempNum,4);
 		GUI_DispStringAt("N  ", 390, 180); 
 	
 		GUI_DispStringAt("Channel 3 ", 170, 210); 
-		GUI_DispFloat(ldVolutage[2],3);
+		tempNum = ( (float)( (int)( (ldVolutage[2]+0.005)*100 ) ) )/100; //保留两位小数，这是一种常用的小技巧。
+		GUI_DispFloat(tempNum,4);
 		GUI_DispStringAt("N  ", 390, 210); 
 	
 		GUI_DispStringAt("Channel 4 ", 170, 240); 
-		GUI_DispFloat(ldVolutage[3],3);
+		tempNum = ( (float)( (int)( (ldVolutage[3]+0.005)*100 ) ) )/100; //保留两位小数，这是一种常用的小技巧。
+		GUI_DispFloat(tempNum,4);
 		GUI_DispStringAt("N  ", 390, 240); 
 	
 		GUI_DispStringAt("Channel 5 ", 170, 270); 
-		GUI_DispFloat(ldVolutage[4],3);
+		tempNum = ( (float)( (int)( (ldVolutage[4]+0.005)*100 ) ) )/100; //保留两位小数，这是一种常用的小技巧。
+		GUI_DispFloat(tempNum,4);
 		GUI_DispStringAt("N  ", 390, 270); 
 	}else {
 		GUI_DispStringAt("stop ",250,270);
