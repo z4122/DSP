@@ -368,6 +368,7 @@ void stim_change_amplitude(UART_HandleTypeDef *huart,double amplitude,int channe
 void stimulate(UART_HandleTypeDef *huart,double pressure,int channel)
 {
 	//stim_search(huart);// send 800103 back BC
+
 	static int firstFlag[6] = {0};
 	static int onStimFlag[6] = {0};
 	
@@ -673,34 +674,36 @@ void PCFollowStimulateDSU()
 {
 		for(int i = 0;i<5;i++){
 			double num = ldVolutage[i];
-			switch(i){
-			case 0: {
-				transferredDsuValue[i] = num;
-				stimulate(&huart1,num,1);//
-				break;
-			}
-			case 1: {
-				transferredDsuValue[i] = num;
-				stimulate(&huart3, num,2);
-				break;
-			}
-			case 2: {
-				transferredDsuValue[i] = num;
-				stimulate(&huart4,num,3);
-				break;
-			}
-			case 3: {
-				transferredDsuValue[i] = num;
-				stimulate(&huart5,num,4);
-				break;
-			}
-			case 4: {	
-				transferredDsuValue[i] = num;
-				stimulate(&huart7, num,5);//ok ch6
-				break;
-			}
-			default:
-				break;
-			}
-		}	
+			if(channelEnableflag[i]==1){
+					switch(i){
+					case 0: {
+						transferredDsuValue[i] = num;
+						stimulate(&huart1,num,1);//
+						break;
+					}
+					case 1: {
+						transferredDsuValue[i] = num;
+						stimulate(&huart3, num,2);
+						break;
+					}
+					case 2: {
+						transferredDsuValue[i] = num;
+						stimulate(&huart4,num,3);
+						break;
+					}
+					case 3: {
+						transferredDsuValue[i] = num;
+						stimulate(&huart5,num,4);
+						break;
+					}
+					case 4: {	
+						transferredDsuValue[i] = num;
+						stimulate(&huart7, num,5);//ok ch6
+						break;
+					}
+					default:
+						break;
+					}
+				}
+		}
 }

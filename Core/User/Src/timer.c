@@ -95,7 +95,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 		if(initMode!=3){//不是mojoco模式
 			GetAdData();//AD采样频率100hz
 		
-		//if(timesCount%5==0)
 			stimulateDSU();
 			if(timesCount%4==0)
 				FollowLoop();//意味着每30ms刷新一次屏幕，刷新频率为33hz
